@@ -1,0 +1,444 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search>
+  
+  
+  
+  <entry>
+    <title>Hello World</title>
+    <link href="/2022/05/06/hello-world/"/>
+    <url>/2022/05/06/hello-world/</url>
+    
+    <content type="html"><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p><h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">$ hexo new <span class="hljs-string">&quot;My New Post&quot;</span><br></code></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p><h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">$ hexo server<br></code></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p><h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">$ hexo generate<br></code></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p><h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">$ hexo deploy<br></code></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>]]></content>
+    
+    
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>剑指offer-03-数组中重复的数字</title>
+    <link href="/2021/06/17/%E5%89%91%E6%8C%87offer-03-%E6%95%B0%E7%BB%84%E4%B8%AD%E9%87%8D%E5%A4%8D%E7%9A%84%E6%95%B0%E5%AD%97/"/>
+    <url>/2021/06/17/%E5%89%91%E6%8C%87offer-03-%E6%95%B0%E7%BB%84%E4%B8%AD%E9%87%8D%E5%A4%8D%E7%9A%84%E6%95%B0%E5%AD%97/</url>
+    
+    <content type="html"><![CDATA[<h2 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h2><p>题目链接:<a href="https://leetcode-cn.com/problems/shu-zu-zhong-zhong-fu-de-shu-zi-lcof/">剑指 Offer 03. 数组中重复的数字 - 力扣（LeetCode） (leetcode-cn.com)</a></p><p>找出数组中重复的数字。</p><p>在一个长度为<code>n</code> 的数组 <code>nums</code>里的所有数字都在 <code>0</code>～<code>n-1</code> 的范围内。数组中某些数字是重复的，但不知道有几个数字重复了，也不知道每个数字重复了几次。请找出数组中任意一个重复的数字。</p><p>示例1：</p><figure class="highlight accesslog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs accesslog">输入：<br><span class="hljs-string">[2, 3, 1, 0, 2, 5, 3]</span><br>输出：<span class="hljs-number">2</span> 或 <span class="hljs-number">3</span> <br></code></pre></td></tr></table></figure><p>需要考虑到时间复杂度和空间复杂度的要求</p><p>如果要求时间复杂度，可以考虑用hash table.(时间复杂度 <code>O(N)</code>   空间复杂度 <code>O(N)</code>)</p><p>如果要求空间复杂度，可以先排序，再看前后有无重复数字.(时间复杂度 <code>O(Nlog(N))</code>   空间复杂度 <code>O(1)</code>)</p><p>如果都有要求，考虑原地置换法 .(时间复杂度 <code>O(N)</code>   空间复杂度 <code>O(1)</code>)</p>]]></content>
+    
+    
+    <categories>
+      
+      <category>Algorithm</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>leetcode</tag>
+      
+      <tag>hash-table</tag>
+      
+      <tag>剑指offer</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>160.相交链表</title>
+    <link href="/2021/06/06/160-%E7%9B%B8%E4%BA%A4%E9%93%BE%E8%A1%A8/"/>
+    <url>/2021/06/06/160-%E7%9B%B8%E4%BA%A4%E9%93%BE%E8%A1%A8/</url>
+    
+    <content type="html"><![CDATA[<h2 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h2><p>题目链接:<a href="https://leetcode-cn.com/problems/intersection-of-two-linked-lists/">160. 相交链表 - 力扣（LeetCode） (leetcode-cn.com)</a></p><p>给你两个单链表的头节点 <code>headA</code> 和 <code>headB</code> ，请你找出并返回两个单链表相交的起始节点。如果两个链表没有交点，返回 <code>null</code> 。</p><p>图示两个链表在节点 <code>c1</code> 开始相交：</p><p><img src="https://assets.leetcode-cn.com/aliyun-lc-upload/uploads/2018/12/14/160_statement.png" alt="img"></p><p>题目数据 <strong>保证</strong> 整个链式结构中不存在环。</p><p><strong>注意</strong>，函数返回结果后，链表必须 <strong>保持其原始结构</strong> 。</p><p>示例 1：</p><p><img src="https://assets.leetcode-cn.com/aliyun-lc-upload/uploads/2018/12/14/160_example_1.png" alt="img"></p><figure class="highlight dns"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs dns">输入：intersectVal = <span class="hljs-number">8</span>, listA = [<span class="hljs-number">4,1,8,4</span>,<span class="hljs-number">5</span>], listB = [<span class="hljs-number">5,0,1,8</span>,<span class="hljs-number">4</span>,<span class="hljs-number">5</span>], skipA = <span class="hljs-number">2</span>, skipB = <span class="hljs-number">3</span><br><br>输出：Intersected at &#x27;<span class="hljs-number">8</span>&#x27;<br><br>解释：相交节点的值为 <span class="hljs-number">8</span> （注意，如果两个链表相交则不能为 <span class="hljs-number">0</span>）。<br>从各自的表头开始算起，链表 <span class="hljs-keyword">A</span> 为 [<span class="hljs-number">4,1,8,4</span>,<span class="hljs-number">5</span>]，链表 B 为 [<span class="hljs-number">5,0,1,8</span>,<span class="hljs-number">4</span>,<span class="hljs-number">5</span>]。<br>在 <span class="hljs-keyword">A</span> 中，相交节点前有 <span class="hljs-number">2</span> 个节点；在 B 中，相交节点前有 <span class="hljs-number">3</span> 个节点。<br><br></code></pre></td></tr></table></figure><h3 id="双指针"><a href="#双指针" class="headerlink" title="双指针"></a>双指针</h3><p>使用双指针，创建两个指针pa和pb，分别指向两个头节点<code>headA</code>和<code>headB</code></p><p>依次遍历两个链表的每个节点</p><ul><li>如果pa不为空，则将pa移到下一个节点。如果pa为空，将pa指向<code>headB</code>的头节点</li><li>如果pb不为空，则将pb移到下一个节点。如果pb为空，将pb指向<code>headA</code>的头节点</li><li>当pa和pb都指向同一个节点，或者两者都为空的时候，返回指向的节点或者null</li><li>如果两个链表有交点，在第二次循环的时候，会返回交点</li><li>如果两个链表没有交点，在第二次遍历的时候会返回<code>null</code> == <code>null</code>,移动的距离就是两个链表的长度</li></ul><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * Definition for singly-linked list.</span><br><span class="hljs-comment"> * public class ListNode &#123;</span><br><span class="hljs-comment"> *     int val;</span><br><span class="hljs-comment"> *     ListNode next;</span><br><span class="hljs-comment"> *     ListNode(int x) &#123;</span><br><span class="hljs-comment"> *         val = x;</span><br><span class="hljs-comment"> *         next = null;</span><br><span class="hljs-comment"> *     &#125;</span><br><span class="hljs-comment"> * &#125;</span><br><span class="hljs-comment"> */</span><br><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> </span>&#123;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> ListNode <span class="hljs-title">getIntersectionNode</span><span class="hljs-params">(ListNode headA, ListNode headB)</span> </span>&#123;<br>        <span class="hljs-keyword">if</span>(headA == <span class="hljs-keyword">null</span> || headB == <span class="hljs-keyword">null</span>)&#123;<br>            <span class="hljs-keyword">return</span> <span class="hljs-keyword">null</span>;<br>        &#125;<br>        ListNode pa = headA;<br>        ListNode pb = headB;<br>        <span class="hljs-keyword">while</span>(pa != pb)&#123;<br>            pa = pa == <span class="hljs-keyword">null</span> ? headB : pa.next;<br>            pb = pb == <span class="hljs-keyword">null</span> ? headA : pb.next;<br>        &#125;<br>        <span class="hljs-keyword">return</span> pa;<br><br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>]]></content>
+    
+    
+    <categories>
+      
+      <category>Algorithm</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>leetcode</tag>
+      
+      <tag>linked-list</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>虚拟机环境准备</title>
+    <link href="/2021/05/22/%E8%99%9A%E6%8B%9F%E6%9C%BA%E7%8E%AF%E5%A2%83%E5%87%86%E5%A4%87/"/>
+    <url>/2021/05/22/%E8%99%9A%E6%8B%9F%E6%9C%BA%E7%8E%AF%E5%A2%83%E5%87%86%E5%A4%87/</url>
+    
+    <content type="html"><![CDATA[]]></content>
+    
+    
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>13-罗马数字转整数</title>
+    <link href="/2021/05/19/13-%E7%BD%97%E9%A9%AC%E6%95%B0%E5%AD%97%E8%BD%AC%E6%95%B4%E6%95%B0/"/>
+    <url>/2021/05/19/13-%E7%BD%97%E9%A9%AC%E6%95%B0%E5%AD%97%E8%BD%AC%E6%95%B4%E6%95%B0/</url>
+    
+    <content type="html"><![CDATA[<h2 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h2><p>题目链接:<a href="https://leetcode-cn.com/problems/roman-to-integer/">13. 罗马数字转整数 - 力扣（LeetCode） (leetcode-cn.com)</a></p><p>罗马数字包含以下七种字符: <code>I</code>，<code>V</code>，<code>X</code>，<code>L</code>，<code>C</code>，<code>D</code> 和 <code>M</code>。</p><p>字符          数值<br>I             1<br>V             5<br>X             10<br>L             50<br>C             100<br>D             500<br>M             1000<br>例如， 罗马数字 2 写做 <code>II</code> ，即为两个并列的 1。12 写做 <code>XII</code> ，即为 X + II 。 27 写做  <code>XXVII</code>, 即为 <code>XX</code>+<code>V</code>+<code>II</code>。</p><p>通常情况下，罗马数字中小的数字在大的数字的右边。但也存在特例，例如 4 不写做<code>IIII</code>，而是<code>IV</code>。数字 1 在数字 5 的左边，所表示的数等于大数 5 减小数 1 得到的数值 4 。同样地，数字 9 表示为 <code>IX</code>。这个特殊的规则只适用于以下六种情况：</p><p><code>I</code> 可以放在 <code>V</code>(5) 和 <code>X</code> (10) 的左边，来表示 4 和 9。<br><code>X</code>可以放在 <code>L</code> (50) 和 <code>C</code> (100) 的左边，来表示 40 和 90。<br><code>C</code> 可以放在<code>D</code>(500) 和 <code>M</code> (1000) 的左边，来表示 400 和 900。<br>给定一个罗马数字，将其转换成整数。输入确保在 1 到 3999 的范围内。</p><p>方法:</p><p>首先对符号和数字建立一个映射关系。</p><p>然后逆序遍历字符串，判断当前字符和前一个字符代表的数字大小，如果当前字符代表的数字小于后面一个字符，就减去当前字符代表的数值，如果当前字符代表的数字大等于于后面一个字符，就加上当前字符的数字</p><p>比如字符串<code>LVIII</code>对该字符串逆序遍历</p><figure class="highlight mathematica"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs mathematica"><span class="hljs-variable">L</span>  <span class="hljs-variable">V</span>   <span class="hljs-built_in">I</span>   <span class="hljs-built_in">I</span>   <span class="hljs-built_in">I</span><br><br>逆序遍历<br>假设初始值<span class="hljs-variable">sum</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span><br>先到<span class="hljs-built_in">I</span> <span class="hljs-operator">,</span><span class="hljs-built_in">I</span>没有后面字符，所以 <span class="hljs-variable">sum</span><span class="hljs-operator">+</span><span class="hljs-number">1</span><br>然后继续到<span class="hljs-built_in">I</span> 这个时候不比后面字符小 所以再 <span class="hljs-variable">sum</span><span class="hljs-operator">+</span><span class="hljs-number">1</span><br>继续到 <span class="hljs-built_in">I</span>  仍然 <span class="hljs-variable">sum</span><span class="hljs-operator">+</span><span class="hljs-number">1</span><br>之后到 <span class="hljs-variable">V</span><span class="hljs-operator">,</span> <span class="hljs-variable">V</span>的后面一个字符是<span class="hljs-built_in">I</span><span class="hljs-operator">,</span><span class="hljs-variable">V</span>比<span class="hljs-built_in">I</span>大<span class="hljs-operator">,</span>所以<span class="hljs-variable">sum</span><span class="hljs-operator">+</span><span class="hljs-number">5</span><br>最后到 <span class="hljs-variable">L</span><span class="hljs-operator">,</span> <span class="hljs-variable">L</span>的后一个字符是<span class="hljs-variable">V</span><span class="hljs-operator">,</span> <span class="hljs-variable">L</span>比<span class="hljs-variable">V</span>大<span class="hljs-operator">,</span>所以<span class="hljs-variable">sum</span><span class="hljs-operator">+</span><span class="hljs-number">50</span><br>最终结果就是 <span class="hljs-number">0</span> <span class="hljs-operator">+</span> <span class="hljs-number">1</span> <span class="hljs-operator">+</span> <span class="hljs-number">1</span> <span class="hljs-operator">+</span> <span class="hljs-number">1</span> <span class="hljs-operator">+</span> <span class="hljs-number">5</span> <span class="hljs-operator">+</span> <span class="hljs-number">50</span> <span class="hljs-operator">=</span> <span class="hljs-number">58</span><br></code></pre></td></tr></table></figure><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> </span>&#123;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">int</span> <span class="hljs-title">romanToInt</span><span class="hljs-params">(String s)</span> </span>&#123;<br>        <span class="hljs-keyword">if</span>(s == <span class="hljs-keyword">null</span>||s.length() == <span class="hljs-number">0</span>)&#123;<br>            <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>        &#125;<br>        Map&lt;Character,Integer&gt; map = <span class="hljs-keyword">new</span> HashMap&lt;Character,Integer&gt;();<br>        map.put(<span class="hljs-string">&#x27;I&#x27;</span>, <span class="hljs-number">1</span>);<br>        map.put(<span class="hljs-string">&#x27;V&#x27;</span>, <span class="hljs-number">5</span>);<br>        map.put(<span class="hljs-string">&#x27;X&#x27;</span>, <span class="hljs-number">10</span>);<br>        map.put(<span class="hljs-string">&#x27;L&#x27;</span>, <span class="hljs-number">50</span>);<br>        map.put(<span class="hljs-string">&#x27;C&#x27;</span>, <span class="hljs-number">100</span>);<br>        map.put(<span class="hljs-string">&#x27;D&#x27;</span>, <span class="hljs-number">500</span>);<br>        map.put(<span class="hljs-string">&#x27;M&#x27;</span>, <span class="hljs-number">1000</span>);<br>        <span class="hljs-keyword">int</span> sum = <span class="hljs-number">0</span>;<br>        <span class="hljs-keyword">int</span> last = -<span class="hljs-number">1</span>;<br>        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; s.length(); i++) &#123;<br>            <span class="hljs-keyword">int</span> num = map.get(s.charAt(s.length()-<span class="hljs-number">1</span>-i));<span class="hljs-comment">//逆序查找</span><br>            <span class="hljs-keyword">if</span>(num &lt; last)&#123;<span class="hljs-comment">//如果当前值比前一个小则减</span><br>                sum -= num;<br>            &#125;<span class="hljs-keyword">else</span>&#123;<span class="hljs-comment">//否则则加</span><br>                sum += num;<br>            &#125;<br>            last = num;<span class="hljs-comment">//将当前值赋给last</span><br>        &#125;<br>        <span class="hljs-keyword">return</span> sum;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>]]></content>
+    
+    
+    <categories>
+      
+      <category>Algorithm</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>leetcode</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>centos配置单机kafka</title>
+    <link href="/2021/05/07/centos%E9%85%8D%E7%BD%AE%E5%8D%95%E6%9C%BAkafka/"/>
+    <url>/2021/05/07/centos%E9%85%8D%E7%BD%AE%E5%8D%95%E6%9C%BAkafka/</url>
+    
+    <content type="html"><![CDATA[<p>1.下载kafka</p><p>2.上传到服务器 解压</p><p>3.修改conf下的server配置文件</p>]]></content>
+    
+    
+    <categories>
+      
+      <category>配置相关</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>centos</tag>
+      
+      <tag>config</tag>
+      
+      <tag>kafka</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>centos配置单机zookeeper</title>
+    <link href="/2021/05/07/centos%E9%85%8D%E7%BD%AE%E5%8D%95%E6%9C%BAzookeeper/"/>
+    <url>/2021/05/07/centos%E9%85%8D%E7%BD%AE%E5%8D%95%E6%9C%BAzookeeper/</url>
+    
+    <content type="html"><![CDATA[<h3 id="1-下载zookeeper"><a href="#1-下载zookeeper" class="headerlink" title="1.下载zookeeper"></a>1.下载zookeeper</h3><p><a href="https://mirrors.bfsu.edu.cn/apache/zookeeper/zookeeper-3.6.3/apache-zookeeper-3.6.3-bin.tar.gz">下载地址</a></p><p>2.上传到服务器</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta">#</span><span class="bash"> 进入上传zookeeper的目录</span><br>cd /usr/local<br><span class="hljs-meta">#</span><span class="bash"> 解压</span><br>tar -zxvf apache-zookeeper-3.6.3-bin.tar.gz<br><span class="hljs-meta">#</span><span class="bash"> 进入zookeeper解压目录</span><br>cd apache-zookeeper-3.6.3-bin/<br><span class="hljs-meta">#</span><span class="bash"> 新建data文件夹，路径根据个人习惯</span><br>mkdir data<br><span class="hljs-meta">#</span><span class="bash"> 新建日志文件夹，路径根据个人习惯</span><br>mkdir logs<br><span class="hljs-meta">#</span><span class="bash"> 进入配置文件夹</span><br>cd conf<br><span class="hljs-meta">#</span><span class="bash"> 复制给的模板配置文件</span><br>cp zoo_sample.cfg zoo.cfg<br><span class="hljs-meta">#</span><span class="bash"> 修改给配置文件 zoo.cfg</span><br>vi zoo.cfg<br></code></pre></td></tr></table></figure><p>主要关注</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta">#</span><span class="bash">三个属性</span><br><span class="hljs-meta">#</span><span class="bash"> 数据目录 刚才新建的data</span><br>dataDir<br><span class="hljs-meta">#</span><span class="bash"> 日志目录 刚才新建的logs</span><br>dataLogDir<br><span class="hljs-meta">#</span><span class="bash"> 端口</span><br>clientPort <br><br></code></pre></td></tr></table></figure><p>然后执行</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs she">sh zkServer.sh start<br></code></pre></td></tr></table></figure>]]></content>
+    
+    
+    <categories>
+      
+      <category>配置相关</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>centos</tag>
+      
+      <tag>config</tag>
+      
+      <tag>zookeeper</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>jdk源码阅读环境搭建</title>
+    <link href="/2021/05/04/jdk%E6%BA%90%E7%A0%81%E9%98%85%E8%AF%BB%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/"/>
+    <url>/2021/05/04/jdk%E6%BA%90%E7%A0%81%E9%98%85%E8%AF%BB%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/</url>
+    
+    <content type="html"><![CDATA[<h3 id="1-新建项目"><a href="#1-新建项目" class="headerlink" title="1.新建项目"></a>1.新建项目</h3><p>首先新建一个普通的java项目</p><p><img src="/img/jdk阅读环境/1.jpg"></p><h3 id="2-导入jdk源码"><a href="#2-导入jdk源码" class="headerlink" title="2.导入jdk源码"></a>2.导入jdk源码</h3><ul><li>在java的安装目录下找到<code>src.zip</code>这个压缩包</li><li>然后我们将这个压缩包复制到刚才新建的项目目录下</li></ul><p><img src="/img/jdk阅读环境/2.jpg"></p><ul><li>右键解压缩到src目录下</li></ul><p><img src="/img/jdk阅读环境/3.jpg"></p><h3 id="3-替换jdk关联源码"><a href="#3-替换jdk关联源码" class="headerlink" title="3.替换jdk关联源码"></a>3.替换jdk关联源码</h3><p>首先我们打开项目设置<code>open moudle settings</code></p><p>点击SDKs将Sourcepath中原来关联的src给删掉</p><p><img src="/img/jdk阅读环境/4.jpg"></p><p>然后将项目中的jdk源码关联进来</p><p><img src="/img/jdk阅读环境/5.jpg"></p><p>设置项目jdk为刚才关联的jdk</p><p><img src="/img/jdk阅读环境/6.jpg"></p><h3 id="4-其他配置"><a href="#4-其他配置" class="headerlink" title="4.其他配置"></a>4.其他配置</h3><ul><li>在<code>settings</code>中搜索compiler </li></ul><p>​       修改<code>build project automatically</code>为1500 (用于解决系统资源不足)</p><p>​      <img src="/img/jdk阅读环境/11.jpg"></p><ul><li><p>在<code>settings</code>中搜索stepping</p><p>取消勾选</p></li></ul><p>​      <img src="/img/jdk阅读环境/7.jpg"></p><ul><li>删除<code>java.swing.plaf</code>下的<code>gtk</code>包</li></ul><p>​       <img src="/img/jdk阅读环境/8.jpg"></p><ul><li><p>引入jdk运行jar包</p><p>打开项目设置<code>open moudle settings</code>，在<code>Libraries</code>里新增lib</p><p><img src="/img/jdk阅读环境/9.jpg"></p><p>选择本机jdk安装路径下的lib文件夹</p><p><img src="/img/jdk阅读环境/10.jpg"></p></li></ul>]]></content>
+    
+    
+    <categories>
+      
+      <category>配置相关</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>java</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>15-三数之和</title>
+    <link href="/2021/05/04/15-%E4%B8%89%E6%95%B0%E4%B9%8B%E5%92%8C/"/>
+    <url>/2021/05/04/15-%E4%B8%89%E6%95%B0%E4%B9%8B%E5%92%8C/</url>
+    
+    <content type="html"><![CDATA[<h2 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h2><p>题目链接:<a href="https://leetcode-cn.com/problems/3sum/">15. 三数之和 - 力扣（LeetCode） (leetcode-cn.com)</a></p><p>给你一个包含 <code>n</code> 个整数的数组<code>nums</code>，判断 <code>nums</code> 中是否存在三个元素 <script type="math/tex">a</script>，<script type="math/tex">b</script>，<script type="math/tex">c</script> ，使得 <script type="math/tex">a + b + c = 0 ?</script>请你找出所有和为 <code>0</code> 且不重复的三元组。</p><p><strong>注意</strong>：答案中不可以包含重复的三元组。</p><p>示例1：</p><figure class="highlight subunit"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs subunit">输入：nums = [<span class="hljs-string">-1</span>,0,1,2,<span class="hljs-string">-1</span>,<span class="hljs-string">-4</span>]<br>输出：[[<span class="hljs-string">-1</span>,<span class="hljs-string">-1</span>,2],[<span class="hljs-string">-1</span>,0,1]]<br></code></pre></td></tr></table></figure><p>示例2：</p><figure class="highlight inform7"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs inform7">输入：nums = <span class="hljs-comment">[]</span><br>输出：<span class="hljs-comment">[]</span><br></code></pre></td></tr></table></figure><p>示例3：</p><figure class="highlight inform7"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs inform7">输入：nums = <span class="hljs-comment">[0]</span><br>输出：<span class="hljs-comment">[]</span><br></code></pre></td></tr></table></figure><p><strong>提示</strong>:</p><ul><li>$0 \le nums.length \le 3000$</li><li>$-10^5 \le nums[i] \le 10^5$</li></ul>]]></content>
+    
+    
+    <categories>
+      
+      <category>Algorithm</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>leetcode</tag>
+      
+      <tag>two-pointers</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>1-两数之和</title>
+    <link href="/2021/05/04/1-%E4%B8%A4%E6%95%B0%E4%B9%8B%E5%92%8C/"/>
+    <url>/2021/05/04/1-%E4%B8%A4%E6%95%B0%E4%B9%8B%E5%92%8C/</url>
+    
+    <content type="html"><![CDATA[<h2 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h2><p>题目链接:<a href="https://leetcode-cn.com/problems/two-sum/">1. 两数之和 - 力扣（LeetCode） (leetcode-cn.com)</a></p><p>给定一个整数数组 <code>nums</code>和一个整数目标值 <code>target</code>，请你在该数组中找出 <strong>和为目标值</strong> 的那<strong>两个</strong>整数，并返回它们的数组下标。</p><p>你可以假设每种输入只会对应一个答案。但是，数组中同一个元素在答案里不能重复出现。</p><p>你可以按任意顺序返回答案。</p><p>示例1：</p><figure class="highlight inform7"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs inform7">输入：nums = <span class="hljs-comment">[2,7,11,15]</span>, target = 9<br>输出：<span class="hljs-comment">[0,1]</span><br>解释：因为 nums<span class="hljs-comment">[0]</span> + nums<span class="hljs-comment">[1]</span> == 9 ，返回 <span class="hljs-comment">[0, 1]</span> 。<br></code></pre></td></tr></table></figure><p>示例2：</p><figure class="highlight inform7"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs inform7">输入：nums = <span class="hljs-comment">[3,2,4]</span>, target = 6<br>输出：<span class="hljs-comment">[1,2]</span><br></code></pre></td></tr></table></figure><p><strong>提示</strong>：</p><ul><li>$2 \le nums.length \le 10^3$</li><li>$-10^9 \le nums[i] \le 10^9$</li><li>$-10^9 \le target \le 10^9$</li><li><strong>只会存在一个有效答案</strong></li></ul><p>方法一:</p><p>利用hash table记录</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> </span>&#123;<br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">int</span>[] twoSum(<span class="hljs-keyword">int</span>[] nums, <span class="hljs-keyword">int</span> target) &#123;<br>        Map&lt;Integer,Integer&gt; map = <span class="hljs-keyword">new</span> HashMap&lt;&gt;();<br>        <span class="hljs-keyword">int</span>[] res = <span class="hljs-keyword">new</span> <span class="hljs-keyword">int</span>[<span class="hljs-number">2</span>];<br>        <span class="hljs-keyword">int</span> len = nums.length;<br>        <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; len; i++)&#123;<br>            <span class="hljs-keyword">if</span>(map.containsKey(target - nums[i]))&#123;<br>                res[<span class="hljs-number">0</span>] = i;<br>                res[<span class="hljs-number">1</span>] = map.get(target - nums[i]);<br>                <span class="hljs-keyword">return</span> res;<br>            &#125;<br>            map.put(nums[i],i);           <br>        &#125;<br>        <span class="hljs-keyword">return</span> res;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>]]></content>
+    
+    
+    <categories>
+      
+      <category>Algorithm</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>leetcode</tag>
+      
+      <tag>hash-table</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>centos配置java</title>
+    <link href="/2021/05/03/centos%E9%85%8D%E7%BD%AEjava/"/>
+    <url>/2021/05/03/centos%E9%85%8D%E7%BD%AEjava/</url>
+    
+    <content type="html"><![CDATA[<h2 id="tar-gz包安装"><a href="#tar-gz包安装" class="headerlink" title="tar.gz包安装"></a>tar.gz包安装</h2><h4 id="1-jdk下载"><a href="#1-jdk下载" class="headerlink" title="1.jdk下载"></a>1.jdk下载</h4><p>关于jdk历史版本的下载，可以在这里找到<a href="https://github.com/frekele/oracle-java/releases">Releases · frekele/oracle-java (github.com)</a></p><p><img src="/img/centos_config_java/1.jpg"></p><p>我们选择<a href="https://github.com/frekele/oracle-java/releases/download/8u202-b08/jdk-8u202-linux-x64.tar.gz"><code>jdk-8u202-linux-x64.tar.gz</code></a></p><p>2.服务器配置</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta">#</span><span class="bash"> 在服务器上新建目录</span><br>cd /usr/local<br>mkdir java<br></code></pre></td></tr></table></figure><p>利用<a href="[SSH工具 客户端 (hostbuf.com">finalshell</a>](<a href="http://www.hostbuf.com/">http://www.hostbuf.com/</a>)) 将 <code>jdk-8u202-linux-x64.tar.gz</code> 上传到该目录</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta">#</span><span class="bash"> 解压</span><br>tar -zxvf jdk-8u202-linux-x64.tar.gz <br><br><span class="hljs-meta">#</span><span class="bash"> 配置环境变量</span><br>vi /etc/profile<br><br><span class="hljs-meta">#</span><span class="bash"> 在文件底部 输入</span><br>export JAVA_HOME=/usr/local/java/jdk1.8.0_202<br>export CLASSPATH=.:$JAVA_HOME/jre/lib/rt.jar:$JAVA_HOME/lib/dt.jar:$JAVA_HOME/lib/tools.jar<br>export PATH=$JAVA_HOME/bin:$PATH<br><br><span class="hljs-meta">#</span><span class="bash"> 刷新配置</span><br>source /etc/profile<br><br></code></pre></td></tr></table></figure><p><img src="/img/centos_config_java/2.jpg"></p><p>配置好后，输入如下命令</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">java -version<br></code></pre></td></tr></table></figure><p>出现</p><p><img src="/img/centos_config_java/3.jpg"></p><p>就表示安装成功</p>]]></content>
+    
+    
+    <categories>
+      
+      <category>配置相关</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>centos</tag>
+      
+      <tag>java</tag>
+      
+      <tag>config</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>7-整数反转</title>
+    <link href="/2021/05/03/7-%E6%95%B4%E6%95%B0%E5%8F%8D%E8%BD%AC/"/>
+    <url>/2021/05/03/7-%E6%95%B4%E6%95%B0%E5%8F%8D%E8%BD%AC/</url>
+    
+    <content type="html"><![CDATA[<h2 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h2><p>题目链接:<a href="https://leetcode-cn.com/problems/reverse-integer/">7. 整数反转 - 力扣（LeetCode） (leetcode-cn.com)</a></p><p>给你一个 32 位的有符号整数 x ，返回将 x 中的数字部分反转后的结果。</p><p>如果反转后整数超过 32 位的有符号整数的范围 $[−{2^{31}},  {2^{31}} − 1]$ ，就返回 0。</p><p>假设环境不允许存储 64 位整数（有符号或无符号）。</p><p>示例1:</p><figure class="highlight fix"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs fix"><span class="hljs-attr">输入：x </span>=<span class="hljs-string"> 123</span><br><span class="hljs-string">输出：321</span><br></code></pre></td></tr></table></figure><p>示例2:</p><figure class="highlight subunit"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs subunit">输入：x = <span class="hljs-string">-123</span><br>输出：<span class="hljs-string">-321</span><br></code></pre></td></tr></table></figure><p>示例3:</p><figure class="highlight fix"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs fix"><span class="hljs-attr">输入：x </span>=<span class="hljs-string"> 120</span><br><span class="hljs-string">输出：21</span><br></code></pre></td></tr></table></figure><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> </span>&#123;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">int</span> <span class="hljs-title">reverse</span><span class="hljs-params">(<span class="hljs-keyword">int</span> x)</span> </span>&#123;<br>        <span class="hljs-keyword">long</span> res = <span class="hljs-number">0</span>;<br>        <span class="hljs-keyword">while</span>(x != <span class="hljs-number">0</span>)&#123;<br>            <span class="hljs-comment">// 取出x的末尾数字   x % 10       </span><br>            res = res * <span class="hljs-number">10</span> + x % <span class="hljs-number">10</span>;<br>            x /= <span class="hljs-number">10</span>;<br>        &#125;<br>        <span class="hljs-keyword">return</span> (<span class="hljs-keyword">int</span>) res == res ? (<span class="hljs-keyword">int</span>) res : <span class="hljs-number">0</span>;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>]]></content>
+    
+    
+    <categories>
+      
+      <category>Algorithm</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>leetcode</tag>
+      
+      <tag>math</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>554-砖墙</title>
+    <link href="/2021/05/02/554-%E7%A0%96%E5%A2%99/"/>
+    <url>/2021/05/02/554-%E7%A0%96%E5%A2%99/</url>
+    
+    <content type="html"><![CDATA[<h2 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h2><p>题目链接:<a href="https://leetcode-cn.com/problems/brick-wall/">554. 砖墙 - 力扣（LeetCode） (leetcode-cn.com)</a></p><p>你的面前有一堵矩形的、由 n 行砖块组成的砖墙。这些砖块高度相同（也就是一个单位高）但是宽度不同。每一行砖块的宽度之和应该相等。</p><p>你现在要画一条 自顶向下 的、穿过 最少 砖块的垂线。如果你画的线只是从砖块的边缘经过，就不算穿过这块砖。你不能沿着墙的两个垂直边缘之一画线，这样显然是没有穿过一块砖的。</p><p>给你一个二维数组 wall ，该数组包含这堵墙的相关信息。其中，wall[i] 是一个代表从左至右每块砖的宽度的数组。你需要找出怎样画才能使这条线 穿过的砖块数量最少 ，并且返回 穿过的砖块数量 。</p><p>示例1:</p><p><img src="https://assets.leetcode.com/uploads/2021/04/24/cutwall-grid.jpg" alt="img"></p><figure class="highlight inform7"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs inform7">输入：wall = <span class="hljs-comment">[<span class="hljs-comment">[1,2,2,1]</span>,<span class="hljs-comment">[3,1,2]</span>,<span class="hljs-comment">[1,3,2]</span>,<span class="hljs-comment">[2,4]</span>,<span class="hljs-comment">[3,1,2]</span>,<span class="hljs-comment">[1,3,1,1]</span>]</span><br>输出：2<br></code></pre></td></tr></table></figure><p>题目中要求，通过的砖块最少。可以反过来考虑，如果垂线经过间隔则不通过砖块，所以求通过的砖块最少，可以转化为通过的间隔最多。</p><p>如第一个例子</p><p>砖块分别为:</p><ul><li><p>砖块<code>[1,2,2,1]</code>             间隔 <code>[1,3,5]</code></p></li><li><p>砖块<code>[3,1,2]</code>                 间隔<code>[3,4]</code></p></li><li><p>砖块<code>[1,3,2]</code>                 间隔<code>[1,4]</code></p></li><li><p>砖块<code>[2,4]</code>                     间隔<code>[2]</code></p></li><li><p>砖块<code>[3,1,2]</code>                 间隔<code>[3,4]</code></p></li><li><p>砖块<code>[1,3,1,1]</code>             间隔<code>[1,4,5]</code></p></li></ul><p>此时，垂线从间隔4处通过的砖块最少</p><p>可以考虑使用hash table来计算，先对间隔计数，然后遍历hash table找到间隔出现最多的</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> </span>&#123;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">int</span> <span class="hljs-title">leastBricks</span><span class="hljs-params">(List&lt;List&lt;Integer&gt;&gt; wall)</span> </span>&#123;<br>        <span class="hljs-keyword">int</span> height = wall.size();<br>        Map&lt;Integer, Integer&gt; map = <span class="hljs-keyword">new</span> HashMap&lt;&gt;();<br>        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; height; i++) &#123;<br>            <span class="hljs-keyword">int</span> sum = <span class="hljs-number">0</span>;<br>            <span class="hljs-comment">// 获取每个砖块的长度，计算出间隔的长度</span><br>            <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> brick : wall.get(i)) &#123;<br>                sum += brick;<br>                map.put(sum, map.getOrDefault(sum, <span class="hljs-number">0</span>) + <span class="hljs-number">1</span>);<br>            &#125;<br>            <span class="hljs-comment">// 只计算中间的间隔，不能从两边穿过，需要 remove 掉最后一个</span><br>            map.remove(sum); <br>        &#125;<br>        <span class="hljs-keyword">int</span> res = height;<br>        <span class="hljs-comment">// 遍历 获取每个间隔出现的次数，用高度相减，就是通过砖块的数量</span><br>        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> space : map.keySet()) &#123;<br>            <span class="hljs-keyword">int</span> count = map.get(space);<br>            res = Math.min(res, height - count);<br>        &#125;<br>        <span class="hljs-keyword">return</span> res;<br>    &#125;<br>&#125;<br><br></code></pre></td></tr></table></figure>]]></content>
+    
+    
+    <categories>
+      
+      <category>Algorithm</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>leetcode</tag>
+      
+      <tag>hash-table</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>hexo部署问题</title>
+    <link href="/2021/04/29/hexo%E9%83%A8%E7%BD%B2%E9%97%AE%E9%A2%98/"/>
+    <url>/2021/04/29/hexo%E9%83%A8%E7%BD%B2%E9%97%AE%E9%A2%98/</url>
+    
+    <content type="html"><![CDATA[<h3 id="使用hexo-d-命令部署之后-访问页面不显示"><a href="#使用hexo-d-命令部署之后-访问页面不显示" class="headerlink" title="使用hexo d 命令部署之后 访问页面不显示"></a>使用hexo d 命令部署之后 访问页面不显示</h3><h4 id="原因"><a href="#原因" class="headerlink" title="原因"></a>原因</h4><p>因为之前看的网上教程，在<code>_config.yml</code>文件中设置的</p><figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs yml"><span class="hljs-attr">deploy:</span><br>  <span class="hljs-attr">type:</span> <span class="hljs-string">git</span><br>  <span class="hljs-attr">repository:</span> <br>  <span class="hljs-attr">branch:</span> <span class="hljs-string">master</span><br></code></pre></td></tr></table></figure><p>中将branch 设置为了 master,这是因为github现在新建仓库的主分支为main <a href="https://github.com/github/renaming">github/renaming: Guidance for changing the default branch name for GitHub repositories</a></p><p>所以现在github pages 调用的分支为maIn分支</p><h4 id="解决方法"><a href="#解决方法" class="headerlink" title="解决方法"></a>解决方法</h4><p>打开博客仓库的settings</p><p><img src="/img/hexo配置/hexo1.jpg"></p><p>拉到最下面看到github pages配置</p><p><img src="/img/hexo配置/hexo2.jpg"></p><p>然后将分支改为master即可</p><p><img src="/img/hexo配置/hexo3.jpg"></p>]]></content>
+    
+    
+    <categories>
+      
+      <category>配置相关</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>hexo</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>206-反转链表</title>
+    <link href="/2021/04/29/206-%E5%8F%8D%E8%BD%AC%E9%93%BE%E8%A1%A8/"/>
+    <url>/2021/04/29/206-%E5%8F%8D%E8%BD%AC%E9%93%BE%E8%A1%A8/</url>
+    
+    <content type="html"><![CDATA[<h2 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h2><p>题目链接:<a href="https://leetcode-cn.com/problems/reverse-linked-list/">206. 反转链表 - 力扣（LeetCode） (leetcode-cn.com)</a></p><p>给你单链表的头节点 <code>head</code> ，请你反转链表，并返回反转后的链表。</p><p>示例1:</p><figure class="highlight accesslog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs accesslog">输入：head = <span class="hljs-string">[1,2,3,4,5]</span><br>输出：<span class="hljs-string">[5,4,3,2,1]</span><br></code></pre></td></tr></table></figure><p>示例2:</p><figure class="highlight inform7"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs inform7">输入：head = <span class="hljs-comment">[1,2]</span><br>输出：<span class="hljs-comment">[2,1]</span><br></code></pre></td></tr></table></figure><p>示例3:</p><figure class="highlight inform7"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs inform7">输入：head = <span class="hljs-comment">[]</span><br>输出：<span class="hljs-comment">[]</span><br></code></pre></td></tr></table></figure><p>提示:</p><ul><li>链表中节点的数目范围是 <code>[0, 5000]</code></li><li><code>-5000 &lt;= Node.val &lt;= 5000</code></li></ul><h3 id="迭代"><a href="#迭代" class="headerlink" title="迭代"></a>迭代</h3><p>假设链表为 <script type="math/tex">1 \rightarrow 2 \rightarrow 3 \rightarrow \varnothing</script>，我们想要把它改成 <script type="math/tex">\varnothing \leftarrow 1 \leftarrow 2 \leftarrow 3</script>。</p><p>在遍历链表时，将当前节点的 <script type="math/tex">\textit{next}</script> ​ 指针改为指向前一个节点。由于节点没有引用其前一个节点，因此必须事先存储其前一个节点。在更改引用之前，还需要存储后一个节点。最后返回新的头引用。</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> </span>&#123;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> ListNode <span class="hljs-title">reverseList</span><span class="hljs-params">(ListNode head)</span> </span>&#123;<br>        ListNode pre = <span class="hljs-keyword">null</span>;<br>        ListNode cur = head;<br>        ListNode next = <span class="hljs-keyword">null</span>;<br>        <span class="hljs-keyword">while</span>(cur != <span class="hljs-keyword">null</span>) &#123;<br>            next = cur.next;<br>            cur.next = pre;<br>            pre = cur;<br>            cur = next;<br>        &#125;<br>        <span class="hljs-keyword">return</span> pre;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure><h3 id="递归"><a href="#递归" class="headerlink" title="递归"></a>递归</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> </span>&#123;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> ListNode <span class="hljs-title">reverseList</span><span class="hljs-params">(ListNode head)</span> </span>&#123;<br>        <span class="hljs-keyword">if</span>(head == <span class="hljs-keyword">null</span> || head.next == <span class="hljs-keyword">null</span>) &#123;<br>            <span class="hljs-keyword">return</span> head;<br>        &#125;<br>        ListNode node = reverseList(head.next);<br>        head.next.next = head;<br>        head.next = <span class="hljs-keyword">null</span>;<br>        <span class="hljs-keyword">return</span> node;<br>    &#125;<br>&#125;<br><br></code></pre></td></tr></table></figure>]]></content>
+    
+    
+    <categories>
+      
+      <category>Algorithm</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>leetcode</tag>
+      
+      <tag>linked-list</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>94-二叉树的中序遍历</title>
+    <link href="/2021/04/26/94-%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E4%B8%AD%E5%BA%8F%E9%81%8D%E5%8E%86/"/>
+    <url>/2021/04/26/94-%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E4%B8%AD%E5%BA%8F%E9%81%8D%E5%8E%86/</url>
+    
+    <content type="html"><![CDATA[<h2 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h2><p>题目链接:<a href="https://leetcode-cn.com/problems/binary-tree-inorder-traversal/">94. 二叉树的中序遍历 - 力扣（LeetCode） (leetcode-cn.com)</a></p><p>给定一个二叉树的根节点 <code>root</code> ，返回它的 <strong>中序</strong> 遍历。</p><p>中序遍历是先遍历左子树，然后访问根节点，然后遍历右子树。</p><h3 id="递归"><a href="#递归" class="headerlink" title="递归"></a>递归</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> </span>&#123;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> List&lt;Integer&gt; <span class="hljs-title">inorderTraversal</span><span class="hljs-params">(TreeNode root)</span> </span>&#123;<br>        List&lt;Integer&gt; res = <span class="hljs-keyword">new</span> ArrayList&lt;&gt;();<br>        inorder(root, res);<br>        <span class="hljs-keyword">return</span> res;<br>    &#125;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">inorder</span><span class="hljs-params">(TreeNode root, List&lt;Integer&gt; list)</span></span>&#123;<br>        <span class="hljs-keyword">if</span>(<span class="hljs-keyword">null</span> != root)&#123;<br>            <span class="hljs-comment">//递归左子树</span><br>            inorder(root.left, list);<br>            <span class="hljs-comment">//访问根节点</span><br>            list.add(root.val);<br>            <span class="hljs-comment">//递归右子树</span><br>            inorder(root.right, list);<br>        &#125;<br>    &#125;<br>&#125;<br><br></code></pre></td></tr></table></figure><h3 id="迭代"><a href="#迭代" class="headerlink" title="迭代"></a>迭代</h3><ol><li>先遍历到当前结点，但不求值，入栈</li><li>接着遍历左结点，入栈，往下遍历</li><li>当前结点没有左结点了，则出栈，求值</li><li>当前结点有右结点，重复步骤1</li><li>遍历直到栈为空为止</li></ol><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> </span>&#123;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> List&lt;Integer&gt; <span class="hljs-title">inorderTraversal</span><span class="hljs-params">(TreeNode root)</span> </span>&#123;<br>        List&lt;Integer&gt; res = <span class="hljs-keyword">new</span> ArrayList&lt;&gt;();<br>        <span class="hljs-comment">//初始化一个栈</span><br>        Stack&lt;TreeNode&gt; stack = <span class="hljs-keyword">new</span> Stack&lt;&gt;();<br>        TreeNode cur = root;<br>        <span class="hljs-keyword">while</span>(<span class="hljs-keyword">null</span> != cur || !stack.isEmpty())&#123;<br>            <span class="hljs-keyword">while</span>(<span class="hljs-keyword">null</span> != cur)&#123;<br>                stack.push(cur);<br>                <span class="hljs-comment">//不断压入左子树</span><br>                cur = cur.left;<br>            &#125;<br>            <span class="hljs-comment">//栈顶节点出栈</span><br>            cur = stack.pop();<br>            <span class="hljs-comment">//取值</span><br>            res.add(cur.val);<br>            <span class="hljs-comment">//压入右子树</span><br>            cur = cur.right;<br>        &#125;<br>        <span class="hljs-keyword">return</span> res;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>]]></content>
+    
+    
+    <categories>
+      
+      <category>Algorithm</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>leetcode</tag>
+      
+      <tag>tree</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>897-递增顺序搜索树</title>
+    <link href="/2021/04/25/897-%E9%80%92%E5%A2%9E%E9%A1%BA%E5%BA%8F%E6%90%9C%E7%B4%A2%E6%A0%91/"/>
+    <url>/2021/04/25/897-%E9%80%92%E5%A2%9E%E9%A1%BA%E5%BA%8F%E6%90%9C%E7%B4%A2%E6%A0%91/</url>
+    
+    <content type="html"><![CDATA[<h2 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h2><p>题目链接:<a href="https://leetcode-cn.com/problems/increasing-order-search-tree/">897. 递增顺序搜索树 - 力扣（LeetCode） (leetcode-cn.com)</a></p><p>给你一棵二叉搜索树，请你 <strong>按中序遍历</strong> 将其重新排列为一棵递增顺序搜索树，使树中最左边的节点成为树的根节点，并且每个节点没有左子节点，只有一个右子节点。</p><p>示例1:</p><p><img src="https://assets.leetcode.com/uploads/2020/11/17/ex1.jpg" alt="img"></p><figure class="highlight nix"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs nix">输入：<span class="hljs-attr">root</span> = [<span class="hljs-number">5</span>,<span class="hljs-number">3</span>,<span class="hljs-number">6</span>,<span class="hljs-number">2</span>,<span class="hljs-number">4</span>,<span class="hljs-literal">null</span>,<span class="hljs-number">8</span>,<span class="hljs-number">1</span>,<span class="hljs-literal">null</span>,<span class="hljs-literal">null</span>,<span class="hljs-literal">null</span>,<span class="hljs-number">7</span>,<span class="hljs-number">9</span>]<br>输出：[<span class="hljs-number">1</span>,<span class="hljs-literal">null</span>,<span class="hljs-number">2</span>,<span class="hljs-literal">null</span>,<span class="hljs-number">3</span>,<span class="hljs-literal">null</span>,<span class="hljs-number">4</span>,<span class="hljs-literal">null</span>,<span class="hljs-number">5</span>,<span class="hljs-literal">null</span>,<span class="hljs-number">6</span>,<span class="hljs-literal">null</span>,<span class="hljs-number">7</span>,<span class="hljs-literal">null</span>,<span class="hljs-number">8</span>,<span class="hljs-literal">null</span>,<span class="hljs-number">9</span>]<br></code></pre></td></tr></table></figure><p>示例2:</p><p><img src="https://assets.leetcode.com/uploads/2020/11/17/ex2.jpg" alt="img"></p><figure class="highlight nix"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs nix">输入：<span class="hljs-attr">root</span> = [<span class="hljs-number">5</span>,<span class="hljs-number">1</span>,<span class="hljs-number">7</span>]<br>输出：[<span class="hljs-number">1</span>,<span class="hljs-literal">null</span>,<span class="hljs-number">5</span>,<span class="hljs-literal">null</span>,<span class="hljs-number">7</span>]<br></code></pre></td></tr></table></figure><ul><li>树中节点数的取值范围是 <code>[1, 100]</code></li><li><code>0 &lt;= Node.val &lt;= 1000</code></li></ul><h2 id="方法一-中序遍历-用list保存记录"><a href="#方法一-中序遍历-用list保存记录" class="headerlink" title="方法一 中序遍历 用list保存记录"></a>方法一 中序遍历 用list保存记录</h2><ul><li>首先对题目给出的二叉搜索树进行中序遍历，并用list保存</li><li>然后根据链表，创建一个只含右节点的二叉搜索树</li></ul><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> </span>&#123;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> TreeNode <span class="hljs-title">increasingBST</span><span class="hljs-params">(TreeNode root)</span> </span>&#123;<br>        List&lt;TreeNode&gt; list = <span class="hljs-keyword">new</span> ArrayList&lt;&gt;();<br>        <span class="hljs-keyword">if</span>(root == <span class="hljs-keyword">null</span>)&#123;<br>            <span class="hljs-keyword">return</span> <span class="hljs-keyword">null</span>;<br>        &#125;<br>        inOrder(root, list);<br>        <span class="hljs-keyword">int</span> len = list.size();<br>        <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; len - <span class="hljs-number">1</span>; i++)&#123;<br>            <span class="hljs-comment">//获取当前节点</span><br>            TreeNode cur = list.get(i);<br>            <span class="hljs-comment">//获取下一节点</span><br>            TreeNode next = list.get(i + <span class="hljs-number">1</span>);<br>            <span class="hljs-comment">//当前节点左节点置空</span><br>            cur.left = <span class="hljs-keyword">null</span>;<br>            <span class="hljs-comment">//当前节点的右节点就是下一节点</span><br>            cur.right = next;<br>        &#125;<br>        <span class="hljs-comment">//获取最后一个节点</span><br>        TreeNode last = list.get(len - <span class="hljs-number">1</span>);<br>        <span class="hljs-comment">//将最后一个节点的左右节点置空</span><br>        last.left = <span class="hljs-keyword">null</span>;<br>        last.right = <span class="hljs-keyword">null</span>; <br>        <span class="hljs-keyword">return</span> list.get(<span class="hljs-number">0</span>);<br>    &#125;<br>    <span class="hljs-comment">//中序遍历</span><br>    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">inOrder</span><span class="hljs-params">(TreeNode root, List&lt;TreeNode&gt; list)</span></span>&#123;<br>        <span class="hljs-keyword">if</span>(root != <span class="hljs-keyword">null</span>)&#123;<br>            inOrder(root.left, list);<br>            list.add(root);<br>            inOrder(root.right, list);<br>        &#125;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>]]></content>
+    
+    
+    <categories>
+      
+      <category>Algorithm</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>leetcode</tag>
+      
+      <tag>tree</tag>
+      
+      <tag>depth-first-search</tag>
+      
+      <tag>recursion</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  
+</search>
