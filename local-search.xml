@@ -4,6 +4,31 @@
   
   
   <entry>
+    <title>搜索技巧1</title>
+    <link href="/2022/05/23/%E6%90%9C%E7%B4%A2%E6%8A%80%E5%B7%A71/"/>
+    <url>/2022/05/23/%E6%90%9C%E7%B4%A2%E6%8A%80%E5%B7%A71/</url>
+    
+    <content type="html"><![CDATA[<h1 id="利用数组确定搜索方向"><a href="#利用数组确定搜索方向" class="headerlink" title="利用数组确定搜索方向"></a>利用数组确定搜索方向</h1><p>我们可以新建方向数组，这样 dfs 里不用自己手写搜索方向</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">int</span>[] dx = <span class="hljs-keyword">new</span> <span class="hljs-keyword">int</span>[]&#123;<span class="hljs-number">1</span>, <span class="hljs-number">0</span>, -<span class="hljs-number">1</span>, <span class="hljs-number">0</span>&#125;;<br><span class="hljs-keyword">int</span>[] dy = <span class="hljs-keyword">new</span> <span class="hljs-keyword">int</span>[]&#123;<span class="hljs-number">0</span>, <span class="hljs-number">1</span>, <span class="hljs-number">0</span>, -<span class="hljs-number">1</span>&#125;;<br><br><span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> n = <span class="hljs-number">0</span>; n&lt; <span class="hljs-number">4</span>; n++)&#123;<br>    <span class="hljs-keyword">int</span> nx = i + dx[n];<br>    <span class="hljs-keyword">int</span> ny = j + dy[n];<br>&#125;<br><br></code></pre></td></tr></table></figure>]]></content>
+    
+    
+    <categories>
+      
+      <category>Algorithm</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>leetcode</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>Hello World</title>
     <link href="/2022/05/06/hello-world/"/>
     <url>/2022/05/06/hello-world/</url>
