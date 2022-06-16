@@ -18,9 +18,25 @@
   <meta name="author" content="John Doe">
   <meta name="keywords" content="">
   
-  <title>分类 - Blog</title>
+  <title>hive 中文乱码 - Blog</title>
 
   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10.4.0/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+  
 
 
 
@@ -48,7 +64,7 @@
 
 
 <body>
-  <header style="height: 60vh;">
+  <header style="height: 70vh;">
     <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
     <a class="navbar-brand"
@@ -147,9 +163,46 @@
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
           <div class="page-header text-center fade-in-up">
-            <span class="h2" id="subtitle" title="分类">
+            <span class="h2" id="subtitle" title="hive 中文乱码">
               
             </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2022-06-16 21:51" pubdate>
+        2022年6月16日 晚上
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      113 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      1
+       分钟
+    </span>
+  
+
+  
+  
+</div>
 
             
           </div>
@@ -162,216 +215,89 @@
 
   <main>
     
-      <div class="container nopadding-x-md">
-        <div class="py-5" id="board"
-          >
-          
-          <div class="container">
-            <div class="row">
-              <div class="col-12 col-md-10 m-auto">
-                
+      
 
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">hive 中文乱码</h1>
+            
+            <div class="markdown-body">
+              <h1 id="hive-中文乱码"><a href="#hive-中文乱码" class="headerlink" title="hive 中文乱码"></a>hive 中文乱码</h1><h2 id="修改元数据库字符集"><a href="#修改元数据库字符集" class="headerlink" title="修改元数据库字符集"></a>修改元数据库字符集</h2><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-comment">-- 修改表字段 注解 和 表 注解</span><br><span class="hljs-keyword">ALTER</span> <span class="hljs-keyword">TABLE</span> COLUMNS_V2 MODIFY <span class="hljs-keyword">COLUMN</span> COMMENT <span class="hljs-type">varchar</span>(<span class="hljs-number">256</span>) <span class="hljs-type">character</span> <span class="hljs-keyword">set</span> utf8 ;<br><span class="hljs-keyword">ALTER</span> <span class="hljs-keyword">TABLE</span> TABLE_PARAMS MODIFY <span class="hljs-keyword">COLUMN</span> PARAM_VALUE <span class="hljs-type">varchar</span>(<span class="hljs-number">4000</span>) <span class="hljs-type">character</span> <span class="hljs-keyword">set</span> utf8 ;<br><span class="hljs-comment">-- 修改分区字段注解</span><br><span class="hljs-keyword">ALTER</span> <span class="hljs-keyword">TABLE</span> PARTITION_PARAMS MODIFY <span class="hljs-keyword">COLUMN</span> PARAM_VALUE <span class="hljs-type">varchar</span>(<span class="hljs-number">4000</span>) <span class="hljs-type">character</span> <span class="hljs-keyword">set</span> utf8 ;<br><span class="hljs-keyword">ALTER</span> <span class="hljs-keyword">TABLE</span> PARTITION_KEYS MODIFY <span class="hljs-keyword">COLUMN</span> PKEY_COMMENT <span class="hljs-type">varchar</span>(<span class="hljs-number">4000</span>) <span class="hljs-type">character</span> <span class="hljs-keyword">set</span> utf8 ;<br><span class="hljs-comment">-- 修改索引注解</span><br><span class="hljs-keyword">ALTER</span> <span class="hljs-keyword">TABLE</span> INDEX_PARAMS MODIFY <span class="hljs-keyword">COLUMN</span> PARAM_VALUE <span class="hljs-type">varchar</span>(<span class="hljs-number">4000</span>) <span class="hljs-type">character</span> <span class="hljs-keyword">set</span> utf8 ;<br><span class="hljs-comment">-- 修改 数据库 注解</span><br><span class="hljs-keyword">ALTER</span> <span class="hljs-keyword">TABLE</span> DBS MODIFY <span class="hljs-keyword">COLUMN</span> `<span class="hljs-keyword">DESC</span>` <span class="hljs-type">varchar</span>(<span class="hljs-number">4000</span>) <span class="hljs-type">character</span> <span class="hljs-keyword">set</span> utf8 ;<br></code></pre></td></tr></table></figure>
 
-
-
-
-
-
-<div class="category-list">
-  
-  
-  
-  
-    
-    
-    <div class="category row">
-      <a
-        class="category-item collapsed list-group-item category-item-action col-10 col-md-11"
-        id="heading-4afa80e77a07f7488ce4d1bdd8c4977a" role="tab" data-toggle="collapse" href="#collapse-4afa80e77a07f7488ce4d1bdd8c4977a"
-        aria-expanded="false"
-      >
-        Algorithm
-        <i class="iconfont icon-arrowright"></i>
-      </a>
-      <a href="/categories/Algorithm/" class="category-count col-2 col-md-1">
-        <i class="iconfont icon-articles"></i>
-        <span>11</span>
-      </a>
-      <div class="category-collapse">
-        
-        
-          
-  <div id="collapse-4afa80e77a07f7488ce4d1bdd8c4977a" class="collapse in" role="tabpanel"
-       aria-labelledby="heading-4afa80e77a07f7488ce4d1bdd8c4977a">
-    
-    
-      
-      
-        <a href="/2022/05/23/%E6%90%9C%E7%B4%A2%E6%8A%80%E5%B7%A71/" class="list-group-item list-group-item-action">
-          <span class="category-post">搜索技巧1</span>
-        </a>
-      
-    
-      
-      
-        <a href="/2021/06/17/%E5%89%91%E6%8C%87offer-03-%E6%95%B0%E7%BB%84%E4%B8%AD%E9%87%8D%E5%A4%8D%E7%9A%84%E6%95%B0%E5%AD%97/" class="list-group-item list-group-item-action">
-          <span class="category-post">剑指offer-03-数组中重复的数字</span>
-        </a>
-      
-    
-      
-      
-        <a href="/2021/06/06/160-%E7%9B%B8%E4%BA%A4%E9%93%BE%E8%A1%A8/" class="list-group-item list-group-item-action">
-          <span class="category-post">160.相交链表</span>
-        </a>
-      
-    
-      
-      
-        <a href="/2021/05/19/13-%E7%BD%97%E9%A9%AC%E6%95%B0%E5%AD%97%E8%BD%AC%E6%95%B4%E6%95%B0/" class="list-group-item list-group-item-action">
-          <span class="category-post">13-罗马数字转整数</span>
-        </a>
-      
-    
-      
-      
-        <a href="/2021/05/04/15-%E4%B8%89%E6%95%B0%E4%B9%8B%E5%92%8C/" class="list-group-item list-group-item-action">
-          <span class="category-post">15-三数之和</span>
-        </a>
-      
-    
-      
-      
-        <a href="/2021/05/04/1-%E4%B8%A4%E6%95%B0%E4%B9%8B%E5%92%8C/" class="list-group-item list-group-item-action">
-          <span class="category-post">1-两数之和</span>
-        </a>
-      
-    
-      
-      
-        <a href="/2021/05/03/7-%E6%95%B4%E6%95%B0%E5%8F%8D%E8%BD%AC/" class="list-group-item list-group-item-action">
-          <span class="category-post">7-整数反转</span>
-        </a>
-      
-    
-      
-      
-        <a href="/2021/05/02/554-%E7%A0%96%E5%A2%99/" class="list-group-item list-group-item-action">
-          <span class="category-post">554-砖墙</span>
-        </a>
-      
-    
-      
-      
-        <a href="/2021/04/29/206-%E5%8F%8D%E8%BD%AC%E9%93%BE%E8%A1%A8/" class="list-group-item list-group-item-action">
-          <span class="category-post">206-反转链表</span>
-        </a>
-      
-    
-      
-      
-        <a href="/2021/04/26/94-%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E4%B8%AD%E5%BA%8F%E9%81%8D%E5%8E%86/" class="list-group-item list-group-item-action">
-          <span class="category-post">94-二叉树的中序遍历</span>
-        </a>
-      
-    
-      
-      
-        <a href="/categories/Algorithm/" class="list-group-item list-group-item-action">
-          <span class="category-post">More...</span>
-        </a>
-        
-  </div>
-
-        
-      </div>
-    </div>
-  
-    
-    
-    <div class="category row">
-      <a
-        class="category-item collapsed list-group-item category-item-action col-10 col-md-11"
-        id="heading-1a028d81a7f963a5d2c66b3ca234ee34" role="tab" data-toggle="collapse" href="#collapse-1a028d81a7f963a5d2c66b3ca234ee34"
-        aria-expanded="false"
-      >
-        配置相关
-        <i class="iconfont icon-arrowright"></i>
-      </a>
-      <a href="/categories/%E9%85%8D%E7%BD%AE%E7%9B%B8%E5%85%B3/" class="category-count col-2 col-md-1">
-        <i class="iconfont icon-articles"></i>
-        <span>7</span>
-      </a>
-      <div class="category-collapse">
-        
-        
-          
-  <div id="collapse-1a028d81a7f963a5d2c66b3ca234ee34" class="collapse in" role="tabpanel"
-       aria-labelledby="heading-1a028d81a7f963a5d2c66b3ca234ee34">
-    
-    
-      
-      
-        <a href="/2022/06/16/hive-%E4%B8%AD%E6%96%87%E4%B9%B1%E7%A0%81/" class="list-group-item list-group-item-action">
-          <span class="category-post">hive 中文乱码</span>
-        </a>
-      
-    
-      
-      
-        <a href="/2022/06/16/es-on-hive/" class="list-group-item list-group-item-action">
-          <span class="category-post">es on hive</span>
-        </a>
-      
-    
-      
-      
-        <a href="/2021/05/07/centos%E9%85%8D%E7%BD%AE%E5%8D%95%E6%9C%BAkafka/" class="list-group-item list-group-item-action">
-          <span class="category-post">centos配置单机kafka</span>
-        </a>
-      
-    
-      
-      
-        <a href="/2021/05/07/centos%E9%85%8D%E7%BD%AE%E5%8D%95%E6%9C%BAzookeeper/" class="list-group-item list-group-item-action">
-          <span class="category-post">centos配置单机zookeeper</span>
-        </a>
-      
-    
-      
-      
-        <a href="/2021/05/04/jdk%E6%BA%90%E7%A0%81%E9%98%85%E8%AF%BB%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/" class="list-group-item list-group-item-action">
-          <span class="category-post">jdk源码阅读环境搭建</span>
-        </a>
-      
-    
-      
-      
-        <a href="/2021/05/03/centos%E9%85%8D%E7%BD%AEjava/" class="list-group-item list-group-item-action">
-          <span class="category-post">centos配置java</span>
-        </a>
-      
-    
-      
-      
-        <a href="/2021/04/29/hexo%E9%83%A8%E7%BD%B2%E9%97%AE%E9%A2%98/" class="list-group-item list-group-item-action">
-          <span class="category-post">hexo部署问题</span>
-        </a>
-      
-    
-  </div>
-
-        
-      </div>
-    </div>
-  
-</div>
-
-              </div>
             </div>
-          </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/%E9%85%8D%E7%BD%AE%E7%9B%B8%E5%85%B3/">配置相关</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/hive/">hive</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/06/16/es-on-hive/">
+                        <span class="hidden-mobile">es on hive</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
         </div>
       </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
     
 
     
@@ -452,9 +378,15 @@
 
 
 
+  <script  src="https://cdn.jsdelivr.net/npm/tocbot@4.12.0/dist/tocbot.min.js" ></script>
 
 
 
+  <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4.3.0/anchor.min.js" ></script>
 
 
 
@@ -494,6 +426,45 @@
 
 
 
+
+  
+
+  
+    <!-- MathJax -->
+    <script>
+      MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']]
+        },
+        options: {
+          renderActions: {
+            findScript: [10, doc => {
+              document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+                const display = !!node.type.match(/; *mode=display/);
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                const text = document.createTextNode('');
+                node.parentNode.replaceChild(text, node);
+                math.start = { node: text, delim: '', n: 0 };
+                math.end = { node: text, delim: '', n: 0 };
+                doc.math.push(math);
+              });
+            }, '', false],
+            insertedScript: [200, () => {
+              document.querySelectorAll('mjx-container').forEach(node => {
+                let target = node.parentNode;
+                if (target.nodeName.toLowerCase() === 'li') {
+                  target.parentNode.classList.add('has-jax');
+                }
+              });
+            }, '', false]
+          }
+        }
+      };
+    </script>
+
+    <script async src="https://cdn.jsdelivr.net/npm/mathjax@3.1.2/es5/tex-svg.js" ></script>
+
+  
 
 
 

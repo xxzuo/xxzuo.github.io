@@ -18,7 +18,7 @@
   <meta name="author" content="John Doe">
   <meta name="keywords" content="">
   
-  <title>搜索技巧1 - Blog</title>
+  <title>es on hive - Blog</title>
 
   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" />
 
@@ -163,7 +163,7 @@
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
           <div class="page-header text-center fade-in-up">
-            <span class="h2" id="subtitle" title="搜索技巧1">
+            <span class="h2" id="subtitle" title="es on hive">
               
             </span>
 
@@ -173,8 +173,8 @@
   
     <span class="post-meta">
       <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-      <time datetime="2022-05-23 22:17" pubdate>
-        2022年5月23日 晚上
+      <time datetime="2022-06-16 21:50" pubdate>
+        2022年6月16日 晚上
       </time>
     </span>
   
@@ -185,7 +185,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      74 字
+      232 字
     </span>
   
 
@@ -195,7 +195,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      1
+      4
        分钟
     </span>
   
@@ -225,11 +225,26 @@
         <div class="py-5" id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">搜索技巧1</h1>
+            <h1 style="display: none">es on hive</h1>
             
             <div class="markdown-body">
-              <h1 id="利用数组确定搜索方向"><a href="#利用数组确定搜索方向" class="headerlink" title="利用数组确定搜索方向"></a>利用数组确定搜索方向</h1><p>我们可以新建方向数组，这样 dfs 里不用自己手写搜索方向</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">int</span>[] dx = <span class="hljs-keyword">new</span> <span class="hljs-keyword">int</span>[]&#123;<span class="hljs-number">1</span>, <span class="hljs-number">0</span>, -<span class="hljs-number">1</span>, <span class="hljs-number">0</span>&#125;;<br><span class="hljs-keyword">int</span>[] dy = <span class="hljs-keyword">new</span> <span class="hljs-keyword">int</span>[]&#123;<span class="hljs-number">0</span>, <span class="hljs-number">1</span>, <span class="hljs-number">0</span>, -<span class="hljs-number">1</span>&#125;;<br><br><span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> n = <span class="hljs-number">0</span>; n&lt; <span class="hljs-number">4</span>; n++)&#123;<br>    <span class="hljs-keyword">int</span> nx = i + dx[n];<br>    <span class="hljs-keyword">int</span> ny = j + dy[n];<br>&#125;<br><br></code></pre></td></tr></table></figure>
+              <h1 id="es-on-hive"><a href="#es-on-hive" class="headerlink" title="es on hive"></a>es on hive</h1><p>参考<a target="_blank" rel="noopener" href="https://www.elastic.co/guide/en/elasticsearch/hadoop/current/hive.html">https://www.elastic.co/guide/en/elasticsearch/hadoop/current/hive.html</a></p>
+<p>1.首先在官网下载jar包，解压到hive/lib目录下 <a target="_blank" rel="noopener" href="https://www.elastic.co/cn/downloads/hadoop">Download Elasticsearch for Hadoop Free | Elastic</a> </p>
+<p>2.hive server执行时，添加参数 </p>
+<blockquote>
+<p>hive.aux.jars.path=/path/elasticsearch-hadoop.jar </p>
+</blockquote>
+<p>或者修改 hive-site.xml 添加</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">property</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">name</span>&gt;</span>hive.aux.jars.path<span class="hljs-tag">&lt;/<span class="hljs-name">name</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">value</span>&gt;</span>/path/elasticsearch-hadoop.jar<span class="hljs-tag">&lt;/<span class="hljs-name">value</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">description</span>&gt;</span>A comma separated list (with no spaces) of the jar files<span class="hljs-tag">&lt;/<span class="hljs-name">description</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">property</span>&gt;</span><br></code></pre></td></tr></table></figure>
+<p>3.创建hive表，用于映射 es</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">create</span> <span class="hljs-keyword">external</span> <span class="hljs-keyword">table</span> test.es_msg <br>(     <br>    chatType     string,     <br>    fromAccount  string,     <br>    msgTimestamp <span class="hljs-type">bigint</span>,     <br>    toAccount    string <br>)    stored <span class="hljs-keyword">by</span> <span class="hljs-string">&#x27;org.elasticsearch.hadoop.hive.EsStorageHandler&#x27;</span>    <br>tblproperties (         <br>    <span class="hljs-string">&#x27;es.resource&#x27;</span> <span class="hljs-operator">=</span> <span class="hljs-string">&#x27;chat1/_doc&#x27;</span>,         <br>    <span class="hljs-string">&#x27;es.nodes&#x27;</span> <span class="hljs-operator">=</span> <span class="hljs-string">&#x27;192.168.2.146&#x27;</span>,        <br>    &quot;es.nodes.wan.only&quot; <span class="hljs-operator">=</span> &quot;true&quot;,         <br>    <span class="hljs-string">&#x27;es.transport.port&#x27;</span> <span class="hljs-operator">=</span> <span class="hljs-string">&#x27;9200&#x27;</span>,         <br>    <span class="hljs-string">&#x27;es.mapping.names&#x27;</span> <span class="hljs-operator">=</span>                <br>    <span class="hljs-string">&#x27;chatType:chatType ,fromAccount:fromAccount, msgTimestamp:msgTimestamp, toAccount:toAccount&#x27;</span>         <br>);<br></code></pre></td></tr></table></figure>
+<p>4.取出es数据</p>
+<p>对hive表进行 </p>
+<p>insert overwrite table xxx </p>
+<p>select * from xxx;即可取出数据</p>
+<p>hive表配置</p>
+<p>tblproperties</p>
+<p>参考<a target="_blank" rel="noopener" href="https://www.elastic.co/guide/en/elasticsearch/hadoop/current/configuration.html">Configuration | Elasticsearch for Apache Hadoop [7.13] | Elastic</a></p>
 
             </div>
             <hr>
@@ -239,7 +254,7 @@
                   <div class="post-meta mr-3">
                     <i class="iconfont icon-category"></i>
                     
-                      <a class="hover-with-bg" href="/categories/Algorithm/">Algorithm</a>
+                      <a class="hover-with-bg" href="/categories/%E9%85%8D%E7%BD%AE%E7%9B%B8%E5%85%B3/">配置相关</a>
                     
                   </div>
                 
@@ -247,7 +262,7 @@
                   <div class="post-meta">
                     <i class="iconfont icon-tags"></i>
                     
-                      <a class="hover-with-bg" href="/tags/leetcode/">leetcode</a>
+                      <a class="hover-with-bg" href="/tags/hive/">hive</a>
                     
                   </div>
                 
@@ -264,9 +279,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2022/06/16/es-on-hive/">
+                      <a href="/2022/06/16/hive-%E4%B8%AD%E6%96%87%E4%B9%B1%E7%A0%81/">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">es on hive</span>
+                        <span class="hidden-mobile">hive 中文乱码</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -274,8 +289,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2022/05/06/hello-world/">
-                        <span class="hidden-mobile">Hello World</span>
+                      <a href="/2022/05/23/%E6%90%9C%E7%B4%A2%E6%8A%80%E5%B7%A71/">
+                        <span class="hidden-mobile">搜索技巧1</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>

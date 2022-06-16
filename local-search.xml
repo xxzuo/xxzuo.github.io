@@ -4,6 +4,56 @@
   
   
   <entry>
+    <title>hive 中文乱码</title>
+    <link href="/2022/06/16/hive-%E4%B8%AD%E6%96%87%E4%B9%B1%E7%A0%81/"/>
+    <url>/2022/06/16/hive-%E4%B8%AD%E6%96%87%E4%B9%B1%E7%A0%81/</url>
+    
+    <content type="html"><![CDATA[<h1 id="hive-中文乱码"><a href="#hive-中文乱码" class="headerlink" title="hive 中文乱码"></a>hive 中文乱码</h1><h2 id="修改元数据库字符集"><a href="#修改元数据库字符集" class="headerlink" title="修改元数据库字符集"></a>修改元数据库字符集</h2><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-comment">-- 修改表字段 注解 和 表 注解</span><br><span class="hljs-keyword">ALTER</span> <span class="hljs-keyword">TABLE</span> COLUMNS_V2 MODIFY <span class="hljs-keyword">COLUMN</span> COMMENT <span class="hljs-type">varchar</span>(<span class="hljs-number">256</span>) <span class="hljs-type">character</span> <span class="hljs-keyword">set</span> utf8 ;<br><span class="hljs-keyword">ALTER</span> <span class="hljs-keyword">TABLE</span> TABLE_PARAMS MODIFY <span class="hljs-keyword">COLUMN</span> PARAM_VALUE <span class="hljs-type">varchar</span>(<span class="hljs-number">4000</span>) <span class="hljs-type">character</span> <span class="hljs-keyword">set</span> utf8 ;<br><span class="hljs-comment">-- 修改分区字段注解</span><br><span class="hljs-keyword">ALTER</span> <span class="hljs-keyword">TABLE</span> PARTITION_PARAMS MODIFY <span class="hljs-keyword">COLUMN</span> PARAM_VALUE <span class="hljs-type">varchar</span>(<span class="hljs-number">4000</span>) <span class="hljs-type">character</span> <span class="hljs-keyword">set</span> utf8 ;<br><span class="hljs-keyword">ALTER</span> <span class="hljs-keyword">TABLE</span> PARTITION_KEYS MODIFY <span class="hljs-keyword">COLUMN</span> PKEY_COMMENT <span class="hljs-type">varchar</span>(<span class="hljs-number">4000</span>) <span class="hljs-type">character</span> <span class="hljs-keyword">set</span> utf8 ;<br><span class="hljs-comment">-- 修改索引注解</span><br><span class="hljs-keyword">ALTER</span> <span class="hljs-keyword">TABLE</span> INDEX_PARAMS MODIFY <span class="hljs-keyword">COLUMN</span> PARAM_VALUE <span class="hljs-type">varchar</span>(<span class="hljs-number">4000</span>) <span class="hljs-type">character</span> <span class="hljs-keyword">set</span> utf8 ;<br><span class="hljs-comment">-- 修改 数据库 注解</span><br><span class="hljs-keyword">ALTER</span> <span class="hljs-keyword">TABLE</span> DBS MODIFY <span class="hljs-keyword">COLUMN</span> `<span class="hljs-keyword">DESC</span>` <span class="hljs-type">varchar</span>(<span class="hljs-number">4000</span>) <span class="hljs-type">character</span> <span class="hljs-keyword">set</span> utf8 ;<br></code></pre></td></tr></table></figure>]]></content>
+    
+    
+    <categories>
+      
+      <category>配置相关</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>hive</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>es on hive</title>
+    <link href="/2022/06/16/es-on-hive/"/>
+    <url>/2022/06/16/es-on-hive/</url>
+    
+    <content type="html"><![CDATA[<h1 id="es-on-hive"><a href="#es-on-hive" class="headerlink" title="es on hive"></a>es on hive</h1><p>参考<a href="https://www.elastic.co/guide/en/elasticsearch/hadoop/current/hive.html">https://www.elastic.co/guide/en/elasticsearch/hadoop/current/hive.html</a></p><p>1.首先在官网下载jar包，解压到hive/lib目录下 <a href="https://www.elastic.co/cn/downloads/hadoop">Download Elasticsearch for Hadoop Free | Elastic</a> </p><p>2.hive server执行时，添加参数 </p><blockquote><p>hive.aux.jars.path=/path/elasticsearch-hadoop.jar </p></blockquote><p>或者修改 hive-site.xml 添加</p><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">property</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">name</span>&gt;</span>hive.aux.jars.path<span class="hljs-tag">&lt;/<span class="hljs-name">name</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">value</span>&gt;</span>/path/elasticsearch-hadoop.jar<span class="hljs-tag">&lt;/<span class="hljs-name">value</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">description</span>&gt;</span>A comma separated list (with no spaces) of the jar files<span class="hljs-tag">&lt;/<span class="hljs-name">description</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">property</span>&gt;</span><br></code></pre></td></tr></table></figure><p>3.创建hive表，用于映射 es</p><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">create</span> <span class="hljs-keyword">external</span> <span class="hljs-keyword">table</span> test.es_msg <br>(     <br>    chatType     string,     <br>    fromAccount  string,     <br>    msgTimestamp <span class="hljs-type">bigint</span>,     <br>    toAccount    string <br>)    stored <span class="hljs-keyword">by</span> <span class="hljs-string">&#x27;org.elasticsearch.hadoop.hive.EsStorageHandler&#x27;</span>    <br>tblproperties (         <br>    <span class="hljs-string">&#x27;es.resource&#x27;</span> <span class="hljs-operator">=</span> <span class="hljs-string">&#x27;chat1/_doc&#x27;</span>,         <br>    <span class="hljs-string">&#x27;es.nodes&#x27;</span> <span class="hljs-operator">=</span> <span class="hljs-string">&#x27;192.168.2.146&#x27;</span>,        <br>    &quot;es.nodes.wan.only&quot; <span class="hljs-operator">=</span> &quot;true&quot;,         <br>    <span class="hljs-string">&#x27;es.transport.port&#x27;</span> <span class="hljs-operator">=</span> <span class="hljs-string">&#x27;9200&#x27;</span>,         <br>    <span class="hljs-string">&#x27;es.mapping.names&#x27;</span> <span class="hljs-operator">=</span>                <br>    <span class="hljs-string">&#x27;chatType:chatType ,fromAccount:fromAccount, msgTimestamp:msgTimestamp, toAccount:toAccount&#x27;</span>         <br>);<br></code></pre></td></tr></table></figure><p>4.取出es数据</p><p>对hive表进行 </p><p>insert overwrite table xxx </p><p>select * from xxx;即可取出数据</p><p>hive表配置</p><p>tblproperties</p><p>参考<a href="https://www.elastic.co/guide/en/elasticsearch/hadoop/current/configuration.html">Configuration | Elasticsearch for Apache Hadoop [7.13] | Elastic</a></p>]]></content>
+    
+    
+    <categories>
+      
+      <category>配置相关</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>hive</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>搜索技巧1</title>
     <link href="/2022/05/23/%E6%90%9C%E7%B4%A2%E6%8A%80%E5%B7%A71/"/>
     <url>/2022/05/23/%E6%90%9C%E7%B4%A2%E6%8A%80%E5%B7%A71/</url>
