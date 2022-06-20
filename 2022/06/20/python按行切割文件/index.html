@@ -18,7 +18,7 @@
   <meta name="author" content="John Doe">
   <meta name="keywords" content="">
   
-  <title>hive 中文乱码 - Blog</title>
+  <title>python按行切割文件 - Blog</title>
 
   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" />
 
@@ -163,7 +163,7 @@
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
           <div class="page-header text-center fade-in-up">
-            <span class="h2" id="subtitle" title="hive 中文乱码">
+            <span class="h2" id="subtitle" title="python按行切割文件">
               
             </span>
 
@@ -173,8 +173,8 @@
   
     <span class="post-meta">
       <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-      <time datetime="2022-06-16 21:51" pubdate>
-        2022年6月16日 晚上
+      <time datetime="2022-06-20 23:03" pubdate>
+        2022年6月20日 晚上
       </time>
     </span>
   
@@ -185,7 +185,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      113 字
+      454 字
     </span>
   
 
@@ -195,7 +195,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      1
+      8
        分钟
     </span>
   
@@ -225,28 +225,22 @@
         <div class="py-5" id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">hive 中文乱码</h1>
+            <h1 style="display: none">python按行切割文件</h1>
             
             <div class="markdown-body">
-              <h1 id="hive-中文乱码"><a href="#hive-中文乱码" class="headerlink" title="hive 中文乱码"></a>hive 中文乱码</h1><h2 id="修改元数据库字符集"><a href="#修改元数据库字符集" class="headerlink" title="修改元数据库字符集"></a>修改元数据库字符集</h2><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-comment">-- 修改表字段 注解 和 表 注解</span><br><span class="hljs-keyword">ALTER</span> <span class="hljs-keyword">TABLE</span> COLUMNS_V2 MODIFY <span class="hljs-keyword">COLUMN</span> COMMENT <span class="hljs-type">varchar</span>(<span class="hljs-number">256</span>) <span class="hljs-type">character</span> <span class="hljs-keyword">set</span> utf8 ;<br><span class="hljs-keyword">ALTER</span> <span class="hljs-keyword">TABLE</span> TABLE_PARAMS MODIFY <span class="hljs-keyword">COLUMN</span> PARAM_VALUE <span class="hljs-type">varchar</span>(<span class="hljs-number">4000</span>) <span class="hljs-type">character</span> <span class="hljs-keyword">set</span> utf8 ;<br><span class="hljs-comment">-- 修改分区字段注解</span><br><span class="hljs-keyword">ALTER</span> <span class="hljs-keyword">TABLE</span> PARTITION_PARAMS MODIFY <span class="hljs-keyword">COLUMN</span> PARAM_VALUE <span class="hljs-type">varchar</span>(<span class="hljs-number">4000</span>) <span class="hljs-type">character</span> <span class="hljs-keyword">set</span> utf8 ;<br><span class="hljs-keyword">ALTER</span> <span class="hljs-keyword">TABLE</span> PARTITION_KEYS MODIFY <span class="hljs-keyword">COLUMN</span> PKEY_COMMENT <span class="hljs-type">varchar</span>(<span class="hljs-number">4000</span>) <span class="hljs-type">character</span> <span class="hljs-keyword">set</span> utf8 ;<br><span class="hljs-comment">-- 修改索引注解</span><br><span class="hljs-keyword">ALTER</span> <span class="hljs-keyword">TABLE</span> INDEX_PARAMS MODIFY <span class="hljs-keyword">COLUMN</span> PARAM_VALUE <span class="hljs-type">varchar</span>(<span class="hljs-number">4000</span>) <span class="hljs-type">character</span> <span class="hljs-keyword">set</span> utf8 ;<br><span class="hljs-comment">-- 修改 数据库 注解</span><br><span class="hljs-keyword">ALTER</span> <span class="hljs-keyword">TABLE</span> DBS MODIFY <span class="hljs-keyword">COLUMN</span> `<span class="hljs-keyword">DESC</span>` <span class="hljs-type">varchar</span>(<span class="hljs-number">4000</span>) <span class="hljs-type">character</span> <span class="hljs-keyword">set</span> utf8 ;<br></code></pre></td></tr></table></figure>
+              <h1 id="利用python-按行分割文件"><a href="#利用python-按行分割文件" class="headerlink" title="利用python 按行分割文件"></a>利用python 按行分割文件</h1><p>代码如下</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> os<br><span class="hljs-keyword">import</span> time<br><span class="hljs-keyword">import</span> tkinter <span class="hljs-keyword">as</span> tk<br><span class="hljs-keyword">from</span> tkinter <span class="hljs-keyword">import</span> filedialog<br><span class="hljs-keyword">from</span> tkinter.messagebox <span class="hljs-keyword">import</span> showinfo, showwarning, showerror<br> <br> <br><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">mkSubFile</span>(<span class="hljs-params">lines, head, srcName, sub</span>):</span><br>    [des_filename, extname] = os.path.splitext(srcName)<br>    filename = des_filename + <span class="hljs-string">&#x27;_&#x27;</span> + <span class="hljs-built_in">str</span>(sub) + extname<br>    <span class="hljs-built_in">print</span>(<span class="hljs-string">&#x27;make file: %s&#x27;</span> % filename)<br>    fout = <span class="hljs-built_in">open</span>(filename, <span class="hljs-string">&#x27;w&#x27;</span>)<br> <br>    <span class="hljs-keyword">try</span>:<br>        fout.writelines([head])<br>        fout.writelines(lines)<br>        <span class="hljs-keyword">return</span> sub + <span class="hljs-number">1</span><br>    <span class="hljs-keyword">finally</span>:<br>        fout.close()<br> <br> <br><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">splitByLineCount</span>(<span class="hljs-params">filename, count</span>):</span><br>    fin = <span class="hljs-built_in">open</span>(filename, <span class="hljs-string">&#x27;r&#x27;</span>)<br>    <span class="hljs-keyword">try</span>:<br>        head = fin.readline()<br>        buf = []<br>        sub = <span class="hljs-number">1</span><br>        <span class="hljs-keyword">for</span> line <span class="hljs-keyword">in</span> fin:<br>            buf.append(line)<br>            <span class="hljs-keyword">if</span> <span class="hljs-built_in">len</span>(buf) == count:<br>                sub = mkSubFile(buf, head, filename, sub)<br>                buf = []<br>        <span class="hljs-keyword">if</span> <span class="hljs-built_in">len</span>(buf) != <span class="hljs-number">0</span>:<br>            sub = mkSubFile(buf, head, filename, sub)<br>    <span class="hljs-keyword">finally</span>:<br>        fin.close()<br> <br> <br><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">init</span>():</span><br>    entryNum[<span class="hljs-string">&#x27;state&#x27;</span>] = <span class="hljs-string">&quot;disable&quot;</span><br>    btnConfirm[<span class="hljs-string">&#x27;state&#x27;</span>] = <span class="hljs-string">&quot;normal&quot;</span><br> <br> <br><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">confirm</span>():</span><br>    f_path = filedialog.askopenfilename()<br>    inputFilePath.<span class="hljs-built_in">set</span>(f_path)<br> <br> <br><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">clear</span>():</span><br>    inputFilePath.<span class="hljs-built_in">set</span>(<span class="hljs-string">&quot;&quot;</span>)<br>    row.<span class="hljs-built_in">set</span>(<span class="hljs-string">&quot;&quot;</span>)<br> <br> <br><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">startSplitFile</span>():</span><br>    <span class="hljs-keyword">if</span> <span class="hljs-built_in">len</span>(inputFilePath.get()) == <span class="hljs-number">0</span>:<br>        showwarning(title=<span class="hljs-string">&quot;警告&quot;</span>,<br>                    message=<span class="hljs-string">&quot;未选择文件路径!&quot;</span>)<br>        <span class="hljs-keyword">return</span><br>    <span class="hljs-keyword">try</span>:<br>        <span class="hljs-keyword">if</span> <span class="hljs-built_in">int</span>(row.get()) &lt;= <span class="hljs-number">0</span>:<br>            showwarning(title=<span class="hljs-string">&quot;警告&quot;</span>,<br>                        message=<span class="hljs-string">&quot;输入的不是正整数!&quot;</span>)<br>            <span class="hljs-keyword">return</span><br>    <span class="hljs-keyword">except</span>:<br>        showwarning(title=<span class="hljs-string">&quot;警告&quot;</span>,<br>                    message=<span class="hljs-string">&quot;输入的不是整数!&quot;</span>)<br>        <span class="hljs-keyword">return</span><br>    count = <span class="hljs-built_in">int</span>(row.get())<br>    begin = time.time()<br>    splitByLineCount(inputFilePath.get(), count)<br>    end = time.time()<br>    <span class="hljs-built_in">print</span>(<span class="hljs-string">&#x27;time is %d seconds &#x27;</span> % (end - begin))<br> <br> <br><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">closeWindow</span>():</span><br>    root.destroy()<br> <br> <br><span class="hljs-keyword">if</span> __name__ == <span class="hljs-string">&#x27;__main__&#x27;</span>:<br>    root = tk.Tk()<br>    root.title(<span class="hljs-string">&quot;File Split&quot;</span>)<br>    root.resizable(<span class="hljs-literal">False</span>, <span class="hljs-literal">False</span>)<br>    root.geometry(<span class="hljs-string">&quot;600x100+480+320&quot;</span>)<br> <br>    mess = tk.Label(root, text=<span class="hljs-string">&quot;请选择要切分的文件：&quot;</span>)<br>    mess.place(x=<span class="hljs-number">20</span>, y=<span class="hljs-number">10</span>, width=<span class="hljs-number">200</span>, height=<span class="hljs-number">20</span>)<br> <br>    inputFilePath = tk.StringVar(root, value=<span class="hljs-string">&#x27;&#x27;</span>)<br>    entryNum = tk.Entry(root, width=<span class="hljs-number">80</span>, textvariable=inputFilePath)<br>    entryNum.place(x=<span class="hljs-number">220</span>, y=<span class="hljs-number">10</span>, width=<span class="hljs-number">260</span>, height=<span class="hljs-number">20</span>)<br> <br>    btnConfirm = tk.Button(root, text=<span class="hljs-string">&#x27;选择文件&#x27;</span>, command=confirm)<br>    btnConfirm.place(x=<span class="hljs-number">500</span>, y=<span class="hljs-number">10</span>, width=<span class="hljs-number">70</span>, height=<span class="hljs-number">20</span>)<br> <br>    mess1 = tk.Label(root, text=<span class="hljs-string">&quot;请输入切分的文件行数：&quot;</span>)<br>    mess1.place(x=<span class="hljs-number">20</span>, y=<span class="hljs-number">40</span>, width=<span class="hljs-number">200</span>, height=<span class="hljs-number">20</span>)<br> <br>    row = tk.StringVar(root, value=<span class="hljs-string">&#x27;&#x27;</span>)<br>    entryNum1 = tk.Entry(root, width=<span class="hljs-number">80</span>, textvariable=row)<br>    entryNum1.place(x=<span class="hljs-number">220</span>, y=<span class="hljs-number">40</span>, width=<span class="hljs-number">200</span>, height=<span class="hljs-number">20</span>)<br> <br>    btnStart = tk.Button(root, text=<span class="hljs-string">&#x27;清空&#x27;</span>, command=clear)<br>    btnStart.place(x=<span class="hljs-number">260</span>, y=<span class="hljs-number">70</span>, width=<span class="hljs-number">70</span>, height=<span class="hljs-number">20</span>)<br> <br>    btnSet = tk.Button(root, text=<span class="hljs-string">&#x27;开始切分&#x27;</span>, command=startSplitFile)<br>    btnSet.place(x=<span class="hljs-number">125</span>, y=<span class="hljs-number">70</span>, width=<span class="hljs-number">70</span>, height=<span class="hljs-number">20</span>)<br> <br>    init()<br>    root.protocol(<span class="hljs-string">&quot;WM_DELETE_WINDOW&quot;</span>, closeWindow)<br>    root.mainloop()<br></code></pre></td></tr></table></figure>
 
             </div>
             <hr>
             <div>
               <div class="post-metas mb-3">
                 
-                  <div class="post-meta mr-3">
-                    <i class="iconfont icon-category"></i>
-                    
-                      <a class="hover-with-bg" href="/categories/%E9%85%8D%E7%BD%AE%E7%9B%B8%E5%85%B3/">配置相关</a>
-                    
-                  </div>
-                
                 
                   <div class="post-meta">
                     <i class="iconfont icon-tags"></i>
                     
-                      <a class="hover-with-bg" href="/tags/hive/">hive</a>
+                      <a class="hover-with-bg" href="/tags/python/">python</a>
                     
                   </div>
                 
@@ -263,9 +257,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2022/06/20/hadoop%E4%BD%9C%E4%B8%9A%E6%9F%A5%E8%AF%A2%E4%B8%8E%E5%85%B3%E9%97%AD/">
+                      <a href="/2022/06/20/hive-ip%E5%9C%B0%E7%90%86%E4%BF%A1%E6%81%AF%E6%9F%A5%E8%AF%A2/">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">hadoop作业查询与关闭</span>
+                        <span class="hidden-mobile">hive-ip地理信息查询</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -273,8 +267,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2022/06/16/es-on-hive/">
-                        <span class="hidden-mobile">es on hive</span>
+                      <a href="/2022/06/20/hadoop%E7%A3%81%E7%9B%98%E7%A9%BA%E9%97%B4%E6%B8%85%E7%90%86/">
+                        <span class="hidden-mobile">hadoop磁盘空间清理</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
