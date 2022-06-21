@@ -4,6 +4,8 @@ date: 2022-06-20 23:02:46
 tags:
 - hadoop
 - yarn
+categories: 
+- 常用命令
 ---
 
 # hadoop作业的查询和关闭

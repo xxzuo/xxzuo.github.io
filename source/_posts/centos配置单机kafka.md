@@ -7,6 +7,7 @@ tags:
 - centos
 - kafka
 - config
+hide: true
 ---
 
 

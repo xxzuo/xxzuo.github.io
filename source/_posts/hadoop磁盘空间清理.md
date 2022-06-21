@@ -4,6 +4,8 @@ date: 2022-06-20 23:02:59
 tags:
 - hadoop
 - linux
+categories: 
+- 常用命令
 ---
 
 
