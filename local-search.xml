@@ -4,6 +4,83 @@
   
   
   <entry>
+    <title>yarn配置</title>
+    <link href="/2022/06/21/yarn%E9%85%8D%E7%BD%AE/"/>
+    <url>/2022/06/21/yarn%E9%85%8D%E7%BD%AE/</url>
+    
+    <content type="html"><![CDATA[<h3 id="Capacity-Scheduler（容量调度器）"><a href="#Capacity-Scheduler（容量调度器）" class="headerlink" title="Capacity Scheduler（容量调度器）"></a>Capacity Scheduler（容量调度器）</h3> <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">property</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">name</span>&gt;</span>yarn.scheduler.capacity.maximum-am-resource-percent<span class="hljs-tag">&lt;/<span class="hljs-name">name</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">value</span>&gt;</span>0.8<span class="hljs-tag">&lt;/<span class="hljs-name">value</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">property</span>&gt;</span><br></code></pre></td></tr></table></figure><blockquote><p> maximum-am-resource-percent：集群中用于运行应用程序ApplicationMaster的资源比例上限，该参数通常用于限制处于活动状态的应用程序数目。所有队列的ApplicationMaster资源比例上限可通过参数yarn.scheduler.capacity.maximum-am-resource-percent设置，而单个队列可通过参数yarn.scheduler.capacity.<queue-path>.maximum-am-resource-percent设置适合自己的值</p></blockquote><h3 id="节点级别"><a href="#节点级别" class="headerlink" title="节点级别"></a>节点级别</h3><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">property</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">name</span>&gt;</span>yarn.nodemanager.resource.memory-mb<span class="hljs-tag">&lt;/<span class="hljs-name">name</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">value</span>&gt;</span>-1<span class="hljs-tag">&lt;/<span class="hljs-name">value</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">final</span>&gt;</span>false<span class="hljs-tag">&lt;/<span class="hljs-name">final</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">source</span>&gt;</span>yarn-default.xml<span class="hljs-tag">&lt;/<span class="hljs-name">source</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">property</span>&gt;</span><br></code></pre></td></tr></table></figure><blockquote><p>说明：每个节点可用的最大内存，RM中的两个值不应该超过此值。此数值可以用于计算container最大数目，即：用此值除以RM中的最小容器内存。</p></blockquote><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">property</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">name</span>&gt;</span>yarn.nodemanager.resource.cpu-vcores<span class="hljs-tag">&lt;/<span class="hljs-name">name</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">value</span>&gt;</span>-1<span class="hljs-tag">&lt;/<span class="hljs-name">value</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">final</span>&gt;</span>false<span class="hljs-tag">&lt;/<span class="hljs-name">final</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">source</span>&gt;</span>yarn-default.xml<span class="hljs-tag">&lt;/<span class="hljs-name">source</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">property</span>&gt;</span><br></code></pre></td></tr></table></figure><p>每个节点总的可用虚拟CPU个数。 默认值：8</p><blockquote><p>目前推荐将该值设值为与物理CPU核数数目相同。如果你的节点CPU核数不够8个，则需要调减小这个值，而YARN不会智能的探测节点的物理CPU总数</p></blockquote><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">property</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">name</span>&gt;</span>yarn.nodemanager.vmem-pmem-ratio<span class="hljs-tag">&lt;/<span class="hljs-name">name</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">value</span>&gt;</span>2.1<span class="hljs-tag">&lt;/<span class="hljs-name">value</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">final</span>&gt;</span>false<span class="hljs-tag">&lt;/<span class="hljs-name">final</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">source</span>&gt;</span>yarn-default.xml<span class="hljs-tag">&lt;/<span class="hljs-name">source</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">property</span>&gt;</span><br></code></pre></td></tr></table></figure><blockquote><p>Ratio between virtual memory to physical memory when setting memory limits for containers. Container allocations are expressed in terms of physical memory, and virtual memory usage is allowed to exceed this allocation by this ratio.</p><p>每单位的物理内存总量对应的虚拟内存量，默认是2.1，表示每使用1MB的物理内存，最多可以使用2.1MB的虚拟内存总量。</p></blockquote><h3 id="容器级别"><a href="#容器级别" class="headerlink" title="容器级别"></a>容器级别</h3><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">property</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">name</span>&gt;</span>yarn.scheduler.maximum-allocation-mb<span class="hljs-tag">&lt;/<span class="hljs-name">name</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">value</span>&gt;</span>8192<span class="hljs-tag">&lt;/<span class="hljs-name">value</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">final</span>&gt;</span>false<span class="hljs-tag">&lt;/<span class="hljs-name">final</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">source</span>&gt;</span>yarn-default.xml<span class="hljs-tag">&lt;/<span class="hljs-name">source</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">property</span>&gt;</span><br><br><br><span class="hljs-tag">&lt;<span class="hljs-name">property</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">name</span>&gt;</span>yarn.scheduler.minimum-allocation-mb<span class="hljs-tag">&lt;/<span class="hljs-name">name</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">value</span>&gt;</span>1024<span class="hljs-tag">&lt;/<span class="hljs-name">value</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">final</span>&gt;</span>false<span class="hljs-tag">&lt;/<span class="hljs-name">final</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">source</span>&gt;</span>yarn-default.xml<span class="hljs-tag">&lt;/<span class="hljs-name">source</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">property</span>&gt;</span><br></code></pre></td></tr></table></figure><blockquote><p>说明：单个容器可申请的最小与最大内存，应用在运行申请内存时不能超过最大值，小于最小值则分配最小值</p></blockquote><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">property</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">name</span>&gt;</span>yarn.scheduler.minimum-allocation-vcores<span class="hljs-tag">&lt;/<span class="hljs-name">name</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">value</span>&gt;</span>1<span class="hljs-tag">&lt;/<span class="hljs-name">value</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">final</span>&gt;</span>false<span class="hljs-tag">&lt;/<span class="hljs-name">final</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">source</span>&gt;</span>yarn-default.xml<span class="hljs-tag">&lt;/<span class="hljs-name">source</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">property</span>&gt;</span><br><br><br><span class="hljs-tag">&lt;<span class="hljs-name">property</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">name</span>&gt;</span>yarn.scheduler.maximum-allocation-vcores<span class="hljs-tag">&lt;/<span class="hljs-name">name</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">value</span>&gt;</span>4<span class="hljs-tag">&lt;/<span class="hljs-name">value</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">final</span>&gt;</span>false<span class="hljs-tag">&lt;/<span class="hljs-name">final</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">source</span>&gt;</span>yarn-default.xml<span class="hljs-tag">&lt;/<span class="hljs-name">source</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">property</span>&gt;</span><br></code></pre></td></tr></table></figure><blockquote><p>说明：单个容器可申请的最小/最大虚拟CPU个数。比如设置为1和4，则运行MapRedce作业时，每个Task最少可申请1个虚拟CPU，最多可申请4个虚拟CPU。</p></blockquote><p>AM内存配置相关参数，此处以MapReduce为例进行说明（这两个值是AM特性，应在mapred-site.xml中配置），如下：</p><blockquote><p>mapreduce.map.memory.mb<br>mapreduce.reduce.memory.mb</p></blockquote><p>说明：这两个参数指定用于MapReduce的两个任务（Map and Reduce task）的内存大小，其值应该在RM中的最大最小container之间。如果没有配置则通过如下简单公式获得：</p><blockquote><p>max(MIN_CONTAINER_SIZE, (Total Available RAM) / containers))</p></blockquote><p>一般的reduce应该是map的2倍。注：这两个值可以在应用启动时通过参数改变；</p><p>AM中其它与内存相关的参数，还有JVM相关的参数，这些参数可以通过，如下选项配置：</p><blockquote><p>mapreduce.map.java.opts<br>mapreduce.reduce.java.opts</p></blockquote><p>说明：这两个参主要是为需要运行JVM程序（java、scala等）准备的，通过这两个设置可以向JVM中传递参数的，与内存有关的是，-Xmx，-Xms等选项。此数值大小，应该在AM中的map.mb和reduce.mb之间。</p>]]></content>
+    
+    
+    <categories>
+      
+      <category>配置相关</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>yarn</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>shell输出重定向</title>
+    <link href="/2022/06/21/shell%E9%87%8D%E5%AE%9A%E5%90%91/"/>
+    <url>/2022/06/21/shell%E9%87%8D%E5%AE%9A%E5%90%91/</url>
+    
+    <content type="html"><![CDATA[<h2 id="Shell输出重定向"><a href="#Shell输出重定向" class="headerlink" title="Shell输出重定向"></a>Shell输出重定向</h2><blockquote><p>/dev/null</p></blockquote><p>是一个特殊的设备文件，这个文件接收到任何数据都会被丢弃。因此，null 这个设备通常也被称为位桶（bit bucket）或黑洞。</p><p>常见的 重定向</p><blockquote><p>/dev/null 2&gt;&amp;1</p></blockquote><p>含义为 :<br>将 <strong>标准输出</strong> 和 <strong>错误输出</strong> 都 输出到 <strong>黑洞</strong><br>其实质是 </p><blockquote><p>1  &gt;  /dev/null  2&gt;&amp;1</p></blockquote><ul><li>1 代表 标准输出 </li><li>2 代表 错误输出</li><li>/dev/null 2&gt;&amp;1 这里省略了 开头的1</li></ul><p>表示为:</p><ol><li>原本 <strong>1(标准输出)</strong> 输出到 <strong>屏幕</strong></li><li><strong>1&gt;/dev/null</strong> 将 <strong>1(标准输出)</strong> 输出到 <strong>黑洞</strong></li><li><strong>2&gt;&amp;1</strong> 将 <strong>2(错误输出)</strong> 输出到 <strong>1(标准输出)</strong>,此时因为 <strong>1(标准输出)</strong>  输出到 <strong>黑洞</strong> 了，所以 <strong>2(错误输出)</strong> 也输出到了 <strong>黑洞</strong></li></ol><p>以此类推</p><blockquote><p>2&gt;/dev/null</p></blockquote><p>把 <strong>2(错误输出)</strong> 输出到 <strong>黑洞</strong>，<strong>1(标准输出)</strong> 打印到 <strong>屏幕</strong></p><blockquote><p>2&gt;&amp;1 &gt;/dev/null</p></blockquote><p>把 <strong>2(错误输出)</strong> 输出到 <strong>屏幕</strong>，<strong>1(标准输出)</strong> 打印到 <strong>黑洞</strong> </p>]]></content>
+    
+    
+    <categories>
+      
+      <category>脚本编程</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>linux</tag>
+      
+      <tag>shell</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>数据库连接工具类</title>
+    <link href="/2022/06/21/%E6%95%B0%E6%8D%AE%E5%BA%93%E8%BF%9E%E6%8E%A5%E5%B7%A5%E5%85%B7%E7%B1%BB/"/>
+    <url>/2022/06/21/%E6%95%B0%E6%8D%AE%E5%BA%93%E8%BF%9E%E6%8E%A5%E5%B7%A5%E5%85%B7%E7%B1%BB/</url>
+    
+    <content type="html"><![CDATA[<h2 id="mysql数据库连接类"><a href="#mysql数据库连接类" class="headerlink" title="mysql数据库连接类"></a>mysql数据库连接类</h2><p>首先在maven项目的 pom 文件添加以下依赖<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>com.alibaba<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>druid<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>1.1.20<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>mysql<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>mysql-connector-java<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>8.0.13<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span><br></code></pre></td></tr></table></figure></p><p>java 代码如下<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@description</span>: 数据库连接工具类</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@author</span>: xxzuo</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@email</span>: 1293378490@qq.com</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@date</span>: 2022/6/17 14:42</span><br><span class="hljs-comment"> **/</span><br><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">DbUtils</span> </span>&#123;<br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> DruidDataSource dataSource;<br><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> Connection <span class="hljs-title">getConnection</span><span class="hljs-params">()</span> <span class="hljs-keyword">throws</span> Exception </span>&#123;<br>        dataSource = <span class="hljs-keyword">new</span> DruidDataSource();<br>        dataSource.setDriverClassName(<span class="hljs-string">&quot;com.mysql.cj.jdbc.Driver&quot;</span>);<br>        dataSource.setUrl(<span class="hljs-string">&quot;jdbc:mysql://localhost:3306/xxxxx&quot;</span>);<br>        dataSource.setUsername(<span class="hljs-string">&quot;root&quot;</span>);<br>        dataSource.setPassword(<span class="hljs-string">&quot;123456&quot;</span>);<br>        <span class="hljs-comment">//设置初始化连接数，最大连接数，最小闲置数</span><br>        dataSource.setInitialSize(<span class="hljs-number">10</span>);<br>        dataSource.setMaxActive(<span class="hljs-number">50</span>);<br>        dataSource.setMinIdle(<span class="hljs-number">5</span>);<br>        <span class="hljs-comment">//返回连接</span><br>        <span class="hljs-keyword">return</span>  dataSource.getConnection();<br>    &#125;<br><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> Connection <span class="hljs-title">getConnection</span><span class="hljs-params">(String jdbc, String userName, String password)</span> <span class="hljs-keyword">throws</span> Exception </span>&#123;<br>        dataSource = <span class="hljs-keyword">new</span> DruidDataSource();<br>        dataSource.setDriverClassName(<span class="hljs-string">&quot;com.mysql.cj.jdbc.Driver&quot;</span>);<br>        dataSource.setUrl(jdbc);<br>        dataSource.setUsername(userName);<br>        dataSource.setPassword(password);<br>        <span class="hljs-comment">//设置初始化连接数，最大连接数，最小闲置数</span><br>        dataSource.setInitialSize(<span class="hljs-number">10</span>);<br>        dataSource.setMaxActive(<span class="hljs-number">50</span>);<br>        dataSource.setMinIdle(<span class="hljs-number">5</span>);<br>        <span class="hljs-comment">//返回连接</span><br>        <span class="hljs-keyword">return</span>  dataSource.getConnection();<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure></p><p>调用方法<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> </span>&#123;<br>    <span class="hljs-keyword">try</span> (Connection connection = DbUtils.getConnection()) &#123;<br>        String sql = <span class="hljs-string">&quot;SELECT COL_NAME FROM TABLE_NAME&quot;</span>;<br>        PreparedStatement preparedStatement = connection.prepareStatement(sql);<br>        ResultSet rs = preparedStatement.executeQuery();<br>        <span class="hljs-keyword">while</span> (rs.next()) &#123;<br>            rs.getString(<span class="hljs-string">&quot;COL_NAME&quot;</span>);<br>        &#125;<br>    &#125; <span class="hljs-keyword">catch</span> (Exception e) &#123;<br><br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure></p>]]></content>
+    
+    
+    <categories>
+      
+      <category>utils</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>java</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>hive-ip地理信息查询</title>
     <link href="/2022/06/20/hive-ip%E5%9C%B0%E7%90%86%E4%BF%A1%E6%81%AF%E6%9F%A5%E8%AF%A2/"/>
     <url>/2022/06/20/hive-ip%E5%9C%B0%E7%90%86%E4%BF%A1%E6%81%AF%E6%9F%A5%E8%AF%A2/</url>
@@ -49,6 +126,12 @@
     <content type="html"><![CDATA[<p>查看linux磁盘空间大文件</p><blockquote><p>du -h / —max-depth=5 | sort -hr | head -n 10</p></blockquote><p>查看hadoop大文件</p><blockquote><p>hdfs dfs -du -h  /</p></blockquote><p>分析其中占用空间过多的文件是否可以删除</p>]]></content>
     
     
+    <categories>
+      
+      <category>常用命令</category>
+      
+    </categories>
+    
     
     <tags>
       
@@ -69,6 +152,12 @@
     
     <content type="html"><![CDATA[<h1 id="hadoop作业的查询和关闭"><a href="#hadoop作业的查询和关闭" class="headerlink" title="hadoop作业的查询和关闭"></a>hadoop作业的查询和关闭</h1><ul><li><h3 id="hadoop-version-lt-2-3-0"><a href="#hadoop-version-lt-2-3-0" class="headerlink" title="hadoop version &lt;   2.3.0"></a>hadoop version &lt;   2.3.0</h3></li></ul><p>查看正在运行的 Hadoop 任务：</p><blockquote><p>hadoop job -list </p></blockquote><p>关闭Hadoop 任务进程：</p><blockquote><p>hadoop job -kill $jobId </p></blockquote><p>组合以上两条命令就可以实现 kill 掉指定用户的 job</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs shell">for i in `hadoop job -list | grep -w username| awk &#x27;&#123;print $1&#125;&#x27; | grep job_`; <br>do <br>hadoop job -kill $i; <br>done<br></code></pre></td></tr></table></figure><p>username 就是你希望关闭 Hadoop 任务的用户</p><ul><li><h3 id="hadoop-version-gt-2-3-0"><a href="#hadoop-version-gt-2-3-0" class="headerlink" title="hadoop version &gt;= 2.3.0"></a>hadoop version &gt;= 2.3.0</h3></li></ul><p>查看正在运行的 Hadoop 任务：</p><blockquote><p>yarn application -list </p></blockquote><p>关闭 Hadoop 任务进程：</p><blockquote><p>yarn application -kill $ApplicationId</p></blockquote>]]></content>
     
+    
+    <categories>
+      
+      <category>常用命令</category>
+      
+    </categories>
     
     
     <tags>
@@ -159,19 +248,6 @@
   
   
   <entry>
-    <title>Hello World</title>
-    <link href="/2022/05/06/hello-world/"/>
-    <url>/2022/05/06/hello-world/</url>
-    
-    <content type="html"><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p><h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">$ hexo new <span class="hljs-string">&quot;My New Post&quot;</span><br></code></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p><h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">$ hexo server<br></code></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p><h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">$ hexo generate<br></code></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p><h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">$ hexo deploy<br></code></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>]]></content>
-    
-    
-    
-  </entry>
-  
-  
-  
-  <entry>
     <title>剑指offer-03-数组中重复的数字</title>
     <link href="/2021/06/17/%E5%89%91%E6%8C%87offer-03-%E6%95%B0%E7%BB%84%E4%B8%AD%E9%87%8D%E5%A4%8D%E7%9A%84%E6%95%B0%E5%AD%97/"/>
     <url>/2021/06/17/%E5%89%91%E6%8C%87offer-03-%E6%95%B0%E7%BB%84%E4%B8%AD%E9%87%8D%E5%A4%8D%E7%9A%84%E6%95%B0%E5%AD%97/</url>
@@ -228,19 +304,6 @@
   
   
   <entry>
-    <title>虚拟机环境准备</title>
-    <link href="/2021/05/22/%E8%99%9A%E6%8B%9F%E6%9C%BA%E7%8E%AF%E5%A2%83%E5%87%86%E5%A4%87/"/>
-    <url>/2021/05/22/%E8%99%9A%E6%8B%9F%E6%9C%BA%E7%8E%AF%E5%A2%83%E5%87%86%E5%A4%87/</url>
-    
-    <content type="html"><![CDATA[]]></content>
-    
-    
-    
-  </entry>
-  
-  
-  
-  <entry>
     <title>13-罗马数字转整数</title>
     <link href="/2021/05/19/13-%E7%BD%97%E9%A9%AC%E6%95%B0%E5%AD%97%E8%BD%AC%E6%95%B4%E6%95%B0/"/>
     <url>/2021/05/19/13-%E7%BD%97%E9%A9%AC%E6%95%B0%E5%AD%97%E8%BD%AC%E6%95%B4%E6%95%B0/</url>
@@ -258,35 +321,6 @@
     <tags>
       
       <tag>leetcode</tag>
-      
-    </tags>
-    
-  </entry>
-  
-  
-  
-  <entry>
-    <title>centos配置单机kafka</title>
-    <link href="/2021/05/07/centos%E9%85%8D%E7%BD%AE%E5%8D%95%E6%9C%BAkafka/"/>
-    <url>/2021/05/07/centos%E9%85%8D%E7%BD%AE%E5%8D%95%E6%9C%BAkafka/</url>
-    
-    <content type="html"><![CDATA[<p>1.下载kafka</p><p>2.上传到服务器 解压</p><p>3.修改conf下的server配置文件</p>]]></content>
-    
-    
-    <categories>
-      
-      <category>配置相关</category>
-      
-    </categories>
-    
-    
-    <tags>
-      
-      <tag>centos</tag>
-      
-      <tag>config</tag>
-      
-      <tag>kafka</tag>
       
     </tags>
     

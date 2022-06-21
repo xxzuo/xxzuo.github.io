@@ -18,7 +18,7 @@
   <meta name="author" content="xxzuo">
   <meta name="keywords" content="">
   
-  <title>剑指offer-03-数组中重复的数字 - Blog</title>
+  <title>yarn配置 - Blog</title>
 
   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" />
 
@@ -163,7 +163,7 @@
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
           <div class="page-header text-center fade-in-up">
-            <span class="h2" id="subtitle" title="剑指offer-03-数组中重复的数字">
+            <span class="h2" id="subtitle" title="yarn配置">
               
             </span>
 
@@ -178,8 +178,8 @@
   
     <span class="post-meta">
       <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-      <time datetime="2021-06-17 06:19" pubdate>
-        2021年6月17日 早上
+      <time datetime="2022-06-21 22:54" pubdate>
+        2022年6月21日 晚上
       </time>
     </span>
   
@@ -190,7 +190,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      246 字
+      979 字
     </span>
   
 
@@ -200,7 +200,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      2
+      14
        分钟
     </span>
   
@@ -230,18 +230,49 @@
         <div class="py-5" id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">剑指offer-03-数组中重复的数字</h1>
+            <h1 style="display: none">yarn配置</h1>
             
             <div class="markdown-body">
-              <h2 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h2><p>题目链接:<a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/shu-zu-zhong-zhong-fu-de-shu-zi-lcof/">剑指 Offer 03. 数组中重复的数字 - 力扣（LeetCode） (leetcode-cn.com)</a></p>
-<p>找出数组中重复的数字。</p>
-<p>在一个长度为<code>n</code> 的数组 <code>nums</code>里的所有数字都在 <code>0</code>～<code>n-1</code> 的范围内。数组中某些数字是重复的，但不知道有几个数字重复了，也不知道每个数字重复了几次。请找出数组中任意一个重复的数字。</p>
-<p>示例1：</p>
-<figure class="highlight accesslog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs accesslog">输入：<br><span class="hljs-string">[2, 3, 1, 0, 2, 5, 3]</span><br>输出：<span class="hljs-number">2</span> 或 <span class="hljs-number">3</span> <br></code></pre></td></tr></table></figure>
-<p>需要考虑到时间复杂度和空间复杂度的要求</p>
-<p>如果要求时间复杂度，可以考虑用hash table.(时间复杂度 <code>O(N)</code>   空间复杂度 <code>O(N)</code>)</p>
-<p>如果要求空间复杂度，可以先排序，再看前后有无重复数字.(时间复杂度 <code>O(Nlog(N))</code>   空间复杂度 <code>O(1)</code>)</p>
-<p>如果都有要求，考虑原地置换法 .(时间复杂度 <code>O(N)</code>   空间复杂度 <code>O(1)</code>)</p>
+              <h3 id="Capacity-Scheduler（容量调度器）"><a href="#Capacity-Scheduler（容量调度器）" class="headerlink" title="Capacity Scheduler（容量调度器）"></a>Capacity Scheduler（容量调度器）</h3> <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">property</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">name</span>&gt;</span>yarn.scheduler.capacity.maximum-am-resource-percent<span class="hljs-tag">&lt;/<span class="hljs-name">name</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">value</span>&gt;</span>0.8<span class="hljs-tag">&lt;/<span class="hljs-name">value</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">property</span>&gt;</span><br></code></pre></td></tr></table></figure>
+<blockquote>
+<p> maximum-am-resource-percent：集群中用于运行应用程序ApplicationMaster的资源比例上限，该参数通常用于限制处于活动状态的应用程序数目。所有队列的ApplicationMaster资源比例上限可通过参数yarn.scheduler.capacity.maximum-am-resource-percent设置，而单个队列可通过参数yarn.scheduler.capacity.<queue-path>.maximum-am-resource-percent设置适合自己的值</p>
+</blockquote>
+<h3 id="节点级别"><a href="#节点级别" class="headerlink" title="节点级别"></a>节点级别</h3><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">property</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">name</span>&gt;</span>yarn.nodemanager.resource.memory-mb<span class="hljs-tag">&lt;/<span class="hljs-name">name</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">value</span>&gt;</span>-1<span class="hljs-tag">&lt;/<span class="hljs-name">value</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">final</span>&gt;</span>false<span class="hljs-tag">&lt;/<span class="hljs-name">final</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">source</span>&gt;</span>yarn-default.xml<span class="hljs-tag">&lt;/<span class="hljs-name">source</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">property</span>&gt;</span><br></code></pre></td></tr></table></figure>
+<blockquote>
+<p>说明：每个节点可用的最大内存，RM中的两个值不应该超过此值。此数值可以用于计算container最大数目，即：用此值除以RM中的最小容器内存。</p>
+</blockquote>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">property</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">name</span>&gt;</span>yarn.nodemanager.resource.cpu-vcores<span class="hljs-tag">&lt;/<span class="hljs-name">name</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">value</span>&gt;</span>-1<span class="hljs-tag">&lt;/<span class="hljs-name">value</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">final</span>&gt;</span>false<span class="hljs-tag">&lt;/<span class="hljs-name">final</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">source</span>&gt;</span>yarn-default.xml<span class="hljs-tag">&lt;/<span class="hljs-name">source</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">property</span>&gt;</span><br></code></pre></td></tr></table></figure>
+<p>每个节点总的可用虚拟CPU个数。 默认值：8</p>
+<blockquote>
+<p>目前推荐将该值设值为与物理CPU核数数目相同。如果你的节点CPU核数不够8个，则需要调减小这个值，而YARN不会智能的探测节点的物理CPU总数</p>
+</blockquote>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">property</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">name</span>&gt;</span>yarn.nodemanager.vmem-pmem-ratio<span class="hljs-tag">&lt;/<span class="hljs-name">name</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">value</span>&gt;</span>2.1<span class="hljs-tag">&lt;/<span class="hljs-name">value</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">final</span>&gt;</span>false<span class="hljs-tag">&lt;/<span class="hljs-name">final</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">source</span>&gt;</span>yarn-default.xml<span class="hljs-tag">&lt;/<span class="hljs-name">source</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">property</span>&gt;</span><br></code></pre></td></tr></table></figure>
+<blockquote>
+<p>Ratio between virtual memory to physical memory when setting memory limits for containers. Container allocations are expressed in terms of physical memory, and virtual memory usage is allowed to exceed this allocation by this ratio.</p>
+<p>每单位的物理内存总量对应的虚拟内存量，默认是2.1，表示每使用1MB的物理内存，最多可以使用2.1MB的虚拟内存总量。</p>
+</blockquote>
+<h3 id="容器级别"><a href="#容器级别" class="headerlink" title="容器级别"></a>容器级别</h3><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">property</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">name</span>&gt;</span>yarn.scheduler.maximum-allocation-mb<span class="hljs-tag">&lt;/<span class="hljs-name">name</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">value</span>&gt;</span>8192<span class="hljs-tag">&lt;/<span class="hljs-name">value</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">final</span>&gt;</span>false<span class="hljs-tag">&lt;/<span class="hljs-name">final</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">source</span>&gt;</span>yarn-default.xml<span class="hljs-tag">&lt;/<span class="hljs-name">source</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">property</span>&gt;</span><br><br><br><span class="hljs-tag">&lt;<span class="hljs-name">property</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">name</span>&gt;</span>yarn.scheduler.minimum-allocation-mb<span class="hljs-tag">&lt;/<span class="hljs-name">name</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">value</span>&gt;</span>1024<span class="hljs-tag">&lt;/<span class="hljs-name">value</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">final</span>&gt;</span>false<span class="hljs-tag">&lt;/<span class="hljs-name">final</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">source</span>&gt;</span>yarn-default.xml<span class="hljs-tag">&lt;/<span class="hljs-name">source</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">property</span>&gt;</span><br></code></pre></td></tr></table></figure>
+<blockquote>
+<p>说明：单个容器可申请的最小与最大内存，应用在运行申请内存时不能超过最大值，小于最小值则分配最小值</p>
+</blockquote>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">property</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">name</span>&gt;</span>yarn.scheduler.minimum-allocation-vcores<span class="hljs-tag">&lt;/<span class="hljs-name">name</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">value</span>&gt;</span>1<span class="hljs-tag">&lt;/<span class="hljs-name">value</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">final</span>&gt;</span>false<span class="hljs-tag">&lt;/<span class="hljs-name">final</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">source</span>&gt;</span>yarn-default.xml<span class="hljs-tag">&lt;/<span class="hljs-name">source</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">property</span>&gt;</span><br><br><br><span class="hljs-tag">&lt;<span class="hljs-name">property</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">name</span>&gt;</span>yarn.scheduler.maximum-allocation-vcores<span class="hljs-tag">&lt;/<span class="hljs-name">name</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">value</span>&gt;</span>4<span class="hljs-tag">&lt;/<span class="hljs-name">value</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">final</span>&gt;</span>false<span class="hljs-tag">&lt;/<span class="hljs-name">final</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">source</span>&gt;</span>yarn-default.xml<span class="hljs-tag">&lt;/<span class="hljs-name">source</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">property</span>&gt;</span><br></code></pre></td></tr></table></figure>
+<blockquote>
+<p>说明：单个容器可申请的最小/最大虚拟CPU个数。比如设置为1和4，则运行MapRedce作业时，每个Task最少可申请1个虚拟CPU，最多可申请4个虚拟CPU。</p>
+</blockquote>
+<p>AM内存配置相关参数，此处以MapReduce为例进行说明（这两个值是AM特性，应在mapred-site.xml中配置），如下：</p>
+<blockquote>
+<p>mapreduce.map.memory.mb<br>mapreduce.reduce.memory.mb</p>
+</blockquote>
+<p>说明：这两个参数指定用于MapReduce的两个任务（Map and Reduce task）的内存大小，其值应该在RM中的最大最小container之间。如果没有配置则通过如下简单公式获得：</p>
+<blockquote>
+<p>max(MIN_CONTAINER_SIZE, (Total Available RAM) / containers))</p>
+</blockquote>
+<p>一般的reduce应该是map的2倍。注：这两个值可以在应用启动时通过参数改变；</p>
+<p>AM中其它与内存相关的参数，还有JVM相关的参数，这些参数可以通过，如下选项配置：</p>
+<blockquote>
+<p>mapreduce.map.java.opts<br>mapreduce.reduce.java.opts</p>
+</blockquote>
+<p>说明：这两个参主要是为需要运行JVM程序（java、scala等）准备的，通过这两个设置可以向JVM中传递参数的，与内存有关的是，-Xmx，-Xms等选项。此数值大小，应该在AM中的map.mb和reduce.mb之间。</p>
 
             </div>
             <hr>
@@ -251,7 +282,7 @@
                   <div class="post-meta mr-3">
                     <i class="iconfont icon-category"></i>
                     
-                      <a class="hover-with-bg" href="/categories/Algorithm/">Algorithm</a>
+                      <a class="hover-with-bg" href="/categories/%E9%85%8D%E7%BD%AE%E7%9B%B8%E5%85%B3/">配置相关</a>
                     
                   </div>
                 
@@ -259,11 +290,7 @@
                   <div class="post-meta">
                     <i class="iconfont icon-tags"></i>
                     
-                      <a class="hover-with-bg" href="/tags/leetcode/">leetcode</a>
-                    
-                      <a class="hover-with-bg" href="/tags/hash-table/">hash-table</a>
-                    
-                      <a class="hover-with-bg" href="/tags/%E5%89%91%E6%8C%87offer/">剑指offer</a>
+                      <a class="hover-with-bg" href="/tags/yarn/">yarn</a>
                     
                   </div>
                 
@@ -280,18 +307,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2022/05/23/%E6%90%9C%E7%B4%A2%E6%8A%80%E5%B7%A71/">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">搜索技巧1</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2021/06/06/160-%E7%9B%B8%E4%BA%A4%E9%93%BE%E8%A1%A8/">
-                        <span class="hidden-mobile">160.相交链表</span>
+                      <a href="/2022/06/21/shell%E9%87%8D%E5%AE%9A%E5%90%91/">
+                        <span class="hidden-mobile">shell输出重定向</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
