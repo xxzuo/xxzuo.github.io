@@ -3,6 +3,8 @@ title: hive-ip地理信息查询
 date: 2022-06-20 23:04:06
 tags:
 - hive
+categories:
+- 大数据
 ---
 
 # HIVE UDF IP查询

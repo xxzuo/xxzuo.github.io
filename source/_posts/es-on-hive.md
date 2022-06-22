@@ -3,8 +3,9 @@ title: es on hive
 date: 2022-06-16 21:50:59
 tags:
 - hive
+- ElasticSearch
 categories: 
-- 配置相关
+- 大数据
 ---
 
 

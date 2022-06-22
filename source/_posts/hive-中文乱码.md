@@ -4,7 +4,7 @@ date: 2022-06-16 21:51:19
 tags:
 - hive
 categories: 
-- 配置相关
+- 大数据
 ---
 
 

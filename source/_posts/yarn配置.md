@@ -5,7 +5,7 @@ date: 2022-06-21 22:54:37
 tags:
 - yarn
 categories:
-- 配置相关
+- 大数据
 ---
 
 
