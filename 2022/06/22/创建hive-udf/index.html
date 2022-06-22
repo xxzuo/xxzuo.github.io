@@ -18,7 +18,7 @@
   <meta name="author" content="xxzuo">
   <meta name="keywords" content="">
   
-  <title>es on hive - Blog</title>
+  <title>创建hive-udf - Blog</title>
 
   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" />
 
@@ -163,7 +163,7 @@
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
           <div class="page-header text-center fade-in-up">
-            <span class="h2" id="subtitle" title="es on hive">
+            <span class="h2" id="subtitle" title="创建hive-udf">
               
             </span>
 
@@ -178,8 +178,8 @@
   
     <span class="post-meta">
       <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-      <time datetime="2022-06-16 21:50" pubdate>
-        2022年6月16日 晚上
+      <time datetime="2022-06-22 23:28" pubdate>
+        2022年6月22日 晚上
       </time>
     </span>
   
@@ -190,7 +190,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      232 字
+      414 字
     </span>
   
 
@@ -200,7 +200,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      4
+      5
        分钟
     </span>
   
@@ -230,26 +230,21 @@
         <div class="py-5" id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">es on hive</h1>
+            <h1 style="display: none">创建hive-udf</h1>
             
             <div class="markdown-body">
-              <h1 id="es-on-hive"><a href="#es-on-hive" class="headerlink" title="es on hive"></a>es on hive</h1><p>参考<a target="_blank" rel="noopener" href="https://www.elastic.co/guide/en/elasticsearch/hadoop/current/hive.html">https://www.elastic.co/guide/en/elasticsearch/hadoop/current/hive.html</a></p>
-<p>1.首先在官网下载jar包，解压到hive/lib目录下 <a target="_blank" rel="noopener" href="https://www.elastic.co/cn/downloads/hadoop">Download Elasticsearch for Hadoop Free | Elastic</a> </p>
-<p>2.hive server执行时，添加参数 </p>
+              <h3 id="1-自定义-UDF-函数"><a href="#1-自定义-UDF-函数" class="headerlink" title="1.自定义 UDF 函数"></a>1.自定义 UDF 函数</h3><p>pom 中添加下面依赖<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">dependencies</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>org.apache.hive<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>hive-exec<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>2.3.4<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span><br>        <span class="hljs-comment">&lt;!-- 不需要打入jar包 --&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">scope</span>&gt;</span>provided<span class="hljs-tag">&lt;/<span class="hljs-name">scope</span>&gt;</span><br>    <span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">dependencies</span>&gt;</span><br></code></pre></td></tr></table></figure></p>
 <blockquote>
-<p>hive.aux.jars.path=/path/elasticsearch-hadoop.jar </p>
+<p>由于  hive  环境中已经有了  hive-exec jar包 所以打包时，不需要将hive-exec 打入</p>
 </blockquote>
-<p>或者修改 hive-site.xml 添加</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">property</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">name</span>&gt;</span>hive.aux.jars.path<span class="hljs-tag">&lt;/<span class="hljs-name">name</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">value</span>&gt;</span>/path/elasticsearch-hadoop.jar<span class="hljs-tag">&lt;/<span class="hljs-name">value</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">description</span>&gt;</span>A comma separated list (with no spaces) of the jar files<span class="hljs-tag">&lt;/<span class="hljs-name">description</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">property</span>&gt;</span><br></code></pre></td></tr></table></figure>
-<p>3.创建hive表，用于映射 es</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">create</span> <span class="hljs-keyword">external</span> <span class="hljs-keyword">table</span> test.es_msg <br>(     <br>    chatType     string,     <br>    fromAccount  string,     <br>    msgTimestamp <span class="hljs-type">bigint</span>,     <br>    toAccount    string <br>)    stored <span class="hljs-keyword">by</span> <span class="hljs-string">&#x27;org.elasticsearch.hadoop.hive.EsStorageHandler&#x27;</span>    <br>tblproperties (         <br>    <span class="hljs-string">&#x27;es.resource&#x27;</span> <span class="hljs-operator">=</span> <span class="hljs-string">&#x27;chat1/_doc&#x27;</span>,         <br>    <span class="hljs-string">&#x27;es.nodes&#x27;</span> <span class="hljs-operator">=</span> <span class="hljs-string">&#x27;192.168.2.146&#x27;</span>,        <br>    &quot;es.nodes.wan.only&quot; <span class="hljs-operator">=</span> &quot;true&quot;,         <br>    <span class="hljs-string">&#x27;es.transport.port&#x27;</span> <span class="hljs-operator">=</span> <span class="hljs-string">&#x27;9200&#x27;</span>,         <br>    <span class="hljs-string">&#x27;es.mapping.names&#x27;</span> <span class="hljs-operator">=</span>                <br>    <span class="hljs-string">&#x27;chatType:chatType ,fromAccount:fromAccount, msgTimestamp:msgTimestamp, toAccount:toAccount&#x27;</span>         <br>);<br></code></pre></td></tr></table></figure>
-<p>4.取出es数据</p>
-<p>对hive表进行 </p>
-<p>insert overwrite table xxx </p>
-<p>select * from xxx;即可取出数据</p>
-<p>hive表配置</p>
-<p>tblproperties</p>
-<p>参考<a target="_blank" rel="noopener" href="https://www.elastic.co/guide/en/elasticsearch/hadoop/current/configuration.html">Configuration | Elasticsearch for Apache Hadoop [7.13] | Elastic</a></p>
+<p>新建一个类 继承 UDF 即可<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">// 继承UDF类</span><br><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MyUDF</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">UDF</span> </span>&#123;<br><span class="hljs-comment">// 实现evaluate方法</span><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">int</span> <span class="hljs-title">evaluate</span><span class="hljs-params">(String str)</span> </span>&#123;<br>        <span class="hljs-comment">// 自定义逻辑</span><br>        <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure></p>
+<p>在这个类中，方法名一定要为 <strong>evaluate</strong></p>
+<h3 id="2-打包上传"><a href="#2-打包上传" class="headerlink" title="2.打包上传"></a>2.打包上传</h3><p>在 maven 中打包<br>找到刚才的 jar 包<br>上传到 hive 所在服务器</p>
+<p>将jar包移动到  hive目录下的auxlib目录</p>
+<p>然后重启hiveserver2</p>
+<h3 id="3-注册函数"><a href="#3-注册函数" class="headerlink" title="3.注册函数"></a>3.注册函数</h3><p>将jar包注册到hive中后，就可以注册刚才自己编写的udf函数了</p>
+<p>一般需要先注册临时函数，因为UDF开发完成后，需要进过一些测试才能确认代码是否没有问题。在测试UDF代码时，务必使用临时函数进行测试。这样即使代码出现了问题，也不会把函数真正的注册到Hive。代码测试完毕并且确认无误后，再将函数注册为永久函数</p>
+<p>HIVE 函数相关<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs sql"># 创建临时函数<br><span class="hljs-keyword">CREATE</span> TEMPORARY <span class="hljs-keyword">FUNCTION</span> <span class="hljs-operator">&lt;</span>函数名<span class="hljs-operator">&gt;</span> <span class="hljs-keyword">AS</span> <span class="hljs-operator">&lt;</span>class全路径<span class="hljs-operator">&gt;</span>;<br># 删除临时函数<br><span class="hljs-keyword">DROP</span> TEMPORARY <span class="hljs-keyword">FUNCTION</span> [IF <span class="hljs-keyword">EXISTS</span>] <span class="hljs-operator">&lt;</span>函数名<span class="hljs-operator">&gt;</span>;<br><br><br># 创建永久函数<br><span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">FUNCTION</span> [db_name.]function_name <span class="hljs-keyword">AS</span> class_name<br>  [<span class="hljs-keyword">USING</span> JAR<span class="hljs-operator">|</span>FILE<span class="hljs-operator">|</span>ARCHIVE <span class="hljs-string">&#x27;file_uri&#x27;</span> [, JAR<span class="hljs-operator">|</span>FILE<span class="hljs-operator">|</span>ARCHIVE <span class="hljs-string">&#x27;file_uri&#x27;</span>] ];<br># 删除永久函数<br><span class="hljs-keyword">DROP</span> <span class="hljs-keyword">FUNCTION</span> [IF <span class="hljs-keyword">EXISTS</span>] function_name;<br><br><br># 查看函数<br><span class="hljs-keyword">show</span>  functions;<br><br></code></pre></td></tr></table></figure></p>
 
             </div>
             <hr>
@@ -269,8 +264,6 @@
                     
                       <a class="hover-with-bg" href="/tags/hive/">hive</a>
                     
-                      <a class="hover-with-bg" href="/tags/ElasticSearch/">ElasticSearch</a>
-                    
                   </div>
                 
               </div>
@@ -286,18 +279,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2022/06/16/hive-%E4%B8%AD%E6%96%87%E4%B9%B1%E7%A0%81/">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">hive 中文乱码</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2022/05/23/%E6%90%9C%E7%B4%A2%E6%8A%80%E5%B7%A71/">
-                        <span class="hidden-mobile">搜索技巧1</span>
+                      <a href="/2022/06/22/hive%E6%9D%83%E9%99%90%E7%9B%B8%E5%85%B3%E5%91%BD%E4%BB%A4/">
+                        <span class="hidden-mobile">hive权限相关命令</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>

@@ -18,7 +18,7 @@
   <meta name="author" content="xxzuo">
   <meta name="keywords" content="">
   
-  <title>es on hive - Blog</title>
+  <title>hive权限相关命令 - Blog</title>
 
   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" />
 
@@ -163,7 +163,7 @@
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
           <div class="page-header text-center fade-in-up">
-            <span class="h2" id="subtitle" title="es on hive">
+            <span class="h2" id="subtitle" title="hive权限相关命令">
               
             </span>
 
@@ -178,8 +178,8 @@
   
     <span class="post-meta">
       <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-      <time datetime="2022-06-16 21:50" pubdate>
-        2022年6月16日 晚上
+      <time datetime="2022-06-22 23:27" pubdate>
+        2022年6月22日 晚上
       </time>
     </span>
   
@@ -190,7 +190,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      232 字
+      507 字
     </span>
   
 
@@ -200,7 +200,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      4
+      8
        分钟
     </span>
   
@@ -230,26 +230,10 @@
         <div class="py-5" id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">es on hive</h1>
+            <h1 style="display: none">hive权限相关命令</h1>
             
             <div class="markdown-body">
-              <h1 id="es-on-hive"><a href="#es-on-hive" class="headerlink" title="es on hive"></a>es on hive</h1><p>参考<a target="_blank" rel="noopener" href="https://www.elastic.co/guide/en/elasticsearch/hadoop/current/hive.html">https://www.elastic.co/guide/en/elasticsearch/hadoop/current/hive.html</a></p>
-<p>1.首先在官网下载jar包，解压到hive/lib目录下 <a target="_blank" rel="noopener" href="https://www.elastic.co/cn/downloads/hadoop">Download Elasticsearch for Hadoop Free | Elastic</a> </p>
-<p>2.hive server执行时，添加参数 </p>
-<blockquote>
-<p>hive.aux.jars.path=/path/elasticsearch-hadoop.jar </p>
-</blockquote>
-<p>或者修改 hive-site.xml 添加</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">property</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">name</span>&gt;</span>hive.aux.jars.path<span class="hljs-tag">&lt;/<span class="hljs-name">name</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">value</span>&gt;</span>/path/elasticsearch-hadoop.jar<span class="hljs-tag">&lt;/<span class="hljs-name">value</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">description</span>&gt;</span>A comma separated list (with no spaces) of the jar files<span class="hljs-tag">&lt;/<span class="hljs-name">description</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">property</span>&gt;</span><br></code></pre></td></tr></table></figure>
-<p>3.创建hive表，用于映射 es</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">create</span> <span class="hljs-keyword">external</span> <span class="hljs-keyword">table</span> test.es_msg <br>(     <br>    chatType     string,     <br>    fromAccount  string,     <br>    msgTimestamp <span class="hljs-type">bigint</span>,     <br>    toAccount    string <br>)    stored <span class="hljs-keyword">by</span> <span class="hljs-string">&#x27;org.elasticsearch.hadoop.hive.EsStorageHandler&#x27;</span>    <br>tblproperties (         <br>    <span class="hljs-string">&#x27;es.resource&#x27;</span> <span class="hljs-operator">=</span> <span class="hljs-string">&#x27;chat1/_doc&#x27;</span>,         <br>    <span class="hljs-string">&#x27;es.nodes&#x27;</span> <span class="hljs-operator">=</span> <span class="hljs-string">&#x27;192.168.2.146&#x27;</span>,        <br>    &quot;es.nodes.wan.only&quot; <span class="hljs-operator">=</span> &quot;true&quot;,         <br>    <span class="hljs-string">&#x27;es.transport.port&#x27;</span> <span class="hljs-operator">=</span> <span class="hljs-string">&#x27;9200&#x27;</span>,         <br>    <span class="hljs-string">&#x27;es.mapping.names&#x27;</span> <span class="hljs-operator">=</span>                <br>    <span class="hljs-string">&#x27;chatType:chatType ,fromAccount:fromAccount, msgTimestamp:msgTimestamp, toAccount:toAccount&#x27;</span>         <br>);<br></code></pre></td></tr></table></figure>
-<p>4.取出es数据</p>
-<p>对hive表进行 </p>
-<p>insert overwrite table xxx </p>
-<p>select * from xxx;即可取出数据</p>
-<p>hive表配置</p>
-<p>tblproperties</p>
-<p>参考<a target="_blank" rel="noopener" href="https://www.elastic.co/guide/en/elasticsearch/hadoop/current/configuration.html">Configuration | Elasticsearch for Apache Hadoop [7.13] | Elastic</a></p>
+              <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-comment">-- 查看当前用户</span><br><span class="hljs-keyword">select</span> <span class="hljs-built_in">current_user</span>();<br> <br> <br><span class="hljs-comment">-- 查看当前角色</span><br><span class="hljs-keyword">show</span> <span class="hljs-keyword">current</span> roles;<br> <br> <br><span class="hljs-comment">-- 切换 admin 角色</span><br><span class="hljs-keyword">set</span> role admin;<br> <br><span class="hljs-comment">-- 查看所有角色</span><br><span class="hljs-keyword">show</span> roles;<br> <br> <br> <br><span class="hljs-comment">--  查看用户的角色</span><br>show role grant user &#123;userName&#125;;<br> <br> <br> <br> <br><span class="hljs-comment">-- 把角色授权给某个用户</span><br>grant role &#123;roleName&#125; to user &#123;userName&#125;;<br> <br> <br> <br> <br><span class="hljs-comment">-- 撤销某个用户的角色授权</span><br>revoke role &#123;roleName&#125; from user &#123;userName&#125;;<br> <br> <br> <br> <br> <br> <br><span class="hljs-comment">-- 创建角色</span><br>create role &#123;roleName&#125;;<br> <br> <br> <br> <br><span class="hljs-comment">-- 删除角色</span><br>drop role &#123;roleName&#125;;<br> <br> <br><span class="hljs-comment">-- 授予某个库的权限给某个用户</span><br>grant select on database &#123;dbName&#125; to user &#123;userName&#125;;<br>grant insert on database &#123;dbName&#125; to user &#123;userName&#125;;<br>grant update on database &#123;dbName&#125; to user &#123;userName&#125;;<br>grant delete on database &#123;dbName&#125; to user &#123;userName&#125;;<br> <br><span class="hljs-comment">-- 回收某个库的权限给某个用户</span><br>revoke select on database &#123;dbName&#125; from user &#123;userName&#125;;<br>revoke insert on database &#123;dbName&#125; from user &#123;userName&#125;;<br>revoke update on database &#123;dbName&#125; from user &#123;userName&#125;;<br>revoke delete on database &#123;dbName&#125; from user &#123;userName&#125;;<br> <br><span class="hljs-comment">-- 查看指定用户在所有库下面的权限</span><br>show grant user &#123;userName&#125;;<br><span class="hljs-comment">-- 查看指定用户在某个库的权限</span><br>show grant user &#123;userName&#125; on database &#123;dbName&#125;;<br> <br> <br> <br> <br> <br> <br><span class="hljs-comment">-- 授予表的权限给某个用户</span><br>grant select on table &#123;dbName&#125;.tableName to user &#123;userName&#125;;<br>grant insert on table &#123;dbName&#125;.tableName to user &#123;userName&#125;;<br>grant update on table &#123;dbName&#125;.tableName to user &#123;userName&#125;;<br>grant delete on table &#123;dbName&#125;.tableName to user &#123;userName&#125;;<br> <br> <br><span class="hljs-comment">-- 回收某个用户的表的权限</span><br>revoke create on table &#123;dbName&#125;.tableName from user &#123;userName&#125;;<br>revoke select on table &#123;dbName&#125;.tableName from user &#123;userName&#125;;<br>revoke insert on table &#123;dbName&#125;.tableName from user &#123;userName&#125;;<br>revoke update on table &#123;dbName&#125;.tableName from user &#123;userName&#125;;<br>revoke delete on table &#123;dbName&#125;.tableName from user &#123;userName&#125;;<br> <br><span class="hljs-comment">-- 查看指定用户在指定表的权限</span><br>show grant user &#123;userName&#125; on table &#123;dbName&#125;.&#123;tableName&#125;;<br> <br> <br> <br> <br> <br><span class="hljs-comment">-- 权限类别</span><br><span class="hljs-comment">-- ALTER  更改表结构，创建分区</span><br><span class="hljs-comment">-- CREATE  创建表</span><br><span class="hljs-comment">-- DROP  删除表，或分区</span><br><span class="hljs-comment">-- INDEX  创建和删除索引</span><br><span class="hljs-comment">-- LOCK  锁定表，保证并发</span><br><span class="hljs-comment">-- SELECT  查询表权限</span><br><span class="hljs-comment">-- SHOW_DATABASE  查看数据库权限</span><br><span class="hljs-comment">-- UPDATE  为表加载本地数据的权限</span><br></code></pre></td></tr></table></figure>
 
             </div>
             <hr>
@@ -269,8 +253,6 @@
                     
                       <a class="hover-with-bg" href="/tags/hive/">hive</a>
                     
-                      <a class="hover-with-bg" href="/tags/ElasticSearch/">ElasticSearch</a>
-                    
                   </div>
                 
               </div>
@@ -286,9 +268,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2022/06/16/hive-%E4%B8%AD%E6%96%87%E4%B9%B1%E7%A0%81/">
+                      <a href="/2022/06/22/%E5%88%9B%E5%BB%BAhive-udf/">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">hive 中文乱码</span>
+                        <span class="hidden-mobile">创建hive-udf</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -296,8 +278,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2022/05/23/%E6%90%9C%E7%B4%A2%E6%8A%80%E5%B7%A71/">
-                        <span class="hidden-mobile">搜索技巧1</span>
+                      <a href="/2022/06/21/yarn%E9%85%8D%E7%BD%AE/">
+                        <span class="hidden-mobile">yarn配置</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
