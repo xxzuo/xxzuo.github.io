@@ -4,6 +4,31 @@
   
   
   <entry>
+    <title>wsl安装mysql</title>
+    <link href="/2022/06/25/wsl%E5%AE%89%E8%A3%85mysql/"/>
+    <url>/2022/06/25/wsl%E5%AE%89%E8%A3%85mysql/</url>
+    
+    <content type="html"><![CDATA[<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta">#</span><span class="bash"> 先查看是否有安装过的 mysql</span><br>dpkg -l | grep mysql<br><br><span class="hljs-meta">#</span><span class="bash"> 如果没有 安装 mysql-server</span><br>sudo apt install mysql-server<br><br><span class="hljs-meta">#</span><span class="bash"> 等待安装完成后 启动 mysql</span> <br>sudo service mysql start<br><br><br><span class="hljs-meta">#</span><span class="bash"> 利用 net-tools 查看mysql 是否启动</span><br>netstat -tap | grep mysql<br><br></code></pre></td></tr></table></figure><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta">#</span><span class="bash"> 登录mysql</span><br>mysql -u root -p<br></code></pre></td></tr></table></figure><p>此时提示</p><blockquote><p>Enter password:<br>ERROR 2002 (HY000): Can’t connect to local MySQL server through socket ‘/var/run/mysqld/mysqld.sock’ (13)</p></blockquote><p>发现我们不知道 mysql 的初始密码</p><p>此时 需要查看 mysql 生成的默认账号</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">sudo cat /etc/mysql/debian.cnf<br></code></pre></td></tr></table></figure><p>结果如下</p><blockquote><h1 id="Automatically-generated-for-Debian-scripts-DO-NOT-TOUCH"><a href="#Automatically-generated-for-Debian-scripts-DO-NOT-TOUCH" class="headerlink" title="Automatically generated for Debian scripts. DO NOT TOUCH!"></a>Automatically generated for Debian scripts. DO NOT TOUCH!</h1><p>[client]<br>host     = localhost<br>user     = debian-sys-maint<br>password = heuEWrIzKnl6beJQ<br>socket   = /var/run/mysqld/mysqld.sock<br>[mysql_upgrade]<br>host     = localhost<br>user     = debian-sys-maint<br>password = heuEWrIzKnl6beJQ<br>socket   = /var/run/mysqld/mysqld.sock</p></blockquote><p>此处 记录了 mysql 自动生成的账号和密码</p><p>利用自带的账号登录即可</p><blockquote><p> Can’t connect to local MySQL server through socket ‘/var/run/mysqld/mysqld.sock’ (13)</p></blockquote>]]></content>
+    
+    
+    <categories>
+      
+      <category>配置相关</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>mysql</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>513-找树左下角的值</title>
     <link href="/2022/06/22/513-%E6%89%BE%E6%A0%91%E5%B7%A6%E4%B8%8B%E8%A7%92%E7%9A%84%E5%80%BC/"/>
     <url>/2022/06/22/513-%E6%89%BE%E6%A0%91%E5%B7%A6%E4%B8%8B%E8%A7%92%E7%9A%84%E5%80%BC/</url>
