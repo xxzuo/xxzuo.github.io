@@ -4,6 +4,31 @@
   
   
   <entry>
+    <title>ubuntu20.04切换阿里源</title>
+    <link href="/2022/07/14/ubuntu20-04%E5%88%87%E6%8D%A2%E9%98%BF%E9%87%8C%E6%BA%90/"/>
+    <url>/2022/07/14/ubuntu20-04%E5%88%87%E6%8D%A2%E9%98%BF%E9%87%8C%E6%BA%90/</url>
+    
+    <content type="html"><![CDATA[<h3 id="ubuntu20-04-切换阿里源"><a href="#ubuntu20-04-切换阿里源" class="headerlink" title="ubuntu20.04 切换阿里源"></a>ubuntu20.04 切换阿里源</h3><p>执行</p><blockquote><p>sudo apt install libopencv-dev libeigen3-dev</p></blockquote><p>报错</p><blockquote><p>Err:1 <a href="http://archive.ubuntu.com/ubuntu">http://archive.ubuntu.com/ubuntu</a> focal/universe amd64 libfyba0 amd64 4.1.1-6build1<br>  Connection failed [IP: 185.125.190.39 80]<br>Err:2 <a href="http://archive.ubuntu.com/ubuntu">http://archive.ubuntu.com/ubuntu</a> focal/universe amd64 libfreexl1 amd64 1.0.5-3<br>  Connection failed [IP: 185.125.190.36 80]<br>E: Failed to fetch <a href="http://archive.ubuntu.com/ubuntu/pool/universe/f/fyba/libfyba0_4.1.1-6build1_amd64.deb">http://archive.ubuntu.com/ubuntu/pool/universe/f/fyba/libfyba0_4.1.1-6build1_amd64.deb</a>  Connection failed [IP: 185.125.190.39 80]<br>E: Failed to fetch <a href="http://archive.ubuntu.com/ubuntu/pool/universe/f/freexl/libfreexl1_1.0.5-3_amd64.deb">http://archive.ubuntu.com/ubuntu/pool/universe/f/freexl/libfreexl1_1.0.5-3_amd64.deb</a>  Connection failed [IP: 185.125.190.36 80]<br>E: Unable to fetch some archives, maybe run apt-get update or try with —fix-missing?</p></blockquote><p>怀疑可能是源的问题，因此考虑换成阿里源再试试</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-comment"># 首先进入目录 备份相关文件</span><br><span class="hljs-built_in">cd</span> /etc/apt<br><br>cp sources.list sources.list.bak<br><br></code></pre></td></tr></table></figure><p>开始准备换源</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-comment"># 查看系统信息</span><br>lsb_release -a |grep Codename<br><span class="hljs-comment"># 结果如下</span><br><span class="hljs-comment"># No LSB modules are available.</span><br><span class="hljs-comment"># Codename:       focal</span><br></code></pre></td></tr></table></figure><blockquote><p>注意: Codename  :  focal </p></blockquote><p>阿里源配置模板</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs shell">deb http://mirrors.aliyun.com/ubuntu/ $Codename main restricted universe multiverse<br>deb-src http://mirrors.aliyun.com/ubuntu/ $Codename main restricted universe multiverse<br><br>deb http://mirrors.aliyun.com/ubuntu/ $Codename-security main restricted universe multiverse<br>deb-src http://mirrors.aliyun.com/ubuntu/ $Codename-security main restricted universe multiverse<br><br>deb http://mirrors.aliyun.com/ubuntu/ $Codename-updates main restricted universe multiverse<br>deb-src http://mirrors.aliyun.com/ubuntu/ $Codename-updates main restricted universe multiverse<br><br>deb http://mirrors.aliyun.com/ubuntu/ $Codename-proposed main restricted universe multiverse<br>deb-src http://mirrors.aliyun.com/ubuntu/ $Codename-proposed main restricted universe multiverse<br><br>deb http://mirrors.aliyun.com/ubuntu/ $Codename-backports main restricted universe multiverse<br>deb-src http://mirrors.aliyun.com/ubuntu/ $Codename-backports main restricted universe multiverse<br></code></pre></td></tr></table></figure><p>我们需要将 <strong>$Codename</strong> 替换为上面的 focal</p><p>替换后如下</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs shell">deb http://mirrors.aliyun.com/ubuntu/ focal main restricted universe multiverse<br>deb-src http://mirrors.aliyun.com/ubuntu/ focal main restricted universe multiverse<br> <br>deb http://mirrors.aliyun.com/ubuntu/ focal-security main restricted universe multiverse<br>deb-src http://mirrors.aliyun.com/ubuntu/ focal-security main restricted universe multiverse<br> <br>deb http://mirrors.aliyun.com/ubuntu/ focal-updates main restricted universe multiverse<br>deb-src http://mirrors.aliyun.com/ubuntu/ focal-updates main restricted universe multiverse<br> <br>deb http://mirrors.aliyun.com/ubuntu/ focal-proposed main restricted universe multiverse<br>deb-src http://mirrors.aliyun.com/ubuntu/ focal-proposed main restricted universe multiverse<br> <br>deb http://mirrors.aliyun.com/ubuntu/ focal-backports main restricted universe multiverse<br>deb-src http://mirrors.aliyun.com/ubuntu/ focal-backports main restricted universe multiverse<br></code></pre></td></tr></table></figure><p>替换完成后</p><blockquote><p> sudo apt-get update</p></blockquote><p>再执行</p><blockquote><p>sudo apt install libopencv-dev libeigen3-dev</p></blockquote><p>成功安装</p>]]></content>
+    
+    
+    <categories>
+      
+      <category>配置相关</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>ubuntu</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>wsl安装mysql</title>
     <link href="/2022/06/25/wsl%E5%AE%89%E8%A3%85mysql/"/>
     <url>/2022/06/25/wsl%E5%AE%89%E8%A3%85mysql/</url>
