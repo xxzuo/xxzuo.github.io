@@ -4,6 +4,31 @@
   
   
   <entry>
+    <title>flink无法用stop-cluster.sh停止</title>
+    <link href="/2022/07/16/flink%E6%97%A0%E6%B3%95%E7%94%A8stop-cluster-sh%E5%81%9C%E6%AD%A2/"/>
+    <url>/2022/07/16/flink%E6%97%A0%E6%B3%95%E7%94%A8stop-cluster-sh%E5%81%9C%E6%AD%A2/</url>
+    
+    <content type="html"><![CDATA[<p>使用 <a href="http://stop-cluster.sh/">stop-cluster.sh</a> 关闭 flink 时失败</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs bash">./stop-cluster.sh<br><span class="hljs-comment"># No taskexecutor daemon to stop on host beideng-nj-prod-hadoop-02.</span><br><span class="hljs-comment"># No standalonesession daemon to stop on host beideng-nj-prod-hadoop-02.</span><br></code></pre></td></tr></table></figure><p>但是 ps -ef|grep flink 可以看到 flink 进程<br>访问flink web 界面也正常</p><p>和 hadoop 一样，flink 在启动的时候会将 PID 存放到一个目录中。默认是 /tmp 目录<br>由于 /tmp 目录会定期删除，所以找不到 PID 文件，集群停止失败</p><p>更改 PID 目录即可</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><code class="hljs bash">vi flink/bin/config.sh<br><br><span class="hljs-comment"># WARNING !!! , these values are only used if there is nothing else is specified in</span><br><span class="hljs-comment"># conf/flink-conf.yaml</span><br><br>DEFAULT_ENV_PID_DIR=<span class="hljs-string">&quot;/tmp&quot;</span>                          <span class="hljs-comment"># Directory to store *.pid files to</span><br>DEFAULT_ENV_LOG_MAX=10                              <span class="hljs-comment"># Maximum number of old log files to keep</span><br>DEFAULT_ENV_JAVA_OPTS=<span class="hljs-string">&quot;&quot;</span>                            <span class="hljs-comment"># Optional JVM args</span><br>DEFAULT_ENV_JAVA_OPTS_JM=<span class="hljs-string">&quot;&quot;</span>                         <span class="hljs-comment"># Optional JVM args (JobManager)</span><br>DEFAULT_ENV_JAVA_OPTS_TM=<span class="hljs-string">&quot;&quot;</span>                         <span class="hljs-comment"># Optional JVM args (TaskManager)</span><br>DEFAULT_ENV_JAVA_OPTS_HS=<span class="hljs-string">&quot;&quot;</span>                         <span class="hljs-comment"># Optional JVM args (HistoryServer)</span><br>DEFAULT_ENV_JAVA_OPTS_CLI=<span class="hljs-string">&quot;&quot;</span>                        <span class="hljs-comment"># Optional JVM args (Client)</span><br>DEFAULT_ENV_SSH_OPTS=<span class="hljs-string">&quot;&quot;</span>                             <span class="hljs-comment"># Optional SSH parameters running in cluster mode</span><br>DEFAULT_YARN_CONF_DIR=<span class="hljs-string">&quot;&quot;</span>                            <span class="hljs-comment"># YARN Configuration Directory, if necessary</span><br>DEFAULT_HADOOP_CONF_DIR=<span class="hljs-string">&quot;&quot;</span>                          <span class="hljs-comment"># Hadoop Configuration Directory, if necessary</span><br>DEFAULT_HBASE_CONF_DIR=<span class="hljs-string">&quot;&quot;</span>                           <span class="hljs-comment"># HBase Configuration Directory, if necessary</span><br><br> <span class="hljs-comment"># 修改 DEFAULT_ENV_PID_DIR=&quot;/tmp&quot; 地址</span><br> <span class="hljs-comment"># 改为自己指定的地址 如 DEFAULT_ENV_PID_DIR=“/var/run/flink/$USER”</span><br> <span class="hljs-comment"># 再次启动 flink</span><br> ./start-cluster.sh<br> <br> <span class="hljs-comment"># 进入刚才修改的目录</span><br> <span class="hljs-built_in">cd</span> /var/run/flink/<span class="hljs-variable">$USER</span><br> <br> <span class="hljs-comment"># 发现已经生成 PID 文件</span><br> ls<br> <span class="hljs-comment"># flink-root-standalonesession.pid</span><br> <span class="hljs-comment"># flink-root-taskexecutor.pid</span><br></code></pre></td></tr></table></figure>]]></content>
+    
+    
+    <categories>
+      
+      <category>配置相关</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>flink</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>ubuntu20.04切换阿里源</title>
     <link href="/2022/07/14/ubuntu20-04%E5%88%87%E6%8D%A2%E9%98%BF%E9%87%8C%E6%BA%90/"/>
     <url>/2022/07/14/ubuntu20-04%E5%88%87%E6%8D%A2%E9%98%BF%E9%87%8C%E6%BA%90/</url>
