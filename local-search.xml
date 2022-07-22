@@ -4,6 +4,57 @@
   
   
   <entry>
+    <title>azkaban重启 webserver报没有激活的执行器</title>
+    <link href="/2022/07/22/azkaban%E9%87%8D%E5%90%AF-webserver%E6%8A%A5%E6%B2%A1%E6%9C%89%E6%BF%80%E6%B4%BB%E7%9A%84%E6%89%A7%E8%A1%8C%E5%99%A8/"/>
+    <url>/2022/07/22/azkaban%E9%87%8D%E5%90%AF-webserver%E6%8A%A5%E6%B2%A1%E6%9C%89%E6%BF%80%E6%B4%BB%E7%9A%84%E6%89%A7%E8%A1%8C%E5%99%A8/</url>
+    
+    <content type="html"><![CDATA[<p>azkaban 重启后 webserver报错</p><p>azkaban重启时</p><p>先重启执行器<br>在 /usr/local/azkaban/azkaban-exec-server 目录下执行 bin/start-exec.sh</p><p>在 /usr/local/azkaban/azkaban-web-server 目录下执行 bin/start-exec.sh</p><p>报 :ERROR [ExecutorManager] [main] [Azkaban] No activee executors found</p><p>需要去 Azkaban配置数据库中更新 port=12321的执行器激活数量为1</p><p>update executors set active = 1 where port = 12321</p><p>并且使用接口启用</p><p>curl -G “<a href="http://localhost:12321/executor?action=activate">http://localhost:12321/executor?action=activate</a>“ &amp;&amp; echo</p>]]></content>
+    
+    
+    <categories>
+      
+      <category>azkaban</category>
+      
+    </categories>
+    
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>azkaban任务一直preparing</title>
+    <link href="/2022/07/22/azkaban%E4%BB%BB%E5%8A%A1%E4%B8%80%E7%9B%B4preparing/"/>
+    <url>/2022/07/22/azkaban%E4%BB%BB%E5%8A%A1%E4%B8%80%E7%9B%B4preparing/</url>
+    
+    <content type="html"><![CDATA[<p>内存问题：<br>过滤器会检查 executor 主机空余内存是否会大于 6G，如果不足 6G，则 web-server 会认为 集群资源不够， 不会将任务交由该主机执行，需要修改 azkaban-web下的azkaban.properties配置文件，去掉MinimumFreeMemory</p><figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs properties"><span class="hljs-comment"># 原来</span><br><span class="hljs-meta">azkaban.executorselector.filters</span>=<span class="hljs-string">StaticRemainingFlowSize,MinimumFreeMemory,CpuStatus</span><br><br><span class="hljs-comment"># 新</span><br><span class="hljs-meta">azkaban.executorselector.filters</span>=<span class="hljs-string">StaticRemainingFlowSize,CpuStatus</span><br></code></pre></td></tr></table></figure>]]></content>
+    
+    
+    <categories>
+      
+      <category>azkaban</category>
+      
+    </categories>
+    
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>ssh远程登陆时一些命令无法使用</title>
+    <link href="/2022/07/22/ssh%E8%BF%9C%E7%A8%8B%E7%99%BB%E9%99%86%E6%97%B6%E4%B8%80%E4%BA%9B%E5%91%BD%E4%BB%A4%E6%97%A0%E6%B3%95%E4%BD%BF%E7%94%A8/"/>
+    <url>/2022/07/22/ssh%E8%BF%9C%E7%A8%8B%E7%99%BB%E9%99%86%E6%97%B6%E4%B8%80%E4%BA%9B%E5%91%BD%E4%BB%A4%E6%97%A0%E6%B3%95%E4%BD%BF%E7%94%A8/</url>
+    
+    <content type="html"><![CDATA[]]></content>
+    
+    
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>hdfs组成架构</title>
     <link href="/2022/07/18/hdfs%E7%BB%84%E6%88%90%E6%9E%B6%E6%9E%84/"/>
     <url>/2022/07/18/hdfs%E7%BB%84%E6%88%90%E6%9E%B6%E6%9E%84/</url>
