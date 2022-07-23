@@ -4,6 +4,44 @@
   
   
   <entry>
+    <title>azkaban接口</title>
+    <link href="/2022/07/23/azkaban%E6%8E%A5%E5%8F%A3/"/>
+    <url>/2022/07/23/azkaban%E6%8E%A5%E5%8F%A3/</url>
+    
+    <content type="html"><![CDATA[<h2 id="azkaban接口列表"><a href="#azkaban接口列表" class="headerlink" title="azkaban接口列表"></a>azkaban接口列表</h2><div class="table-container"><table><thead><tr><th>接口</th><th>说明</th></tr></thead><tbody><tr><td><a href="#login">/manager?action=login</a></td><td>登录接口</td></tr></tbody></table></div><hr><h2 id="接口详情"><a href="#接口详情" class="headerlink" title="接口详情"></a>接口详情</h2><ul><li><p><span id = "login">登录接口</span></p><ul><li><p>接口地址：/manager</p></li><li><p>返回格式：Json</p></li><li><p>请求方式：Post</p></li><li><p>请求示例：<a href="https://localhost:8443/manager">https://localhost:8443/manager</a></p></li><li><p>接口备注：This API helps authenticate a user and provides a session.id in response.</p></li><li><p>请求参数说明：</p><p>  | 名称         | 类型   | 必填 | 说明     |<br>  | —————— | ——— | —— | ———— |<br>  | action=login | string | true | 登录参数 |<br>  | username     | string | true | 用户名   |<br>  | password     | string | true | 用户密码 |</p></li><li><p>返回参数说明：</p><p>  | 名称       | 类型   | 说明     |<br>  | ————— | ——— | ———— |<br>  | status     | int    | 状态码   |<br>  | session.id | string | 会话ID |</p></li><li><p>JSON返回示例：</p><figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs json">&#123;<br>  <span class="hljs-attr">&quot;status&quot;</span> : <span class="hljs-string">&quot;success&quot;</span>,<br>  <span class="hljs-attr">&quot;session.id&quot;</span> : <span class="hljs-string">&quot;c001aba5-a90f-4daf-8f11-62330d034c0a&quot;</span><br>&#125;<br></code></pre></td></tr></table></figure></li></ul></li></ul>]]></content>
+    
+    
+    <categories>
+      
+      <category>azkaban</category>
+      
+    </categories>
+    
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>mysql-date_format()函数</title>
+    <link href="/2022/07/23/mysql-date-format-%E5%87%BD%E6%95%B0/"/>
+    <url>/2022/07/23/mysql-date-format-%E5%87%BD%E6%95%B0/</url>
+    
+    <content type="html"><![CDATA[<h3 id="作用"><a href="#作用" class="headerlink" title="作用"></a>作用</h3><p><strong>DATE_FORMAT()</strong> 函数可以用不同的格式显示日期/时间</p><h3 id="语法"><a href="#语法" class="headerlink" title="语法"></a>语法</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs mysql">select DATE_FORMAT(date,format);<br></code></pre></td></tr></table></figure><div class="table-container"><table><thead><tr><th>参数</th><th>说明</th></tr></thead><tbody><tr><td>date</td><td>合法的日期</td></tr><tr><td>format</td><td>规定的日期/时间输出格式</td></tr></tbody></table></div><h3 id="format-格式"><a href="#format-格式" class="headerlink" title="format 格式"></a>format 格式</h3><div class="table-container"><table><thead><tr><th>格式</th><th>说明</th><th>样例</th></tr></thead><tbody><tr><td>%a</td><td>缩写星期名</td><td></td></tr><tr><td>%b</td><td>缩写月名</td><td></td></tr><tr><td>%c</td><td>月,数值</td><td></td></tr><tr><td>%D</td><td>带有英文前缀的月中的天</td><td></td></tr><tr><td>%d</td><td>月的天,数值(00-31)</td><td></td></tr><tr><td>%e</td><td>月的天,数值(0-31)</td><td></td></tr><tr><td>%f</td><td>微秒</td><td></td></tr><tr><td>%H</td><td>小时(00-23)</td><td></td></tr><tr><td>%h</td><td>小时(01-12)</td><td></td></tr><tr><td>%I</td><td>小时(01-12)</td><td></td></tr><tr><td>%i</td><td>分钟(00-59)</td><td></td></tr><tr><td>%j</td><td>年的天(001-366)</td><td></td></tr><tr><td>%k</td><td>小时(0-23)</td><td></td></tr><tr><td>%l</td><td>小时(1-12)</td><td></td></tr><tr><td>%M</td><td>月名</td><td></td></tr><tr><td>%m</td><td>月,数值(00-12)</td><td></td></tr><tr><td>%p</td><td>AM或者PM</td><td></td></tr><tr><td>%r</td><td>时间,12-小时(hh:mm:ss AM 或 PM)</td><td></td></tr><tr><td>%S</td><td>秒(00-59)</td><td></td></tr><tr><td>%s</td><td>秒(00-59)</td><td></td></tr><tr><td>%T</td><td>时间, 24-小时 (hh:mm:ss)</td><td></td></tr><tr><td>%U</td><td>周 (00-53) 星期日是一周的第一天</td><td></td></tr><tr><td>%u</td><td>周 (00-53) 星期一是一周的第一天</td><td></td></tr><tr><td>%V</td><td>周 (01-53) 星期日是一周的第一天，与 %X 使用</td><td></td></tr><tr><td>%v</td><td>周 (01-53) 星期一是一周的第一天，与 %x 使用</td><td></td></tr><tr><td>%W</td><td>星期名</td><td></td></tr><tr><td>%w</td><td>周的天 （0=星期日, 6=星期六）</td><td></td></tr><tr><td>%X</td><td>年，其中的星期日是周的第一天，4 位，与 %V 使用</td><td></td></tr><tr><td>%x</td><td>年，其中的星期一是周的第一天，4 位，与 %v 使用</td><td></td></tr><tr><td>%Y</td><td>年，4 位</td><td></td></tr><tr><td>%y</td><td>年，2 位</td></tr></tbody></table></div>]]></content>
+    
+    
+    <categories>
+      
+      <category>mysql</category>
+      
+    </categories>
+    
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>azkaban重启 webserver报没有激活的执行器</title>
     <link href="/2022/07/22/azkaban%E9%87%8D%E5%90%AF-webserver%E6%8A%A5%E6%B2%A1%E6%9C%89%E6%BF%80%E6%B4%BB%E7%9A%84%E6%89%A7%E8%A1%8C%E5%99%A8/"/>
     <url>/2022/07/22/azkaban%E9%87%8D%E5%90%AF-webserver%E6%8A%A5%E6%B2%A1%E6%9C%89%E6%BF%80%E6%B4%BB%E7%9A%84%E6%89%A7%E8%A1%8C%E5%99%A8/</url>
@@ -46,8 +84,14 @@
     <link href="/2022/07/22/ssh%E8%BF%9C%E7%A8%8B%E7%99%BB%E9%99%86%E6%97%B6%E4%B8%80%E4%BA%9B%E5%91%BD%E4%BB%A4%E6%97%A0%E6%B3%95%E4%BD%BF%E7%94%A8/"/>
     <url>/2022/07/22/ssh%E8%BF%9C%E7%A8%8B%E7%99%BB%E9%99%86%E6%97%B6%E4%B8%80%E4%BA%9B%E5%91%BD%E4%BB%A4%E6%97%A0%E6%B3%95%E4%BD%BF%E7%94%A8/</url>
     
-    <content type="html"><![CDATA[]]></content>
+    <content type="html"><![CDATA[<p>在180 ssh 到另一台服务器179 执行命令时报错<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash">[root@180 sbin]<span class="hljs-comment"># ssh 179 -p 60022 &quot;mapred --help&quot;</span><br>bash: mapred: 未找到命令<br></code></pre></td></tr></table></figure><br>但实际在179 可以执行该命令<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><code class="hljs bash">[root@179 sbin]<span class="hljs-comment"># mapred --help</span><br>Usage: mapred [OPTIONS] SUBCOMMAND [SUBCOMMAND OPTIONS]<br>or mapred [OPTIONS] CLASSNAME [CLASSNAME OPTIONS]<br><span class="hljs-built_in">where</span> CLASSNAME is a user-provided Java class<br><br>OPTIONS is none or any of:<br><br>--config dir Hadoop config directory<br>--debug turn on shell script debug mode<br>--<span class="hljs-built_in">help</span> usage information<br><br>SUBCOMMAND is one of:<br><br><br>Admin Commands:<br><br>frameworkuploader mapreduce framework upload<br>hsadmin job <span class="hljs-built_in">history</span> server admin interface<br><br>Client Commands:<br><br>classpath prints the class path needed <span class="hljs-keyword">for</span> running mapreduce subcommands<br>envvars display computed Hadoop environment variables<br>job manipulate MapReduce <span class="hljs-built_in">jobs</span><br>minicluster CLI MiniCluster<br>pipes run a Pipes job<br>queue get information regarding JobQueues<br>sampler sampler<br>version <span class="hljs-built_in">print</span> the version<br><br>Daemon Commands:<br><br>historyserver run job <span class="hljs-built_in">history</span> servers as a standalone daemon<br><br>SUBCOMMAND may <span class="hljs-built_in">print</span> <span class="hljs-built_in">help</span> when invoked w/o parameters or with -h.<br></code></pre></td></tr></table></figure></p><p>这是 ssh 在登录远程的环境变量中不包含可执行文件的路径, 所以要自己加上路径</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><code class="hljs bash">[root@180 sbin]<span class="hljs-comment"># ssh 179 -p 60022 &quot;/usr/local/hadoop/hadoop-3.2.2/bin/mapred --help&quot;</span><br>Usage: mapred [OPTIONS] SUBCOMMAND [SUBCOMMAND OPTIONS]<br>or mapred [OPTIONS] CLASSNAME [CLASSNAME OPTIONS]<br><span class="hljs-built_in">where</span> CLASSNAME is a user-provided Java class<br><br>OPTIONS is none or any of:<br><br>tput: No value <span class="hljs-keyword">for</span> <span class="hljs-variable">$TERM</span> and no -T specified<br>--config dir Hadoop config directory<br>--debug turn on shell script debug mode<br>--<span class="hljs-built_in">help</span> usage information<br><br>SUBCOMMAND is one of:<br><br><br>Admin Commands:<br><br>tput: No value <span class="hljs-keyword">for</span> <span class="hljs-variable">$TERM</span> and no -T specified<br>frameworkuploader mapreduce framework upload<br>hsadmin job <span class="hljs-built_in">history</span> server admin interface<br><br>Client Commands:<br><br>tput: No value <span class="hljs-keyword">for</span> <span class="hljs-variable">$TERM</span> and no -T specified<br>classpath prints the class path needed <span class="hljs-keyword">for</span> running mapreduce<br>subcommands<br>envvars display computed Hadoop environment variables<br>job manipulate MapReduce <span class="hljs-built_in">jobs</span><br>minicluster CLI MiniCluster<br>pipes run a Pipes job<br>queue get information regarding JobQueues<br>sampler sampler<br>version <span class="hljs-built_in">print</span> the version<br><br>Daemon Commands:<br><br>tput: No value <span class="hljs-keyword">for</span> <span class="hljs-variable">$TERM</span> and no -T specified<br>historyserver run job <span class="hljs-built_in">history</span> servers as a standalone daemon<br><br>SUBCOMMAND may <span class="hljs-built_in">print</span> <span class="hljs-built_in">help</span> when invoked w/o parameters or with -h.<br></code></pre></td></tr></table></figure><p>这样就可以执行了</p>]]></content>
     
+    
+    <categories>
+      
+      <category>linux</category>
+      
+    </categories>
     
     
   </entry>
