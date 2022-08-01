@@ -190,7 +190,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      87 字
+      108 字
     </span>
   
 
@@ -233,7 +233,7 @@
             <h1 style="display: none">hadoop常用命令</h1>
             
             <div class="markdown-body">
-              <h2 id="常用命令"><a href="#常用命令" class="headerlink" title="常用命令"></a>常用命令</h2><p>查看文件列表</p>
+              <h2 id="hdfs常用命令"><a href="#hdfs常用命令" class="headerlink" title="hdfs常用命令"></a>hdfs常用命令</h2><p>查看文件列表</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">hadoop fs -ls &lt;path&gt;<br></code></pre></td></tr></table></figure>
 <p>递归查看文件</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">hadoop fs -ls -R &lt;path&gt;<br></code></pre></td></tr></table></figure>
@@ -247,6 +247,10 @@
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">hadoop fs -df -h<br></code></pre></td></tr></table></figure>
 <p>查看文件内容</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">hadoop fs -cat &lt;file&gt;<br></code></pre></td></tr></table></figure>
+<h2 id="yarn常用命令"><a href="#yarn常用命令" class="headerlink" title="yarn常用命令"></a>yarn常用命令</h2><p>查看yarn job</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">yarn application -list<br></code></pre></td></tr></table></figure>
+<p>kill yarn job</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">yarn application -<span class="hljs-built_in">kill</span> &lt;applicationId&gt;<br></code></pre></td></tr></table></figure>
 
             </div>
             <hr>
