@@ -34,18 +34,18 @@ categories:
 
 	* 请求参数说明：
 
-        | 名称         | 类型   | 必填 | 说明     |
-        | ------------ | ------ | ---- | -------- |
-        | action=login | string | true | 登录参数 |
-        | username     | string | true | 用户名   |
-        | password     | string | true | 用户密码 |
+    | 名称         | 类型   | 必填 | 说明     |
+    | ------------ | ------ | ---- | -------- |
+    | action=login | string | true | 登录参数 |
+    | username     | string | true | 用户名   |
+    | password     | string | true | 用户密码 |
 
 	* 返回参数说明：
 
-        | 名称       | 类型   | 说明     |
-        | ---------- | ------ | -------- |
-        | status     | int    | 状态码   |
-        | session.id | string | 会话ID |
+    | 名称       | 类型   | 说明   |
+    | ---------- | ------ | ------ |
+    | status     | int    | 状态码 |
+    | session.id | string | 会话ID |
     
 	* JSON返回示例：
 	
