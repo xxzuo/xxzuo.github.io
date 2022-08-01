@@ -182,6 +182,115 @@
     <article class="col-12 col-md-12 mx-auto index-info">
       <h1 class="index-header">
         
+        <a href="/2022/08/01/hadoop%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/">hadoop常用命令</a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2022/08/01/hadoop%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/">
+          
+          
+            
+          
+          常用命令查看文件列表
+1hadoop fs -ls &lt;path&gt;
+递归查看文件
+1hadoop fs -ls -R &lt;path&gt;
+上传文件
+1hadoop fs -put &lt;localFile&gt; &lt;hdfsPath&gt;
+创建目录
+1hadoop fs -mkdir &lt;path&gt;
+递归删除
+1hadoop fs -rm -r &lt;path
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2022-08-01 23:10" pubdate>
+              2022-08-01
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/">大数据</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/hadoop/">hadoop</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2022/07/31/datanode/">datanode</a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2022/07/31/datanode/">
+          
+          
+            
+          
+          DATANODE工作机制DataNode启动流程
+DataNode 启动后主动向 NameNode 注册
+注册成功后，NameNode会把DataNode注册在元数据中
+注册成功以后每周期(默认6小时)，DataNode向NameNode上报信息(块完好)
+心跳每3秒一次，心跳返回结果带有NameNode给DataNode的命令,比如复制数据块到另一台机器，或者删除某个数据块等等(DataNode
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2022-07-31 14:59" pubdate>
+              2022-07-31
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/">大数据</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/hdfs/">hdfs</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
         <a href="/2022/07/28/hive%E5%85%83%E6%95%B0%E6%8D%AE%E5%BA%93/">hive元数据库</a>
       </h1>
 
@@ -629,110 +738,6 @@ double next(int val) 计算并返回数据流中最后 size 个值的移动平�
               <a href="/tags/leetcode/">leetcode</a>
             
               <a href="/tags/%E6%BB%91%E5%8A%A8%E7%AA%97%E5%8F%A3/">滑动窗口</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2022/07/16/flink%E6%97%A0%E6%B3%95%E7%94%A8stop-cluster-sh%E5%81%9C%E6%AD%A2/">flink无法用stop-cluster.sh停止</a>
-      </h1>
-
-      <p class="index-excerpt">
-        <a href="/2022/07/16/flink%E6%97%A0%E6%B3%95%E7%94%A8stop-cluster-sh%E5%81%9C%E6%AD%A2/">
-          
-          
-            
-          
-          使用 stop-cluster.sh 关闭 flink 时失败
-123./stop-cluster.sh# No taskexecutor daemon to stop on host beideng-nj-prod-hadoop-02.# No standalonesession daemon to stop on host beideng-nj-prod-hadoop-02.
-但是 ps -e
-        </a>
-      </p>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2022-07-16 22:21" pubdate>
-              2022-07-16
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-category"></i>
-            
-              <a href="/categories/%E9%85%8D%E7%BD%AE%E7%9B%B8%E5%85%B3/">配置相关</a>
-            
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/flink/">flink</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2022/07/14/ubuntu20-04%E5%88%87%E6%8D%A2%E9%98%BF%E9%87%8C%E6%BA%90/">ubuntu20.04切换阿里源</a>
-      </h1>
-
-      <p class="index-excerpt">
-        <a href="/2022/07/14/ubuntu20-04%E5%88%87%E6%8D%A2%E9%98%BF%E9%87%8C%E6%BA%90/">
-          
-          
-            
-          
-          ubuntu20.04 切换阿里源执行
-
-sudo apt install libopencv-dev libeigen3-dev
-
-报错
-
-Err:1 http://archive.ubuntu.com/ubuntu focal/universe amd64 libfyba0 amd64 4.1.1-6build1  Connection failed [IP: 185.125.190.39 8
-        </a>
-      </p>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2022-07-14 00:57" pubdate>
-              2022-07-14
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-category"></i>
-            
-              <a href="/categories/%E9%85%8D%E7%BD%AE%E7%9B%B8%E5%85%B3/">配置相关</a>
-            
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/ubuntu/">ubuntu</a>
             
           </div>
         
