@@ -72,3 +72,9 @@ kill yarn job
 yarn application -kill <applicationId>
 ```
 
+查看job状态
+
+```bash
+yarn application -status <applicationId>
+```
+
