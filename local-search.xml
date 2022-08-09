@@ -4,6 +4,33 @@
   
   
   <entry>
+    <title>picgo上传图片到github</title>
+    <link href="/2022/08/09/picgo%E4%B8%8A%E4%BC%A0%E5%9B%BE%E7%89%87%E5%88%B0github/"/>
+    <url>/2022/08/09/picgo%E4%B8%8A%E4%BC%A0%E5%9B%BE%E7%89%87%E5%88%B0github/</url>
+    
+    <content type="html"><![CDATA[<p>写博客的时候有很多图片需要插入，这些博客在本地的时候，可以预览到图片，但是因为图片在本地没有上传，所以一发布就看不到图片了。因为博客是部署在 <strong>github</strong> 上的，所以同样也用 <strong>github</strong> 来做图床。</p><p><strong>PicGo</strong> 是一个用于快速上传图片并获取图片 URL 链接的工具，支持多个图床进行使用</p><h3 id="下载picgo"><a href="#下载picgo" class="headerlink" title="下载picgo"></a>下载picgo</h3><p>下载picgo 2.3.0版本</p><p><a href="https://github.com/Molunerfinn/PicGo/releases/tag/v2.3.0">Release 2.3.0 · Molunerfinn/PicGo (github.com)</a></p><p>windows 选择如下版本：</p><p><img src="https://raw.githubusercontent.com/xxzuo/pic_host/main/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20220809225734.png" alt=""></p><h3 id="获取token"><a href="#获取token" class="headerlink" title="获取token"></a>获取token</h3><p>在 <strong>github</strong> 主页点击自己头像后，依次选择【Settings】-&gt;【Developer settings】-&gt;【Personal access tokens】-&gt;【Generate new token】</p><p><img src="https://raw.githubusercontent.com/xxzuo/pic_host/main/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20220809230614.png" alt=""></p><p><img src="https://raw.githubusercontent.com/xxzuo/pic_host/main/5136655b521491ac2bce1a586f08ac5.png" alt=""></p><p><img src="https://raw.githubusercontent.com/xxzuo/pic_host/main/0cb3b7117972d880a65957e2d976622.png" alt=""></p><h3 id="设置图床"><a href="#设置图床" class="headerlink" title="设置图床"></a>设置图床</h3><p>选择 【GitHub图床】</p><p><img src="https://raw.githubusercontent.com/xxzuo/pic_host/main/61f59a429ad79346f5224f045ba22c7.png" alt=""></p><p>仓库是 你自己 github 上的 仓库</p><p>token就是刚才获取的token</p>]]></content>
+    
+    
+    <categories>
+      
+      <category>blog</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>picgo</tag>
+      
+      <tag>图床</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>合并flink写入hive产生的小文件</title>
     <link href="/2022/08/04/%E5%90%88%E5%B9%B6flink%E5%86%99%E5%85%A5hive%E4%BA%A7%E7%94%9F%E7%9A%84%E5%B0%8F%E6%96%87%E4%BB%B6/"/>
     <url>/2022/08/04/%E5%90%88%E5%B9%B6flink%E5%86%99%E5%85%A5hive%E4%BA%A7%E7%94%9F%E7%9A%84%E5%B0%8F%E6%96%87%E4%BB%B6/</url>
