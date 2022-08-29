@@ -18,7 +18,7 @@
   <meta name="author" content="xxzuo">
   <meta name="keywords" content="">
   
-  <title>picgo上传图片到github - Blog</title>
+  <title>List&lt;Integer&gt;添加一个String - Blog</title>
 
   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" />
 
@@ -163,7 +163,7 @@
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
           <div class="page-header text-center fade-in-up">
-            <span class="h2" id="subtitle" title="picgo上传图片到github">
+            <span class="h2" id="subtitle" title="List<Integer>添加一个String">
               
             </span>
 
@@ -178,8 +178,8 @@
   
     <span class="post-meta">
       <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-      <time datetime="2022-08-09 22:58" pubdate>
-        2022年8月9日 晚上
+      <time datetime="2022-08-30 00:02" pubdate>
+        2022年8月30日 凌晨
       </time>
     </span>
   
@@ -190,7 +190,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      195 字
+      122 字
     </span>
   
 
@@ -230,23 +230,13 @@
         <div class="py-5" id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">picgo上传图片到github</h1>
+            <h1 style="display: none">List&lt;Integer&gt;添加一个String</h1>
             
             <div class="markdown-body">
-              <p>写博客的时候有很多图片需要插入，这些博客在本地的时候，可以预览到图片，但是因为图片在本地没有上传，所以一发布就看不到图片了。因为博客是部署在 <strong>github</strong> 上的，所以同样也用 <strong>github</strong> 来做图床。</p>
-<p><strong>PicGo</strong> 是一个用于快速上传图片并获取图片 URL 链接的工具，支持多个图床进行使用</p>
-<h3 id="下载picgo"><a href="#下载picgo" class="headerlink" title="下载picgo"></a>下载picgo</h3><p>下载picgo 2.3.0版本</p>
-<p><a target="_blank" rel="noopener" href="https://github.com/Molunerfinn/PicGo/releases/tag/v2.3.0">Release 2.3.0 · Molunerfinn/PicGo (github.com)</a></p>
-<p>windows 选择如下版本：</p>
-<p><img src="https://raw.githubusercontent.com/xxzuo/pic_host/main/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20220809225734.png" srcset="/img/loading.gif" lazyload alt=""></p>
-<h3 id="获取token"><a href="#获取token" class="headerlink" title="获取token"></a>获取token</h3><p>在 <strong>github</strong> 主页点击自己头像后，依次选择【Settings】-&gt;【Developer settings】-&gt;【Personal access tokens】-&gt;【Generate new token】</p>
-<p><img src="https://raw.githubusercontent.com/xxzuo/pic_host/main/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20220809230614.png" srcset="/img/loading.gif" lazyload alt=""></p>
-<p><img src="https://raw.githubusercontent.com/xxzuo/pic_host/main/5136655b521491ac2bce1a586f08ac5.png" srcset="/img/loading.gif" lazyload alt=""></p>
-<p><img src="https://raw.githubusercontent.com/xxzuo/pic_host/main/0cb3b7117972d880a65957e2d976622.png" srcset="/img/loading.gif" lazyload alt=""></p>
-<h3 id="设置图床"><a href="#设置图床" class="headerlink" title="设置图床"></a>设置图床</h3><p>选择 【GitHub图床】</p>
-<p><img src="https://raw.githubusercontent.com/xxzuo/pic_host/main/61f59a429ad79346f5224f045ba22c7.png" srcset="/img/loading.gif" lazyload alt=""></p>
-<p>仓库是 你自己 github 上的 仓库</p>
-<p>token就是刚才获取的token</p>
+              <p>利用反射魔法 就可以在 ArrayList<Integer> 中添加一个 String类型的元素了</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">import</span> java.lang.reflect.InvocationTargetException;<br><span class="hljs-keyword">import</span> java.lang.reflect.Method;<br><span class="hljs-keyword">import</span> java.util.ArrayList;<br><span class="hljs-keyword">import</span> java.util.List;<br><br><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Test2</span> </span>&#123;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> </span>&#123;<br>        <span class="hljs-keyword">try</span> &#123;<br>            List&lt;Integer&gt; test = <span class="hljs-keyword">new</span> ArrayList&lt;&gt;();<br>            test.add(<span class="hljs-number">1</span>);<br>            Method method = test.getClass().getMethod(<span class="hljs-string">&quot;add&quot;</span>, Object.class);<br>            method.invoke(test, <span class="hljs-string">&quot;t&quot;</span>);<br>            <span class="hljs-keyword">for</span> (Object num : test) &#123;<br>                System.out.println(num);<br>            &#125;<br>        &#125; <span class="hljs-keyword">catch</span> (NoSuchMethodException e) &#123;<br>            e.printStackTrace();<br>        &#125; <span class="hljs-keyword">catch</span> (IllegalAccessException e) &#123;<br>            e.printStackTrace();<br>        &#125; <span class="hljs-keyword">catch</span> (InvocationTargetException e) &#123;<br>            e.printStackTrace();<br>        &#125;<br>    &#125;<br>&#125;<br><br></code></pre></td></tr></table></figure>
+<p>输出结果为</p>
+<figure class="highlight excel"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs excel"><span class="hljs-number">1</span><br><span class="hljs-built_in">t</span><br></code></pre></td></tr></table></figure>
 
             </div>
             <hr>
@@ -256,19 +246,10 @@
                   <div class="post-meta mr-3">
                     <i class="iconfont icon-category"></i>
                     
-                      <a class="hover-with-bg" href="/categories/blog/">blog</a>
+                      <a class="hover-with-bg" href="/categories/java/">java</a>
                     
                   </div>
                 
-                
-                  <div class="post-meta">
-                    <i class="iconfont icon-tags"></i>
-                    
-                      <a class="hover-with-bg" href="/tags/picgo/">picgo</a>
-                    
-                      <a class="hover-with-bg" href="/tags/%E5%9B%BE%E5%BA%8A/">图床</a>
-                    
-                  </div>
                 
               </div>
               
@@ -283,18 +264,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2022/08/30/List-Integer-%E6%B7%BB%E5%8A%A0%E4%B8%80%E4%B8%AAString/">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">List<Integer>添加一个String</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2022/08/04/%E5%90%88%E5%B9%B6flink%E5%86%99%E5%85%A5hive%E4%BA%A7%E7%94%9F%E7%9A%84%E5%B0%8F%E6%96%87%E4%BB%B6/">
-                        <span class="hidden-mobile">合并flink写入hive产生的小文件</span>
+                      <a href="/2022/08/09/picgo%E4%B8%8A%E4%BC%A0%E5%9B%BE%E7%89%87%E5%88%B0github/">
+                        <span class="hidden-mobile">picgo上传图片到github</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
