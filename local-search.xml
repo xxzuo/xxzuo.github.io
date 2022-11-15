@@ -4,6 +4,25 @@
   
   
   <entry>
+    <title>anaconda配置国内镜像</title>
+    <link href="/2022/11/15/anaconda%E9%85%8D%E7%BD%AE%E5%9B%BD%E5%86%85%E9%95%9C%E5%83%8F/"/>
+    <url>/2022/11/15/anaconda%E9%85%8D%E7%BD%AE%E5%9B%BD%E5%86%85%E9%95%9C%E5%83%8F/</url>
+    
+    <content type="html"><![CDATA[<h1 id="Anaconda配置国内镜像"><a href="#Anaconda配置国内镜像" class="headerlink" title="Anaconda配置国内镜像"></a>Anaconda配置国内镜像</h1><ul><li>查看已有镜像</li></ul><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs bash">conda config --show channels<br><br>channels:<br>  - https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/msys2/<br>  - https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/conda-forge<br>  - https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/free/<br>  - defaults<br><br></code></pre></td></tr></table></figure><ul><li>删除配置</li></ul><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-comment"># 删除所有镜像</span><br>conda config --remove-key channels<br><br><span class="hljs-comment"># 删除指定镜像</span><br>conda config --remove channels [urls]<br></code></pre></td></tr></table></figure><ul><li>配置国内镜像</li></ul><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs bash">conda config --add channels http://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/main/<br><br>conda config --<span class="hljs-built_in">set</span> show_channel_urls yes<br></code></pre></td></tr></table></figure>]]></content>
+    
+    
+    
+    <tags>
+      
+      <tag>python</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>List&lt;Integer&gt;添加一个String</title>
     <link href="/2022/08/30/List-Integer-%E6%B7%BB%E5%8A%A0%E4%B8%80%E4%B8%AAString/"/>
     <url>/2022/08/30/List-Integer-%E6%B7%BB%E5%8A%A0%E4%B8%80%E4%B8%AAString/</url>
