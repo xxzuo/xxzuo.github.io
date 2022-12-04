@@ -42,27 +42,39 @@ git clone https://github.com/AUTOMATIC1111/stable-diffusion-webui.git
 
 
 
-执行 webui.bat 发现
+##### 编辑 脚本 
 
-> 一直卡在Installing torch and torchvision     非常缓慢
+打开 webui-user.bat 
 
+```powershell
+@echo off
 
+set PYTHON=
+set GIT=
+set VENV_DIR=
+set COMMANDLINE_ARGS=
 
-准备手动下载 torch
+call webui.bat
+```
 
-> 去 torch官网 [Start Locally | PyTorch](https://pytorch.org/get-started/locally/) 手动下载
->
-> pip install torch torchvision torchaudio --extra-index-url https://download.pytorch.org/whl/cu117
+设置 PYTHON 为 本地的 python 路径
 
+然后 执行  webui-user.bat  
 
+##### 问题
+
+执行 webui-user.bat 发现
+
+> 一直卡在Installing torch and torchvision     非常缓慢  发现是报错了
 
 
 
 安装SSL
 
+>  报 pip is configured with locations that require TLS/SSL, however the ssl module in Python is not available.
+> 3  错误 需要安装 SSL
+
+ https://slproweb.com/products/Win32OpenSSL.html  下载 openssl 即可
 
 
-
-
-进入 venv环境
 
