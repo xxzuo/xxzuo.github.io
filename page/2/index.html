@@ -182,6 +182,276 @@
     <article class="col-12 col-md-12 mx-auto index-info">
       <h1 class="index-header">
         
+        <a href="/2022/08/04/flink%E8%AF%BBkafka%E6%95%B0%E6%8D%AE%E5%86%99%E5%85%A5hive/">flink读kafka数据写入hive</a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2022/08/04/flink%E8%AF%BBkafka%E6%95%B0%E6%8D%AE%E5%86%99%E5%85%A5hive/">
+          
+          
+            
+          
+          maven依赖1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859606162636465666768697071727374757677787980818283848586878889909192939495969798991001
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2022-08-04 00:17" pubdate>
+              2022-08-04
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/">大数据</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/kafka/">kafka</a>
+            
+              <a href="/tags/flink/">flink</a>
+            
+              <a href="/tags/hive/">hive</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2022/08/03/tkinter/">tkinter</a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2022/08/03/tkinter/">
+          
+          
+            
+          
+          由于会用到 python写一些小工具，使用 tkinter画一些简单的界面
+在此记录一下 tkinter 的一些用法
+一个简单的 tkinter程序至少应包含以下四个部分：
+
+import  tkinter
+创建窗口
+添加控件，以及相应的事件函数
+通过mainloop来显示主窗口
+
+123456# 导入 tk 包import tkinter as tk# 调用Tk()创建主窗口root =tk.T
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2022-08-03 23:54" pubdate>
+              2022-08-03
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/python/">python</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/tkinter/">tkinter</a>
+            
+              <a href="/tags/python-gui/">python-gui</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2022/08/03/shell%E8%8E%B7%E5%8F%96%E8%BF%9B%E7%A8%8Bpid/">shell获取进程pid</a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2022/08/03/shell%E8%8E%B7%E5%8F%96%E8%BF%9B%E7%A8%8Bpid/">
+          
+          
+            
+          
+          查看进程pid1ps -ef|grep 进程名 |grep -v grep | awk &#x27;&#123;print $2&#125;&#x27;
+判断进程是否存在123456p_cnt=ps -ef|grep queue |grep -v grep| wc -lif [ $p_cnt -le 0 ]; then# 进程不存在else# 进程存在fi
+
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2022-08-03 23:53" pubdate>
+              2022-08-03
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/linux/">linux</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/shell/">shell</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2022/08/01/hadoop%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/">hadoop常用命令</a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2022/08/01/hadoop%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/">
+          
+          
+            
+          
+          hdfs常用命令查看文件列表
+1hadoop fs -ls &lt;path&gt;
+递归查看文件
+1hadoop fs -ls -R &lt;path&gt;
+上传文件
+1hadoop fs -put &lt;localFile&gt; &lt;hdfsPath&gt;
+创建目录
+1hadoop fs -mkdir &lt;path&gt;
+递归删除
+1hadoop fs -rm -r &lt;
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2022-08-01 23:10" pubdate>
+              2022-08-01
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/">大数据</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/hadoop/">hadoop</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2022/07/31/datanode/">datanode</a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2022/07/31/datanode/">
+          
+          
+            
+          
+          DATANODE工作机制DataNode启动流程
+DataNode 启动后主动向 NameNode 注册
+注册成功后，NameNode会把DataNode注册在元数据中
+注册成功以后每周期(默认6小时)，DataNode向NameNode上报信息(块完好)
+心跳每3秒一次，心跳返回结果带有NameNode给DataNode的命令,比如复制数据块到另一台机器，或者删除某个数据块等等(DataNode
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2022-07-31 14:59" pubdate>
+              2022-07-31
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/">大数据</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/hdfs/">hdfs</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
         <a href="/2022/07/23/azkaban%E6%8E%A5%E5%8F%A3/">azkaban接口</a>
       </h1>
 
@@ -467,283 +737,11 @@ azkaban重启时
     </article>
   </div>
 
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2022/07/18/hdfs%E7%BB%84%E6%88%90%E6%9E%B6%E6%9E%84/">hdfs组成架构</a>
-      </h1>
-
-      <p class="index-excerpt">
-        <a href="/2022/07/18/hdfs%E7%BB%84%E6%88%90%E6%9E%B6%E6%9E%84/">
-          
-          
-            
-          
-          HDFS组成架构
-NameNode(nn): 就是Master, 它是一个主管，管理者
-管理 HDFS 的名称空间(namespace)
-配置副本策略
-管理数据块(block)映射信息
-处理客户端读写请求
-
-
-DataNode():就是 Slave.NameNode 下达命令，DataNode执行操作
-存储实际数据
-执行数据块 读/写 操作‘
-
-
-Client
-文件切分,文件上传到 HDFS 的时
-        </a>
-      </p>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2022-07-18 22:04" pubdate>
-              2022-07-18
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-category"></i>
-            
-              <a href="/categories/hadoop/">hadoop</a>
-            
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/hdfs/">hdfs</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2022/07/16/346-%E6%95%B0%E6%8D%AE%E6%B5%81%E4%B8%AD%E7%9A%84%E7%A7%BB%E5%8A%A8%E5%B9%B3%E5%9D%87%E5%80%BC/">346-数据流中的移动平均值</a>
-      </h1>
-
-      <p class="index-excerpt">
-        <a href="/2022/07/16/346-%E6%95%B0%E6%8D%AE%E6%B5%81%E4%B8%AD%E7%9A%84%E7%A7%BB%E5%8A%A8%E5%B9%B3%E5%9D%87%E5%80%BC/">
-          
-          
-            
-          
-          题目描述题目链接:346. 数据流中的移动平均值 - 力扣（LeetCode）
-给定一个整数数据流和一个窗口大小，根据该滑动窗口的大小，计算其所有整数的移动平均值。
-实现MovingAverage 类：
-
-MovingAverage(int size) 用窗口大小 size 初始化对象。
-double next(int val) 计算并返回数据流中最后 size 个值的移动平均值。
-
-示例：
-12
-        </a>
-      </p>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2022-07-16 23:40" pubdate>
-              2022-07-16
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-category"></i>
-            
-              <a href="/categories/Algorithm/">Algorithm</a>
-            
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/leetcode/">leetcode</a>
-            
-              <a href="/tags/%E6%BB%91%E5%8A%A8%E7%AA%97%E5%8F%A3/">滑动窗口</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2022/07/16/flink%E6%97%A0%E6%B3%95%E7%94%A8stop-cluster-sh%E5%81%9C%E6%AD%A2/">flink无法用stop-cluster.sh停止</a>
-      </h1>
-
-      <p class="index-excerpt">
-        <a href="/2022/07/16/flink%E6%97%A0%E6%B3%95%E7%94%A8stop-cluster-sh%E5%81%9C%E6%AD%A2/">
-          
-          
-            
-          
-          使用 stop-cluster.sh 关闭 flink 时失败
-123./stop-cluster.sh# No taskexecutor daemon to stop on host beideng-nj-prod-hadoop-02.# No standalonesession daemon to stop on host beideng-nj-prod-hadoop-02.
-但是 ps -e
-        </a>
-      </p>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2022-07-16 22:21" pubdate>
-              2022-07-16
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-category"></i>
-            
-              <a href="/categories/%E9%85%8D%E7%BD%AE%E7%9B%B8%E5%85%B3/">配置相关</a>
-            
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/flink/">flink</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2022/07/14/ubuntu20-04%E5%88%87%E6%8D%A2%E9%98%BF%E9%87%8C%E6%BA%90/">ubuntu20.04切换阿里源</a>
-      </h1>
-
-      <p class="index-excerpt">
-        <a href="/2022/07/14/ubuntu20-04%E5%88%87%E6%8D%A2%E9%98%BF%E9%87%8C%E6%BA%90/">
-          
-          
-            
-          
-          ubuntu20.04 切换阿里源执行
-
-sudo apt install libopencv-dev libeigen3-dev
-
-报错
-
-Err:1 http://archive.ubuntu.com/ubuntu focal/universe amd64 libfyba0 amd64 4.1.1-6build1  Connection failed [IP: 185.125.190.39 8
-        </a>
-      </p>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2022-07-14 00:57" pubdate>
-              2022-07-14
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-category"></i>
-            
-              <a href="/categories/%E9%85%8D%E7%BD%AE%E7%9B%B8%E5%85%B3/">配置相关</a>
-            
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/ubuntu/">ubuntu</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2022/06/25/wsl%E5%AE%89%E8%A3%85mysql/">wsl安装mysql</a>
-      </h1>
-
-      <p class="index-excerpt">
-        <a href="/2022/06/25/wsl%E5%AE%89%E8%A3%85mysql/">
-          
-          
-            
-          
-          12345678910111213# 先查看是否有安装过的 mysqldpkg -l | grep mysql# 如果没有 安装 mysql-serversudo apt install mysql-server# 等待安装完成后 启动 mysql sudo service mysql start# 利用 net-tools 查看mysql 是否启动netstat -tap | grep mysq
-        </a>
-      </p>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2022-06-25 00:40" pubdate>
-              2022-06-25
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-category"></i>
-            
-              <a href="/categories/%E9%85%8D%E7%BD%AE%E7%9B%B8%E5%85%B3/">配置相关</a>
-            
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/mysql/">mysql</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
 
 
   <nav aria-label="navigation">
     <span class="pagination" id="pagination">
-      <a class="extend prev" rel="prev" href="/"><i class="iconfont icon-arrowleft"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/#board">3</a><a class="page-number" href="/page/4/#board">4</a><a class="page-number" href="/page/5/#board">5</a><a class="extend next" rel="next" href="/page/3/#board"><i class="iconfont icon-arrowright"></i></a>
+      <a class="extend prev" rel="prev" href="/"><i class="iconfont icon-arrowleft"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/#board">3</a><a class="page-number" href="/page/4/#board">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/#board">6</a><a class="extend next" rel="next" href="/page/3/#board"><i class="iconfont icon-arrowright"></i></a>
     </span>
   </nav>
 

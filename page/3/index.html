@@ -182,6 +182,230 @@
     <article class="col-12 col-md-12 mx-auto index-info">
       <h1 class="index-header">
         
+        <a href="/2022/07/18/hdfs%E7%BB%84%E6%88%90%E6%9E%B6%E6%9E%84/">hdfs组成架构</a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2022/07/18/hdfs%E7%BB%84%E6%88%90%E6%9E%B6%E6%9E%84/">
+          
+          
+            
+          
+          HDFS组成架构
+NameNode(nn): 就是Master, 它是一个主管，管理者
+管理 HDFS 的名称空间(namespace)
+配置副本策略
+管理数据块(block)映射信息
+处理客户端读写请求
+
+
+DataNode():就是 Slave.NameNode 下达命令，DataNode执行操作
+存储实际数据
+执行数据块 读/写 操作‘
+
+
+Client
+文件切分,文件上传到 HDFS 的时
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2022-07-18 22:04" pubdate>
+              2022-07-18
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/hadoop/">hadoop</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/hdfs/">hdfs</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2022/07/16/346-%E6%95%B0%E6%8D%AE%E6%B5%81%E4%B8%AD%E7%9A%84%E7%A7%BB%E5%8A%A8%E5%B9%B3%E5%9D%87%E5%80%BC/">346-数据流中的移动平均值</a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2022/07/16/346-%E6%95%B0%E6%8D%AE%E6%B5%81%E4%B8%AD%E7%9A%84%E7%A7%BB%E5%8A%A8%E5%B9%B3%E5%9D%87%E5%80%BC/">
+          
+          
+            
+          
+          题目描述题目链接:346. 数据流中的移动平均值 - 力扣（LeetCode）
+给定一个整数数据流和一个窗口大小，根据该滑动窗口的大小，计算其所有整数的移动平均值。
+实现MovingAverage 类：
+
+MovingAverage(int size) 用窗口大小 size 初始化对象。
+double next(int val) 计算并返回数据流中最后 size 个值的移动平均值。
+
+示例：
+12
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2022-07-16 23:40" pubdate>
+              2022-07-16
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/Algorithm/">Algorithm</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/leetcode/">leetcode</a>
+            
+              <a href="/tags/%E6%BB%91%E5%8A%A8%E7%AA%97%E5%8F%A3/">滑动窗口</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2022/07/16/flink%E6%97%A0%E6%B3%95%E7%94%A8stop-cluster-sh%E5%81%9C%E6%AD%A2/">flink无法用stop-cluster.sh停止</a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2022/07/16/flink%E6%97%A0%E6%B3%95%E7%94%A8stop-cluster-sh%E5%81%9C%E6%AD%A2/">
+          
+          
+            
+          
+          使用 stop-cluster.sh 关闭 flink 时失败
+123./stop-cluster.sh# No taskexecutor daemon to stop on host beideng-nj-prod-hadoop-02.# No standalonesession daemon to stop on host beideng-nj-prod-hadoop-02.
+但是 ps -e
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2022-07-16 22:21" pubdate>
+              2022-07-16
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/%E9%85%8D%E7%BD%AE%E7%9B%B8%E5%85%B3/">配置相关</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/flink/">flink</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2022/07/14/ubuntu20-04%E5%88%87%E6%8D%A2%E9%98%BF%E9%87%8C%E6%BA%90/">ubuntu20.04切换阿里源</a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2022/07/14/ubuntu20-04%E5%88%87%E6%8D%A2%E9%98%BF%E9%87%8C%E6%BA%90/">
+          
+          
+            
+          
+          ubuntu20.04 切换阿里源执行
+
+sudo apt install libopencv-dev libeigen3-dev
+
+报错
+
+Err:1 http://archive.ubuntu.com/ubuntu focal/universe amd64 libfyba0 amd64 4.1.1-6build1  Connection failed [IP: 185.125.190.39 8
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2022-07-14 00:57" pubdate>
+              2022-07-14
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/%E9%85%8D%E7%BD%AE%E7%9B%B8%E5%85%B3/">配置相关</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/ubuntu/">ubuntu</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
         <a href="/2022/06/22/513-%E6%89%BE%E6%A0%91%E5%B7%A6%E4%B8%8B%E8%A7%92%E7%9A%84%E5%80%BC/">513-找树左下角的值</a>
       </h1>
 
@@ -487,226 +711,11 @@
     </article>
   </div>
 
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2022/06/20/hive-ip%E5%9C%B0%E7%90%86%E4%BF%A1%E6%81%AF%E6%9F%A5%E8%AF%A2/">hive-ip地理信息查询</a>
-      </h1>
-
-      <p class="index-excerpt">
-        <a href="/2022/06/20/hive-ip%E5%9C%B0%E7%90%86%E4%BF%A1%E6%81%AF%E6%9F%A5%E8%AF%A2/">
-          
-          
-            
-          
-          HIVE UDF IP查询利用 hive-udf 自定义 IP 查询函数
-借助 ipip 提供的 ipdb
-https://www.ipip.net/product/ip.html#ipv4city将 .ipdb 文件放在 resources 目录下
-代码如下
-123456789101112131415161718192021222324252627282930313233343536373839
-        </a>
-      </p>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2022-06-20 23:04" pubdate>
-              2022-06-20
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-category"></i>
-            
-              <a href="/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/">大数据</a>
-            
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/hive/">hive</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2022/06/20/python%E6%8C%89%E8%A1%8C%E5%88%87%E5%89%B2%E6%96%87%E4%BB%B6/">python按行切割文件</a>
-      </h1>
-
-      <p class="index-excerpt">
-        <a href="/2022/06/20/python%E6%8C%89%E8%A1%8C%E5%88%87%E5%89%B2%E6%96%87%E4%BB%B6/">
-          
-          
-            
-          
-          利用python 按行分割文件代码如下
-123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707172737475767778798081828384858687888990919293949
-        </a>
-      </p>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2022-06-20 23:03" pubdate>
-              2022-06-20
-            </time>
-          </div>
-        
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/python/">python</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2022/06/20/hadoop%E7%A3%81%E7%9B%98%E7%A9%BA%E9%97%B4%E6%B8%85%E7%90%86/">hadoop磁盘空间清理</a>
-      </h1>
-
-      <p class="index-excerpt">
-        <a href="/2022/06/20/hadoop%E7%A3%81%E7%9B%98%E7%A9%BA%E9%97%B4%E6%B8%85%E7%90%86/">
-          
-          
-            
-          
-          查看linux磁盘空间大文件
-
-du -h / —max-depth=5 | sort -hr | head -n 10
-
-查看hadoop大文件
-
-hdfs dfs -du -h  /
-
-分析其中占用空间过多的文件是否可以删除
-
-        </a>
-      </p>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2022-06-20 23:02" pubdate>
-              2022-06-20
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-category"></i>
-            
-              <a href="/categories/%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/">常用命令</a>
-            
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/hadoop/">hadoop</a>
-            
-              <a href="/tags/linux/">linux</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2022/06/20/hadoop%E4%BD%9C%E4%B8%9A%E6%9F%A5%E8%AF%A2%E4%B8%8E%E5%85%B3%E9%97%AD/">hadoop作业查询与关闭</a>
-      </h1>
-
-      <p class="index-excerpt">
-        <a href="/2022/06/20/hadoop%E4%BD%9C%E4%B8%9A%E6%9F%A5%E8%AF%A2%E4%B8%8E%E5%85%B3%E9%97%AD/">
-          
-          
-            
-          
-          hadoop作业的查询和关闭
-hadoop version &lt;   2.3.0
-
-查看正在运行的 Hadoop 任务：
-
-hadoop job -list 
-
-关闭Hadoop 任务进程：
-
-hadoop job -kill $jobId 
-
-组合以上两条命令就可以实现 kill 掉指定用户的 job
-1234for i in `hadoop job -list | grep -w user
-        </a>
-      </p>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2022-06-20 23:02" pubdate>
-              2022-06-20
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-category"></i>
-            
-              <a href="/categories/%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/">常用命令</a>
-            
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/hadoop/">hadoop</a>
-            
-              <a href="/tags/yarn/">yarn</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
 
 
   <nav aria-label="navigation">
     <span class="pagination" id="pagination">
-      <a class="extend prev" rel="prev" href="/page/2/#board"><i class="iconfont icon-arrowleft"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/#board">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/#board">4</a><a class="page-number" href="/page/5/#board">5</a><a class="extend next" rel="next" href="/page/4/#board"><i class="iconfont icon-arrowright"></i></a>
+      <a class="extend prev" rel="prev" href="/page/2/#board"><i class="iconfont icon-arrowleft"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/#board">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/#board">4</a><a class="page-number" href="/page/5/#board">5</a><a class="page-number" href="/page/6/#board">6</a><a class="extend next" rel="next" href="/page/4/#board"><i class="iconfont icon-arrowright"></i></a>
     </span>
   </nav>
 
