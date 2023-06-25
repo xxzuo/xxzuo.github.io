@@ -111,9 +111,9 @@
     
     <tags>
       
-      <tag>flume</tag>
-      
       <tag>kafka</tag>
+      
+      <tag>flume</tag>
       
     </tags>
     
@@ -208,9 +208,9 @@
       
       <tag>hive</tag>
       
-      <tag>kafka</tag>
-      
       <tag>flink</tag>
+      
+      <tag>kafka</tag>
       
     </tags>
     
@@ -528,9 +528,9 @@
     
     <tags>
       
-      <tag>shell</tag>
-      
       <tag>linux</tag>
+      
+      <tag>shell</tag>
       
     </tags>
     
@@ -606,9 +606,9 @@
     
     <tags>
       
-      <tag>linux</tag>
-      
       <tag>hadoop</tag>
+      
+      <tag>linux</tag>
       
     </tags>
     
