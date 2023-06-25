@@ -1,0 +1,9 @@
+{
+  "userIgnoreFilters": [
+    "node_modules/",
+    "scaffolds/",
+    "public/",
+    "themes/",
+    "hexo-theme-fluid-1.8.9/"
+  ]
+}
