@@ -4,7 +4,7 @@ author: xxzuo
 tags:
   - flume
 categories:
-  - 大数据
+  - flume
 date: 2022-12-08 23:13:37
 ---
 

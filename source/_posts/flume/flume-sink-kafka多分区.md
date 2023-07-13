@@ -5,7 +5,7 @@ tags:
   - flume
   - kafka
 categories:
-  - 大数据
+  - flume
 date: 2022-11-17 22:41:51
 ---
 

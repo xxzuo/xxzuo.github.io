@@ -36,25 +36,22 @@ date: 2022-06-16 21:50:59
 
 
 
-
-
 3.创建hive表，用于映射 es
 
 ```sql
 create external table test.es_msg 
 (     
-    chatType     string,     
-    fromAccount  string,     
-    msgTimestamp bigint,     
-    toAccount    string 
+    column1     string,     
+    column2  string,     
+    column3 int
 )    stored by 'org.elasticsearch.hadoop.hive.EsStorageHandler'    
 tblproperties (         
-    'es.resource' = 'chat1/_doc',         
-    'es.nodes' = '192.168.2.146',        
+    'es.resource' = 'chat/_doc',         
+    'es.nodes' = '192.168.x.x',        
     "es.nodes.wan.only" = "true",         
     'es.transport.port' = '9200',         
     'es.mapping.names' =                
-    'chatType:chatType ,fromAccount:fromAccount, msgTimestamp:msgTimestamp, toAccount:toAccount'         
+    'column1:column1 ,column2:column2, column3:column3'         
 );
 ```
 
