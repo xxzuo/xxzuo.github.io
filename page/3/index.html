@@ -182,6 +182,328 @@
     <article class="col-12 col-md-12 mx-auto index-info">
       <h1 class="index-header">
         
+        <a href="/2022/08/03/shell%E8%84%9A%E6%9C%AC/shell%E8%8E%B7%E5%8F%96%E8%BF%9B%E7%A8%8Bpid/">shell获取进程pid</a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2022/08/03/shell%E8%84%9A%E6%9C%AC/shell%E8%8E%B7%E5%8F%96%E8%BF%9B%E7%A8%8Bpid/">
+          
+          
+            
+          
+          查看进程pid1ps -ef|grep 进程名 |grep -v grep | awk &#x27;&#123;print $2&#125;&#x27;
+判断进程是否存在123456p_cnt=ps -ef|grep queue |grep -v grep| wc -lif [ $p_cnt -le 0 ]; then# 进程不存在else# 进程存在fi
+
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2022-08-03 23:53" pubdate>
+              2022-08-03
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/shell%E8%84%9A%E6%9C%AC/">shell脚本</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/shell/">shell</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2022/08/01/%E5%A4%A7%E6%95%B0%E6%8D%AE/hadoop%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/">hadoop常用命令</a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2022/08/01/%E5%A4%A7%E6%95%B0%E6%8D%AE/hadoop%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/">
+          
+          
+            
+          
+          hdfs常用命令查看文件列表
+1hadoop fs -ls &lt;path&gt;
+递归查看文件
+1hadoop fs -ls -R &lt;path&gt;
+上传文件
+1hadoop fs -put &lt;localFile&gt; &lt;hdfsPath&gt;
+创建目录
+1hadoop fs -mkdir &lt;path&gt;
+递归删除
+1hadoop fs -rm -r &lt;
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2022-08-01 23:10" pubdate>
+              2022-08-01
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/">大数据</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/hadoop/">hadoop</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2022/07/31/%E5%A4%A7%E6%95%B0%E6%8D%AE/datanode/">datanode</a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2022/07/31/%E5%A4%A7%E6%95%B0%E6%8D%AE/datanode/">
+          
+          
+            
+          
+          DATANODE工作机制DataNode启动流程
+DataNode 启动后主动向 NameNode 注册
+注册成功后，NameNode会把DataNode注册在元数据中
+注册成功以后每周期(默认6小时)，DataNode向NameNode上报信息(块完好)
+心跳每3秒一次，心跳返回结果带有NameNode给DataNode的命令,比如复制数据块到另一台机器，或者删除某个数据块等等(DataNode
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2022-07-31 14:59" pubdate>
+              2022-07-31
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/">大数据</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/hdfs/">hdfs</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2022/07/23/%E8%B0%83%E5%BA%A6-azkaban/azkaban%E6%8E%A5%E5%8F%A3/">azkaban接口</a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2022/07/23/%E8%B0%83%E5%BA%A6-azkaban/azkaban%E6%8E%A5%E5%8F%A3/">
+          
+          
+            
+          
+          azkaban接口列表
+
+
+
+接口
+说明
+
+
+
+
+/manager?action=login
+登录接口
+
+
+
+
+
+接口详情
+登录接口
+
+接口地址：/manager
+
+返回格式：Json
+
+请求方式：Post
+
+请求示例：https://localhost:8443/manager
+
+接口备注：This API helps authenticate a user and provides a ses
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2022-07-23 23:45" pubdate>
+              2022-07-23
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/%E8%B0%83%E5%BA%A6-azkaban/">调度-azkaban</a>
+            
+          </div>
+        
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2022/07/23/mysql/mysql-date-format-%E5%87%BD%E6%95%B0/">mysql-date_format()函数</a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2022/07/23/mysql/mysql-date-format-%E5%87%BD%E6%95%B0/">
+          
+          
+            
+          
+          作用DATE_FORMAT() 函数可以用不同的格式显示日期/时间
+语法1select DATE_FORMAT(date,format);
+
+
+
+
+参数
+说明
+
+
+
+
+date
+合法的日期
+
+
+format
+规定的日期/时间输出格式
+
+
+
+
+format 格式
+
+
+
+格式
+说明
+样例
+
+
+
+
+%a
+缩写星期名
+
+
+
+%b
+缩写月名
+
+
+
+%c
+月,数值
+
+
+
+%D
+带有英文前缀的月中的天
+
+
+
+%
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2022-07-23 23:44" pubdate>
+              2022-07-23
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/mysql/">mysql</a>
+            
+          </div>
+        
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
         <a href="/2022/07/22/%E8%B0%83%E5%BA%A6-azkaban/azkaban%E9%87%8D%E5%90%AF-webserver%E6%8A%A5%E6%B2%A1%E6%9C%89%E6%BF%80%E6%B4%BB%E7%9A%84%E6%89%A7%E8%A1%8C%E5%99%A8/">azkaban重启 webserver报没有激活的执行器</a>
       </h1>
 
@@ -417,259 +739,6 @@ double next(int val) 计算并返回数据流中最后 size 个值的移动平�
               <a href="/tags/leetcode/">leetcode</a>
             
               <a href="/tags/%E6%BB%91%E5%8A%A8%E7%AA%97%E5%8F%A3/">滑动窗口</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2022/07/16/%E5%A4%A7%E6%95%B0%E6%8D%AE/flink%E6%97%A0%E6%B3%95%E7%94%A8stop-cluster-sh%E5%81%9C%E6%AD%A2/">flink无法用stop-cluster.sh停止</a>
-      </h1>
-
-      <p class="index-excerpt">
-        <a href="/2022/07/16/%E5%A4%A7%E6%95%B0%E6%8D%AE/flink%E6%97%A0%E6%B3%95%E7%94%A8stop-cluster-sh%E5%81%9C%E6%AD%A2/">
-          
-          
-            
-          
-          使用 stop-cluster.sh 关闭 flink 时失败
-123./stop-cluster.sh# No taskexecutor daemon to stop on host beideng-nj-prod-hadoop-02.# No standalonesession daemon to stop on host beideng-nj-prod-hadoop-02.
-但是 ps -e
-        </a>
-      </p>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2022-07-16 22:21" pubdate>
-              2022-07-16
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-category"></i>
-            
-              <a href="/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/">大数据</a>
-            
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/flink/">flink</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2022/07/14/%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/ubuntu20-04%E5%88%87%E6%8D%A2%E9%98%BF%E9%87%8C%E6%BA%90/">ubuntu20.04切换阿里源</a>
-      </h1>
-
-      <p class="index-excerpt">
-        <a href="/2022/07/14/%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/ubuntu20-04%E5%88%87%E6%8D%A2%E9%98%BF%E9%87%8C%E6%BA%90/">
-          
-          
-            
-          
-          ubuntu20.04 切换阿里源执行
-
-sudo apt install libopencv-dev libeigen3-dev
-
-报错
-
-Err:1 http://archive.ubuntu.com/ubuntu focal/universe amd64 libfyba0 amd64 4.1.1-6build1  Connection failed [IP: 185.125.190.39 8
-        </a>
-      </p>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2022-07-14 00:57" pubdate>
-              2022-07-14
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-category"></i>
-            
-              <a href="/categories/%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/">环境配置</a>
-            
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/ubuntu/">ubuntu</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2022/06/22/%E7%AE%97%E6%B3%95/513-%E6%89%BE%E6%A0%91%E5%B7%A6%E4%B8%8B%E8%A7%92%E7%9A%84%E5%80%BC/">513-找树左下角的值</a>
-      </h1>
-
-      <p class="index-excerpt">
-        <a href="/2022/06/22/%E7%AE%97%E6%B3%95/513-%E6%89%BE%E6%A0%91%E5%B7%A6%E4%B8%8B%E8%A7%92%E7%9A%84%E5%80%BC/">
-          
-          
-            
-          
-          题目描述题目链接:513. 找树左下角的值 - 力扣（LeetCode）
-给定一个二叉树的 根节点 root，请找出该二叉树的 最底层 最左边 节点的值。
-假设二叉树中至少有一个节点。
-1.层序遍历1234567891011121314151617181920212223242526272829303132333435363738394041	/**     * Definition for a 
-        </a>
-      </p>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2022-06-22 23:39" pubdate>
-              2022-06-22
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-category"></i>
-            
-              <a href="/categories/%E7%AE%97%E6%B3%95/">算法</a>
-            
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/leetcode/">leetcode</a>
-            
-              <a href="/tags/tree/">tree</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2022/06/22/%E5%A4%A7%E6%95%B0%E6%8D%AE/%E5%88%9B%E5%BB%BAhive-udf/">创建hive-udf</a>
-      </h1>
-
-      <p class="index-excerpt">
-        <a href="/2022/06/22/%E5%A4%A7%E6%95%B0%E6%8D%AE/%E5%88%9B%E5%BB%BAhive-udf/">
-          
-          
-            
-          
-          1.自定义 UDF 函数pom 中添加下面依赖123456789&lt;dependencies&gt;    &lt;dependency&gt;        &lt;groupId&gt;org.apache.hive&lt;/groupId&gt;        &lt;artifactId&gt;hive-exec&lt;/artifactId&gt;        &lt;versio
-        </a>
-      </p>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2022-06-22 23:28" pubdate>
-              2022-06-22
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-category"></i>
-            
-              <a href="/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/">大数据</a>
-            
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/hive/">hive</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2022/06/22/%E5%A4%A7%E6%95%B0%E6%8D%AE/hive%E6%9D%83%E9%99%90%E7%9B%B8%E5%85%B3%E5%91%BD%E4%BB%A4/">hive权限相关命令</a>
-      </h1>
-
-      <p class="index-excerpt">
-        <a href="/2022/06/22/%E5%A4%A7%E6%95%B0%E6%8D%AE/hive%E6%9D%83%E9%99%90%E7%9B%B8%E5%85%B3%E5%91%BD%E4%BB%A4/">
-          
-          
-            
-          
-          1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859606162636465666768697071727374757677787980818283848586878889909192939495969798-- 查看当前用户sele
-        </a>
-      </p>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2022-06-22 23:27" pubdate>
-              2022-06-22
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-category"></i>
-            
-              <a href="/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/">大数据</a>
-            
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/hive/">hive</a>
             
           </div>
         
