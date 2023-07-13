@@ -182,40 +182,30 @@
     <article class="col-12 col-md-12 mx-auto index-info">
       <h1 class="index-header">
         
-        <a href="/2022/07/16/flume/Flume%20Sources/">Flume-Sources文档(翻译中)</a>
+        <a href="/2022/07/18/%E5%A4%A7%E6%95%B0%E6%8D%AE/hdfs%E7%BB%84%E6%88%90%E6%9E%B6%E6%9E%84/">hdfs组成架构</a>
       </h1>
 
       <p class="index-excerpt">
-        <a href="/2022/07/16/flume/Flume%20Sources/">
+        <a href="/2022/07/18/%E5%A4%A7%E6%95%B0%E6%8D%AE/hdfs%E7%BB%84%E6%88%90%E6%9E%B6%E6%9E%84/">
           
           
             
           
-          Avro Source在Avro端口上监听并接收来自外部Avro客户端流的事件。当与另一个（上一跳）Flume Agent上的内置Avro Sink配对时，它可以创建分层收集拓扑。必填属性以粗体显示。
+          HDFS组成架构
+NameNode(nn): 就是Master, 它是一个主管，管理者
+管理 HDFS 的名称空间(namespace)
+配置副本策略
+管理数据块(block)映射信息
+处理客户端读写请求
 
 
+DataNode():就是 Slave.NameNode 下达命令，DataNode执行操作
+存储实际数据
+执行数据块 读/写 操作‘
 
 
-Property Name
-Default
-Description
-
-
-
-
-channels
--
-
-
-
-type
--
-组件类型名称，需要为avro
-
-
-bind
--
-要监听的主机名或IP地址
+Client
+文件切分,文件上传到 HDFS 的时
         </a>
       </p>
 
@@ -223,7 +213,63 @@ bind
         
           <div class="post-meta mr-3">
             <i class="iconfont icon-date"></i>
-            <time datetime="2022-07-16 22:21" pubdate>
+            <time datetime="2022-07-18 22:04" pubdate>
+              2022-07-18
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/">大数据</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/hdfs/">hdfs</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2022/07/16/%E7%AE%97%E6%B3%95/346-%E6%95%B0%E6%8D%AE%E6%B5%81%E4%B8%AD%E7%9A%84%E7%A7%BB%E5%8A%A8%E5%B9%B3%E5%9D%87%E5%80%BC/">346-数据流中的移动平均值</a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2022/07/16/%E7%AE%97%E6%B3%95/346-%E6%95%B0%E6%8D%AE%E6%B5%81%E4%B8%AD%E7%9A%84%E7%A7%BB%E5%8A%A8%E5%B9%B3%E5%9D%87%E5%80%BC/">
+          
+          
+            
+          
+          题目描述题目链接:346. 数据流中的移动平均值 - 力扣（LeetCode）
+给定一个整数数据流和一个窗口大小，根据该滑动窗口的大小，计算其所有整数的移动平均值。
+实现MovingAverage 类：
+
+MovingAverage(int size) 用窗口大小 size 初始化对象。
+double next(int val) 计算并返回数据流中最后 size 个值的移动平均值。
+
+示例：
+12
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2022-07-16 23:40" pubdate>
               2022-07-16
             </time>
           </div>
@@ -232,7 +278,7 @@ bind
           <div class="post-meta mr-3">
             <i class="iconfont icon-category"></i>
             
-              <a href="/categories/flume/">flume</a>
+              <a href="/categories/%E7%AE%97%E6%B3%95/">算法</a>
             
           </div>
         
@@ -240,7 +286,9 @@ bind
           <div class="post-meta">
             <i class="iconfont icon-tags"></i>
             
-              <a href="/tags/flume%E6%96%87%E6%A1%A3/">flume文档</a>
+              <a href="/tags/leetcode/">leetcode</a>
+            
+              <a href="/tags/%E6%BB%91%E5%8A%A8%E7%AA%97%E5%8F%A3/">滑动窗口</a>
             
           </div>
         
@@ -291,56 +339,6 @@ bind
             <i class="iconfont icon-tags"></i>
             
               <a href="/tags/flink/">flink</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2022/07/15/flume/flume%20User%20Guide(1.11)/">flume-User-Guide(1.11)(翻译中)</a>
-      </h1>
-
-      <p class="index-excerpt">
-        <a href="/2022/07/15/flume/flume%20User%20Guide(1.11)/">
-          
-          
-            
-          
-          翻译自 Flume 1.11.0 User Guide — Apache Flume
-Introduction介绍Overview概述Apache Flume 是一个分布式、可靠和高可用的系统，用于有效地收集、聚合和移动来自许多不同来源的大量日志数据到一个集中的数据存储中。
-使用 Apache Flume 不仅限于日志数据聚合。由于数据源是可定制的，因此 Flume 可用于传输大量事件数据，包括但
-        </a>
-      </p>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2022-07-15 21:21" pubdate>
-              2022-07-15
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-category"></i>
-            
-              <a href="/categories/flume/">flume</a>
-            
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/flume%E6%96%87%E6%A1%A3/">flume文档</a>
             
           </div>
         
