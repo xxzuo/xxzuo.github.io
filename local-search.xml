@@ -4,6 +4,44 @@
   
   
   <entry>
+    <title>hexo-auto-category配置</title>
+    <link href="/2023/07/14/%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/hexo-auto-category%E9%85%8D%E7%BD%AE/"/>
+    <url>/2023/07/14/%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/hexo-auto-category%E9%85%8D%E7%BD%AE/</url>
+    
+    <content type="html"><![CDATA[<p>以往在写 blog 的时候 ，通常是使用<br><figure class="highlight haxe"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs haxe"><span class="hljs-keyword">new</span> <span class="hljs-type">page</span> <span class="hljs-string">&quot;xxx&quot;</span><br></code></pre></td></tr></table></figure><br>来新建文章，但是这样有一个问题 就是新建的文件全部都堆在 <code>/_post</code> 文件下，blog 多了以后非常难维护，如果我们 手动做了 分类，这个时候因为 我们 在 front-matter 中 categories 是手动维护的，，如果文件夹出现了修改或者说 blog 的移动，这个时候还需要手动的去修改 categories 非常麻烦。<br>这个时候 我们可以用 <a href="https://github.com/xu-song/hexo-auto-category">hexo-auto-category</a>) 这个插件 来帮助我们自动分类。这个插件 可以根据blog 所处的文件夹 来自动生成 categories, 省去了手动维护的烦恼.</p><p>安装见 <a href="https://blog.eson.org/pub/e2f6e239/">【Hexo插件系列】日志的自动分类插件 hexo-auto-category | ESON</a></p><h4 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h4><figure class="highlight ada"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs ada">npm install hexo-auto-category <span class="hljs-comment">--save</span><br></code></pre></td></tr></table></figure><h4 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h4><p>在 <code>_config.yml</code> 中添加<br><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs yaml"><span class="hljs-comment"># Generate categories from directory-tree  </span><br><span class="hljs-comment"># Dependencies: https://github.com/xu-song/hexo-auto-category  </span><br><span class="hljs-comment"># depth: the depth of directory-tree you want to generate, should &gt; 0  </span><br><span class="hljs-attr">auto_category:</span>  <br> <span class="hljs-attr">enable:</span> <span class="hljs-literal">true</span>  <br> <span class="hljs-attr">depth:</span> <span class="hljs-number">1</span><br></code></pre></td></tr></table></figure></p><p><code>depth : 1</code> 表示只想生成第一级目录</p><h4 id="编译-amp-部署"><a href="#编译-amp-部署" class="headerlink" title="编译&amp;部署"></a>编译&amp;部署</h4><figure class="highlight sas"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sas">hexo clean <span class="hljs-variable">&amp;&amp;</span> hexo g <span class="hljs-variable">&amp;&amp;</span> hexo d<br></code></pre></td></tr></table></figure>]]></content>
+    
+    
+    
+    <tags>
+      
+      <tag>hexo插件</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>机器部署相关</title>
+    <link href="/2023/07/14/%E5%A4%A7%E6%95%B0%E6%8D%AE/%E6%9C%BA%E5%99%A8%E9%83%A8%E7%BD%B2%E7%9B%B8%E5%85%B3/"/>
+    <url>/2023/07/14/%E5%A4%A7%E6%95%B0%E6%8D%AE/%E6%9C%BA%E5%99%A8%E9%83%A8%E7%BD%B2%E7%9B%B8%E5%85%B3/</url>
+    
+    <content type="html"><![CDATA[<h3 id="hadoop-各应用部署"><a href="#hadoop-各应用部署" class="headerlink" title="hadoop 各应用部署"></a>hadoop 各应用部署</h3><p>NameNode 服务 单独 部署 (集群规模不大时 NameNode 也可以和 DataNode 放在一台机器上)</p><p>DataNode 和 NodeManager 在一台机器上</p><p>ResourceManage 和 NameNdoe 建议 独立 部署在一台上</p><p>historyServer 通常和 resourceManager 在一起</p><div class="table-container"><table><thead><tr><th>角色</th><th>机器1</th><th>机器2</th><th>机器3</th><th>机器4</th><th>机器5</th></tr></thead><tbody><tr><td>NameNode</td><td>是</td><td>是</td><td>否</td><td>否</td><td>否</td></tr><tr><td>DataNode</td><td>否</td><td>否</td><td>是</td><td>是</td><td>是</td></tr><tr><td>JournalNode</td><td>否</td><td>否</td><td>是</td><td>是</td><td>是</td></tr><tr><td>Zookeeper</td><td>否</td><td>否</td><td>是</td><td>是</td><td>是</td></tr><tr><td>ZKFC</td><td>是</td><td>是</td><td>否</td><td>否</td><td>否</td></tr><tr><td>ResoueceManager</td><td>否</td><td>是</td><td>否</td><td>否</td><td>否</td></tr><tr><td>NodeManager</td><td>否</td><td>否</td><td>是</td><td>是</td><td>是</td></tr><tr><td>JobHistoryServer</td><td>否</td><td>是</td><td>否</td><td>否</td><td>否</td></tr></tbody></table></div>]]></content>
+    
+    
+    
+    <tags>
+      
+      <tag>hadoop</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>通用返回类</title>
     <link href="/2023/07/13/java%E5%B7%A5%E5%85%B7%E7%B1%BB/%E9%80%9A%E7%94%A8%E8%BF%94%E5%9B%9E%E7%B1%BB/"/>
     <url>/2023/07/13/java%E5%B7%A5%E5%85%B7%E7%B1%BB/%E9%80%9A%E7%94%A8%E8%BF%94%E5%9B%9E%E7%B1%BB/</url>
