@@ -182,165 +182,6 @@
     <article class="col-12 col-md-12 mx-auto index-info">
       <h1 class="index-header">
         
-        <a href="/2022/08/03/shell%E8%84%9A%E6%9C%AC/shell%E8%8E%B7%E5%8F%96%E8%BF%9B%E7%A8%8Bpid/">shell获取进程pid</a>
-      </h1>
-
-      <p class="index-excerpt">
-        <a href="/2022/08/03/shell%E8%84%9A%E6%9C%AC/shell%E8%8E%B7%E5%8F%96%E8%BF%9B%E7%A8%8Bpid/">
-          
-          
-            
-          
-          查看进程pid1ps -ef|grep 进程名 |grep -v grep | awk &#x27;&#123;print $2&#125;&#x27;
-判断进程是否存在123456p_cnt=ps -ef|grep queue |grep -v grep| wc -lif [ $p_cnt -le 0 ]; then# 进程不存在else# 进程存在fi
-
-        </a>
-      </p>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2022-08-03 23:53" pubdate>
-              2022-08-03
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-category"></i>
-            
-              <a href="/categories/shell%E8%84%9A%E6%9C%AC/">shell脚本</a>
-            
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/shell/">shell</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2022/08/01/%E5%A4%A7%E6%95%B0%E6%8D%AE/hadoop%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/">hadoop常用命令</a>
-      </h1>
-
-      <p class="index-excerpt">
-        <a href="/2022/08/01/%E5%A4%A7%E6%95%B0%E6%8D%AE/hadoop%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/">
-          
-          
-            
-          
-          hdfs常用命令查看文件列表
-1hadoop fs -ls &lt;path&gt;
-递归查看文件
-1hadoop fs -ls -R &lt;path&gt;
-上传文件
-1hadoop fs -put &lt;localFile&gt; &lt;hdfsPath&gt;
-创建目录
-1hadoop fs -mkdir &lt;path&gt;
-递归删除
-1hadoop fs -rm -r &lt;
-        </a>
-      </p>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2022-08-01 23:10" pubdate>
-              2022-08-01
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-category"></i>
-            
-              <a href="/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/">大数据</a>
-            
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/hadoop/">hadoop</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2022/07/31/%E5%A4%A7%E6%95%B0%E6%8D%AE/datanode/">datanode</a>
-      </h1>
-
-      <p class="index-excerpt">
-        <a href="/2022/07/31/%E5%A4%A7%E6%95%B0%E6%8D%AE/datanode/">
-          
-          
-            
-          
-          DATANODE工作机制DataNode启动流程
-DataNode 启动后主动向 NameNode 注册
-注册成功后，NameNode会把DataNode注册在元数据中
-注册成功以后每周期(默认6小时)，DataNode向NameNode上报信息(块完好)
-心跳每3秒一次，心跳返回结果带有NameNode给DataNode的命令,比如复制数据块到另一台机器，或者删除某个数据块等等(DataNode
-        </a>
-      </p>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2022-07-31 14:59" pubdate>
-              2022-07-31
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-category"></i>
-            
-              <a href="/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/">大数据</a>
-            
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/hdfs/">hdfs</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        
         <a href="/2022/07/23/%E8%B0%83%E5%BA%A6-azkaban/azkaban%E6%8E%A5%E5%8F%A3/">azkaban接口</a>
       </h1>
 
@@ -739,6 +580,176 @@ double next(int val) 计算并返回数据流中最后 size 个值的移动平�
               <a href="/tags/leetcode/">leetcode</a>
             
               <a href="/tags/%E6%BB%91%E5%8A%A8%E7%AA%97%E5%8F%A3/">滑动窗口</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2022/07/16/flume/Flume%20Sinks/">Flume Sinks文档(未开始)</a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2022/07/16/flume/Flume%20Sinks/">
+          
+          
+            
+          
+          
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2022-07-16 22:21" pubdate>
+              2022-07-16
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/flume/">flume</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/flume%E6%96%87%E6%A1%A3/">flume文档</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2022/07/16/flume/Flume%20Sources/">Flume Sources文档(翻译中)</a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2022/07/16/flume/Flume%20Sources/">
+          
+          
+            
+          
+          Avro Source在Avro端口上监听并接收来自外部Avro客户端流的事件。当与另一个（上一跳）Flume Agent上的内置Avro Sink配对时，它可以创建分层收集拓扑。必填属性以粗体显示。
+
+
+
+
+Property Name
+Default
+Description
+
+
+
+
+channels
+-
+
+
+
+type
+-
+组件类型名称，需要为avro
+
+
+bind
+-
+要监听的主机名或IP地址
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2022-07-16 22:21" pubdate>
+              2022-07-16
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/flume/">flume</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/flume%E6%96%87%E6%A1%A3/">flume文档</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2022/07/16/%E5%A4%A7%E6%95%B0%E6%8D%AE/flink%E6%97%A0%E6%B3%95%E7%94%A8stop-cluster-sh%E5%81%9C%E6%AD%A2/">flink无法用stop-cluster.sh停止</a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2022/07/16/%E5%A4%A7%E6%95%B0%E6%8D%AE/flink%E6%97%A0%E6%B3%95%E7%94%A8stop-cluster-sh%E5%81%9C%E6%AD%A2/">
+          
+          
+            
+          
+          使用 stop-cluster.sh 关闭 flink 时失败
+123./stop-cluster.sh# No taskexecutor daemon to stop on host beideng-nj-prod-hadoop-02.# No standalonesession daemon to stop on host beideng-nj-prod-hadoop-02.
+但是 ps -e
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2022-07-16 22:21" pubdate>
+              2022-07-16
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/">大数据</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/flink/">flink</a>
             
           </div>
         

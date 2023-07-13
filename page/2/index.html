@@ -182,160 +182,6 @@
     <article class="col-12 col-md-12 mx-auto index-info">
       <h1 class="index-header">
         
-        <a href="/2022/12/08/flume/flume%E8%87%AA%E5%AE%9A%E4%B9%89%E6%8B%A6%E6%88%AA%E5%99%A8-Interceptor/">flume自定义拦截器(Interceptor)</a>
-      </h1>
-
-      <p class="index-excerpt">
-        <a href="/2022/12/08/flume/flume%E8%87%AA%E5%AE%9A%E4%B9%89%E6%8B%A6%E6%88%AA%E5%99%A8-Interceptor/">
-          
-          
-            
-          
-          自定义Interceptor是Flume中一个非常有用的功能，它允许用户在Flume中添加自己的拦截器，以实现自定义的日志处理逻辑。
-要创建一个自定义的Interceptor，需要实现Flume的Interceptor接口，并实现接口中定义的所有方法。然后，可以在Flume的配置文件中添加该拦截器，并指定它的位置。
-拦截器将在Flume中的数据流中执行，并可以对数据进行处理、修改、过滤或转换。拦截
-        </a>
-      </p>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2022-12-08 23:09" pubdate>
-              2022-12-08
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-category"></i>
-            
-              <a href="/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/">大数据</a>
-            
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/flume/">flume</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2022/12/02/%E5%A4%A7%E6%95%B0%E6%8D%AE/hadoop%E4%BD%BF%E7%94%A8distcp%E6%95%B0%E6%8D%AE%E8%BF%81%E7%A7%BB/">hadoop使用distcp数据迁移</a>
-      </h1>
-
-      <p class="index-excerpt">
-        <a href="/2022/12/02/%E5%A4%A7%E6%95%B0%E6%8D%AE/hadoop%E4%BD%BF%E7%94%A8distcp%E6%95%B0%E6%8D%AE%E8%BF%81%E7%A7%BB/">
-          
-          
-            
-          
-          数据迁移
-命令 hadoop distcp:
-hadoop distcp -log ~/distcp_stage.log   hdfs://192.168.1.1:9000/user/hive/warehouse/ods hdfs://192.168.1.2:8020/user/hive/warehouse/
-
-注意事项这里的 source hdfs 和 target hdfs 必须得是 name
-        </a>
-      </p>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2022-12-02 14:54" pubdate>
-              2022-12-02
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-category"></i>
-            
-              <a href="/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/">大数据</a>
-            
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/hdfs/">hdfs</a>
-            
-              <a href="/tags/%E6%95%B0%E6%8D%AE%E8%BF%81%E7%A7%BB/">数据迁移</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2022/12/02/%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/jetbrains-ide%E4%BD%BF%E7%94%A8%E7%9A%84vmoptions%E6%96%87%E4%BB%B6%E4%BD%8D%E7%BD%AE/">jetbrains-ide使用的vmoptions文件位置</a>
-      </h1>
-
-      <p class="index-excerpt">
-        <a href="/2022/12/02/%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/jetbrains-ide%E4%BD%BF%E7%94%A8%E7%9A%84vmoptions%E6%96%87%E4%BB%B6%E4%BD%8D%E7%BD%AE/">
-          
-          
-            
-          
-          IDE使用了哪个vmoptions文件?IDE依次检查下面各项,若满足,则使用相应的文件
-1.环境变量指向的vmoptions文件如果&lt;IDE&gt;_VM_OPTIONS环境变量存在且指向的vmoptions文件也存在, 则使用该文件.其中是jetbrains IDE的代号,比如 IDEA / PYCHARM 等
-环境变量里找到 以 _VM_OPTIONS 结尾的环境变量, 如下, 对应的
-        </a>
-      </p>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2022-12-02 14:53" pubdate>
-              2022-12-02
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-category"></i>
-            
-              <a href="/categories/%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/">环境配置</a>
-            
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/jetbrains/">jetbrains</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        
         <a href="/2022/11/17/flume/flume-sink-kafka%E5%A4%9A%E5%88%86%E5%8C%BA/">flume-sink-kafka多分区</a>
       </h1>
 
@@ -365,7 +211,7 @@ hadoop distcp -log ~/distcp_stage.log   hdfs://192.168.1.1:9000/user/hive/wareho
           <div class="post-meta mr-3">
             <i class="iconfont icon-category"></i>
             
-              <a href="/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/">大数据</a>
+              <a href="/categories/flume/">flume</a>
             
           </div>
         
@@ -686,6 +532,165 @@ import  tkinter
               <a href="/tags/tkinter/">tkinter</a>
             
               <a href="/tags/python-gui/">python-gui</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2022/08/03/shell%E8%84%9A%E6%9C%AC/shell%E8%8E%B7%E5%8F%96%E8%BF%9B%E7%A8%8Bpid/">shell获取进程pid</a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2022/08/03/shell%E8%84%9A%E6%9C%AC/shell%E8%8E%B7%E5%8F%96%E8%BF%9B%E7%A8%8Bpid/">
+          
+          
+            
+          
+          查看进程pid1ps -ef|grep 进程名 |grep -v grep | awk &#x27;&#123;print $2&#125;&#x27;
+判断进程是否存在123456p_cnt=ps -ef|grep queue |grep -v grep| wc -lif [ $p_cnt -le 0 ]; then# 进程不存在else# 进程存在fi
+
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2022-08-03 23:53" pubdate>
+              2022-08-03
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/shell%E8%84%9A%E6%9C%AC/">shell脚本</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/shell/">shell</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2022/08/01/%E5%A4%A7%E6%95%B0%E6%8D%AE/hadoop%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/">hadoop常用命令</a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2022/08/01/%E5%A4%A7%E6%95%B0%E6%8D%AE/hadoop%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/">
+          
+          
+            
+          
+          hdfs常用命令查看文件列表
+1hadoop fs -ls &lt;path&gt;
+递归查看文件
+1hadoop fs -ls -R &lt;path&gt;
+上传文件
+1hadoop fs -put &lt;localFile&gt; &lt;hdfsPath&gt;
+创建目录
+1hadoop fs -mkdir &lt;path&gt;
+递归删除
+1hadoop fs -rm -r &lt;
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2022-08-01 23:10" pubdate>
+              2022-08-01
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/">大数据</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/hadoop/">hadoop</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2022/07/31/%E5%A4%A7%E6%95%B0%E6%8D%AE/datanode/">datanode</a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2022/07/31/%E5%A4%A7%E6%95%B0%E6%8D%AE/datanode/">
+          
+          
+            
+          
+          DATANODE工作机制DataNode启动流程
+DataNode 启动后主动向 NameNode 注册
+注册成功后，NameNode会把DataNode注册在元数据中
+注册成功以后每周期(默认6小时)，DataNode向NameNode上报信息(块完好)
+心跳每3秒一次，心跳返回结果带有NameNode给DataNode的命令,比如复制数据块到另一台机器，或者删除某个数据块等等(DataNode
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2022-07-31 14:59" pubdate>
+              2022-07-31
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/">大数据</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/hdfs/">hdfs</a>
             
           </div>
         
