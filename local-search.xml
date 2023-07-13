@@ -229,6 +229,25 @@
   
   
   <entry>
+    <title>hive2.1.1 无法识别高版本hive-orc数据</title>
+    <link href="/2023/07/10/%E5%A4%A7%E6%95%B0%E6%8D%AE/hive2.1.1%20%E6%97%A0%E6%B3%95%E8%AF%86%E5%88%AB%E9%AB%98%E7%89%88%E6%9C%AChive-orc%E6%95%B0%E6%8D%AE/"/>
+    <url>/2023/07/10/%E5%A4%A7%E6%95%B0%E6%8D%AE/hive2.1.1%20%E6%97%A0%E6%B3%95%E8%AF%86%E5%88%AB%E9%AB%98%E7%89%88%E6%9C%AChive-orc%E6%95%B0%E6%8D%AE/</url>
+    
+    <content type="html"><![CDATA[<p>在 利用 distcp 将 原 apahce hadoop 集群 传输数据到 新 cdh6.3.2 集群后<br>在 新 cdh 集群上 使用 hive 建表，结果 无法查询到 表数据提示 </p><blockquote><p>ORC split generation failed with exception:ArrayIndexOutOfBoundsException: 7</p></blockquote><p>查询资料发现<br><a href="https://issues.apache.org/jira/browse/HIVE-14483">https://issues.apache.org/jira/browse/HIVE-14483</a></p><p>这是由于 HIVE 在 写 ORC 格式数据时，会附带一个 <code>VERSION</code><br>在 READ 数据的时候 会获取这个 <code>VERSION</code><br>但是在 2.1.1 版本的 代码中<br>WriterVersion 这个 枚举类的<code>from</code>方法</p><p>![[orc_error1.png]]</p><p>这个 返回的 枚举类型 有问题<br>在高版本情况下 ,如果 val  =  7 时<br>它不会走到<br><code>return FUTURE;</code><br>会<br><code>return values[7];</code><br>这里很明显就会导致数据越界问题所以我们需要修改这里的代码<br>改成如下代码:</p><p>![[orc_error2.png]]</p><p>做一个判断如果 val 大于等于values的长度，说明是一个高版本的数据，直接返回 FUTURE<br>重新编译class文件以后，更新 jar包<br>这里涉及到  <code>hive-exec</code>  和 <code>hive-orc</code> 两个jar包<br>更新完 jar 以后 上传到 服务器，重启 hive 即可</p>]]></content>
+    
+    
+    
+    <tags>
+      
+      <tag>hive</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>Flume-Sources文档(翻译中)</title>
     <link href="/2023/05/18/flume/Flume%20Sources/"/>
     <url>/2023/05/18/flume/Flume%20Sources/</url>
