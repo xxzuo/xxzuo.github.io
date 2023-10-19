@@ -4,6 +4,32 @@
   
   
   <entry>
+    <title></title>
+    <link href="/2023/10/19/%E5%BE%AE%E4%BF%A1%E6%8E%A5%E5%8F%A3/%E4%BC%81%E4%B8%9A%E5%BE%AE%E4%BF%A1%E6%8E%A5%E5%8F%A3%E7%9B%B8%E5%85%B3/"/>
+    <url>/2023/10/19/%E5%BE%AE%E4%BF%A1%E6%8E%A5%E5%8F%A3/%E4%BC%81%E4%B8%9A%E5%BE%AE%E4%BF%A1%E6%8E%A5%E5%8F%A3%E7%9B%B8%E5%85%B3/</url>
+    
+    <content type="html"><![CDATA[<h2 id="1-获取-access-token"><a href="#1-获取-access-token" class="headerlink" title="1. 获取 access_token"></a>1. 获取 access_token</h2><h3 id="1-1-术语"><a href="#1-1-术语" class="headerlink" title="1.1 术语"></a>1.1 术语</h3><h4 id="1-1-1-secret"><a href="#1-1-1-secret" class="headerlink" title="1.1.1 secret"></a>1.1.1 secret</h4><p>secret是企业应用里面用于保障数据安全的“钥匙”，每一个应用都有一个独立的访问密钥，为了保证数据的安全，secret务必不能泄漏。<br>目前secret有：</p><ul><li>自建应用secret。在管理后台-&gt;“应用与小程序”-&gt;“应用”-&gt;“自建”，点进某个应用，即可看到。</li><li>基础应用secret。某些基础应用（如“审批”“打卡”应用），支持通过API进行操作。在管理后台-&gt;“应用与小程序”-&gt;“应用-&gt;”“基础”，点进某个应用，点开“API”小按钮，即可看到。</li><li>通讯录管理secret。在“管理工具”-“通讯录同步”里面查看（需开启“API接口同步”）；</li><li>外部联系人管理secret。在“客户联系”栏，点开“API”小按钮，即可看到。</li></ul><h4 id="1-1-2corpid"><a href="#1-1-2corpid" class="headerlink" title="1.1.2corpid"></a>1.1.2corpid</h4><p>每个企业都拥有唯一的corpid，获取此信息可在管理后台“我的企业”－“企业信息”下查看“企业ID”（需要有管理员权限）</p><h4 id="1-1-3-userid"><a href="#1-1-3-userid" class="headerlink" title="1.1.3 userid"></a>1.1.3 userid</h4><p>每个成员都有唯一的userid，即所谓“帐号”。在管理后台-&gt;“通讯录”-&gt;点进某个成员的详情页，可以看到。</p><h4 id="1-1-4-部门id"><a href="#1-1-4-部门id" class="headerlink" title="1.1.4 部门id"></a>1.1.4 部门id</h4><p>每个部门都有唯一的id，在管理后台-&gt;“通讯录”-&gt;“组织架构”-&gt;点击某个部门右边的小圆点可以看到</p><h4 id="1-1-5-tagid"><a href="#1-1-5-tagid" class="headerlink" title="1.1.5 tagid"></a>1.1.5 tagid</h4><p>每个标签都有唯一的标签id，在管理后台-&gt;“通讯录”-&gt;“标签”，选中某个标签，在右上角会有“标签详情”按钮，点击即可看到</p><h4 id="1-1-6-external-userid"><a href="#1-1-6-external-userid" class="headerlink" title="1.1.6 external_userid"></a>1.1.6 external_userid</h4><p>企业外部联系人的id，可能是微信用户，也可能是企业微信用户。需要开发者(尤其是第三方开发者)注意的是，对于同一个外部联系人，不同调用方（企业/第三方服务商）获取到的external_userid是不同的。</p><h4 id="1-1-7-agentid"><a href="#1-1-7-agentid" class="headerlink" title="1.1.7 agentid"></a>1.1.7 agentid</h4><p>每个应用都有唯一的agentid。在管理后台-&gt;“应用与小程序”-&gt;“应用”，点进某个应用，即可看到agentid。</p><h3 id="1-2-接口"><a href="#1-2-接口" class="headerlink" title="1.2 接口"></a>1.2 接口</h3><p>获取access_token是调用企业微信API接口的第一步，相当于创建了一个登录凭证，其它的业务API接口，都需要依赖于access_token来鉴权调用者身份。<br>因此开发者，在使用业务接口前，要明确access_token的颁发来源，使用正确的access_token。</p><p>&gt;</p><blockquote><p><strong>请求方式：</strong> GET（<strong>HTTPS</strong>）<br><strong>请求地址：</strong> <a href="https://qyapi.weixin.qq.com/cgi-bin/gettoken?corpid=ID&amp;corpsecret=SECRET">https://qyapi.weixin.qq.com/cgi-bin/gettoken?corpid=ID&amp;corpsecret=SECRET</a>  </p><p>提示:<br>此处标注大写的单词 ID 和 SECRET，为需要替换的变量，根据实际获取值更新。其它接口也采用相同的标注，不再说明。</p></blockquote><p><strong>请求参数说明：</strong></p><div class="table-container"><table><thead><tr><th>参数</th><th>必须</th><th>说明</th></tr></thead><tbody><tr><td>corpid</td><td>是</td><td>企业ID</td></tr><tr><td>corpsecret</td><td>是</td><td>应用的凭证密钥，<strong>注意应用需要是启用状态</strong></td></tr></tbody></table></div><p><strong>权限说明：</strong><br>每个应用有独立的secret，获取到的access_token只能本应用使用，所以每个应用的access_token应该分开来获取</p><p><strong>返回结果：</strong><br><figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs json">&#123;<br>   <span class="hljs-attr">&quot;errcode&quot;</span>: <span class="hljs-number">0</span>,<br>   <span class="hljs-attr">&quot;errmsg&quot;</span>: <span class="hljs-string">&quot;ok&quot;</span>,<br>   <span class="hljs-attr">&quot;access_token&quot;</span>: <span class="hljs-string">&quot;accesstoken000001&quot;</span>,<br>   <span class="hljs-attr">&quot;expires_in&quot;</span>: <span class="hljs-number">7200</span><br>&#125;<br></code></pre></td></tr></table></figure></p><p><strong>响应参数说明：</strong></p><div class="table-container"><table><thead><tr><th>参数</th><th>说明</th></tr></thead><tbody><tr><td>errcode</td><td>出错返回码，为0表示成功，非0表示调用失败</td></tr><tr><td>errmsg</td><td>返回码提示语</td></tr><tr><td>access_token</td><td>获取到的凭证，最长为512字节</td></tr><tr><td>expires_in</td><td>凭证的有效时间（秒）</td></tr></tbody></table></div><p><strong>注意事项：</strong><br>开发者需要缓存access_token，用于后续接口的调用（注意：不能频繁调用gettoken接口，否则会受到频率拦截）。当access_token失效或过期时，需要重新获取。</p><p>access_token的有效期通过返回的expires_in来传达，正常情况下为7200秒（2小时），有效期内重复获取返回相同结果，过期后获取会返回新的access_token。<br>由于企业微信每个应用的access_token是彼此独立的，所以进行缓存时需要区分应用来进行存储。<br>access_token至少保留512字节的存储空间。<br>企业微信可能会出于运营需要，提前使access_token失效，开发者应实现access_token失效时重新获取的逻辑。</p><p>参考代码<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> requests<br><span class="hljs-keyword">if</span> __name__ == <span class="hljs-string">&#x27;__main__&#x27;</span>:<br>    res = requests.get(<br>        <span class="hljs-string">&#x27;https://qyapi.weixin.qq.com/cgi-bin/gettoken?corpid=xxx=xxxxx&#x27;</span>)<br>    access = res.json()[<span class="hljs-string">&#x27;access_token&#x27;</span>]<br>    <span class="hljs-built_in">print</span>(access)<br></code></pre></td></tr></table></figure></p>]]></content>
+    
+    
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title></title>
+    <link href="/2023/08/17/%E5%A4%A7%E6%95%B0%E6%8D%AE/datax%E6%9C%AC%E5%9C%B0idea%E9%85%8D%E7%BD%AE/"/>
+    <url>/2023/08/17/%E5%A4%A7%E6%95%B0%E6%8D%AE/datax%E6%9C%AC%E5%9C%B0idea%E9%85%8D%E7%BD%AE/</url>
+    
+    <content type="html"><![CDATA[<ol><li>下载源码打包<br><a href="https://github.com/alibaba/DataX">alibaba/DataX: DataX是阿里云DataWorks数据集成的开源版本。 (github.com)</a></li></ol><p>执行打包命令<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">mvn -U clean package assembly:assembly -Dmaven.test.skip=true<br></code></pre></td></tr></table></figure></p><ol><li>配置启动参数<br>在 idea 中找到  <code>com.alibaba.datax.core.Engine</code> 类</li></ol><p>在 <code>vm option</code> 中写上 打包后的 datax 目录</p><blockquote><p>-Ddatax.home=/xxx/DataX/target/datax/datax</p></blockquote><p><code>Program arguments</code> 中加上 要执行的 json 文件</p><blockquote><p>-mode  standalone  -jobid  -1  -job  /xxx/job.json</p></blockquote>]]></content>
+    
+    
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>hexo-auto-category配置</title>
     <link href="/2023/07/14/%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/hexo-auto-category%E9%85%8D%E7%BD%AE/"/>
     <url>/2023/07/14/%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/hexo-auto-category%E9%85%8D%E7%BD%AE/</url>
@@ -235,6 +261,12 @@
     
     <content type="html"><![CDATA[<p>在 利用 distcp 将 原 apahce hadoop 集群 传输数据到 新 cdh6.3.2 集群后<br>在 新 cdh 集群上 使用 hive 建表，结果 无法查询到 表数据提示 </p><blockquote><p>ORC split generation failed with exception:ArrayIndexOutOfBoundsException: 7</p></blockquote><p>查询资料发现<br><a href="https://issues.apache.org/jira/browse/HIVE-14483">https://issues.apache.org/jira/browse/HIVE-14483</a></p><p>这是由于 HIVE 在 写 ORC 格式数据时，会附带一个 <code>VERSION</code><br>在 READ 数据的时候 会获取这个 <code>VERSION</code><br>但是在 2.1.1 版本的 代码中<br>WriterVersion 这个 枚举类的<code>from</code>方法</p><p>![[orc_error1.png]]</p><p>这个 返回的 枚举类型 有问题<br>在高版本情况下 ,如果 val  =  7 时<br>它不会走到<br><code>return FUTURE;</code><br>会<br><code>return values[7];</code><br>这里很明显就会导致数据越界问题所以我们需要修改这里的代码<br>改成如下代码:</p><p>![[orc_error2.png]]</p><p>做一个判断如果 val 大于等于values的长度，说明是一个高版本的数据，直接返回 FUTURE<br>重新编译class文件以后，更新 jar包<br>这里涉及到  <code>hive-exec</code>  和 <code>hive-orc</code> 两个jar包<br>更新完 jar 以后 上传到 服务器，重启 hive 即可</p>]]></content>
     
+    
+    <categories>
+      
+      <category>大数据</category>
+      
+    </categories>
     
     
     <tags>
