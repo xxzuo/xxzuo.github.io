@@ -1,11 +1,12 @@
 ---
 title: 优先队列
 author: xxzuo
-date: 2023-10-23 10:01:08
 tags:
   - leetcode
   - java
-categories: []
+categories:
+  - 算法
+date: 2023-10-23 10:01:08
 ---
 
 ## 概念
