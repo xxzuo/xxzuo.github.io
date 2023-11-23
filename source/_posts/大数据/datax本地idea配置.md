@@ -1,6 +1,8 @@
 ---
 categories:
   - 大数据
+title: datax本地idea配置
+author: xxzuo
 ---
 1. 下载源码打包
 [alibaba/DataX: DataX是阿里云DataWorks数据集成的开源版本。 (github.com)](https://github.com/alibaba/DataX)
