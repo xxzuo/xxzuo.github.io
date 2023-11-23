@@ -16,7 +16,17 @@ categories: []
 ### 构造方法
 - Integer 或者 String类型
 ```java
+// 小堆
 PriorityQueue<Integer> priorityQueue = new PriorityQueue<>();
+
+// 大堆
+PriorityQueue<Student> priorityQueue = new PriorityQueue<>(new Comparator<Student>() {  
+        @Override  
+        public int compare(Student o1, Student o2) {  
+            return o1.age - o2.age;  
+        }  
+    }); 
+
 ```
 
 - 实体类
@@ -107,8 +117,23 @@ static class Student{
 
 
 ### 常用方法
+```java
+public boolean add(E e); //在队尾添加元素，并调整堆结构
+public E remove(); //在队头删除元素，并返回，再调整堆结构
+public E element(); //返回队头元素（不删除）
+public boolean isEmpty(); //判断队列是否为空
+​
+public int size(); //获取队列中元素个数
+public void clear(); //清空队列
+public boolean contains(Object o); //判断队列中是否包含指定元素（从队头到队尾遍历）
+public Iterator<E> iterator(); //迭代器
 
+public E peek(); //获取优先级最高的元素
+public E poll(); //移除优先级最高的元素 并返回
+public boolean offer(E e); //插入元素, 成功返回 true, 会自动扩容
 
+```
 
+参考 ![[1464-数组中两元素的最大乘积]]
 
 
