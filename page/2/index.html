@@ -182,6 +182,104 @@
     <article class="col-12 col-md-12 mx-auto index-info">
       <h1 class="index-header">
         
+        <a href="/2023/07/13/%E8%B0%83%E5%BA%A6-azkaban/python%E8%B0%83%E7%94%A8azkaban%E6%8E%A5%E5%8F%A3%E4%B8%8A%E4%BC%A0%E6%96%87%E4%BB%B6/">python调用azkaban接口上传文件</a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2023/07/13/%E8%B0%83%E5%BA%A6-azkaban/python%E8%B0%83%E7%94%A8azkaban%E6%8E%A5%E5%8F%A3%E4%B8%8A%E4%BC%A0%E6%96%87%E4%BB%B6/">
+          
+          
+            
+          
+          python调用
+1234567891011121314151617181920212223242526272829303132import os.path    import requests    def login_azkaban():      headers = &#123;          &quot;Content-Type&quot;: &quot;application/x-w
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2023-07-13 23:55" pubdate>
+              2023-07-13
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/%E8%B0%83%E5%BA%A6-azkaban/">调度-azkaban</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/azkaban/">azkaban</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2023/07/13/%E5%A4%A7%E6%95%B0%E6%8D%AE/hive%E8%A1%A8%E7%BA%A7%E8%A1%80%E6%BA%90%E8%A7%A3%E6%9E%90/">hive表级血源解析</a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2023/07/13/%E5%A4%A7%E6%95%B0%E6%8D%AE/hive%E8%A1%A8%E7%BA%A7%E8%A1%80%E6%BA%90%E8%A7%A3%E6%9E%90/">
+          
+          
+            
+          
+          hive血源通过查看代码 发现 hive 自带了 一个表级血源解析工具类1org.apache.hadoop.hive.ql.tools.LineageInfo
+我们可以这样使用1234567891011121314public static void main(String[] args) throws IOException, ParseException,          Semantic
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2023-07-13 23:29" pubdate>
+              2023-07-13
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/">大数据</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/hive/">hive</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
         <a href="/2023/07/13/%E5%A4%A7%E6%95%B0%E6%8D%AE/hive-exec%E7%9A%84guava%E5%86%B2%E7%AA%81/">hive-exec的guava冲突</a>
       </h1>
 
@@ -588,110 +686,6 @@ sh 脚本 (start|stop|restart)
             <i class="iconfont icon-tags"></i>
             
               <a href="/tags/flume/">flume</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2022/12/08/flume/flume%E8%87%AA%E5%AE%9A%E4%B9%89%E6%8B%A6%E6%88%AA%E5%99%A8-Interceptor/">flume自定义拦截器(Interceptor)</a>
-      </h1>
-
-      <p class="index-excerpt">
-        <a href="/2022/12/08/flume/flume%E8%87%AA%E5%AE%9A%E4%B9%89%E6%8B%A6%E6%88%AA%E5%99%A8-Interceptor/">
-          
-          
-            
-          
-          自定义Interceptor是Flume中一个非常有用的功能，它允许用户在Flume中添加自己的拦截器，以实现自定义的日志处理逻辑。
-要创建一个自定义的Interceptor，需要实现Flume的Interceptor接口，并实现接口中定义的所有方法。然后，可以在Flume的配置文件中添加该拦截器，并指定它的位置。
-拦截器将在Flume中的数据流中执行，并可以对数据进行处理、修改、过滤或转换。拦截
-        </a>
-      </p>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2022-12-08 23:09" pubdate>
-              2022-12-08
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-category"></i>
-            
-              <a href="/categories/flume/">flume</a>
-            
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/flume/">flume</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2022/12/02/%E5%A4%A7%E6%95%B0%E6%8D%AE/hadoop%E4%BD%BF%E7%94%A8distcp%E6%95%B0%E6%8D%AE%E8%BF%81%E7%A7%BB/">hadoop使用distcp数据迁移</a>
-      </h1>
-
-      <p class="index-excerpt">
-        <a href="/2022/12/02/%E5%A4%A7%E6%95%B0%E6%8D%AE/hadoop%E4%BD%BF%E7%94%A8distcp%E6%95%B0%E6%8D%AE%E8%BF%81%E7%A7%BB/">
-          
-          
-            
-          
-          数据迁移
-命令 hadoop distcp:
-hadoop distcp -log ~/distcp_stage.log   hdfs://192.168.1.1:9000/user/hive/warehouse/ods hdfs://192.168.1.2:8020/user/hive/warehouse/
-
-注意事项这里的 source hdfs 和 target hdfs 必须得是 name
-        </a>
-      </p>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2022-12-02 14:54" pubdate>
-              2022-12-02
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-category"></i>
-            
-              <a href="/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/">大数据</a>
-            
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/hdfs/">hdfs</a>
-            
-              <a href="/tags/%E6%95%B0%E6%8D%AE%E8%BF%81%E7%A7%BB/">数据迁移</a>
             
           </div>
         
