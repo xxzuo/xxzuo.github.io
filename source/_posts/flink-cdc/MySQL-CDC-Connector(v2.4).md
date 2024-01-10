@@ -111,6 +111,8 @@ Flink SQL> SELECT * FROM orders;
 
 ## 连接器选项
 
+^2fd7d6
+
 |Option|Required|Default|Type|Description|
 |---|---|---|---|---|
 |connector|required|(none)|String|指定要使用的连接器, 这里应该是 `'mysql-cdc'`.|
