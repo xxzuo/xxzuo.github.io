@@ -1,0 +1,1051 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=&#34;auto&#34;>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" href="/img/favicon.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="">
+  <meta name="author" content="xxzuo">
+  <meta name="keywords" content="">
+  
+  <title>MySQL-CDC-Connector(v2.4) - Blog</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10.4.0/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+  
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"xxzuo.github.io","root":"/","version":"1.8.9","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null}}};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>xxzuo</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;</a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" href="javascript:">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="MySQL-CDC-Connector(v2.4)">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-author" aria-hidden="true"></i>
+      xxzuo
+    </span>
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2024-01-10 09:36" pubdate>
+        2024年1月10日 上午
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      7k 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      91
+       分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">MySQL-CDC-Connector(v2.4)</h1>
+            
+            <div class="markdown-body">
+              <p>来自 <a target="_blank" rel="noopener" href="https://ververica.github.io/flink-cdc-connectors/release-2.4/content/connectors/mysql-cdc%28ZH%29.html">https://ververica.github.io/flink-cdc-connectors/release-2.4/content/connectors/mysql-cdc%28ZH%29.html</a></p>
+<h1 id="MySQL-CDC-连接器"><a href="#MySQL-CDC-连接器" class="headerlink" title="MySQL CDC 连接器"></a>MySQL CDC 连接器</h1><p>MySQL CDC 连接器允许从 MySQL 数据库读取快照数据和增量数据。本文描述了如何设置 MySQL CDC 连接器来对 MySQL 数据库运行 SQL 查询。</p>
+<h2 id="支持的数据库"><a href="#支持的数据库" class="headerlink" title="支持的数据库"></a>支持的数据库</h2><div class="table-container">
+<table>
+<thead>
+<tr>
+<th>Connector</th>
+<th>Database</th>
+<th>Driver</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://ververica.github.io/flink-cdc-connectors/master/content/connectors/mysql-cdc%28ZH%29.html#">mysql-cdc</a></td>
+<td>- <a target="_blank" rel="noopener" href="https://dev.mysql.com/doc">MySQL</a>: 5.6, 5.7, 8.0.x<br>- <a target="_blank" rel="noopener" href="https://www.aliyun.com/product/rds/mysql">RDS MySQL</a>: 5.6, 5.7, 8.0.x<br>- <a target="_blank" rel="noopener" href="https://www.aliyun.com/product/polardb">PolarDB MySQL</a>: 5.6, 5.7, 8.0.x<br>- <a target="_blank" rel="noopener" href="https://aws.amazon.com/cn/rds/aurora">Aurora MySQL</a>: 5.6, 5.7, 8.0.x<br>- <a target="_blank" rel="noopener" href="https://mariadb.org/">MariaDB</a>: 10.x<br>- <a target="_blank" rel="noopener" href="https://github.com/ApsaraDB/galaxysql">PolarDB X</a>: 2.0.1</td>
+<td>JDBC Driver: 8.0.27</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h2 id="依赖"><a href="#依赖" class="headerlink" title="依赖"></a>依赖</h2><p>为了设置 MySQL CDC 连接器，下表提供了使用构建自动化工具（如 Maven 或 SBT ）和带有 SQL JAR 包的 SQL 客户端的两个项目的依赖关系信息。</p>
+<h3 id="Maven-dependency"><a href="#Maven-dependency" class="headerlink" title="Maven dependency"></a>Maven dependency</h3><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>com.ververica<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>flink-connector-mysql-cdc<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span><br>  <span class="hljs-comment">&lt;!-- 请使用已发布的版本依赖，snapshot版本的依赖需要本地自行编译。 --&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>2.4.0<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span><br></code></pre></td></tr></table></figure>
+<h3 id="SQL-Client-JAR"><a href="#SQL-Client-JAR" class="headerlink" title="SQL Client JAR"></a>SQL Client JAR</h3><p>下载 flink-sql-connector-mysql-cdc-2.5-SNAPSHOT.jar 到 <code>&lt;FLINK_HOME&gt;/lib/</code> 目录下。</p>
+<p><strong>注意:</strong> flink-sql-connector-mysql-cdc-XXX-SNAPSHOT 版本是开发分支<code>release-XXX</code>对应的快照版本，快照版本用户需要下载源代码并编译相应的 jar。用户应使用已经发布的版本，例如 <a target="_blank" rel="noopener" href="https://mvnrepository.com/artifact/com.ververica/flink-sql-connector-mysql-cdc">flink-sql-connector-mysql-cdc-2.2.1.jar</a> 当前已发布的所有版本都可以在 Maven 中央仓库获取。</p>
+<h2 id="配置-MySQL-服务器"><a href="#配置-MySQL-服务器" class="headerlink" title="配置 MySQL 服务器"></a>配置 MySQL 服务器</h2><p>你必须定义一个 MySQL 用户，该用户对 MySQL CDC 连接器监视的所有数据库都应该具有所需的权限。</p>
+<p>创建 MySQL 用户：<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta">mysql&gt;</span><span class="bash"> CREATE USER <span class="hljs-string">&#x27;user&#x27;</span>@<span class="hljs-string">&#x27;localhost&#x27;</span> IDENTIFIED BY <span class="hljs-string">&#x27;password&#x27;</span>;</span><br></code></pre></td></tr></table></figure></p>
+<p>向用户授予所需的权限:<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta">mysql&gt;</span><span class="bash"> GRANT SELECT, SHOW DATABASES, REPLICATION SLAVE, REPLICATION CLIENT ON *.* TO <span class="hljs-string">&#x27;user&#x27;</span> IDENTIFIED BY <span class="hljs-string">&#x27;password&#x27;</span>;</span><br></code></pre></td></tr></table></figure></p>
+<p><strong>注意:</strong> 在 <code>scan.incremental.snapshot.enabled</code> 参数已启用时（默认情况下已启用）时，不再需要授予 reload 权限。</p>
+<p>刷新用户权限：<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta">mysql&gt;</span><span class="bash"> FLUSH PRIVILEGES;</span><br></code></pre></td></tr></table></figure></p>
+<p>查看更多用户权限问题请参考 <a target="_blank" rel="noopener" href="https://debezium.io/documentation/reference/1.9/connectors/mysql.html#mysql-creating-user">权限说明</a>.</p>
+<h2 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h2><h3 id="为每个-Reader-设置不同的-Server-id"><a href="#为每个-Reader-设置不同的-Server-id" class="headerlink" title="为每个 Reader 设置不同的 Server id"></a>为每个 Reader 设置不同的 Server id</h3><p>每个用于读取 binlog 的 MySQL 数据库客户端都应该有一个唯一的 id，称为 Server id。 MySQL 服务器将使用此 id 来维护网络连接和 binlog 位置。 因此，如果不同的作业共享相同的 Server id， 则可能导致从错误的 binlog 位置读取数据。 因此，建议通过为每个 Reader 设置不同的 Server id <a target="_blank" rel="noopener" href="https://ci.apache.org/projects/flink/flink-docs-release-1.11/dev/table/sql/hints.html">SQL Hints</a>, 假设 Source 并行度为 4, 我们可以使用 <code>SELECT * FROM source_table /*+ OPTIONS(&#39;server-id&#39;=&#39;5401-5404&#39;) */ ;</code> 来为 4 个 Source readers 中的每一个分配唯一的 Server id。</p>
+<h3 id="设置-MySQL-会话超时时间"><a href="#设置-MySQL-会话超时时间" class="headerlink" title="设置 MySQL 会话超时时间"></a>设置 MySQL 会话超时时间</h3><p>当为大型数据库创建初始一致快照时，你建立的连接可能会在读取表时碰到超时问题。你可以通过在 MySQL 侧配置 interactive_timeout 和 wait_timeout 来缓解此类问题。</p>
+<ul>
+<li><code>interactive_timeout</code>: 服务器在关闭交互连接之前等待活动的秒数。 更多信息请参考 <a target="_blank" rel="noopener" href="https://dev.mysql.com/doc/refman/8.0/en/server-system-variables.html#sysvar_interactive_timeout">MySQL documentations</a>.</li>
+<li><code>wait_timeout</code>: 服务器在关闭非交互连接之前等待活动的秒数。 更多信息请参考 <a target="_blank" rel="noopener" href="https://dev.mysql.com/doc/refman/8.0/en/server-system-variables.html#sysvar_wait_timeout">MySQL documentations</a>.</li>
+</ul>
+<h2 id="如何创建-MySQL-CDC-表"><a href="#如何创建-MySQL-CDC-表" class="headerlink" title="如何创建 MySQL CDC 表"></a>如何创建 MySQL CDC 表</h2><p>MySQL CDC 表可以定义如下：<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><code class="hljs shell">-- 每 3 秒做一次 checkpoint，用于测试，生产配置建议5到10分钟                      <br>Flink SQL&gt; SET &#x27;execution.checkpointing.interval&#x27; = &#x27;3s&#x27;;   <br><br>-- 在 Flink SQL中注册 MySQL 表 &#x27;orders&#x27;<br>Flink SQL&gt; CREATE TABLE orders (<br>     order_id INT,<br>     order_date TIMESTAMP(0),<br>     customer_name STRING,<br>     price DECIMAL(10, 5),<br>     product_id INT,<br>     order_status BOOLEAN,<br>     PRIMARY KEY(order_id) NOT ENFORCED<br>     ) WITH (<br>     &#x27;connector&#x27; = &#x27;mysql-cdc&#x27;,<br>     &#x27;hostname&#x27; = &#x27;localhost&#x27;,<br>     &#x27;port&#x27; = &#x27;3306&#x27;,<br>     &#x27;username&#x27; = &#x27;root&#x27;,<br>     &#x27;password&#x27; = &#x27;123456&#x27;,<br>     &#x27;database-name&#x27; = &#x27;mydb&#x27;,<br>     &#x27;table-name&#x27; = &#x27;orders&#x27;);<br>  <br>-- 从订单表读取全量数据(快照)和增量数据(binlog)<br>Flink SQL&gt; SELECT * FROM orders;<br></code></pre></td></tr></table></figure></p>
+<h2 id="连接器选项"><a href="#连接器选项" class="headerlink" title="连接器选项"></a>连接器选项</h2><div class="table-container">
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Required</th>
+<th>Default</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>connector</td>
+<td>required</td>
+<td>(none)</td>
+<td>String</td>
+<td>指定要使用的连接器, 这里应该是 <code>&#39;mysql-cdc&#39;</code>.</td>
+</tr>
+<tr>
+<td>hostname</td>
+<td>required</td>
+<td>(none)</td>
+<td>String</td>
+<td>MySQL 数据库服务器的 IP 地址或主机名。</td>
+</tr>
+<tr>
+<td>username</td>
+<td>required</td>
+<td>(none)</td>
+<td>String</td>
+<td>连接到 MySQL 数据库服务器时要使用的 MySQL 用户的名称。</td>
+</tr>
+<tr>
+<td>password</td>
+<td>required</td>
+<td>(none)</td>
+<td>String</td>
+<td>连接 MySQL 数据库服务器时使用的密码。</td>
+</tr>
+<tr>
+<td>database-name</td>
+<td>required</td>
+<td>(none)</td>
+<td>String</td>
+<td>要监视的 MySQL 服务器的数据库名称。数据库名称还支持正则表达式，以监视多个与正则表达式匹配的表。</td>
+</tr>
+<tr>
+<td>table-name</td>
+<td>required</td>
+<td>(none)</td>
+<td>String</td>
+<td>需要监视的 MySQL 数据库的表名。表名支持正则表达式，以监视满足正则表达式的多个表。注意：MySQL CDC 连接器在正则匹配表名时，会把用户填写的 database-name， table-name 通过字符串 <code>\\.</code> 连接成一个全路径的正则表达式，然后使用该正则表达式和 MySQL 数据库中表的全限定名进行正则匹配。</td>
+</tr>
+<tr>
+<td>port</td>
+<td>optional</td>
+<td>3306</td>
+<td>Integer</td>
+<td>MySQL 数据库服务器的整数端口号。</td>
+</tr>
+<tr>
+<td>server-id</td>
+<td>optional</td>
+<td>(none)</td>
+<td>String</td>
+<td>读取数据使用的 server id，server id 可以是个整数或者一个整数范围，比如 ‘5400’ 或 ‘5400-5408’, 建议在 ‘scan.incremental.snapshot.enabled’ 参数为启用时，配置成整数范围。因为在当前 MySQL 集群中运行的所有 slave 节点，标记每个 salve 节点的 id 都必须是唯一的。 所以当连接器加入 MySQL 集群作为另一个 slave 节点（并且具有唯一 id 的情况下），它就可以读取 binlog。 默认情况下，连接器会在 5400 和 6400 之间生成一个随机数，但是我们建议用户明确指定 Server id。</td>
+</tr>
+<tr>
+<td>scan.incremental.snapshot.enabled</td>
+<td>optional</td>
+<td>true</td>
+<td>Boolean</td>
+<td>增量快照是一种读取表快照的新机制，与旧的快照机制相比， 增量快照有许多优点，包括： （1）在快照读取期间，Source 支持并发读取， （2）在快照读取期间，Source 支持进行 chunk 粒度的 checkpoint， （3）在快照读取之前，Source 不需要数据库锁权限。 如果希望 Source 并行运行，则每个并行 Readers 都应该具有唯一的 Server id，所以 Server id 必须是类似 <code>5400-6400</code> 的范围，并且该范围必须大于并行度。 请查阅 <a target="_blank" rel="noopener" href="https://ververica.github.io/flink-cdc-connectors/release-2.4/content/connectors/mysql-cdc%28ZH%29.html#a-name-id-001-a">增量快照读取</a> 章节了解更多详细信息。</td>
+</tr>
+<tr>
+<td>scan.incremental.snapshot.chunk.size</td>
+<td>optional</td>
+<td>8096</td>
+<td>Integer</td>
+<td>表快照的块大小（行数），读取表的快照时，捕获的表被拆分为多个块。</td>
+</tr>
+<tr>
+<td>scan.snapshot.fetch.size</td>
+<td>optional</td>
+<td>1024</td>
+<td>Integer</td>
+<td>读取表快照时每次读取数据的最大条数。</td>
+</tr>
+<tr>
+<td>scan.startup.mode</td>
+<td>optional</td>
+<td>initial</td>
+<td>String</td>
+<td>MySQL CDC 消费者可选的启动模式， 合法的模式为 “initial”，”earliest-offset”，”latest-offset”，”specific-offset” 和 “timestamp”。 请查阅 <a target="_blank" rel="noopener" href="https://ververica.github.io/flink-cdc-connectors/release-2.4/content/connectors/mysql-cdc%28ZH%29.html#a-name-id-002-a">启动模式</a> 章节了解更多详细信息。</td>
+</tr>
+<tr>
+<td>scan.startup.specific-offset.file</td>
+<td>optional</td>
+<td>(none)</td>
+<td>String</td>
+<td>在 “specific-offset” 启动模式下，启动位点的 binlog 文件名。</td>
+</tr>
+<tr>
+<td>scan.startup.specific-offset.pos</td>
+<td>optional</td>
+<td>(none)</td>
+<td>Long</td>
+<td>在 “specific-offset” 启动模式下，启动位点的 binlog 文件位置。</td>
+</tr>
+<tr>
+<td>scan.startup.specific-offset.gtid-set</td>
+<td>optional</td>
+<td>(none)</td>
+<td>String</td>
+<td>在 “specific-offset” 启动模式下，启动位点的 GTID 集合。</td>
+</tr>
+<tr>
+<td>scan.startup.specific-offset.skip-events</td>
+<td>optional</td>
+<td>(none)</td>
+<td>Long</td>
+<td>在指定的启动位点后需要跳过的事件数量。</td>
+</tr>
+<tr>
+<td>scan.startup.specific-offset.skip-rows</td>
+<td>optional</td>
+<td>(none)</td>
+<td>Long</td>
+<td>在指定的启动位点后需要跳过的数据行数量。</td>
+</tr>
+<tr>
+<td>server-time-zone</td>
+<td>optional</td>
+<td>(none)</td>
+<td>String</td>
+<td>数据库服务器中的会话时区， 例如： “Asia/Shanghai”. 它控制 MYSQL 中的时间戳类型如何转换为字符串。 更多请参考 <a target="_blank" rel="noopener" href="https://debezium.io/documentation/reference/1.9/connectors/mysql.html#mysql-temporal-types">这里</a>. 如果没有设置，则使用ZoneId.systemDefault()来确定服务器时区。</td>
+</tr>
+<tr>
+<td>debezium.min.row. count.to.stream.result</td>
+<td>optional</td>
+<td>1000</td>
+<td>Integer</td>
+<td>在快照操作期间，连接器将查询每个包含的表，以生成该表中所有行的读取事件。 此参数确定 MySQL 连接是否将表的所有结果拉入内存（速度很快，但需要大量内存）， 或者结果是否需要流式传输（传输速度可能较慢，但适用于非常大的表）。 该值指定了在连接器对结果进行流式处理之前，表必须包含的最小行数，默认值为1000。将此参数设置为<code>0</code>以跳过所有表大小检查，并始终在快照期间对所有结果进行流式处理。</td>
+</tr>
+<tr>
+<td>connect.timeout</td>
+<td>optional</td>
+<td>30s</td>
+<td>Duration</td>
+<td>连接器在尝试连接到 MySQL 数据库服务器后超时前应等待的最长时间。</td>
+</tr>
+<tr>
+<td>connect.max-retries</td>
+<td>optional</td>
+<td>3</td>
+<td>Integer</td>
+<td>连接器应重试以建立 MySQL 数据库服务器连接的最大重试次数。</td>
+</tr>
+<tr>
+<td>connection.pool.size</td>
+<td>optional</td>
+<td>20</td>
+<td>Integer</td>
+<td>连接池大小。</td>
+</tr>
+<tr>
+<td>jdbc.properties.*</td>
+<td>optional</td>
+<td>20</td>
+<td>String</td>
+<td>传递自定义 JDBC URL 属性的选项。用户可以传递自定义属性，如 ‘jdbc.properties.useSSL’ = ‘false’.</td>
+</tr>
+<tr>
+<td>heartbeat.interval</td>
+<td>optional</td>
+<td>30s</td>
+<td>Duration</td>
+<td>用于跟踪最新可用 binlog 偏移的发送心跳事件的间隔。</td>
+</tr>
+<tr>
+<td>debezium.*</td>
+<td>optional</td>
+<td>(none)</td>
+<td>String</td>
+<td>将 Debezium 的属性传递给 Debezium 嵌入式引擎，该引擎用于从 MySQL 服务器捕获数据更改。 For example: <code>&#39;debezium.snapshot.mode&#39; = &#39;never&#39;</code>. 查看更多关于 <a target="_blank" rel="noopener" href="https://debezium.io/documentation/reference/1.9/connectors/mysql.html#mysql-connector-properties">Debezium 的 MySQL 连接器属性</a></td>
+</tr>
+<tr>
+<td>scan.incremental.close-idle-reader.enabled</td>
+<td>optional</td>
+<td>false</td>
+<td>Boolean</td>
+<td>是否在快照结束后关闭空闲的 Reader。 此特性需要 flink 版本大于等于 1.14 并且 ‘execution.checkpointing.checkpoints-after-tasks-finish.enabled’ 需要设置为 true。</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h2 id="支持的元数据"><a href="#支持的元数据" class="headerlink" title="支持的元数据"></a>支持的元数据</h2><p>下表中的元数据可以在 DDL 中作为只读（虚拟）meta 列声明。</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>Key</th>
+<th>DataType</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>table_name</td>
+<td>STRING NOT NULL</td>
+<td>当前记录所属的表名称。</td>
+</tr>
+<tr>
+<td>database_name</td>
+<td>STRING NOT NULL</td>
+<td>当前记录所属的库名称。</td>
+</tr>
+<tr>
+<td>op_ts</td>
+<td>TIMESTAMP_LTZ(3) NOT NULL</td>
+<td>当前记录表在数据库中更新的时间。  <br>如果从表的快照而不是 binlog 读取记录，该值将始终为0。</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>下述创建表示例展示元数据列的用法：<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">TABLE</span> products (<br>    db_name STRING METADATA <span class="hljs-keyword">FROM</span> <span class="hljs-string">&#x27;database_name&#x27;</span> VIRTUAL,<br>    table_name STRING METADATA  <span class="hljs-keyword">FROM</span> <span class="hljs-string">&#x27;table_name&#x27;</span> VIRTUAL,<br>    operation_ts TIMESTAMP_LTZ(<span class="hljs-number">3</span>) METADATA <span class="hljs-keyword">FROM</span> <span class="hljs-string">&#x27;op_ts&#x27;</span> VIRTUAL,<br>    order_id <span class="hljs-type">INT</span>,<br>    order_date <span class="hljs-type">TIMESTAMP</span>(<span class="hljs-number">0</span>),<br>    customer_name STRING,<br>    price <span class="hljs-type">DECIMAL</span>(<span class="hljs-number">10</span>, <span class="hljs-number">5</span>),<br>    product_id <span class="hljs-type">INT</span>,<br>    order_status <span class="hljs-type">BOOLEAN</span>,<br>    <span class="hljs-keyword">PRIMARY</span> KEY(order_id) <span class="hljs-keyword">NOT</span> ENFORCED<br>) <span class="hljs-keyword">WITH</span> (<br>    <span class="hljs-string">&#x27;connector&#x27;</span> <span class="hljs-operator">=</span> <span class="hljs-string">&#x27;mysql-cdc&#x27;</span>,<br>    <span class="hljs-string">&#x27;hostname&#x27;</span> <span class="hljs-operator">=</span> <span class="hljs-string">&#x27;localhost&#x27;</span>,<br>    <span class="hljs-string">&#x27;port&#x27;</span> <span class="hljs-operator">=</span> <span class="hljs-string">&#x27;3306&#x27;</span>,<br>    <span class="hljs-string">&#x27;username&#x27;</span> <span class="hljs-operator">=</span> <span class="hljs-string">&#x27;root&#x27;</span>,<br>    <span class="hljs-string">&#x27;password&#x27;</span> <span class="hljs-operator">=</span> <span class="hljs-string">&#x27;123456&#x27;</span>,<br>    <span class="hljs-string">&#x27;database-name&#x27;</span> <span class="hljs-operator">=</span> <span class="hljs-string">&#x27;mydb&#x27;</span>,<br>    <span class="hljs-string">&#x27;table-name&#x27;</span> <span class="hljs-operator">=</span> <span class="hljs-string">&#x27;orders&#x27;</span><br>);<br></code></pre></td></tr></table></figure></p>
+<p>下述创建表示例展示使用正则表达式匹配多张库表的用法：<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">TABLE</span> products (<br>    db_name STRING METADATA <span class="hljs-keyword">FROM</span> <span class="hljs-string">&#x27;database_name&#x27;</span> VIRTUAL,<br>    table_name STRING METADATA  <span class="hljs-keyword">FROM</span> <span class="hljs-string">&#x27;table_name&#x27;</span> VIRTUAL,<br>    operation_ts TIMESTAMP_LTZ(<span class="hljs-number">3</span>) METADATA <span class="hljs-keyword">FROM</span> <span class="hljs-string">&#x27;op_ts&#x27;</span> VIRTUAL,<br>    order_id <span class="hljs-type">INT</span>,<br>    order_date <span class="hljs-type">TIMESTAMP</span>(<span class="hljs-number">0</span>),<br>    customer_name STRING,<br>    price <span class="hljs-type">DECIMAL</span>(<span class="hljs-number">10</span>, <span class="hljs-number">5</span>),<br>    product_id <span class="hljs-type">INT</span>,<br>    order_status <span class="hljs-type">BOOLEAN</span>,<br>    <span class="hljs-keyword">PRIMARY</span> KEY(order_id) <span class="hljs-keyword">NOT</span> ENFORCED<br>) <span class="hljs-keyword">WITH</span> (<br>    <span class="hljs-string">&#x27;connector&#x27;</span> <span class="hljs-operator">=</span> <span class="hljs-string">&#x27;mysql-cdc&#x27;</span>,<br>    <span class="hljs-string">&#x27;hostname&#x27;</span> <span class="hljs-operator">=</span> <span class="hljs-string">&#x27;localhost&#x27;</span>,<br>    <span class="hljs-string">&#x27;port&#x27;</span> <span class="hljs-operator">=</span> <span class="hljs-string">&#x27;3306&#x27;</span>,<br>    <span class="hljs-string">&#x27;username&#x27;</span> <span class="hljs-operator">=</span> <span class="hljs-string">&#x27;root&#x27;</span>,<br>    <span class="hljs-string">&#x27;password&#x27;</span> <span class="hljs-operator">=</span> <span class="hljs-string">&#x27;123456&#x27;</span>,<br>    <span class="hljs-string">&#x27;database-name&#x27;</span> <span class="hljs-operator">=</span> <span class="hljs-string">&#x27;(^(test).*|^(tpc).*|txc|.*[p$]|t&#123;2&#125;)&#x27;</span>,<br>    <span class="hljs-string">&#x27;table-name&#x27;</span> <span class="hljs-operator">=</span> <span class="hljs-string">&#x27;(t[5-8]|tt)&#x27;</span><br>);<br></code></pre></td></tr></table></figure></p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>匹配示例</th>
+<th>表达式</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>前缀匹配</td>
+<td>^(test).*</td>
+<td>匹配前缀为test的数据库名或表名，例如test1、test2等。</td>
+</tr>
+<tr>
+<td>后缀匹配</td>
+<td>.*[p$]</td>
+<td>匹配后缀为p的数据库名或表名，例如cdcp、edcp等。</td>
+</tr>
+<tr>
+<td>特定匹配</td>
+<td>txc</td>
+<td>匹配具体的数据库名或表名。</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>进行库表匹配时，会使用正则表达式 <code>database-name\\.table-name</code> 来与MySQL表的全限定名做匹配，所以该例子使用 <code>(^(test).*|^(tpc).*|txc|.*[p$]|t&#123;2&#125;)\\.(t[5-8]|tt)</code>，可以匹配到表 txc.tt、test2.test5。</p>
+<h2 id="支持的特性"><a href="#支持的特性" class="headerlink" title="支持的特性"></a>支持的特性</h2><h3 id="增量快照读取"><a href="#增量快照读取" class="headerlink" title="增量快照读取"></a>增量快照读取</h3><p>增量快照读取是一种读取表快照的新机制。与旧的快照机制相比，增量快照具有许多优点，包括：</p>
+<ul>
+<li>（1）在快照读取期间，Source 支持并发读取，</li>
+<li>（2）在快照读取期间，Source 支持进行 chunk 粒度的 checkpoint，</li>
+<li>（3）在快照读取之前，Source 不需要数据库锁权限。</li>
+</ul>
+<p>如果希望 source 并行运行，则每个并行 reader 都应该具有唯一的 server id，因此<code>server id</code>的范围必须类似于 <code>5400-6400</code>， 且范围必须大于并行度。在增量快照读取过程中，MySQL CDC Source 首先通过表的主键将表划分成多个块（chunk）， 然后 MySQL CDC Source 将多个块分配给多个 reader 以并行读取表的数据。</p>
+<h4 id="并发读取"><a href="#并发读取" class="headerlink" title="并发读取"></a>并发读取</h4><p>增量快照读取提供了并行读取快照数据的能力。 你可以通过设置作业并行度的方式来控制 Source 的并行度 <code>parallelism.default</code>. For example, in SQL CLI:<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">Flink SQL&gt; SET &#x27;parallelism.default&#x27; = 8;<br></code></pre></td></tr></table></figure></p>
+<h4 id="全量阶段支持-checkpoint"><a href="#全量阶段支持-checkpoint" class="headerlink" title="全量阶段支持 checkpoint"></a>全量阶段支持 checkpoint</h4><p>增量快照读取提供了在区块级别执行检查点的能力。它使用新的快照读取机制解决了以前版本中的检查点超时问题。</p>
+<h4 id="无锁算法"><a href="#无锁算法" class="headerlink" title="无锁算法"></a>无锁算法</h4><p>MySQL CDC source 使用 增量快照算法, 避免了数据库锁的使用，因此不需要 “RELOAD” 权限。</p>
+<h4 id="MySQL高可用性支持"><a href="#MySQL高可用性支持" class="headerlink" title="MySQL高可用性支持"></a>MySQL高可用性支持</h4><p><code>mysql cdc</code> 连接器通过使用 <a target="_blank" rel="noopener" href="https://dev.mysql.com/doc/refman/5.7/en/replication-gtids-concepts.html">GTID</a> 提供 MySQL 高可用集群的高可用性信息。为了获得高可用性， MySQL集群需要启用 GTID 模式，MySQL 配置文件中的 GTID 模式应该包含以下设置：<br><figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs ini"><span class="hljs-attr">gtid_mode</span> = <span class="hljs-literal">on</span><br><span class="hljs-attr">enforce_gtid_consistency</span> = <span class="hljs-literal">on</span><br></code></pre></td></tr></table></figure></p>
+<p>如果监控的MySQL服务器地址包含从实例，则需要对MySQL配置文件设置以下设置。设置 <code>log slave updates=1</code> 允许从实例也将从主实例同步的数据写入其binlog， 这确保了<code>mysql cdc</code>连接器可以使用从实例中的全部数据。</p>
+<figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs ini"><span class="hljs-attr">gtid_mode</span> = <span class="hljs-literal">on</span><br><span class="hljs-attr">enforce_gtid_consistency</span> = <span class="hljs-literal">on</span><br><span class="hljs-attr">log-slave-updates</span> = <span class="hljs-number">1</span><br></code></pre></td></tr></table></figure>
+<p>MySQL 集群中你监控的服务器出现故障后, 你只需将受监视的服务器地址更改为其他可用服务器，然后从最新的检查点/保存点重新启动作业, 作业将从 checkpoint/savepoint 恢复，不会丢失任何记录。</p>
+<p>建议为 MySQL 集群配置 DNS（域名服务）或 VIP（虚拟 IP 地址）， 使用<code>mysql cdc</code>连接器的 DNS 或 VIP 地址， DNS或VIP将自动将网络请求路由到活动MySQL服务器。 这样，你就不再需要修改地址和重新启动管道。</p>
+<h4 id="MySQL心跳事件支持"><a href="#MySQL心跳事件支持" class="headerlink" title="MySQL心跳事件支持"></a>MySQL心跳事件支持</h4><p>如果表不经常更新，则 binlog 文件或 GTID 集可能已在其最后提交的 binlog 位置被清理。 在这种情况下，CDC 作业可能会重新启动失败。因此心跳事件将帮助更新 binlog 位置。 默认情况下，MySQL CDC Source 启用心跳事件，间隔设置为30秒。 可以使用表选项<code>heartbeat</code>指定间隔。或将选项设置为<code>0s</code>以禁用心跳事件。</p>
+<h4 id="增量快照读取的工作原理"><a href="#增量快照读取的工作原理" class="headerlink" title="增量快照读取的工作原理"></a>增量快照读取的工作原理</h4><p>当 MySQL CDC Source 启动时，它并行读取表的快照，然后以单并行度的方式读取表的 binlog。</p>
+<p>在快照阶段，根据表的主键和表行的大小将快照切割成多个快照块。 快照块被分配给多个快照读取器。每个快照读取器使用 <a target="_blank" rel="noopener" href="https://ververica.github.io/flink-cdc-connectors/release-2.4/content/connectors/mysql-cdc%28ZH%29.html#snapshot-chunk-reading">区块读取算法</a> 并将读取的数据发送到下游。 Source 会管理块的进程状态（完成或未完成），因此快照阶段的 Source 可以支持块级别的 checkpoint。 如果发生故障，可以恢复 Source 并继续从最后完成的块中读取块。</p>
+<p>所有快照块完成后，Source 将继续在单个任务中读取 binlog。 为了保证快照记录和 binlog 记录的全局数据顺序，binlog reader 将开始读取数据直到快照块完成后并有一个完整的 checkpoint，以确保所有快照数据已被下游消费。 binlog reader 在状态中跟踪所使用的 binlog 位置，因此 binlog 阶段的 Source 可以支持行级别的 checkpoint。</p>
+<p>Flink 定期为 Source 执行 checkpoint，在故障转移的情况下，作业将重新启动并从最后一个成功的 checkpoint 状态恢复，并保证只执行一次语义。</p>
+<h5 id="全量阶段分片算法"><a href="#全量阶段分片算法" class="headerlink" title="全量阶段分片算法"></a>全量阶段分片算法</h5><p>在执行增量快照读取时，MySQL CDC source 需要一个用于分片的的算法。 MySQL CDC Source 使用主键列将表划分为多个分片（chunk）。 默认情况下，MySQL CDC source 会识别表的主键列，并使用主键中的第一列作为用作分片列。 如果表中没有主键， 增量快照读取将失败，你可以禁用 <code>scan.incremental.snapshot.enabled</code> 来回退到旧的快照读取机制。</p>
+<p>对于数值和自动增量拆分列，MySQL CDC Source 按固定步长高效地拆分块。 例如，如果你有一个主键列为<code>id</code>的表，它是自动增量 BIGINT 类型，最小值为<code>0</code>，最大值为<code>100</code>， 和表选项 <code>scan.incremental.snapshot.chunk.size</code> 大小 <code>value</code>为<code>25</code>，表将被拆分为以下块：</p>
+<figure class="highlight gcode"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs gcode"><span class="hljs-comment">(-∞, 25)</span>,<br>[<span class="hljs-number">25</span>, <span class="hljs-number">50</span>),<br>[<span class="hljs-number">50</span>, <span class="hljs-number">75</span>),<br>[<span class="hljs-number">75</span>, <span class="hljs-number">100</span>),<br>[<span class="hljs-number">100</span>, +∞)<br></code></pre></td></tr></table></figure>
+<p>对于其他主键列类型， MySQL CDC Source 将以下形式执行语句： <code>SELECT MAX(STR_ID) AS chunk_high FROM (SELECT * FROM TestTable WHERE STR_ID &gt; &#39;uuid-001&#39; limit 25)</code> 来获得每个区块的低值和高值， 分割块集如下所示：</p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs scala">(-∞, <span class="hljs-symbol">&#x27;uuid</span><span class="hljs-number">-001</span>&#x27;),<br>[<span class="hljs-symbol">&#x27;uuid</span><span class="hljs-number">-001</span>&#x27;, <span class="hljs-symbol">&#x27;uuid</span><span class="hljs-number">-009</span>&#x27;),<br>[<span class="hljs-symbol">&#x27;uuid</span><span class="hljs-number">-009</span>&#x27;, <span class="hljs-symbol">&#x27;uuid</span>-abc&#x27;),<br>[<span class="hljs-symbol">&#x27;uuid</span>-abc&#x27;, <span class="hljs-symbol">&#x27;uuid</span>-<span class="hljs-function"><span class="hljs-keyword">def</span>&#x27;),</span><br><span class="hljs-function"></span>[uuid-<span class="hljs-function"><span class="hljs-keyword">def</span>, <span class="hljs-title">+∞</span>).</span><br></code></pre></td></tr></table></figure>
+<h5 id="Chunk-读取算法"><a href="#Chunk-读取算法" class="headerlink" title="Chunk 读取算法"></a>Chunk 读取算法</h5><p>对于上面的示例<code>MyTable</code>，如果 MySQL CDC Source 并行度设置为 4，MySQL CDC Source 将在每一个 executes 运行 4 个 Readers <strong>通过偏移信号算法</strong> 获取快照区块的最终一致输出。 <strong>偏移信号算法</strong>简单描述如下：</p>
+<ul>
+<li><p>(1) 将当前 binlog 位置记录为<code>LOW</code>偏移量</p>
+</li>
+<li><p>(2) 通过执行语句读取并缓冲快照区块记录 <code>SELECT * FROM MyTable WHERE id &gt; chunk_low AND id &lt;= chunk_high</code></p>
+</li>
+<li><p>(3) 将当前 binlog 位置记录为<code>HIGH</code>偏移量</p>
+</li>
+<li><p>(4) 从<code>LOW</code>偏移量到<code>HIGH</code>偏移量读取属于快照区块的 binlog 记录</p>
+</li>
+<li><p>(5) 将读取的 binlog 记录向上插入缓冲区块记录，并发出缓冲区中的所有记录作为快照区块的最终输出（全部作为插入记录）</p>
+</li>
+<li><p>(6) 继续读取并发出属于 <em>单个 binlog reader</em> 中<code>HIGH</code>偏移量之后的区块的 binlog 记录。</p>
+</li>
+</ul>
+<p>该算法的是基于 <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2010.12597v1.pdf">DBLog Paper</a> 并结合 Flink 的一个变种, 请参考它了解更多详细信息。</p>
+<p><strong>注意:</strong> 如果主键的实际值在其范围内分布不均匀，则在增量快照读取时可能会导致任务不平衡。</p>
+<h3 id="Exactly-Once-处理"><a href="#Exactly-Once-处理" class="headerlink" title="Exactly-Once 处理"></a>Exactly-Once 处理</h3><p>MySQL CDC 连接器是一个 Flink Source 连接器，它将首先读取表快照块，然后继续读取 binlog， 无论是在快照阶段还是读取 binlog 阶段，MySQL CDC 连接器都会在处理时<strong>准确读取数据</strong>，即使任务出现了故障。</p>
+<h3 id="启动模式"><a href="#启动模式" class="headerlink" title="启动模式"></a>启动模式</h3><p>配置选项<code>scan.startup.mode</code>指定 MySQL CDC 使用者的启动模式。有效枚举包括：</p>
+<ul>
+<li><p><code>initial</code> （默认）：在第一次启动时对受监视的数据库表执行初始快照，并继续读取最新的 binlog。</p>
+</li>
+<li><p><code>earliest-offset</code>：跳过快照阶段，从可读取的最早 binlog 位点开始读取</p>
+</li>
+<li><p><code>latest-offset</code>：首次启动时，从不对受监视的数据库表执行快照， 连接器仅从 binlog 的结尾处开始读取，这意味着连接器只能读取在连接器启动之后的数据更改。</p>
+</li>
+<li><p><code>specific-offset</code>：跳过快照阶段，从指定的 binlog 位点开始读取。位点可通过 binlog 文件名和位置指定，或者在 GTID 在集群上启用时通过 GTID 集合指定。</p>
+</li>
+<li><p><code>timestamp</code>：跳过快照阶段，从指定的时间戳开始读取 binlog 事件。</p>
+</li>
+</ul>
+<p>例如使用 DataStream API:<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs java">MySQLSource.builder()<br>    .startupOptions(StartupOptions.earliest()) <span class="hljs-comment">// 从最早位点启动</span><br>    .startupOptions(StartupOptions.latest()) <span class="hljs-comment">// 从最晚位点启动</span><br>    .startupOptions(StartupOptions.specificOffset(<span class="hljs-string">&quot;mysql-bin.000003&quot;</span>, <span class="hljs-number">4L</span>) <span class="hljs-comment">// 从指定 binlog 文件名和位置启动</span><br>    .startupOptions(StartupOptions.specificOffset(<span class="hljs-string">&quot;24DA167-0C0C-11E8-8442-00059A3C7B00:1-19&quot;</span>)) <span class="hljs-comment">// 从 GTID 集合启动</span><br>    .startupOptions(StartupOptions.timestamp(<span class="hljs-number">1667232000000L</span>) <span class="hljs-comment">// 从时间戳启动</span><br>    ...<br>    .build()<br></code></pre></td></tr></table></figure></p>
+<p>使用 SQL:<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">TABLE</span> mysql_source (...) <span class="hljs-keyword">WITH</span> (<br>    <span class="hljs-string">&#x27;connector&#x27;</span> <span class="hljs-operator">=</span> <span class="hljs-string">&#x27;mysql-cdc&#x27;</span>,<br>    <span class="hljs-string">&#x27;scan.startup.mode&#x27;</span> <span class="hljs-operator">=</span> <span class="hljs-string">&#x27;earliest-offset&#x27;</span>, <span class="hljs-comment">-- 从最早位点启动</span><br>    <span class="hljs-string">&#x27;scan.startup.mode&#x27;</span> <span class="hljs-operator">=</span> <span class="hljs-string">&#x27;latest-offset&#x27;</span>, <span class="hljs-comment">-- 从最晚位点启动</span><br>    <span class="hljs-string">&#x27;scan.startup.mode&#x27;</span> <span class="hljs-operator">=</span> <span class="hljs-string">&#x27;specific-offset&#x27;</span>, <span class="hljs-comment">-- 从特定位点启动</span><br>    <span class="hljs-string">&#x27;scan.startup.mode&#x27;</span> <span class="hljs-operator">=</span> <span class="hljs-string">&#x27;timestamp&#x27;</span>, <span class="hljs-comment">-- 从特定位点启动</span><br>    <span class="hljs-string">&#x27;scan.startup.specific-offset.file&#x27;</span> <span class="hljs-operator">=</span> <span class="hljs-string">&#x27;mysql-bin.000003&#x27;</span>, <span class="hljs-comment">-- 在特定位点启动模式下指定 binlog 文件名</span><br>    <span class="hljs-string">&#x27;scan.startup.specific-offset.pos&#x27;</span> <span class="hljs-operator">=</span> <span class="hljs-string">&#x27;4&#x27;</span>, <span class="hljs-comment">-- 在特定位点启动模式下指定 binlog 位置</span><br>    <span class="hljs-string">&#x27;scan.startup.specific-offset.gtid-set&#x27;</span> <span class="hljs-operator">=</span> <span class="hljs-string">&#x27;24DA167-0C0C-11E8-8442-00059A3C7B00:1-19&#x27;</span>, <span class="hljs-comment">-- 在特定位点启动模式下指定 GTID 集合</span><br>    <span class="hljs-string">&#x27;scan.startup.timestamp-millis&#x27;</span> <span class="hljs-operator">=</span> <span class="hljs-string">&#x27;1667232000000&#x27;</span> <span class="hljs-comment">-- 在时间戳启动模式下指定启动时间戳</span><br>    ...<br>)<br></code></pre></td></tr></table></figure></p>
+<p><strong>注意</strong>：</p>
+<p>MySQL source 会在 checkpoint 时将当前位点以 INFO 级别打印到日志中，日志前缀为 “Binlog offset on checkpoint {checkpoint-id}”。 该日志可以帮助将作业从某个 checkpoint 的位点开始启动的场景。</p>
+<p>如果捕获变更的表曾经发生过表结构变化，从最早位点、特定位点或时间戳启动可能会发生错误，因为 Debezium 读取器会在内部保存当前的最新表结构，结构不匹配的早期数据无法被正确解析。</p>
+<h3 id="DataStream-Source"><a href="#DataStream-Source" class="headerlink" title="DataStream Source"></a>DataStream Source</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">import</span> org.apache.flink.api.common.eventtime.WatermarkStrategy;<br><span class="hljs-keyword">import</span> org.apache.flink.streaming.api.environment.StreamExecutionEnvironment;<br><span class="hljs-keyword">import</span> com.ververica.cdc.debezium.JsonDebeziumDeserializationSchema;<br><span class="hljs-keyword">import</span> com.ververica.cdc.connectors.mysql.source.MySqlSource;<br><br><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MySqlSourceExample</span> </span>&#123;<br>  <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> <span class="hljs-keyword">throws</span> Exception </span>&#123;<br>    MySqlSource&lt;String&gt; mySqlSource = MySqlSource.&lt;String&gt;builder()<br>        .hostname(<span class="hljs-string">&quot;yourHostname&quot;</span>)<br>        .port(yourPort)<br>        .databaseList(<span class="hljs-string">&quot;yourDatabaseName&quot;</span>) <span class="hljs-comment">// 设置捕获的数据库， 如果需要同步整个数据库，请将 tableList 设置为 &quot;.*&quot;.</span><br>        .tableList(<span class="hljs-string">&quot;yourDatabaseName.yourTableName&quot;</span>) <span class="hljs-comment">// 设置捕获的表</span><br>        .username(<span class="hljs-string">&quot;yourUsername&quot;</span>)<br>        .password(<span class="hljs-string">&quot;yourPassword&quot;</span>)<br>        .deserializer(<span class="hljs-keyword">new</span> JsonDebeziumDeserializationSchema()) <span class="hljs-comment">// 将 SourceRecord 转换为 JSON 字符串</span><br>        .build();<br><br>    StreamExecutionEnvironment env = StreamExecutionEnvironment.getExecutionEnvironment();<br><br>    <span class="hljs-comment">// 设置 3s 的 checkpoint 间隔</span><br>    env.enableCheckpointing(<span class="hljs-number">3000</span>);<br><br>    env<br>      .fromSource(mySqlSource, WatermarkStrategy.noWatermarks(), <span class="hljs-string">&quot;MySQL Source&quot;</span>)<br>      <span class="hljs-comment">// 设置 source 节点的并行度为 4</span><br>      .setParallelism(<span class="hljs-number">4</span>)<br>      .print().setParallelism(<span class="hljs-number">1</span>); <span class="hljs-comment">// 设置 sink 节点并行度为 1 </span><br><br>    env.execute(<span class="hljs-string">&quot;Print MySQL Snapshot + Binlog&quot;</span>);<br>  &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+<p><strong>注意:</strong> 请参考 <a target="_blank" rel="noopener" href="https://ververica.github.io/flink-cdc-connectors/release-2.4/content/about.html#deserialization">Deserialization</a> 有关 JSON 反序列化的更多详细信息。</p>
+<h3 id="动态加表"><a href="#动态加表" class="headerlink" title="动态加表"></a>动态加表</h3><p>扫描新添加的表功能使你可以添加新表到正在运行的作业中，新添加的表将首先读取其快照数据，然后自动读取其变更日志。</p>
+<p>想象一下这个场景：一开始， Flink 作业监控表 <code>[product, user, address]</code>, 但几天后，我们希望这个作业还可以监控表 <code>[order, custom]</code>，这些表包含历史数据，我们需要作业仍然可以复用作业的已有状态，动态加表功能可以优雅地解决此问题。</p>
+<p>以下操作显示了如何启用此功能来解决上述场景。 使用现有的 Flink CDC Source 作业，如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs java"> MySqlSource&lt;String&gt; mySqlSource = MySqlSource.&lt;String&gt;builder()<br>     .hostname(<span class="hljs-string">&quot;yourHostname&quot;</span>)<br>     .port(yourPort)<br>     .scanNewlyAddedTableEnabled(<span class="hljs-keyword">true</span>) <span class="hljs-comment">// 启用扫描新添加的表功能</span><br>     .databaseList(<span class="hljs-string">&quot;db&quot;</span>) <span class="hljs-comment">// 设置捕获的数据库</span><br>     .tableList(<span class="hljs-string">&quot;db.product, db.user, db.address&quot;</span>) <span class="hljs-comment">// 设置捕获的表 [product, user, address]</span><br>     .username(<span class="hljs-string">&quot;yourUsername&quot;</span>)<br>     .password(<span class="hljs-string">&quot;yourPassword&quot;</span>)<br>     .deserializer(<span class="hljs-keyword">new</span> JsonDebeziumDeserializationSchema()) <span class="hljs-comment">// 将 SourceRecord 转换为 JSON 字符串</span><br>     .build();<br><span class="hljs-comment">// 你的业务代码</span><br></code></pre></td></tr></table></figure>
+<p>如果我们想添加新表 <code>[order, custom]</code> 对于现有的 Flink 作业，只需更新 <code>tableList()</code> 将新增表 <code>[order, custom]</code> 加入并从已有的 savepoint 恢复作业。</p>
+<p><em>Step 1</em>: 使用 savepoint 停止现有的 Flink 作业。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta">$</span><span class="bash"> ./bin/flink stop <span class="hljs-variable">$Existing_Flink_JOB_ID</span></span><br></code></pre></td></tr></table></figure>
+<figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs pgsql">Suspending job &quot;cca7bc1061d61cf15238e92312c2fc20&quot; <span class="hljs-keyword">with</span> a <span class="hljs-keyword">savepoint</span>.<br><span class="hljs-keyword">Savepoint</span> completed. <span class="hljs-type">Path</span>: file:/tmp/flink-savepoints/<span class="hljs-keyword">savepoint</span>-cca7bc-bb1e257f0dab<br></code></pre></td></tr></table></figure>
+<p><em>Step 2</em>: 更新现有 Flink 作业的表列表选项。</p>
+<p>更新 <code>tableList()</code> 参数.</p>
+<p>编译更新后的作业，示例如下：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs java"> MySqlSource&lt;String&gt; mySqlSource = MySqlSource.&lt;String&gt;builder()<br>     .hostname(<span class="hljs-string">&quot;yourHostname&quot;</span>)<br>     .port(yourPort)<br>     .scanNewlyAddedTableEnabled(<span class="hljs-keyword">true</span>) <br>     .databaseList(<span class="hljs-string">&quot;db&quot;</span>) <br>     .tableList(<span class="hljs-string">&quot;db.product, db.user, db.address, db.order, db.custom&quot;</span>) <span class="hljs-comment">// 设置捕获的表 [product, user, address ,order, custom]</span><br>     .username(<span class="hljs-string">&quot;yourUsername&quot;</span>)<br>     .password(<span class="hljs-string">&quot;yourPassword&quot;</span>)<br>     .deserializer(<span class="hljs-keyword">new</span> JsonDebeziumDeserializationSchema()) <span class="hljs-comment">// 将 SourceRecord 转换为 JSON 字符串</span><br>     .build();<br><span class="hljs-comment">// 你的业务代码</span><br></code></pre></td></tr></table></figure></p>
+<p><em>Step 3</em>: 从 savepoint 还原更新后的 Flink 作业。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta">$</span><span class="bash"> ./bin/flink run \</span><br><span class="bash">      --detached \ </span><br>      --fromSavepoint /tmp/flink-savepoints/savepoint-cca7bc-bb1e257f0dab \<br>      ./FlinkCDCExample.jar<br></code></pre></td></tr></table></figure>
+<p><strong>注意:</strong> 请参考文档 <a target="_blank" rel="noopener" href="https://nightlies.apache.org/flink/flink-docs-release-1.17/docs/deployment/cli/#command-line-interface">Restore the job from previous savepoint</a> 了解更多详细信息。</p>
+<h3 id="关于无主键表"><a href="#关于无主键表" class="headerlink" title="关于无主键表"></a>关于无主键表</h3><p>从2.4.0 版本开始支持无主键表，使用无主键表必须设置 <code>scan.incremental.snapshot.chunk.key-column</code>，且只能选择非空类型的一个字段。</p>
+<p>在使用无主键表时，需要注意以下两种情况。</p>
+<p>配置 <code>scan.incremental.snapshot.chunk.key-column</code> 时，如果表中存在索引，请尽量使用索引中的列来加快 select 速度。</p>
+<p>无主键表的处理语义由 <code>scan.incremental.snapshot.chunk.key-column</code> 指定的列的行为决定：</p>
+<ul>
+<li><p>如果指定的列不存在更新操作，此时可以保证 Exactly once 语义。</p>
+</li>
+<li><p>如果指定的列存在更新操作，此时只能保证 At least once 语义。但可以结合下游，通过指定下游主键，结合幂等性操作来保证数据的正确性。</p>
+</li>
+</ul>
+<h2 id="数据类型映射"><a href="#数据类型映射" class="headerlink" title="数据类型映射"></a>数据类型映射</h2><div class="table-container">
+<table>
+<thead>
+<tr>
+<th>MySQL type<a target="_blank" rel="noopener" href="https://dev.mysql.com/doc/man/8.0/en/data-types.html"></a></th>
+<th>Flink SQL type<a target="_blank" rel="noopener" href="https://ververica.github.io/flink-cdc-connectors/release-2.4/content/connectors/%7B%%20link%20dev/table/types.md%20%%7D"></a></th>
+<th>NOTE</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>TINYINT</td>
+<td>TINYINT</td>
+<td></td>
+</tr>
+<tr>
+<td>SMALLINT  <br>TINYINT UNSIGNED  <br>TINYINT UNSIGNED ZEROFILL</td>
+<td>SMALLINT</td>
+<td></td>
+</tr>
+<tr>
+<td>INT  <br>MEDIUMINT  <br>SMALLINT UNSIGNED  <br>SMALLINT UNSIGNED ZEROFILL</td>
+<td>INT</td>
+<td></td>
+</tr>
+<tr>
+<td>BIGINT  <br>INT UNSIGNED  <br>INT UNSIGNED ZEROFILL  <br>MEDIUMINT UNSIGNED  <br>MEDIUMINT UNSIGNED ZEROFILL</td>
+<td>BIGINT</td>
+<td></td>
+</tr>
+<tr>
+<td>BIGINT UNSIGNED  <br>BIGINT UNSIGNED ZEROFILL  <br>SERIAL</td>
+<td>DECIMAL(20, 0)</td>
+<td></td>
+</tr>
+<tr>
+<td>FLOAT  <br>FLOAT UNSIGNED  <br>FLOAT UNSIGNED ZEROFILL</td>
+<td>FLOAT</td>
+<td></td>
+</tr>
+<tr>
+<td>REAL  <br>REAL UNSIGNED  <br>REAL UNSIGNED ZEROFILL  <br>DOUBLE  <br>DOUBLE UNSIGNED  <br>DOUBLE UNSIGNED ZEROFILL  <br>DOUBLE PRECISION  <br>DOUBLE PRECISION UNSIGNED  <br>DOUBLE PRECISION UNSIGNED ZEROFILL</td>
+<td>DOUBLE</td>
+<td></td>
+</tr>
+<tr>
+<td>NUMERIC(p, s)  <br>NUMERIC(p, s) UNSIGNED  <br>NUMERIC(p, s) UNSIGNED ZEROFILL  <br>DECIMAL(p, s)  <br>DECIMAL(p, s) UNSIGNED  <br>DECIMAL(p, s) UNSIGNED ZEROFILL  <br>FIXED(p, s)  <br>FIXED(p, s) UNSIGNED  <br>FIXED(p, s) UNSIGNED ZEROFILL  <br>where p &lt;= 38</td>
+<td>DECIMAL(p, s)</td>
+<td></td>
+</tr>
+<tr>
+<td>NUMERIC(p, s)  <br>NUMERIC(p, s) UNSIGNED  <br>NUMERIC(p, s) UNSIGNED ZEROFILL  <br>DECIMAL(p, s)  <br>DECIMAL(p, s) UNSIGNED  <br>DECIMAL(p, s) UNSIGNED ZEROFILL  <br>FIXED(p, s)  <br>FIXED(p, s) UNSIGNED  <br>FIXED(p, s) UNSIGNED ZEROFILL  <br>where 38 &lt; p &lt;= 65</td>
+<td>STRING</td>
+<td>在 MySQL 中，十进制数据类型的精度高达 65，但在 Flink 中，十进制数据类型的精度仅限于 38。所以，如果定义精度大于 38 的十进制列，则应将其映射到字符串以避免精度损失。在 MySQL 中，十进制数据类型的精度高达65，但在Flink中，十进制数据类型的精度仅限于38。所以，如果定义精度大于 38 的十进制列，则应将其映射到字符串以避免精度损失。</td>
+</tr>
+<tr>
+<td>BOOLEAN  <br>TINYINT(1)  <br>BIT(1)</td>
+<td>BOOLEAN</td>
+<td></td>
+</tr>
+<tr>
+<td>DATE</td>
+<td>DATE</td>
+<td></td>
+</tr>
+<tr>
+<td>TIME [(p)]</td>
+<td>TIME [(p)]</td>
+<td></td>
+</tr>
+<tr>
+<td>TIMESTAMP [(p)]  <br>DATETIME [(p)]</td>
+<td>TIMESTAMP [(p)]</td>
+<td></td>
+</tr>
+<tr>
+<td>CHAR(n)</td>
+<td>CHAR(n)</td>
+<td></td>
+</tr>
+<tr>
+<td>VARCHAR(n)</td>
+<td>VARCHAR(n)</td>
+<td></td>
+</tr>
+<tr>
+<td>BIT(n)</td>
+<td>BINARY(⌈n/8⌉)</td>
+<td></td>
+</tr>
+<tr>
+<td>BINARY(n)</td>
+<td>BINARY(n)</td>
+<td></td>
+</tr>
+<tr>
+<td>VARBINARY(N)</td>
+<td>VARBINARY(N)</td>
+<td></td>
+</tr>
+<tr>
+<td>TINYTEXT  <br>TEXT  <br>MEDIUMTEXT  <br>LONGTEXT</td>
+<td>STRING</td>
+<td></td>
+</tr>
+<tr>
+<td>TINYBLOB  <br>BLOB  <br>MEDIUMBLOB  <br>LONGBLOB</td>
+<td>BYTES</td>
+<td>目前，对于 MySQL 中的 BLOB 数据类型，仅支持长度不大于 2147483647（2**31-1）的 blob。</td>
+</tr>
+<tr>
+<td>YEAR</td>
+<td>INT</td>
+<td></td>
+</tr>
+<tr>
+<td>ENUM</td>
+<td>STRING</td>
+<td></td>
+</tr>
+<tr>
+<td>JSON</td>
+<td>STRING</td>
+<td>JSON 数据类型将在 Flink 中转换为 JSON 格式的字符串。</td>
+</tr>
+<tr>
+<td>SET</td>
+<td>ARRAY<STRING></td>
+<td>因为 MySQL 中的 SET 数据类型是一个字符串对象，可以有零个或多个值 它应该始终映射到字符串数组。</td>
+</tr>
+<tr>
+<td>GEOMETRY  <br>POINT  <br>LINESTRING  <br>POLYGON  <br>MULTIPOINT  <br>MULTILINESTRING  <br>MULTIPOLYGON  <br>GEOMETRYCOLLECTION</td>
+<td>STRING</td>
+<td>MySQL 中的空间数据类型将转换为具有固定 Json 格式的字符串。 请参考 MySQL <a target="_blank" rel="noopener" href="https://ververica.github.io/flink-cdc-connectors/release-2.4/content/connectors/mysql-cdc%28ZH%29.html#a-name-id-003-a">空间数据类型映射</a> 章节了解更多详细信息。</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h3 id="空间数据类型映射"><a href="#空间数据类型映射" class="headerlink" title="空间数据类型映射"></a>空间数据类型映射</h3><p>MySQL中除<code>GEOMETRYCOLLECTION</code>之外的空间数据类型都会转换为 Json 字符串，格式固定，如：</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs json">&#123;<span class="hljs-attr">&quot;srid&quot;</span>: <span class="hljs-number">0</span> , <span class="hljs-attr">&quot;type&quot;</span>: <span class="hljs-string">&quot;xxx&quot;</span>, <span class="hljs-attr">&quot;coordinates&quot;</span>: [<span class="hljs-number">0</span>, <span class="hljs-number">0</span>]&#125;<br></code></pre></td></tr></table></figure>
+<p>字段<code>srid</code>标识定义几何体的 SRS，如果未指定 SRID，则 SRID 0 是新几何体值的默认值。 由于 MySQL 8+ 在定义空间数据类型时只支持特定的 SRID，因此在版本较低的MySQL中，字段<code>srid</code>将始终为 0。<br>字段<code>type</code>标识空间数据类型，例如<code>POINT</code>/<code>LINESTRING</code>/<code>POLYGON</code>。<br>字段<code>coordinates</code>表示空间数据的<code>坐标</code>。<br>对于<code>GEOMETRYCOLLECTION</code>，它将转换为 Json 字符串，格式固定，如：</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs json">&#123;<span class="hljs-attr">&quot;srid&quot;</span>: <span class="hljs-number">0</span> , <span class="hljs-attr">&quot;type&quot;</span>: <span class="hljs-string">&quot;GeometryCollection&quot;</span>, <span class="hljs-attr">&quot;geometries&quot;</span>: [&#123;<span class="hljs-attr">&quot;type&quot;</span>:<span class="hljs-string">&quot;Point&quot;</span>,<span class="hljs-attr">&quot;coordinates&quot;</span>:[<span class="hljs-number">10</span>,<span class="hljs-number">10</span>]&#125;]&#125;<br></code></pre></td></tr></table></figure>
+<p><code>Geometrics</code>字段是一个包含所有空间数据的数组。<br>不同空间数据类型映射的示例如下：</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>Spatial data in MySQL</th>
+<th>Json String converted in Flink</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>POINT(1 1)</td>
+<td>{“coordinates”:[1,1],”type”:”Point”,”srid”:0}</td>
+</tr>
+<tr>
+<td>LINESTRING(3 0, 3 3, 3 5)</td>
+<td>{“coordinates”:[[3,0],[3,3],[3,5]],”type”:”LineString”,”srid”:0}</td>
+</tr>
+<tr>
+<td>POLYGON((1 1, 2 1, 2 2, 1 2, 1 1))</td>
+<td>{“coordinates”:[[[1,1],[2,1],[2,2],[1,2],[1,1]]],”type”:”Polygon”,”srid”:0}</td>
+</tr>
+<tr>
+<td>MULTIPOINT((1 1),(2 2))</td>
+<td>{“coordinates”:[[1,1],[2,2]],”type”:”MultiPoint”,”srid”:0}</td>
+</tr>
+<tr>
+<td>MultiLineString((1 1,2 2,3 3),(4 4,5 5))</td>
+<td>{“coordinates”:[[[1,1],[2,2],[3,3]],[[4,4],[5,5]]],”type”:”MultiLineString”,”srid”:0}</td>
+</tr>
+<tr>
+<td>MULTIPOLYGON(((0 0, 10 0, 10 10, 0 10, 0 0)), ((5 5, 7 5, 7 7, 5 7, 5 5)))</td>
+<td>{“coordinates”:[[[[0,0],[10,0],[10,10],[0,10],[0,0]]],[[[5,5],[7,5],[7,7],[5,7],[5,5]]]],”type”:”MultiPolygon”,”srid”:0}</td>
+</tr>
+<tr>
+<td>GEOMETRYCOLLECTION(POINT(10 10), POINT(30 30), LINESTRING(15 15, 20 20))</td>
+<td>{“geometries”:[{“type”:”Point”,”coordinates”:[10,10]},{“type”:”Point”,”coordinates”:[30,30]},{“type”:”LineString”,”coordinates”:[[15,15],[20,20]]}],”type”:”GeometryCollection”,”srid”:0}</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h2 id="常见问题"><a href="#常见问题" class="headerlink" title="常见问题"></a>常见问题</h2><ul>
+<li><p><a target="_blank" rel="noopener" href="https://github.com/ververica/flink-cdc-connectors/wiki/FAQ">FAQ(English)</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://github.com/ververica/flink-cdc-connectors/wiki/FAQ(ZH">FAQ(中文)</a>)</p>
+</li>
+</ul>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/flink/">flink</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2024/01/03/%E7%AE%97%E6%B3%95/2487-%E4%BB%8E%E9%93%BE%E8%A1%A8%E4%B8%AD%E7%A7%BB%E9%99%A4%E8%8A%82%E7%82%B9/">
+                        <span class="hidden-mobile">2487-从链表中移除节点</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+  </div>
+  
+
+  
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/debouncer.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/tocbot@4.12.0/dist/tocbot.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4.3.0/anchor.min.js" ></script>
+
+
+
+  <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js" ></script>
+
+
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
+  </script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+  <script>
+    (function () {
+      var path = "/local-search.xml";
+      $('#local-search-input').on('click', function() {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      });
+      $('#modalSearch').on('shown.bs.modal', function() {
+        $('#local-search-input').focus();
+      });
+    })()
+  </script>
+
+
+
+
+
+  
+
+  
+    <!-- MathJax -->
+    <script>
+      MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']]
+        },
+        options: {
+          renderActions: {
+            findScript: [10, doc => {
+              document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+                const display = !!node.type.match(/; *mode=display/);
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                const text = document.createTextNode('');
+                node.parentNode.replaceChild(text, node);
+                math.start = { node: text, delim: '', n: 0 };
+                math.end = { node: text, delim: '', n: 0 };
+                doc.math.push(math);
+              });
+            }, '', false],
+            insertedScript: [200, () => {
+              document.querySelectorAll('mjx-container').forEach(node => {
+                let target = node.parentNode;
+                if (target.nodeName.toLowerCase() === 'li') {
+                  target.parentNode.classList.add('has-jax');
+                }
+              });
+            }, '', false]
+          }
+        }
+      };
+    </script>
+
+    <script async src="https://cdn.jsdelivr.net/npm/mathjax@3.1.2/es5/tex-svg.js" ></script>
+
+  
+
+
+
+
+
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+</body>
+</html>
