@@ -1,0 +1,986 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=&#34;auto&#34;>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" href="/img/favicon.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="">
+  <meta name="author" content="xxzuo">
+  <meta name="keywords" content="">
+  
+  <title>Doris-Flink-Connector - Blog</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10.4.0/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+  
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"xxzuo.github.io","root":"/","version":"1.8.9","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null}}};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>xxzuo</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;</a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" href="javascript:">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="Doris-Flink-Connector">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-author" aria-hidden="true"></i>
+      xxzuo
+    </span>
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2024-01-10 19:26" pubdate>
+        2024年1月10日 晚上
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      3k 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      42
+       分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">Doris-Flink-Connector</h1>
+            
+            <div class="markdown-body">
+              <p>来源  <a target="_blank" rel="noopener" href="https://doris.incubator.apache.org/zh-CN/docs/ecosystem/flink-doris-connector">https://doris.incubator.apache.org/zh-CN/docs/ecosystem/flink-doris-connector</a></p>
+<p><a target="_blank" rel="noopener" href="https://github.com/apache/doris-flink-connector">Flink Doris Connector</a> 可以支持通过 Flink 操作（读取、插入、修改、删除） Doris 中存储的数据。本文档介绍Flink如何通过Datastream和SQL操作Doris。</p>
+<blockquote>
+<p><strong>注意：</strong></p>
+<ol>
+<li>修改和删除只支持在 Unique Key 模型上</li>
+<li>目前的删除是支持 Flink CDC 的方式接入数据实现自动删除，如果是其他数据接入的方式删除需要自己实现。Flink CDC 的数据删除使用方式参照本文档最后一节</li>
+</ol>
+</blockquote>
+<h2 id="版本兼容"><a href="#版本兼容" class="headerlink" title="版本兼容"></a>版本兼容</h2><div class="table-container">
+<table>
+<thead>
+<tr>
+<th>Connector Version</th>
+<th>Flink Version</th>
+<th>Doris Version</th>
+<th>Java Version</th>
+<th>Scala Version</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1.0.3</td>
+<td>1.11+</td>
+<td>0.15+</td>
+<td>8</td>
+<td>2.11,2.12</td>
+</tr>
+<tr>
+<td>1.1.1</td>
+<td>1.14</td>
+<td>1.0+</td>
+<td>8</td>
+<td>2.11,2.12</td>
+</tr>
+<tr>
+<td>1.2.1</td>
+<td>1.15</td>
+<td>1.0+</td>
+<td>8</td>
+<td>-</td>
+</tr>
+<tr>
+<td>1.3.0</td>
+<td>1.16</td>
+<td>1.0+</td>
+<td>8</td>
+<td>-</td>
+</tr>
+<tr>
+<td>1.4.0</td>
+<td>1.15,1.16,1.17</td>
+<td>1.0+</td>
+<td>8</td>
+<td>-</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h2 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h2><h3 id="Maven"><a href="#Maven" class="headerlink" title="Maven"></a>Maven</h3><p>添加 flink-doris-connector</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-comment">&lt;!-- flink-doris-connector --&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span>  <br>	<span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>org.apache.doris<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span>  <br>	<span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>flink-doris-connector-1.16<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span>  <br>	<span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>1.4.0<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span>  <br></code></pre></td></tr></table></figure>
+<p><strong>备注</strong><br>1.请根据不同的 Flink 版本替换对应的 Connector 和 Flink 依赖版本。</p>
+<p>2.也可从<a target="_blank" rel="noopener" href="https://repo.maven.apache.org/maven2/org/apache/doris/">这里</a>下载相关版本jar包。</p>
+<h3 id="编译"><a href="#编译" class="headerlink" title="编译"></a>编译</h3><p>编译时，可直接运行<code>sh build.sh</code>，具体可参考<a target="_blank" rel="noopener" href="https://github.com/apache/doris-flink-connector/blob/master/README.md">这里</a>。</p>
+<p>编译成功后，会在 <code>dist</code> 目录生成目标jar包，如：<code>flink-doris-connector-1.5.0-SNAPSHOT.jar</code>。 将此文件复制到 <code>Flink</code> 的 <code>classpath</code> 中即可使用 <code>Flink-Doris-Connector</code> 。例如， <code>Local</code> 模式运行的 <code>Flink</code> ，将此文件放入 <code>lib/</code> 文件夹下。 <code>Yarn</code> 集群模式运行的 <code>Flink</code> ，则将此文件放入预部署包中。</p>
+<h2 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h2><p>^2f987c</p>
+<h3 id="通用配置项"><a href="#通用配置项" class="headerlink" title="通用配置项"></a>通用配置项</h3><div class="table-container">
+<table>
+<thead>
+<tr>
+<th>Key</th>
+<th>Default Value</th>
+<th>Required</th>
+<th>Comment</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>fenodes</td>
+<td>—</td>
+<td>Y</td>
+<td>Doris FE http 地址， 支持多个地址，使用逗号分隔</td>
+</tr>
+<tr>
+<td>benodes</td>
+<td>—</td>
+<td>N</td>
+<td>Doris BE http 地址， 支持多个地址，使用逗号分隔，参考<a target="_blank" rel="noopener" href="https://github.com/apache/doris-flink-connector/pull/187">#187</a></td>
+</tr>
+<tr>
+<td>table.identifier</td>
+<td>—</td>
+<td>Y</td>
+<td>Doris 表名，如：db.tbl</td>
+</tr>
+<tr>
+<td>username</td>
+<td>—</td>
+<td>Y</td>
+<td>访问 Doris 的用户名</td>
+</tr>
+<tr>
+<td>password</td>
+<td>—</td>
+<td>Y</td>
+<td>访问 Doris 的密码</td>
+</tr>
+<tr>
+<td>doris.request.retries</td>
+<td>3</td>
+<td>N</td>
+<td>向 Doris 发送请求的重试次数</td>
+</tr>
+<tr>
+<td>doris.request.connect.timeout.ms</td>
+<td>30000</td>
+<td>N</td>
+<td>向 Doris 发送请求的连接超时时间</td>
+</tr>
+<tr>
+<td>doris.request.read.timeout.ms</td>
+<td>30000</td>
+<td>N</td>
+<td>向 Doris 发送请求的读取超时时间</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h3 id="Source-配置项"><a href="#Source-配置项" class="headerlink" title="Source 配置项"></a>Source 配置项</h3><div class="table-container">
+<table>
+<thead>
+<tr>
+<th>Key</th>
+<th>Default Value</th>
+<th>Required</th>
+<th>Comment</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>doris.request.query.timeout.s</td>
+<td>3600</td>
+<td>N</td>
+<td>查询 Doris 的超时时间，默认值为1小时，-1表示无超时限制</td>
+</tr>
+<tr>
+<td>doris.request.tablet.size</td>
+<td>Integer. MAX_VALUE</td>
+<td>N</td>
+<td>一个 Partition 对应的 Doris Tablet 个数。 此数值设置越小，则会生成越多的 Partition。从而提升 Flink 侧的并行度，但同时会对 Doris 造成更大的压力。</td>
+</tr>
+<tr>
+<td>doris.batch.size</td>
+<td>1024</td>
+<td>N</td>
+<td>一次从 BE 读取数据的最大行数。增大此数值可减少 Flink 与 Doris 之间建立连接的次数。 从而减轻网络延迟所带来的额外时间开销。</td>
+</tr>
+<tr>
+<td>doris.exec.mem.limit</td>
+<td>2147483648</td>
+<td>N</td>
+<td>单个查询的内存限制。默认为 2GB，单位为字节</td>
+</tr>
+<tr>
+<td>doris.deserialize.arrow.async</td>
+<td>FALSE</td>
+<td>N</td>
+<td>是否支持异步转换 Arrow 格式到 flink-doris-connector 迭代所需的 RowBatch</td>
+</tr>
+<tr>
+<td>doris.deserialize.queue.size</td>
+<td>64</td>
+<td>N</td>
+<td>异步转换 Arrow 格式的内部处理队列，当 doris.deserialize.arrow.async 为 true 时生效</td>
+</tr>
+<tr>
+<td>doris.read.field</td>
+<td>—</td>
+<td>N</td>
+<td>读取 Doris 表的列名列表，多列之间使用逗号分隔</td>
+</tr>
+<tr>
+<td>doris.filter.query</td>
+<td>—</td>
+<td>N</td>
+<td>过滤读取数据的表达式，此表达式透传给 Doris。Doris 使用此表达式完成源端数据过滤。比如 age=18。</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h3 id="Sink-配置项"><a href="#Sink-配置项" class="headerlink" title="Sink 配置项"></a>Sink 配置项</h3><p>^12f4d6</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>Key</th>
+<th>Default Value</th>
+<th>Required</th>
+<th>Comment</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>sink.label-prefix</td>
+<td>—</td>
+<td>Y</td>
+<td>Stream load导入使用的label前缀。2pc场景下要求全局唯一 ，用来保证Flink的EOS语义。</td>
+</tr>
+<tr>
+<td>sink.properties.*</td>
+<td>—</td>
+<td>N</td>
+<td>Stream Load 的导入参数。  <br>例如: ‘sink.properties.column_separator’ = ‘, ‘ 定义列分隔符， ‘sink.properties.escape_delimiters’ = ‘true’ 特殊字符作为分隔符,’\x01’会被转换为二进制的0x01  <br>  <br>JSON格式导入  <br>‘sink.properties.format’ = ‘json’ ‘sink.properties.read_json_by_line’ = ‘true’  <br>详细参数参考<a target="_blank" rel="noopener" href="https://doris.incubator.apache.org/zh-CN/docs/data-operate/import/import-way/stream-load-manual">这里</a>。</td>
+</tr>
+<tr>
+<td>sink.enable-delete</td>
+<td>TRUE</td>
+<td>N</td>
+<td>是否启用删除。此选项需要 Doris 表开启批量删除功能(Doris0.15+版本默认开启)，只支持 Unique 模型。</td>
+</tr>
+<tr>
+<td>sink.enable-2pc</td>
+<td>TRUE</td>
+<td>N</td>
+<td>是否开启两阶段提交(2pc)，默认为true，保证Exactly-Once语义。关于两阶段提交可参考<a target="_blank" rel="noopener" href="https://doris.incubator.apache.org/zh-CN/docs/data-operate/import/import-way/stream-load-manual">这里</a>。</td>
+</tr>
+<tr>
+<td>sink.buffer-size</td>
+<td>1MB</td>
+<td>N</td>
+<td>写数据缓存buffer大小，单位字节。不建议修改，默认配置即可</td>
+</tr>
+<tr>
+<td>sink.buffer-count</td>
+<td>3</td>
+<td>N</td>
+<td>写数据缓存buffer个数。不建议修改，默认配置即可</td>
+</tr>
+<tr>
+<td>sink.max-retries</td>
+<td>3</td>
+<td>N</td>
+<td>Commit失败后的最大重试次数，默认3次</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h3 id="Lookup-Join-配置项"><a href="#Lookup-Join-配置项" class="headerlink" title="Lookup Join 配置项"></a>Lookup Join 配置项</h3><div class="table-container">
+<table>
+<thead>
+<tr>
+<th>Key</th>
+<th>Default Value</th>
+<th>Required</th>
+<th>Comment</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>jdbc-url</td>
+<td>—</td>
+<td>Y</td>
+<td>jdbc连接信息</td>
+</tr>
+<tr>
+<td>lookup.cache.max-rows</td>
+<td>-1</td>
+<td>N</td>
+<td>lookup缓存的最大行数，默认值-1，不开启缓存</td>
+</tr>
+<tr>
+<td>lookup.cache.ttl</td>
+<td>10s</td>
+<td>N</td>
+<td>lookup缓存的最大时间，默认10s</td>
+</tr>
+<tr>
+<td>lookup.max-retries</td>
+<td>1</td>
+<td>N</td>
+<td>lookup查询失败后的重试次数</td>
+</tr>
+<tr>
+<td>lookup.jdbc.async</td>
+<td>false</td>
+<td>N</td>
+<td>是否开启异步的lookup，默认false</td>
+</tr>
+<tr>
+<td>lookup.jdbc.read.batch.size</td>
+<td>128</td>
+<td>N</td>
+<td>异步lookup下，每次查询的最大批次大小</td>
+</tr>
+<tr>
+<td>lookup.jdbc.read.batch.queue-size</td>
+<td>256</td>
+<td>N</td>
+<td>异步lookup时，中间缓冲队列的大小</td>
+</tr>
+<tr>
+<td>lookup.jdbc.read.thread-size</td>
+<td>3</td>
+<td>N</td>
+<td>每个task中lookup的jdbc线程数</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h2 id="Doris-和-Flink-列类型映射关系"><a href="#Doris-和-Flink-列类型映射关系" class="headerlink" title="Doris 和 Flink 列类型映射关系"></a>Doris 和 Flink 列类型映射关系</h2><div class="table-container">
+<table>
+<thead>
+<tr>
+<th>Doris Type</th>
+<th>Flink Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>NULL_TYPE</td>
+<td>NULL</td>
+</tr>
+<tr>
+<td>BOOLEAN</td>
+<td>BOOLEAN</td>
+</tr>
+<tr>
+<td>TINYINT</td>
+<td>TINYINT</td>
+</tr>
+<tr>
+<td>SMALLINT</td>
+<td>SMALLINT</td>
+</tr>
+<tr>
+<td>INT</td>
+<td>INT</td>
+</tr>
+<tr>
+<td>BIGINT</td>
+<td>BIGINT</td>
+</tr>
+<tr>
+<td>FLOAT</td>
+<td>FLOAT</td>
+</tr>
+<tr>
+<td>DOUBLE</td>
+<td>DOUBLE</td>
+</tr>
+<tr>
+<td>DATE</td>
+<td>DATE</td>
+</tr>
+<tr>
+<td>DATETIME</td>
+<td>TIMESTAMP</td>
+</tr>
+<tr>
+<td>DECIMAL</td>
+<td>DECIMAL</td>
+</tr>
+<tr>
+<td>CHAR</td>
+<td>STRING</td>
+</tr>
+<tr>
+<td>LARGEINT</td>
+<td>STRING</td>
+</tr>
+<tr>
+<td>VARCHAR</td>
+<td>STRING</td>
+</tr>
+<tr>
+<td>DECIMALV2</td>
+<td>DECIMAL</td>
+</tr>
+<tr>
+<td>TIME</td>
+<td>DOUBLE</td>
+</tr>
+<tr>
+<td>HLL</td>
+<td>Unsupported datatype</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h2 id="Flink-写入指标"><a href="#Flink-写入指标" class="headerlink" title="Flink 写入指标"></a>Flink 写入指标</h2><p>其中Counter类型的指标值为导入任务从开始到当前的累加值，可以在Flink Webui metrics中观察各表的各项指标。</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Metric Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>totalFlushLoadBytes</td>
+<td>Counter</td>
+<td>已经刷新导入的总字节数</td>
+</tr>
+<tr>
+<td>flushTotalNumberRows</td>
+<td>Counter</td>
+<td>已经导入处理的总行数</td>
+</tr>
+<tr>
+<td>totalFlushLoadedRows</td>
+<td>Counter</td>
+<td>已经成功导入的总行数</td>
+</tr>
+<tr>
+<td>totalFlushTimeMs</td>
+<td>Counter</td>
+<td>已经成功导入完成的总时间</td>
+</tr>
+<tr>
+<td>totalFlushSucceededNumber</td>
+<td>Counter</td>
+<td>已经成功导入的次数</td>
+</tr>
+<tr>
+<td>totalFlushFailedNumber</td>
+<td>Counter</td>
+<td>失败导入 的次数</td>
+</tr>
+<tr>
+<td>totalFlushFilteredRows</td>
+<td>Counter</td>
+<td>数据质量不合格的总行数</td>
+</tr>
+<tr>
+<td>totalFlushUnselectedRows</td>
+<td>Counter</td>
+<td>被 where 条件过滤的总行数</td>
+</tr>
+<tr>
+<td>beginTxnTimeMs</td>
+<td>Histogram</td>
+<td>向Fe请求开始一个事务所花费的时间，单位毫秒</td>
+</tr>
+<tr>
+<td>putDataTimeMs</td>
+<td>Histogram</td>
+<td>向Fe请求获取导入数据执行计划所花费的时间</td>
+</tr>
+<tr>
+<td>readDataTimeMs</td>
+<td>Histogram</td>
+<td>读取数据所花费的时间</td>
+</tr>
+<tr>
+<td>writeDataTimeMs</td>
+<td>Histogram</td>
+<td>执行写入数据操作所花费的时间</td>
+</tr>
+<tr>
+<td>commitAndPublishTimeMs</td>
+<td>Histogram</td>
+<td>向Fe请求提交并且发布事务所花费的时间</td>
+</tr>
+<tr>
+<td>loadTimeMs</td>
+<td>Histogram</td>
+<td>导入完成的时间</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h2 id="使用FlinkSQL通过CDC接入Doris示例"><a href="#使用FlinkSQL通过CDC接入Doris示例" class="headerlink" title="使用FlinkSQL通过CDC接入Doris示例"></a>使用FlinkSQL通过CDC接入Doris示例</h2><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-comment">-- enable checkpoint  </span><br><span class="hljs-keyword">SET</span> <span class="hljs-string">&#x27;execution.checkpointing.interval&#x27;</span> <span class="hljs-operator">=</span> <span class="hljs-string">&#x27;10s&#x27;</span>;  <br>  <br><span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">TABLE</span> cdc_mysql_source (  <br>id <span class="hljs-type">int</span>  <br>,name <span class="hljs-type">VARCHAR</span>  <br>,<span class="hljs-keyword">PRIMARY</span> KEY (id) <span class="hljs-keyword">NOT</span> ENFORCED  <br>) <span class="hljs-keyword">WITH</span> (  <br><span class="hljs-string">&#x27;connector&#x27;</span> <span class="hljs-operator">=</span> <span class="hljs-string">&#x27;mysql-cdc&#x27;</span>,  <br><span class="hljs-string">&#x27;hostname&#x27;</span> <span class="hljs-operator">=</span> <span class="hljs-string">&#x27;127.0.0.1&#x27;</span>,  <br><span class="hljs-string">&#x27;port&#x27;</span> <span class="hljs-operator">=</span> <span class="hljs-string">&#x27;3306&#x27;</span>,  <br><span class="hljs-string">&#x27;username&#x27;</span> <span class="hljs-operator">=</span> <span class="hljs-string">&#x27;root&#x27;</span>,  <br><span class="hljs-string">&#x27;password&#x27;</span> <span class="hljs-operator">=</span> <span class="hljs-string">&#x27;password&#x27;</span>,  <br><span class="hljs-string">&#x27;database-name&#x27;</span> <span class="hljs-operator">=</span> <span class="hljs-string">&#x27;database&#x27;</span>,  <br><span class="hljs-string">&#x27;table-name&#x27;</span> <span class="hljs-operator">=</span> <span class="hljs-string">&#x27;table&#x27;</span>  <br>);  <br>  <br><span class="hljs-comment">-- 支持同步insert/update/delete事件  </span><br><span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">TABLE</span> doris_sink (  <br>id <span class="hljs-type">INT</span>,  <br>name STRING  <br>)  <br><span class="hljs-keyword">WITH</span> (  <br><span class="hljs-string">&#x27;connector&#x27;</span> <span class="hljs-operator">=</span> <span class="hljs-string">&#x27;doris&#x27;</span>,  <br><span class="hljs-string">&#x27;fenodes&#x27;</span> <span class="hljs-operator">=</span> <span class="hljs-string">&#x27;127.0.0.1:8030&#x27;</span>,  <br><span class="hljs-string">&#x27;table.identifier&#x27;</span> <span class="hljs-operator">=</span> <span class="hljs-string">&#x27;database.table&#x27;</span>,  <br><span class="hljs-string">&#x27;username&#x27;</span> <span class="hljs-operator">=</span> <span class="hljs-string">&#x27;root&#x27;</span>,  <br><span class="hljs-string">&#x27;password&#x27;</span> <span class="hljs-operator">=</span> <span class="hljs-string">&#x27;&#x27;</span>,  <br><span class="hljs-string">&#x27;sink.properties.format&#x27;</span> <span class="hljs-operator">=</span> <span class="hljs-string">&#x27;json&#x27;</span>,  <br><span class="hljs-string">&#x27;sink.properties.read_json_by_line&#x27;</span> <span class="hljs-operator">=</span> <span class="hljs-string">&#x27;true&#x27;</span>,  <br><span class="hljs-string">&#x27;sink.enable-delete&#x27;</span> <span class="hljs-operator">=</span> <span class="hljs-string">&#x27;true&#x27;</span>, <span class="hljs-comment">-- 同步删除事件  </span><br><span class="hljs-string">&#x27;sink.label-prefix&#x27;</span> <span class="hljs-operator">=</span> <span class="hljs-string">&#x27;doris_label&#x27;</span>  <br>);  <br>  <br><span class="hljs-keyword">insert</span> <span class="hljs-keyword">into</span> doris_sink <span class="hljs-keyword">select</span> id,name <span class="hljs-keyword">from</span> cdc_mysql_source;<br></code></pre></td></tr></table></figure>
+<h2 id="使用FlinkCDC接入多表或整库示例"><a href="#使用FlinkCDC接入多表或整库示例" class="headerlink" title="使用FlinkCDC接入多表或整库示例"></a>使用FlinkCDC接入多表或整库示例</h2><h3 id="语法"><a href="#语法" class="headerlink" title="语法"></a>语法</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs shell">&lt;FLINK_HOME&gt;bin/flink run \<br>    -c org.apache.doris.flink.tools.cdc.CdcTools \<br>    lib/flink-doris-connector-1.16-1.4.0-SNAPSHOT.jar \<br>    &lt;mysql-sync-database|oracle-sync-database|postgres-sync-database|sqlserver-sync-database&gt; \<br>    --database &lt;doris-database-name&gt; \<br>    [--job-name &lt;flink-job-name&gt;] \<br>    [--table-prefix &lt;doris-table-prefix&gt;] \<br>    [--table-suffix &lt;doris-table-suffix&gt;] \<br>    [--including-tables &lt;mysql-table-name|name-regular-expr&gt;] \<br>    [--excluding-tables &lt;mysql-table-name|name-regular-expr&gt;] \<br>    --mysql-conf &lt;mysql-cdc-source-conf&gt; [--mysql-conf &lt;mysql-cdc-source-conf&gt; ...] \<br>    --oracle-conf &lt;oracle-cdc-source-conf&gt; [--oracle-conf &lt;oracle-cdc-source-conf&gt; ...] \<br>    --sink-conf &lt;doris-sink-conf&gt; [--table-conf &lt;doris-sink-conf&gt; ...] \<br>    [--table-conf &lt;doris-table-conf&gt; [--table-conf &lt;doris-table-conf&gt; ...]]<br></code></pre></td></tr></table></figure>
+<h3 id="样例"><a href="#样例" class="headerlink" title="样例"></a>样例</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><code class="hljs shell">mysql-sync-database   <br>--database ODS <br>--table-prefix test_  <br>--mysql-conf hostname=$&#123;test.host&#125;  <br>--mysql-conf port=3306  <br>--mysql-conf username=$&#123;test.user&#125;  <br>--mysql-conf password=$&#123;test.password&#125;  <br>--mysql-conf database-name=test <br>--mysql-conf scan.newly-added-table.enabled=TRUE <br>--mysql-conf jdbc.properties.useSSL=false <br>--mysql-conf jdbc.properties.tinyInt1isBit=false <br>--including-tables TEST.* <br>--excluding-tables TEST_PRICE|TEST_TEMP|<br>--sink-conf fenodes=$&#123;doris.fenodes&#125;  <br>--sink-conf username=$&#123;doris.user&#125;  <br>--sink-conf password=$&#123;doris.password&#125;  <br>--sink-conf jdbc-url=$&#123;doris.url&#125; <br>--sink-conf sink.enable-2pc=FALSE <br>--use-new-schema-change <br>--table-conf replication_num=1<br></code></pre></td></tr></table></figure>
+<p>配置 </p>
+<ul>
+<li><strong>—job-name</strong> Flink任务名称, 非必需。</li>
+<li><strong>—database</strong> 同步到Doris的数据库名。</li>
+<li><strong>—table-prefix</strong> Doris表前缀名，例如 —table-prefix ods_。</li>
+<li><strong>—table-suffix</strong> 同上，Doris表的后缀名。</li>
+<li><strong>—including-tables</strong> 需要同步的MySQL表，可以使用”|” 分隔多个表，并支持正则表达式。 比如—including-tables table1|tbl.*就是同步table1和所有以tbl开头的表。</li>
+<li><strong>—excluding-tables</strong> 不需要同步的表，用法同上。</li>
+<li><strong>—mysql-conf</strong> MySQL CDCSource 配置，例如—mysql-conf hostname=127.0.0.1 ，您可以在 [[MySQL-CDC-Connector(v2.4)#^2fd7d6|mysql-cdc配置]] 查看所有配置MySQL-CDC，其中hostname/username/password/database-name 是必需的。</li>
+<li><strong>—oracle-conf</strong> Oracle CDCSource 配置，例如—oracle-conf hostname=127.0.0.1 ，您可以在<a target="_blank" rel="noopener" href="https://ververica.github.io/flink-cdc-connectors/master/content/connectors/oracle-cdc.html">这里</a>查看所有配置Oracle-CDC，其中hostname/username/password/database-name/schema-name 是必需的。</li>
+<li><strong>—sink-conf</strong> Doris Sink 的所有配置，可以在<a target="_blank" rel="noopener" href="https://doris.apache.org/zh-CN/docs/dev/ecosystem/flink-doris-connector/#%E9%80%9A%E7%94%A8%E9%85%8D%E7%BD%AE%E9%A1%B9">这里</a>   [[#^2f987c|配置]]  查看完整的配置项。</li>
+<li><strong>—table-conf</strong> Doris表的配置项，即properties中包含的内容。 例如 —table-conf replication_num=1</li>
+<li><strong>—ignore-default-value</strong> 关闭同步mysql表结构的默认值。适用于同步mysql数据到doris时，字段有默认值，但实际插入数据为null情况。参考<a target="_blank" rel="noopener" href="https://github.com/apache/doris-flink-connector/pull/152">#152</a></li>
+<li><strong>—use-new-schema-change</strong> 新的schema change支持同步mysql多列变更、默认值。参考<a target="_blank" rel="noopener" href="https://github.com/apache/doris-flink-connector/pull/167">#167</a></li>
+</ul>
+<h2 id="使用FlinkCDC更新Key列"><a href="#使用FlinkCDC更新Key列" class="headerlink" title="使用FlinkCDC更新Key列"></a>使用FlinkCDC更新Key列</h2><p>一般在业务数据库中，会使用编号来作为表的主键，比如Student表，会使用编号(id)来作为主键，但是随着业务的发展，数据对应的编号有可能是会发生变化的。 在这种场景下，使用FlinkCDC + Doris Connector同步数据，便可以自动更新Doris主键列的数据。</p>
+<h3 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h3><p>Flink CDC底层的采集工具是Debezium，Debezium内部使用op字段来标识对应的操作：op字段的取值分别为c、u、d、r，分别对应create、update、delete和read。 而对于主键列的更新，FlinkCDC会向下游发送DELETE和INSERT事件，同时数据同步到Doris中后，就会自动更新主键列的数据。</p>
+<h3 id="使用-1"><a href="#使用-1" class="headerlink" title="使用"></a>使用</h3><p>Flink程序可参考上面CDC同步的示例，成功提交任务后，在MySQL侧执行Update主键列的语句(<code>update student set id = &#39;1002&#39; where id = &#39;1001&#39;</code>)，即可修改Doris中的数据。</p>
+<h2 id="使用Flink根据指定列删除数据"><a href="#使用Flink根据指定列删除数据" class="headerlink" title="使用Flink根据指定列删除数据"></a>使用Flink根据指定列删除数据</h2><p>一般Kafka中的消息会使用特定字段来标记操作类型，比如<code>&#123;&quot;op_type&quot;:&quot;delete&quot;,data:&#123;...&#125;&#125;</code>。<br>针对这类数据，希望将op_type=delete的数据删除掉。</p>
+<p>DorisSink默认会根据RowKind来区分事件的类型，通常这种在cdc情况下可以直接获取到事件类型，对隐藏列<code>__DORIS_DELETE_SIGN__</code>进行赋值达到删除的目的，而Kafka则需要根据业务逻辑判断，显示的传入隐藏列的值。</p>
+<h3 id="使用-2"><a href="#使用-2" class="headerlink" title="使用"></a>使用</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-comment">-- 比如上游数据: &#123;&quot;op_type&quot;:&quot;delete&quot;,data:&#123;&quot;id&quot;:1,&quot;name&quot;:&quot;zhangsan&quot;&#125;&#125;</span><br><span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">TABLE</span> KAFKA_SOURCE(<br>  data STRING,<br>  op_type STRING<br>) <span class="hljs-keyword">WITH</span> (<br>  <span class="hljs-string">&#x27;connector&#x27;</span> <span class="hljs-operator">=</span> <span class="hljs-string">&#x27;kafka&#x27;</span>,<br>  ...<br>);<br><br><span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">TABLE</span> DORIS_SINK(<br>  id <span class="hljs-type">INT</span>,<br>  name STRING,<br>  __DORIS_DELETE_SIGN__ <span class="hljs-type">INT</span><br>) <span class="hljs-keyword">WITH</span> (<br>  <span class="hljs-string">&#x27;connector&#x27;</span> <span class="hljs-operator">=</span> <span class="hljs-string">&#x27;doris&#x27;</span>,<br>  <span class="hljs-string">&#x27;fenodes&#x27;</span> <span class="hljs-operator">=</span> <span class="hljs-string">&#x27;127.0.0.1:8030&#x27;</span>,<br>  <span class="hljs-string">&#x27;table.identifier&#x27;</span> <span class="hljs-operator">=</span> <span class="hljs-string">&#x27;db.table&#x27;</span>,<br>  <span class="hljs-string">&#x27;username&#x27;</span> <span class="hljs-operator">=</span> <span class="hljs-string">&#x27;root&#x27;</span>,<br>  <span class="hljs-string">&#x27;password&#x27;</span> <span class="hljs-operator">=</span> <span class="hljs-string">&#x27;&#x27;</span>,<br>  <span class="hljs-string">&#x27;sink.enable-delete&#x27;</span> <span class="hljs-operator">=</span> <span class="hljs-string">&#x27;false&#x27;</span>,        <span class="hljs-comment">-- false表示不从RowKind获取事件类型</span><br>  <span class="hljs-string">&#x27;sink.properties.columns&#x27;</span> <span class="hljs-operator">=</span> <span class="hljs-string">&#x27;id, name, __DORIS_DELETE_SIGN__&#x27;</span>  <span class="hljs-comment">-- 显示指定streamload的导入列</span><br>);<br><br><span class="hljs-keyword">INSERT</span> <span class="hljs-keyword">INTO</span> DORIS_SINK<br><span class="hljs-keyword">SELECT</span> <span class="hljs-built_in">json_value</span>(data,<span class="hljs-string">&#x27;$.id&#x27;</span>) <span class="hljs-keyword">as</span> id,<br><span class="hljs-built_in">json_value</span>(data,<span class="hljs-string">&#x27;$.name&#x27;</span>) <span class="hljs-keyword">as</span> name, <br>if(op_type<span class="hljs-operator">=</span><span class="hljs-string">&#x27;delete&#x27;</span>,<span class="hljs-number">1</span>,<span class="hljs-number">0</span>) <span class="hljs-keyword">as</span> __DORIS_DELETE_SIGN__ <br><span class="hljs-keyword">from</span> KAFKA_SOURCE;<br></code></pre></td></tr></table></figure>
+<h2 id="Java示例"><a href="#Java示例" class="headerlink" title="Java示例"></a>Java示例</h2><p><code>samples/doris-demo/</code> 下提供了 Java 版本的示例，可供参考，查看点击<a target="_blank" rel="noopener" href="https://github.com/apache/doris/tree/master/samples/doris-demo/">这里</a></p>
+<h2 id="最佳实践"><a href="#最佳实践" class="headerlink" title="最佳实践"></a>最佳实践</h2><h3 id="应用场景"><a href="#应用场景" class="headerlink" title="应用场景"></a>应用场景</h3><p>使用 Flink Doris Connector最适合的场景就是实时/批次同步源数据（Mysql，Oracle，PostgreSQL等）到Doris，使用Flink对Doris中的数据和其他数据源进行联合分析，也可以使用Flink Doris Connector。</p>
+<h3 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h3><ol>
+<li>Flink Doris Connector主要是依赖Checkpoint进行流式写入，所以Checkpoint的间隔即为数据的可见延迟时间。</li>
+<li>为了保证Flink的Exactly Once语义，Flink Doris Connector 默认开启两阶段提交，Doris在1.1版本后默认开启两阶段提交。1.0可通过修改BE参数开启，可参考<a target="_blank" rel="noopener" href="https://doris.incubator.apache.org/zh-CN/docs/data-operate/import/import-way/stream-load-manual">two_phase_commit</a>。</li>
+</ol>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/flink/">flink</a>
+                    
+                      <a class="hover-with-bg" href="/tags/doris/">doris</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2024/01/10/flink-cdc/MySQL-CDC-Connector(v2.4)/">
+                        <span class="hidden-mobile">MySQL-CDC-Connector(v2.4)</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+  </div>
+  
+
+  
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/debouncer.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/tocbot@4.12.0/dist/tocbot.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4.3.0/anchor.min.js" ></script>
+
+
+
+  <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js" ></script>
+
+
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
+  </script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+  <script>
+    (function () {
+      var path = "/local-search.xml";
+      $('#local-search-input').on('click', function() {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      });
+      $('#modalSearch').on('shown.bs.modal', function() {
+        $('#local-search-input').focus();
+      });
+    })()
+  </script>
+
+
+
+
+
+  
+
+  
+    <!-- MathJax -->
+    <script>
+      MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']]
+        },
+        options: {
+          renderActions: {
+            findScript: [10, doc => {
+              document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+                const display = !!node.type.match(/; *mode=display/);
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                const text = document.createTextNode('');
+                node.parentNode.replaceChild(text, node);
+                math.start = { node: text, delim: '', n: 0 };
+                math.end = { node: text, delim: '', n: 0 };
+                doc.math.push(math);
+              });
+            }, '', false],
+            insertedScript: [200, () => {
+              document.querySelectorAll('mjx-container').forEach(node => {
+                let target = node.parentNode;
+                if (target.nodeName.toLowerCase() === 'li') {
+                  target.parentNode.classList.add('has-jax');
+                }
+              });
+            }, '', false]
+          }
+        }
+      };
+    </script>
+
+    <script async src="https://cdn.jsdelivr.net/npm/mathjax@3.1.2/es5/tex-svg.js" ></script>
+
+  
+
+
+
+
+
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+</body>
+</html>
