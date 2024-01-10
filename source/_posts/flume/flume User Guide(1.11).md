@@ -805,6 +805,9 @@ agent_foo.sources.avro-AppSrv-source1.selector.default = mem-channel-1
 
 
 ### SSL/TLS support
+
+^cf1b41
+
 几个Flume组件支持SSL/TLS协议，以便安全地与其他系统通信。
 
 | 组件                        | SSL server or client |
