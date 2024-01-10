@@ -382,7 +382,8 @@
 <p>选择器将首先尝试写入 required channels<br>如果其中一个 Channel 无法使用事件，则会使事务失败。在所有 Channel 上重新尝试该事务。<br>一旦所有 required channels 都消耗了事件，选择器将尝试写入 optional channel。任何optional channel 使用事件的失败都将被忽略，并且不会重试。</p>
 <p>如果特定 header 的 optional channels 和 required channels 之间存在重叠，则认为该 channel 是必需的，并且 channel 中的故障将导致 required channels 的整个集合被重试。例如，在上面的例子中，对于 header “CA”，mem-channel-1被认为是一个 required channels，即使它被标记为 required 和 optional，并且如果无法写入该 channel，则会导致在为选择器配置的所有 channel 上重试该事件。</p>
 <p>请注意:<br>如果 header 没有任何 required channels，则事件将被写入默认 channels，并尝试写入该 header 的 optional channels。<br>如果未指定 required channels，即使指定  optional channels 仍会将事件写入默认 channel。<br>如果没有 channel 被指定为默认 channel，也没有required channels，选择器将尝试将事件写入 optional channels。在这种情况下，任何故障都会被忽略。</p>
-<h3 id="SSL-TLS-support"><a href="#SSL-TLS-support" class="headerlink" title="SSL/TLS support"></a>SSL/TLS support</h3><p>几个Flume组件支持SSL/TLS协议，以便安全地与其他系统通信。</p>
+<h3 id="SSL-TLS-support"><a href="#SSL-TLS-support" class="headerlink" title="SSL/TLS support"></a>SSL/TLS support</h3><p>^cf1b41</p>
+<p>几个Flume组件支持SSL/TLS协议，以便安全地与其他系统通信。</p>
 <div class="table-container">
 <table>
 <thead>

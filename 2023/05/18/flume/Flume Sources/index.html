@@ -190,7 +190,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      2.4k 字
+      7.9k 字
     </span>
   
 
@@ -200,7 +200,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      28
+      94
        分钟
     </span>
   
@@ -421,7 +421,8 @@
 <tr>
 <td>ssl</td>
 <td>false</td>
-<td>将此设置为true可启用SSL加密。如果启用了SSL，则还必须通过组件级参数（见下文）或全局SSL参数（见SSL/TLS支持部分）指定“keystore” 和 “keystore-password”。</td>
+<td>将此设置为true可启用SSL加密。如果启用了SSL，则还必须通过组件级参数（见下文）或全局SSL参数（见SSL/TLS支持部分 [[flume User Guide(1.11)#^cf1b41\</td>
+<td>ssl/tls]]）指定“keystore” 和 “keystore-password”。</td>
 </tr>
 <tr>
 <td>keystore</td>
@@ -581,40 +582,682 @@
 <tr>
 <td><strong>type</strong></td>
 <td>-</td>
-<td>组件类型名称，需要为thrift</td>
+<td>组件类型名称，需要为 <code>jms</code></td>
 </tr>
 <tr>
 <td><strong>initialContextFactory</strong></td>
 <td>-</td>
-<td>要监听的主机名或IP地址</td>
+<td>初始上下文工厂,例如:org.apache.activemq.jndi.ActiveMQInitialContextFactory</td>
 </tr>
 <tr>
 <td><strong>connectionFactory</strong></td>
 <td>-</td>
-<td>用于运行命令的shell调用。例如/bin/sh-c。仅对于依赖于外壳程序功能（如通配符、反勾号、管道等）的命令是必需的。</td>
+<td>连接工厂应该出现的JNDI名称</td>
 </tr>
 <tr>
 <td><strong>providerURL</strong></td>
-<td>10000</td>
-<td>尝试重新启动之前等待的时间（以毫秒为单位）</td>
+<td>-</td>
+<td>JMS提供者URL</td>
 </tr>
 <tr>
 <td><strong>destinationName</strong></td>
-<td></td>
-<td></td>
+<td>-</td>
+<td>目标名称</td>
 </tr>
 <tr>
 <td><strong>destinationType</strong></td>
-<td></td>
+<td>-</td>
+<td>目标类型(队列或主题)</td>
+</tr>
+<tr>
+<td>messageSelector</td>
+<td>-</td>
+<td>创建消费者时使用的消息选择器</td>
+</tr>
+<tr>
+<td>userName</td>
+<td>-</td>
+<td>目的地/提供者的用户名</td>
+</tr>
+<tr>
+<td>passwordFile</td>
+<td>-</td>
+<td>包含目的地/提供者密码的文件</td>
+</tr>
+<tr>
+<td>batchSize</td>
+<td>100</td>
+<td>一批消费中的消息数量</td>
+</tr>
+<tr>
+<td>converter.type</td>
+<td>DEFAULT</td>
+<td>用于将消息转换为 Flume 事件的类。 见下文。</td>
+</tr>
+<tr>
+<td>converter.*</td>
+<td>-</td>
+<td>转换器属性。</td>
+</tr>
+<tr>
+<td>converter.charset</td>
+<td>UTF-8</td>
+<td>仅默认转换器。 将 JMS TextMessage 转换为字节数组时要使用的字符集。</td>
+</tr>
+<tr>
+<td>createDurableSubscription</td>
+<td>false</td>
+<td>是否创建持久订阅。 持久订阅只能与destinationType 主题一起使用。 如果为 true，则必须指定“clientId”和“durableSubscriptionName”</td>
+</tr>
+<tr>
+<td>clientId</td>
+<td>-</td>
+<td>创建连接后立即在连接上设置 JMS 客户端标识符。 持久订阅所需</td>
+</tr>
+<tr>
+<td>durableSubscriptionName</td>
+<td>-</td>
+<td>用于标识持久订阅的名称。 持久订阅所必需的。</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h5 id="JMS-message-converter"><a href="#JMS-message-converter" class="headerlink" title="JMS message converter"></a>JMS message converter</h5><p>JMS source允许可插拔的转换器,尽管默认的转换器对大多数目的来说可能已经足够。默认转换器能够将Bytes、Text和Object消息转换为FlumeEvent。在所有情况下,消息中的属性都被添加为FlumeEvent的header。</p>
+<ul>
+<li><p>BytesMessage:<br>消息的字节被复制到FlumeEvent的body中。每条消息无法转换超过2GB的数据。</p>
+</li>
+<li><p>TextMessage:<br>消息文本被转换为字节数组并复制到FlumeEvent的body中。默认使用UTF-8编码但可以配置。</p>
+</li>
+<li><p>ObjectMessage:<br>对象被写入到包装在ObjectOutputStream中的ByteArrayOutputStream中,结果数组被复制到FlumeEvent的body中。</p>
+</li>
+</ul>
+<p>名为 a1 的代理示例：<br><figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs properties"><span class="hljs-meta">a1.sources</span> = <span class="hljs-string">r1</span><br><span class="hljs-meta">a1.channels</span> = <span class="hljs-string">c1</span><br><span class="hljs-meta">a1.sources.r1.type</span> = <span class="hljs-string">jms</span><br><span class="hljs-meta">a1.sources.r1.channels</span> = <span class="hljs-string">c1</span><br><span class="hljs-meta">a1.sources.r1.initialContextFactory</span> = <span class="hljs-string">org.apache.activemq.jndi.ActiveMQInitialContextFactory</span><br><span class="hljs-meta">a1.sources.r1.connectionFactory</span> = <span class="hljs-string">GenericConnectionFactory</span><br><span class="hljs-meta">a1.sources.r1.providerURL</span> = <span class="hljs-string">tcp://mqserver:61616</span><br><span class="hljs-meta">a1.sources.r1.destinationName</span> = <span class="hljs-string">BUSINESS_DATA</span><br><span class="hljs-meta">a1.sources.r1.destinationType</span> = <span class="hljs-string">QUEUE</span><br></code></pre></td></tr></table></figure></p>
+<h5 id="SSL-and-JMS-Source"><a href="#SSL-and-JMS-Source" class="headerlink" title="SSL and JMS Source"></a>SSL and JMS Source</h5><p>JMS客户端实现通常支持通过JSSE(Java Secure Socket Extension)定义的一些Java系统属性来配置SSL/TLS。</p>
+<p>为Flume的JVM指定这些系统属性,JMS Source(或者更精确地说,JMS Source使用的JMS客户端实现)可以通过SSL连接到JMS服务器(当然,前提是JMS服务器也被设置为使用SSL)。</p>
+<p>这应该适用于任何JMS提供商,并且已经在ActiveMQ、IBM MQ和Oracle WebLogic上进行了测试。</p>
+<p>以下部分仅描述Flume一侧所需的SSL配置步骤。您可以在Flume Wiki上找到有关不同JMS提供商的服务器端设置的更详细描述以及完整的工作配置示例。</p>
+<p><strong>SSL transport / server authentication:</strong></p>
+<p>如果JMS服务器使用自签名证书或其证书由不可信的CA签名(例如公司自己的CA),则需要设置truststore(包含正确的证书)并传递给Flume。这可以通过全局SSL参数来完成。有关全局SSL设置的更多详细信息,请参阅SSL/TLS支持部分 [[flume User Guide(1.11)#^cf1b41|ssl/tls]]。</p>
+<p>某些JMS提供商在使用SSL时需要特定于SSL的JNDI初始上下文工厂和/或提供商URL设置(例如,ActiveMQ使用ssl:// URL前缀而不是tcp://)。在这种情况下,必须在代理配置文件中调整source属性(initialContextFactory和/或providerURL)。</p>
+<p><strong>Client certificate authentication (two-way SSL) 客户端证书认证（双向SSL）:</strong> </p>
+<p>JMS Source可以通过客户端证书认证而不是通常的用户名/密码登录来向JMS服务器进行认证(当使用SSL且JMS服务器被配置为接受此类认证时)。</p>
+<p>包含Flume用于认证的密钥的keystore需要再次通过全局SSL参数进行配置。有关全局SSL设置的详细信息,请参阅SSL/TLS支持部分 [[flume User Guide(1.11)#^cf1b41|ssl/tls]]。</p>
+<p>keystore应该只包含一个密钥(如果存在多个密钥,则将使用第一个密钥)。密钥密码必须与keystore密码相同。</p>
+<p>在客户端证书认证的情况下,无需在Flume代理配置文件中为JMS Source指定userName/passwordFile属性。</p>
+<p><strong>请注意:</strong><br>与其他组件不同，JMS Source 没有组件级配置参数。 也没有启用 SSL 标志。 SSL 设置由 JNDI/Provider URL 设置（最终是 JMS 服务器设置）以及信任库/密钥库的存在/不存在控制。</p>
+<h4 id="Spooling-Directory-Source"><a href="#Spooling-Directory-Source" class="headerlink" title="Spooling Directory Source"></a>Spooling Directory Source</h4><p>这个source允许您通过将要摄取的文件放入磁盘上的“池”目录来摄取数据。此source将监视指定的目录以获取新文件,并在出现新文件时从中解析事件。事件解析逻辑是可插拔的。在完全读入通道后,默认情况下,通过重命名文件或删除文件或使用trackerDir来跟踪已处理文件来指示完成。</p>
+<p>与Exec source不同,此source是可靠的,即使Flume重新启动或被杀死,也不会丢失数据。为了换取这种可靠性,只能将不可变的、唯一命名的文件放入池目录中。Flume会试图检测这些问题条件,如果违反这些条件,会发出很大的错误提示:</p>
+<ol>
+<li>如果在放入池目录后文件被写入,Flume将向其日志文件打印错误并停止处理。</li>
+<li>如果后来重用了文件名,Flume将向其日志文件打印错误并停止处理。</li>
+</ol>
+<p>为了避免上述问题,当日志文件被移动到池目录中时,可以考虑在日志文件名中添加唯一标识符(如时间戳)。</p>
+<p>尽管此source提供了可靠性保证,但如果某些下游失败发生,事件可能会被复制。这与其他Flume组件提供的保证一致。</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>Property Name</th>
+<th>Default</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>channels</strong></td>
+<td>–</td>
 <td></td>
 </tr>
 <tr>
+<td><strong>type</strong></td>
+<td>–</td>
+<td>组件类型名称,需要为spooldir</td>
+</tr>
+<tr>
+<td><strong>spoolDir</strong></td>
+<td>–</td>
+<td>读取文件目录路径</td>
+</tr>
+<tr>
+<td>fileSuffix</td>
+<td>.COMPLETED</td>
+<td>完全摄取文件的后缀</td>
+</tr>
+<tr>
+<td>deletePolicy</td>
+<td>never</td>
+<td>完成文件删除策略:never 或 immediate</td>
+</tr>
+<tr>
+<td>fileHeader</td>
+<td>false</td>
+<td>是否添加头保存完整文件名</td>
+</tr>
+<tr>
+<td>fileHeaderKey</td>
+<td>file</td>
+<td>文件名添加到 event header 的键</td>
+</tr>
+<tr>
+<td>basenameHeader</td>
+<td>false</td>
+<td>是否添加头保存文件名</td>
+</tr>
+<tr>
+<td>basenameHeaderKey</td>
+<td>basename</td>
+<td>文件名添加到 event header 的键</td>
+</tr>
+<tr>
+<td>includePattern</td>
+<td>^.*$</td>
+<td>指定包含哪些文件正则表达式。可以与ignorePattern一起使用。如果文件同时匹配ignorePattern和includePattern则忽略。</td>
+</tr>
+<tr>
+<td>ignorePattern</td>
+<td>^$</td>
+<td>指定忽略哪些文件的正则表达式。可以与includePattern一起使用。如果文件同时匹配ignorePattern和includePattern则忽略。</td>
+</tr>
+<tr>
+<td>trackerDir</td>
+<td>.flumespool</td>
+<td>存储文件处理元数据的目录。如果不是绝对路径,则相对于spoolDir。</td>
+</tr>
+<tr>
+<td>trackingPolicy</td>
+<td>rename</td>
+<td>定义文件处理追踪策略。可以是“rename”或“tracker_dir”。仅在deletePolicy为“never”时有效。“rename” - 处理后根据fileSuffix重命名文件。“tracker_dir” - 文件不重命名,在trackerDir中创建一个空文件。新tracker文件名基于摄取文件名加上fileSuffix。</td>
+</tr>
+<tr>
+<td>consumeOrder</td>
+<td>oldest</td>
+<td>池目录中文件消费顺序:oldest最旧,youngest最新,random随机。oldest和youngest基于最后修改时间比较。random完全随机选择。oldest和youngest需全目录扫描选择最旧/最新文件,如果大量文件效率低;random可能导致旧文件被延后消费。</td>
+</tr>
+<tr>
+<td>pollDelay</td>
+<td>500</td>
+<td>轮询新文件的延迟(毫秒)</td>
+</tr>
+<tr>
+<td>recursiveDirectorySearch</td>
+<td>false</td>
+<td>是否监控子目录的新文件</td>
+</tr>
+<tr>
+<td>maxBackoff</td>
+<td>4000</td>
+<td>写入channel失败的最大退避时间(毫秒)。从低backoff指数增加到配置值。</td>
+</tr>
+<tr>
+<td>batchSize</td>
+<td>100</td>
+<td>批量传输到channel的粒度</td>
+</tr>
+<tr>
+<td>inputCharset</td>
+<td>UTF-8</td>
+<td>处理文本文件时使用的字符集</td>
+</tr>
+<tr>
+<td>decodeErrorPolicy</td>
+<td>FAIL</td>
+<td>发现不可解码字符时的处理策略。FAIL:抛异常失败;REPLACE:替换为特殊未知字符;IGNORE:忽略</td>
+</tr>
+<tr>
+<td>deserializer</td>
+<td>LINE</td>
+<td>解析文件到事件的反序列化器。默认逐行解析。必须实现EventDeserializer.Builder。</td>
+</tr>
+<tr>
+<td>deserializer.*</td>
 <td></td>
+<td>因反序列化器而异</td>
+</tr>
+<tr>
+<td>bufferMaxLines</td>
+<td>–</td>
+<td>(废弃)现在忽略</td>
+</tr>
+<tr>
+<td>bufferMaxLineLength</td>
+<td>5000</td>
+<td>(废弃)替代为deserializer.maxLineLength</td>
+</tr>
+<tr>
+<td>selector.type</td>
+<td>replicating</td>
+<td>复制或复用</td>
+</tr>
+<tr>
+<td>selector.*</td>
+<td></td>
+<td>依赖selector.type值</td>
+</tr>
+<tr>
+<td>interceptors</td>
+<td>–</td>
+<td>空格分隔拦截器列表</td>
+</tr>
+<tr>
+<td>interceptors.*</td>
 <td></td>
 </tr>
 </tbody>
 </table>
 </div>
+<p>名为 a1 的代理示例：</p>
+<figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs properties"><span class="hljs-meta">a1.channels</span> = <span class="hljs-string">ch-1</span><br><span class="hljs-meta">a1.sources</span> = <span class="hljs-string">src-1</span><br><br><span class="hljs-meta">a1.sources.src-1.type</span> = <span class="hljs-string">spooldir</span><br><span class="hljs-meta">a1.sources.src-1.channels</span> = <span class="hljs-string">ch-1</span><br><span class="hljs-meta">a1.sources.src-1.spoolDir</span> = <span class="hljs-string">/var/log/apache/flumeSpool</span><br><span class="hljs-meta">a1.sources.src-1.fileHeader</span> = <span class="hljs-string">true</span><br></code></pre></td></tr></table></figure>
+<h5 id="Event-Deserializers"><a href="#Event-Deserializers" class="headerlink" title="Event Deserializers"></a>Event Deserializers</h5><p>Flume 附带以下事件反序列化器。</p>
+<h6 id="LINE"><a href="#LINE" class="headerlink" title="LINE"></a>LINE</h6><p>这个反序列化器针对每行文本输入生成一个事件。</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>Property Name</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>deserializer.maxLineLength</td>
+<td>2048</td>
+<td>单个事件中包含的最大字符数。 如果一行超过此长度，则会被截断，并且该行中剩余的字符将出现在后续事件中。</td>
+</tr>
+<tr>
+<td>deserializer.outputCharset</td>
+<td>UTF-8</td>
+<td>用于对放入 channel 的事件进行编码的字符集。</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h6 id="AVRO"><a href="#AVRO" class="headerlink" title="AVRO"></a>AVRO</h6><p>这个反序列化器能够读取Avro容器文件,并对文件中的每条Avro记录生成一个事件。每个事件都带有一个标头,指示使用的模式。事件的body是二进制的Avro记录数据,不包括schema或容器文件中的其他元素。</p>
+<p>注意,如果spool目录源必须重试将这些事件之一放到通道上(例如,因为通道已满),那么它将重置并从最新的Avro容器文件同步点重试。为了减少这种失败场景中的潜在事件重复,可以在Avro输入文件中更频繁地写入同步标记。</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>Property Name</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>deserializer.schemaType</td>
+<td>HASH</td>
+<td>架构的表示方式。 默认情况下，或者当指定 HASH 值时，Avro 架构会进行哈希处理，并且哈希值存储在事件标头“flume.avro.schema.hash”中的每个事件中。 如果指定了 LITERAL，则 JSON 编码的架构本身存储在事件标头“flume.avro.schema.literal”中的每个事件中。 与 HASH 模式相比，使用 Literal 模式的效率相对较低。</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h6 id="BlobDeserializer"><a href="#BlobDeserializer" class="headerlink" title="BlobDeserializer"></a>BlobDeserializer</h6><p>此反序列化器针对每个事件读取一个二进制大对象 (BLOB)，通常每个文件读取一个 BLOB。 例如 PDF 或 JPG 文件。 请注意，此方法不适合非常大的对象，因为整个 BLOB 都缓冲在 RAM 中。</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>Property Name</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>deserializer</strong></td>
+<td>–</td>
+<td>这个类的完全限定类名: org.apache.flume.sink.solr.morphline.BlobDeserializer$Builder</td>
+</tr>
+<tr>
+<td>deserializer.maxBlobLength</td>
+<td>100000000</td>
+<td>针对给定请求读取和缓冲的最大字节数</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h4 id="Taildir-Source"><a href="#Taildir-Source" class="headerlink" title="Taildir Source"></a>Taildir Source</h4><blockquote>
+<p><strong>注意 此源作为预览功能提供。 它不适用于 Windows。</strong></p>
+</blockquote>
+<p>监视指定的文件,在检测到每份文件中追加了新行时,几乎实时地对其进行尾部跟踪。如果新行正在被写入,此source将重试读取以等待写入完成。</p>
+<p>此source是可靠的,即使尾部文件的轮换也不会丢失数据。它会定期以JSON格式将每个文件的最后读取位置写入指定的位置文件。如果Flume停止或由于某些原因关闭,它可以从现有位置文件中写入的位置重新开始尾部跟踪。</p>
+<p>在其他用例中,此source还可以使用给定的位置文件从每个文件的任意位置开始尾部跟踪。如果在指定路径上没有位置文件,它将默认从每个文件的第一行开始跟踪。</p>
+<p>文件将按修改时间顺序进行消费。修改时间最早的文件将首先被消费。</p>
+<p>此source不会重命名、删除或修改被跟踪的文件。当前此source不支持尾部跟踪二进制文件。它逐行读取文本文件。</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>Property Name</th>
+<th>Default</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>channels</strong></td>
+<td>–</td>
+<td></td>
+</tr>
+<tr>
+<td><strong>type</strong></td>
+<td>–</td>
+<td>组件类型名称,需要为TAILDIR</td>
+</tr>
+<tr>
+<td><strong>filegroups</strong></td>
+<td>–</td>
+<td>空格分隔的文件组列表。每个文件组表示一组要tailed的文件</td>
+</tr>
+<tr>
+<td><strong>filegroups.\<filegroupName></strong></td>
+<td>–</td>
+<td>文件组的绝对路径。文件名只能使用正则表达式(而不是文件系统通配符)</td>
+</tr>
+<tr>
+<td>positionFile</td>
+<td>~/.flume/taildir_position.json</td>
+<td>记录每个tailed文件inode、路径和最后位置的JSON格式文件</td>
+</tr>
+<tr>
+<td>headers.\<filegroupName>.\<headerKey></td>
+<td>–</td>
+<td>设置具有header key的header值。每个file group可以指定多个header</td>
+</tr>
+<tr>
+<td>byteOffsetHeader</td>
+<td>false</td>
+<td>是否在名为“byteoffset”的标头中添加tailed行的字节偏移量</td>
+</tr>
+<tr>
+<td>skipToEnd</td>
+<td>false</td>
+<td>如果位置文件中没有写入,是否跳过到EOF的位置</td>
+</tr>
+<tr>
+<td>idleTimeout</td>
+<td>120000</td>
+<td>关闭不活动文件的时间(毫秒)。如果该文件有新行追加,源会自动重新打开</td>
+</tr>
+<tr>
+<td>writePosInterval</td>
+<td>3000</td>
+<td>写入每个文件最后位置到位置文件的时间间隔(毫秒)</td>
+</tr>
+<tr>
+<td>batchSize</td>
+<td>100</td>
+<td>每次读取和发送到channel的最大行数。默认通常就好</td>
+</tr>
+<tr>
+<td>maxBatchCount</td>
+<td>Long.MAX_VALUE</td>
+<td>从同一文件中连续读取的批处理数的控制。如果源正在跟踪多个文件,并且其中一个以更快的速率写入,则可能会阻止处理其他文件,因为繁忙文件的读取将无限循环。在这种情况下,降低此值</td>
+</tr>
+<tr>
+<td>backoffSleepIncrement</td>
+<td>1000</td>
+<td>在上一次尝试未找到新数据时,重试轮询新数据之前的延迟递增时间</td>
+</tr>
+<tr>
+<td>maxBackoffSleep</td>
+<td>5000</td>
+<td>在上一次尝试未找到新数据时,每次重试轮询新数据之间的最大延迟时间</td>
+</tr>
+<tr>
+<td>cachePatternMatching</td>
+<td>true</td>
+<td>列出目录和应用文件名正则表达式匹配可能非常耗时,如果目录中包含数千个文件。缓存匹配文件的列表可以提高性能。消费文件的顺序也会被缓存。要求文件系统以至少1秒的粒度跟踪修改时间</td>
+</tr>
+<tr>
+<td>fileHeader</td>
+<td>false</td>
+<td>是否添加一个标头存储完整文件名</td>
+</tr>
+<tr>
+<td>fileHeaderKey</td>
+<td>file</td>
+<td>追加绝对文件名到事件标头时使用的标头键</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>名为 a1 的代理示例：</p>
+<figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs properties"><span class="hljs-meta">a1.sources</span> = <span class="hljs-string">r1</span><br><span class="hljs-meta">a1.channels</span> = <span class="hljs-string">c1</span><br><span class="hljs-meta">a1.sources.r1.type</span> = <span class="hljs-string">TAILDIR</span><br><span class="hljs-meta">a1.sources.r1.channels</span> = <span class="hljs-string">c1</span><br><span class="hljs-meta">a1.sources.r1.positionFile</span> = <span class="hljs-string">/var/log/flume/taildir_position.json</span><br><span class="hljs-meta">a1.sources.r1.filegroups</span> = <span class="hljs-string">f1 f2</span><br><span class="hljs-meta">a1.sources.r1.filegroups.f1</span> = <span class="hljs-string">/var/log/test1/example.log</span><br><span class="hljs-meta">a1.sources.r1.headers.f1.headerKey1</span> = <span class="hljs-string">value1</span><br><span class="hljs-meta">a1.sources.r1.filegroups.f2</span> = <span class="hljs-string">/var/log/test2/.*log.*</span><br><span class="hljs-meta">a1.sources.r1.headers.f2.headerKey1</span> = <span class="hljs-string">value2</span><br><span class="hljs-meta">a1.sources.r1.headers.f2.headerKey2</span> = <span class="hljs-string">value2-2</span><br><span class="hljs-meta">a1.sources.r1.fileHeader</span> = <span class="hljs-string">true</span><br><span class="hljs-meta">a1.sources.ri.maxBatchCount</span> = <span class="hljs-string">1000</span><br></code></pre></td></tr></table></figure>
+<h4 id="Twitter-1-firehose-Source-experimental"><a href="#Twitter-1-firehose-Source-experimental" class="headerlink" title="Twitter 1% firehose Source (experimental)"></a>Twitter 1% firehose Source (experimental)</h4><blockquote>
+<p><strong>警告: 此源是高度实验性的，可能会在 Flume 的次要版本之间发生变化。 使用风险自负。</strong></p>
+</blockquote>
+<p>通过 Streaming API 连接到 1% 样本 twitter firehose 的实验源，持续下载推文，将其转换为 Avro 格式并将 Avro 事件发送到下游 Flume 接收器。 需要 Twitter 开发者帐户的消费者和访问令牌和秘密。 必需的属性以粗体显示。</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>Property Name</th>
+<th>Default</th>
+<th>Description</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>channels</strong></td>
+<td>–</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><strong>type</strong></td>
+<td>–</td>
+<td>组件类型名称，需要是 <code>org.apache.flume.source.twitter.TwitterSource</code></td>
+<td></td>
+</tr>
+<tr>
+<td><strong>consumerKey</strong></td>
+<td>–</td>
+<td>OAuth consumer key</td>
+<td></td>
+</tr>
+<tr>
+<td><strong>consumerSecret</strong></td>
+<td>–</td>
+<td>OAuth consumer secret</td>
+<td></td>
+</tr>
+<tr>
+<td><strong>accessToken</strong></td>
+<td>–</td>
+<td>OAuth access token</td>
+<td></td>
+</tr>
+<tr>
+<td><strong>accessTokenSecret</strong></td>
+<td>–</td>
+<td>OAuth token secret</td>
+<td></td>
+</tr>
+<tr>
+<td>maxBatchSize</td>
+<td>1000</td>
+<td>单个批次中放入的 Twitter 消息的最大数量</td>
+<td></td>
+</tr>
+<tr>
+<td>maxBatchDurationMillis</td>
+<td>1000</td>
+<td>关闭批次之前等待的最大毫秒数</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>名为 a1 的代理示例：<br><figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs properties"><span class="hljs-meta">a1.sources</span> = <span class="hljs-string">r1</span><br><span class="hljs-meta">a1.channels</span> = <span class="hljs-string">c1</span><br><span class="hljs-meta">a1.sources.r1.type</span> = <span class="hljs-string">org.apache.flume.source.twitter.TwitterSource</span><br><span class="hljs-meta">a1.sources.r1.channels</span> = <span class="hljs-string">c1</span><br><span class="hljs-meta">a1.sources.r1.consumerKey</span> = <span class="hljs-string">YOUR_TWITTER_CONSUMER_KEY</span><br><span class="hljs-meta">a1.sources.r1.consumerSecret</span> = <span class="hljs-string">YOUR_TWITTER_CONSUMER_SECRET</span><br><span class="hljs-meta">a1.sources.r1.accessToken</span> = <span class="hljs-string">YOUR_TWITTER_ACCESS_TOKEN</span><br><span class="hljs-meta">a1.sources.r1.accessTokenSecret</span> = <span class="hljs-string">YOUR_TWITTER_ACCESS_TOKEN_SECRET</span><br><span class="hljs-meta">a1.sources.r1.maxBatchSize</span> = <span class="hljs-string">10</span><br><span class="hljs-meta">a1.sources.r1.maxBatchDurationMillis</span> = <span class="hljs-string">200</span><br><br></code></pre></td></tr></table></figure></p>
+<h4 id="Kafka-Source"><a href="#Kafka-Source" class="headerlink" title="Kafka Source"></a>Kafka Source</h4><p>Kafka Source 是一个 Apache Kafka 消费者，它从 Kafka 主题读取消息。 如果您有多个 Kafka Source 正在运行，您可以使用相同的 Consumer Group 配置它们，这样每个源都会读取一组唯一的主题分区。 目前支持 Kafka 服务器版本 0.10.1.0 或更高版本。 测试已完成至 2.0.1，这是发布时的最高可用版本。</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>属性名称</th>
+<th>默认值</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>channels</strong></td>
+<td>–</td>
+<td></td>
+</tr>
+<tr>
+<td><strong>type</strong></td>
+<td>–</td>
+<td>组件类型名称,需要为 org.apache.flume.source.kafka.KafkaSource</td>
+</tr>
+<tr>
+<td><strong>kafka.bootstrap.servers</strong></td>
+<td>–</td>
+<td>源使用的Kafka集群中代理的列表</td>
+</tr>
+<tr>
+<td>kafka.consumer.group.id</td>
+<td>flume</td>
+<td>消费者组的唯一标识。在多个源或代理中设置相同ID表示它们属于同一个消费者组</td>
+</tr>
+<tr>
+<td><strong>kafka.topics</strong></td>
+<td>–</td>
+<td>Kafka消费者将读取消息的主题列表,以逗号分隔。</td>
+</tr>
+<tr>
+<td><strong>kafka.topics.regex</strong></td>
+<td>–</td>
+<td>定义源订阅的主题集的正则表达式。此属性的优先级高于kafka.topics,如果存在则会覆盖kafka.topics。</td>
+</tr>
+<tr>
+<td>batchSize</td>
+<td>1000</td>
+<td>一次批量写到Channel中的消息的最大数量</td>
+</tr>
+<tr>
+<td>batchDurationMillis</td>
+<td>1000</td>
+<td>在批处理被写入Channel之前的最大时间(毫秒)。无论大小还是时间达到的先决条件,批处理都将被写入。</td>
+</tr>
+<tr>
+<td>backoffSleepIncrement</td>
+<td>1000</td>
+<td>当Kafka主题为空时会触发的初始和增量等待时间。等待时间会减少对空Kafka主题的激进ping。对于摄取用例,1秒是理想的,但对于带拦截器的低延迟操作,可能需要较低的值。</td>
+</tr>
+<tr>
+<td>maxBackoffSleep</td>
+<td>5000</td>
+<td>当Kafka主题为空时触发的最大等待时间。对于摄取用例,5秒是理想的,但对于带拦截器的低延迟操作,可能需要较低的值。</td>
+</tr>
+<tr>
+<td>useFlumeEventFormat</td>
+<td>false</td>
+<td>默认情况下,事件作为字节直接从Kafka主题获取到事件体中。设置为true可将事件读取为Flume Avro二进制格式。与KafkaSink上的相同属性结合使用,或与Kafka Channel上的parseAsFlumeEvent属性结合使用,这将保留在生产端发送的任何Flume标头。</td>
+</tr>
+<tr>
+<td>setTopicHeader</td>
+<td>true</td>
+<td>设置为true时,会将检索到的消息的主题存储到标头中,由topicHeader属性定义。</td>
+</tr>
+<tr>
+<td>topicHeader</td>
+<td>topic</td>
+<td>如果设置了setTopicHeader属性,则定义用于存储接收消息的主题名称的标头的名称。 如果与Kafka Sink topicHeader属性组合,应小心以避免消息被发送回同一主题造成循环。</td>
+</tr>
+<tr>
+<td>timestampHeader</td>
+<td>–</td>
+<td>如果存在,Kafka消息时间戳值将被复制到指定的Flume标头名称。</td>
+</tr>
+<tr>
+<td>header.NAME</td>
+<td>–</td>
+<td>用于标识哪些标头应该从Kafka消息添加为Flume标头。NAME的值应与Flume标头名称匹配,值应为要用作Kafka标头名称的标头的名称。</td>
+</tr>
+<tr>
+<td>kafka.consumer.security.protocol</td>
+<td>PLAINTEXT</td>
+<td>如果使用某种安全级别写入Kafka,请设置为SASL_PLAINTEXT、SASL_SSL或SSL。有关安全设置的其他信息,请参见下文。</td>
+</tr>
+<tr>
+<td><em>更多消费者安全属性</em></td>
+<td></td>
+<td>如果使用SASL_PLAINTEXT、SASL_SSL或SSL,请参考 <a href="[https://kafka.apache.org/documentation.html#security](https://kafka.apache.org/documentation.html#security">Kafka security</a>) 以获取在消费者上需要设置的其他属性。</td>
+</tr>
+<tr>
+<td>其他Kafka消费者属性</td>
+<td>–</td>
+<td>这些属性用于配置Kafka消费者。支持的任何消费者属性 都可以使用。唯一的要求是使用前缀 kafka.consumer 为属性名称添加前缀。 例如:kafka.consumer.auto.offset.reset</td>
+</tr>
+</tbody>
+</table>
+</div>
+<blockquote>
+<p>注意： Kafka Source 覆盖两个 Kafka Consumer 参数：auto.commit.enable 由源设置为“false”，并且每个批次都会提交。 Kafka源保证至少一次消息检索策略。 源启动时可能会出现重复项。 Kafka Source 还提供了 key.deserializer(org.apache.kafka.common.serialization.StringSerializer) 和 value.deserializer(org.apache.kafka.common.serialization.ByteArraySerializer) 的默认值。 不建议修改这些参数。</p>
+</blockquote>
+<p>已弃用的属性</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>Property Name</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>topic</td>
+<td>–</td>
+<td>使用 kafka.topics</td>
+</tr>
+<tr>
+<td>groupId</td>
+<td>flume</td>
+<td>使用 kafka.consumer.group.id</td>
+</tr>
+<tr>
+<td>zookeeperConnect</td>
+<td>–</td>
+<td>自 0.9.x 起，Kafka 消费者客户端不再支持。 使用kafka.bootstrap.servers与Kafka集群建立连接</td>
+</tr>
+<tr>
+<td>migrateZookeeperOffsets</td>
+<td>true</td>
+<td>当没有找到Kafka存储的偏移量时，在Zookeeper中查找偏移量并将其提交给Kafka。 为了支持从旧版本 Flume 无缝迁移 Kafka 客户端，这应该是正确的。 迁移后，可以将其设置为 false，但通常不需要这样做。 如果没有找到 Zookeeper 偏移量，Kafka 配置 kafka.consumer.auto.offset.reset 定义如何处理偏移量。 有关详细信息，请查看 <a target="_blank" rel="noopener" href="https://kafka.apache.org/documentation.html#consumerconfigs">Kafka 文档</a><br>Dāng méiyǒu zhǎodào Kafka cúnchú de piān yí liàng shí, zài Zookeeper zhōng cházhǎo pi</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>通过逗号分隔的主题列表进行主题订阅的示例<br><figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs properties"><span class="hljs-meta">tier1.sources.source1.type</span> = <span class="hljs-string">org.apache.flume.source.kafka.KafkaSource</span><br><span class="hljs-meta">tier1.sources.source1.channels</span> = <span class="hljs-string">channel1</span><br><span class="hljs-meta">tier1.sources.source1.batchSize</span> = <span class="hljs-string">5000</span><br><span class="hljs-meta">tier1.sources.source1.batchDurationMillis</span> = <span class="hljs-string">2000</span><br><span class="hljs-meta">tier1.sources.source1.kafka.bootstrap.servers</span> = <span class="hljs-string">localhost:9092</span><br><span class="hljs-meta">tier1.sources.source1.kafka.topics</span> = <span class="hljs-string">test1, test2</span><br><span class="hljs-meta">tier1.sources.source1.kafka.consumer.group.id</span> = <span class="hljs-string">custom.g.id</span><br></code></pre></td></tr></table></figure></p>
+<p>通过正则表达式订阅主题的示例</p>
+<figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs properties"><span class="hljs-meta">tier1.sources.source1.type</span> = <span class="hljs-string">org.apache.flume.source.kafka.KafkaSource</span><br><span class="hljs-meta">tier1.sources.source1.channels</span> = <span class="hljs-string">channel1</span><br><span class="hljs-meta">tier1.sources.source1.kafka.bootstrap.servers</span> = <span class="hljs-string">localhost:9092</span><br><span class="hljs-meta">tier1.sources.source1.kafka.topics.regex</span> = <span class="hljs-string">^topic[0-9]$</span><br><span class="hljs-comment"># the default kafka.consumer.group.id=flume is used</span><br></code></pre></td></tr></table></figure>
+<p><strong>Security and Kafka Source:</strong></p>
+<p>Flume 和 Kafka 之间的通信通道支持安全身份验证和数据加密。 对于安全身份验证，可以从 Kafka 版本 0.9.0 开始使用 SASL/GSSAPI (Kerberos V5) 或 SSL（即使参数名为 SSL，但实际协议是 TLS 实现）。</p>
+<p>目前,数据加密仅由SSL/TLS提供。<br>将kafka.consumer.security.protocol设置为以下任何值意味着:</p>
+<ul>
+<li><strong>SASL_PLAINTEXT</strong> - Kerberos或明文认证,没有数据加密</li>
+<li><strong>SASL_SSL</strong> - Kerberos或明文认证,数据加密</li>
+<li><strong>SSL</strong> - 基于TLS的加密,可选认证。</li>
+</ul>
+<blockquote>
+<p><strong>警告 启用 SSL 时，性能会下降，其幅度取决于 CPU 类型和 JVM 实现。 参考：Kafka安全概述和跟踪此问题的jira：<a target="_blank" rel="noopener" href="https://issues.apache.org/jira/browse/KAFKA-2561">KAFKA-2561</a></strong></p>
+</blockquote>
+<p><strong>TLS and Kafka Source:</strong></p>
+<p>请阅读配置 <a target="_blank" rel="noopener" href="https://kafka.apache.org/documentation/#security_configclients">Kafka 客户端 SSL 中描述的步骤</a>，了解用于微调的其他配置设置，例如以下任何一项：安全提供程序、密码套件、启用的协议、信任库或密钥库类型。</p>
+<p>服务器端身份验证和数据加密的示例配置。<br><figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs properties"><span class="hljs-meta">a1.sources.source1.type</span> = <span class="hljs-string">org.apache.flume.source.kafka.KafkaSource</span><br><span class="hljs-meta">a1.sources.source1.kafka.bootstrap.servers</span> = <span class="hljs-string">kafka-1:9093,kafka-2:9093,kafka-3:9093</span><br><span class="hljs-meta">a1.sources.source1.kafka.topics</span> = <span class="hljs-string">mytopic</span><br><span class="hljs-meta">a1.sources.source1.kafka.consumer.group.id</span> = <span class="hljs-string">flume-consumer</span><br><span class="hljs-meta">a1.sources.source1.kafka.consumer.security.protocol</span> = <span class="hljs-string">SSL</span><br><span class="hljs-comment"># optional, the global truststore can be used alternatively</span><br><span class="hljs-meta">a1.sources.source1.kafka.consumer.ssl.truststore.location</span>=<span class="hljs-string">/path/to/truststore.jks</span><br><span class="hljs-meta">a1.sources.source1.kafka.consumer.ssl.truststore.password</span>=<span class="hljs-string">&lt;password to access the truststore&gt;</span><br></code></pre></td></tr></table></figure></p>
+<p>此处指定信任库是可选的，可以使用全局信任库。 有关全局 SSL 设置的更多详细信息，请参阅 SSL/TLS 支持部分。</p>
+<p>注意：默认情况下，未定义属性 ssl.endpoint.identification.algorithm，因此不执行主机名验证。 为了启用主机名验证，请设置以下属性<br><figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs properties"><span class="hljs-meta">a1.sources.source1.kafka.consumer.ssl.endpoint.identification.algorithm</span>=<span class="hljs-string">HTTPS</span><br></code></pre></td></tr></table></figure></p>
+<p>启用后，客户端将根据以下两个字段之一验证服务器的完全限定域名 (FQDN)：</p>
+<ul>
+<li>通用名称（中文） <a target="_blank" rel="noopener" href="https://tools.ietf.org/html/rfc6125#section-2.3">https://tools.ietf.org/html/rfc6125#section-2.3</a></li>
+<li>主题备用名称 (SAN) <a target="_blank" rel="noopener" href="https://tools.ietf.org/html/rfc5280#section-4.2.1.6">https://tools.ietf.org/html/rfc5280#section-4.2.1.6</a><br>如果还需要客户端身份验证，则还需要将以下内容添加到 Flume 代理配置中，或者可以使用全局 SSL 设置（请参阅 SSL/TLS 支持部分 [[flume User Guide(1.11)#^cf1b41|ssl/tls]]）。 每个 Flume 代理都必须拥有其客户端证书，该证书必须受到 Kafka 代理的单独信任或通过其签名链信任。 常见的示例是由单个根 CA 签署每个客户端证书，而该根 CA 又受到 Kafka 代理的信任。</li>
+</ul>
+<figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs properties"><span class="hljs-comment"># optional, the global keystore can be used alternatively</span><br><span class="hljs-meta">a1.sources.source1.kafka.consumer.ssl.keystore.location</span>=<span class="hljs-string">/path/to/client.keystore.jks</span><br><span class="hljs-meta">a1.sources.source1.kafka.consumer.ssl.keystore.password</span>=<span class="hljs-string">&lt;password to access the keystore&gt;</span><br></code></pre></td></tr></table></figure>
+<p>如果密钥库和密钥使用不同的密码保护，则 ssl.key.password 属性将为两个消费者密钥库提供所需的附加秘密：<br><figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs properties"><span class="hljs-meta">a1.sources.source1.kafka.consumer.ssl.key.password</span>=<span class="hljs-string">&lt;password to access the key&gt;</span><br></code></pre></td></tr></table></figure></p>
+<p><strong>Kerberos and Kafka Source:</strong></p>
 
             </div>
             <hr>
