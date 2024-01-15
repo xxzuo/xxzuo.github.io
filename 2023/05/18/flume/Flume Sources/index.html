@@ -190,7 +190,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      7.9k 字
+      11.5k 字
     </span>
   
 
@@ -200,7 +200,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      94
+      137
        分钟
     </span>
   
@@ -1258,6 +1258,522 @@
 <figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs properties"><span class="hljs-comment"># optional, the global keystore can be used alternatively</span><br><span class="hljs-meta">a1.sources.source1.kafka.consumer.ssl.keystore.location</span>=<span class="hljs-string">/path/to/client.keystore.jks</span><br><span class="hljs-meta">a1.sources.source1.kafka.consumer.ssl.keystore.password</span>=<span class="hljs-string">&lt;password to access the keystore&gt;</span><br></code></pre></td></tr></table></figure>
 <p>如果密钥库和密钥使用不同的密码保护，则 ssl.key.password 属性将为两个消费者密钥库提供所需的附加秘密：<br><figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs properties"><span class="hljs-meta">a1.sources.source1.kafka.consumer.ssl.key.password</span>=<span class="hljs-string">&lt;password to access the key&gt;</span><br></code></pre></td></tr></table></figure></p>
 <p><strong>Kerberos and Kafka Source:</strong></p>
+<p>要将 Kafka Source 与受 Kerberos 保护的 Kafka 集群一起使用，请为消费者设置上面提到的 Consumer.security.protocol 属性。 与 Kafka 代理一起使用的 Kerberos 密钥表和主体在 JAAS 文件的“KafkaClient”部分中指定。 “客户端”部分描述了 Zookeeper 连接（如果需要）。 有关 JAAS 文件内容的信息，请参阅 <a target="_blank" rel="noopener" href="https://kafka.apache.org/documentation.html#security_sasl_clientconfig">Kafka 文档</a>。 该 JAAS 文件的位置以及可选的系统范围 kerberos 配置可以通过 Flume-env.sh 中的 JAVA_OPTS 指定：<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs shell">JAVA_OPTS=&quot;$JAVA_OPTS -Djava.security.krb5.conf=/path/to/krb5.conf&quot;<br>JAVA_OPTS=&quot;$JAVA_OPTS -Djava.security.auth.login.config=/path/to/flume_jaas.conf&quot;<br></code></pre></td></tr></table></figure></p>
+<p>使用 SASL_PLAINTEXT 的安全配置示例：</p>
+<figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs properties"><span class="hljs-meta">a1.sources.source1.type</span> = <span class="hljs-string">org.apache.flume.source.kafka.KafkaSource</span><br><span class="hljs-meta">a1.sources.source1.kafka.bootstrap.servers</span> = <span class="hljs-string">kafka-1:9093,kafka-2:9093,kafka-3:9093</span><br><span class="hljs-meta">a1.sources.source1.kafka.topics</span> = <span class="hljs-string">mytopic</span><br><span class="hljs-meta">a1.sources.source1.kafka.consumer.group.id</span> = <span class="hljs-string">flume-consumer</span><br><span class="hljs-meta">a1.sources.source1.kafka.consumer.security.protocol</span> = <span class="hljs-string">SASL_PLAINTEXT</span><br><span class="hljs-meta">a1.sources.source1.kafka.consumer.sasl.mechanism</span> = <span class="hljs-string">GSSAPI</span><br><span class="hljs-meta">a1.sources.source1.kafka.consumer.sasl.kerberos.service.name</span> = <span class="hljs-string">kafka</span><br></code></pre></td></tr></table></figure>
+<p>使用 SASL_SSL 的安全配置示例：<br><figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs properties"><span class="hljs-meta">a1.sources.source1.type</span> = <span class="hljs-string">org.apache.flume.source.kafka.KafkaSource</span><br><span class="hljs-meta">a1.sources.source1.kafka.bootstrap.servers</span> = <span class="hljs-string">kafka-1:9093,kafka-2:9093,kafka-3:9093</span><br><span class="hljs-meta">a1.sources.source1.kafka.topics</span> = <span class="hljs-string">mytopic</span><br><span class="hljs-meta">a1.sources.source1.kafka.consumer.group.id</span> = <span class="hljs-string">flume-consumer</span><br><span class="hljs-meta">a1.sources.source1.kafka.consumer.security.protocol</span> = <span class="hljs-string">SASL_SSL</span><br><span class="hljs-meta">a1.sources.source1.kafka.consumer.sasl.mechanism</span> = <span class="hljs-string">GSSAPI</span><br><span class="hljs-meta">a1.sources.source1.kafka.consumer.sasl.kerberos.service.name</span> = <span class="hljs-string">kafka</span><br><span class="hljs-comment"># optional, the global truststore can be used alternatively</span><br><span class="hljs-meta">a1.sources.source1.kafka.consumer.ssl.truststore.location</span>=<span class="hljs-string">/path/to/truststore.jks</span><br><span class="hljs-meta">a1.sources.source1.kafka.consumer.ssl.truststore.password</span>=<span class="hljs-string">&lt;password to access the truststore&gt;</span><br></code></pre></td></tr></table></figure></p>
+<p>示例 JAAS 文件。 有关其内容的参考，请参阅 <a target="_blank" rel="noopener" href="https://kafka.apache.org/documentation/#security_sasl_clientconfig">SASL 配置的 Kafka 文档</a>中所需身份验证机制 (GSSAPI/PLAIN) 的客户端配置部分。 由于Kafka Source也可能连接到Zookeeper进行偏移迁移，因此本示例中还添加了“Client”部分。 除非您需要偏移迁移，或者您需要此部分用于其他安全组件，否则不需要此部分。 另请确保 Flume 进程的操作系统用户具有 jaas 和 keytab 文件的读取权限。</p>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs routeros">Client &#123;<br>  com.sun.security.auth.module.Krb5LoginModule required<br>  <span class="hljs-attribute">useKeyTab</span>=<span class="hljs-literal">true</span><br>  <span class="hljs-attribute">storeKey</span>=<span class="hljs-literal">true</span><br>  <span class="hljs-attribute">keyTab</span>=<span class="hljs-string">&quot;/path/to/keytabs/flume.keytab&quot;</span><br>  <span class="hljs-attribute">principal</span>=<span class="hljs-string">&quot;flume/flumehost1.example.com@YOURKERBEROSREALM&quot;</span>;<br>&#125;;<br><br>KafkaClient &#123;<br>  com.sun.security.auth.module.Krb5LoginModule required<br>  <span class="hljs-attribute">useKeyTab</span>=<span class="hljs-literal">true</span><br>  <span class="hljs-attribute">storeKey</span>=<span class="hljs-literal">true</span><br>  <span class="hljs-attribute">keyTab</span>=<span class="hljs-string">&quot;/path/to/keytabs/flume.keytab&quot;</span><br>  <span class="hljs-attribute">principal</span>=<span class="hljs-string">&quot;flume/flumehost1.example.com@YOURKERBEROSREALM&quot;</span>;<br>&#125;;<br></code></pre></td></tr></table></figure>
+<h4 id="NetCat-TCP-Source"><a href="#NetCat-TCP-Source" class="headerlink" title="NetCat TCP Source"></a>NetCat TCP Source</h4><p>类似 netcat 的源，监听给定端口并将每一行文本转换为一个事件。 其作用类似于<br><code>nc -k -l [host] [port]</code>。<br>换句话说，它打开指定的端口并监听数据。 期望提供的数据是换行分隔的文本。 每行文本都会转化为 Flume 事件并通过连接的通道发送。<br>必需的属性以粗体显示</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>属性名称</th>
+<th>默认值</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>channels</strong></td>
+<td>–</td>
+<td></td>
+</tr>
+<tr>
+<td><strong>type</strong></td>
+<td>–</td>
+<td>组件类型名称,需要为 netcat</td>
+</tr>
+<tr>
+<td><strong>bind</strong></td>
+<td>–</td>
+<td>要绑定的主机名或 IP 地址</td>
+</tr>
+<tr>
+<td><strong>port</strong></td>
+<td>–</td>
+<td>要绑定的端口号</td>
+</tr>
+<tr>
+<td>max-line-length</td>
+<td>512</td>
+<td>每条事件体的最大行长度(以字节为单位)</td>
+</tr>
+<tr>
+<td>ack-every-event</td>
+<td>true</td>
+<td>对收到的每条事件响应“OK”</td>
+</tr>
+<tr>
+<td>selector.type</td>
+<td>replicating</td>
+<td>replicating 或 multiplexing</td>
+</tr>
+<tr>
+<td>selector.*</td>
+<td></td>
+<td>依赖于 selector.type 值</td>
+</tr>
+<tr>
+<td>interceptors</td>
+<td>–</td>
+<td>空格分隔的拦截器列表</td>
+</tr>
+<tr>
+<td>interceptors.*</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>名为 a1 的代理示例：</p>
+<figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs properties"><span class="hljs-meta">a1.sources</span> = <span class="hljs-string">r1</span><br><span class="hljs-meta">a1.channels</span> = <span class="hljs-string">c1</span><br><span class="hljs-meta">a1.sources.r1.type</span> = <span class="hljs-string">netcat</span><br><span class="hljs-meta">a1.sources.r1.bind</span> = <span class="hljs-string">0.0.0.0</span><br><span class="hljs-meta">a1.sources.r1.port</span> = <span class="hljs-string">6666</span><br><span class="hljs-meta">a1.sources.r1.channels</span> = <span class="hljs-string">c1</span><br></code></pre></td></tr></table></figure>
+<h4 id="NetCat-UDP-Source"><a href="#NetCat-UDP-Source" class="headerlink" title="NetCat UDP Source"></a>NetCat UDP Source</h4><p>根据原始 Netcat (TCP) 源，该源侦听给定端口并将每行文本转换为事件并通过连接的通道发送。 行为就像 <code>nc -u -k -l [host] [port]</code><br>必需的属性以粗体显示</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>属性名称</th>
+<th>默认值</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>channels</strong></td>
+<td>–</td>
+<td></td>
+</tr>
+<tr>
+<td><strong>type</strong></td>
+<td>–</td>
+<td>组件类型名称,需要为 <code>netcatudp</code></td>
+</tr>
+<tr>
+<td><strong>bind</strong></td>
+<td>–</td>
+<td>要绑定的主机名或 IP 地址</td>
+</tr>
+<tr>
+<td><strong>port</strong></td>
+<td>–</td>
+<td>要绑定的端口号</td>
+</tr>
+<tr>
+<td>remoteAddressHeader</td>
+<td>–</td>
+<td></td>
+</tr>
+<tr>
+<td>selector.type</td>
+<td>replicating</td>
+<td>replicating 或 multiplexing</td>
+</tr>
+<tr>
+<td>selector.*</td>
+<td></td>
+<td>依赖于 selector.type 值</td>
+</tr>
+<tr>
+<td>interceptors</td>
+<td>–</td>
+<td>空格分隔的拦截器列表</td>
+</tr>
+<tr>
+<td>interceptors.*</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>名为 a1 的代理示例：<br><figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs properties"><span class="hljs-meta">a1.sources</span> = <span class="hljs-string">r1</span><br><span class="hljs-meta">a1.channels</span> = <span class="hljs-string">c1</span><br><span class="hljs-meta">a1.sources.r1.type</span> = <span class="hljs-string">netcatudp</span><br><span class="hljs-meta">a1.sources.r1.bind</span> = <span class="hljs-string">0.0.0.0</span><br><span class="hljs-meta">a1.sources.r1.port</span> = <span class="hljs-string">6666</span><br><span class="hljs-meta">a1.sources.r1.channels</span> = <span class="hljs-string">c1</span><br></code></pre></td></tr></table></figure></p>
+<h4 id="Sequence-Generator-Source"><a href="#Sequence-Generator-Source" class="headerlink" title="Sequence Generator Source"></a>Sequence Generator Source</h4><p>一个简单的序列生成器，它使用从 0 开始、以 1 递增并在totalEvents 处停止的计数器连续生成事件。 当无法将事件发送到通道时重试。 主要用于测试。 在重试期间，它会保持重试消息的正文与之前相同，以便在目的地进行重复数据删除之后，唯一事件的数量预计等于指定的totalEvents。 必需的属性以粗体显示。</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>属性名称</th>
+<th>默认值</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>channels</strong></td>
+<td>–</td>
+<td></td>
+</tr>
+<tr>
+<td><strong>type</strong></td>
+<td>–</td>
+<td>组件类型名称,需要为 seq</td>
+</tr>
+<tr>
+<td>selector.type</td>
+<td></td>
+<td>replicating 或 multiplexing</td>
+</tr>
+<tr>
+<td>selector.*</td>
+<td>replicating</td>
+<td>取决于 selector.type 值</td>
+</tr>
+<tr>
+<td>interceptors</td>
+<td>–</td>
+<td>空格分隔的拦截器列表</td>
+</tr>
+<tr>
+<td>interceptors.*</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>batchSize</td>
+<td>1</td>
+<td>每次请求循环尝试处理的事件数。</td>
+</tr>
+<tr>
+<td>totalEvents</td>
+<td>Long.MAX_VALUE</td>
+<td>源发送的唯一事件数。</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>名为 a1 的代理示例：<br><figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs properties"><span class="hljs-meta">a1.sources</span> = <span class="hljs-string">r1</span><br><span class="hljs-meta">a1.channels</span> = <span class="hljs-string">c1</span><br><span class="hljs-meta">a1.sources.r1.type</span> = <span class="hljs-string">seq</span><br><span class="hljs-meta">a1.sources.r1.channels</span> = <span class="hljs-string">c1</span><br></code></pre></td></tr></table></figure></p>
+<h4 id="Syslog-Sources"><a href="#Syslog-Sources" class="headerlink" title="Syslog Sources"></a>Syslog Sources</h4><p>读取系统日志数据并生成 Flume 事件。 UDP 源将整个消息视为单个事件。 TCP 源为每个由换行符 (‘n’) 分隔的字符串创建一个新事件。<br>必需的属性以粗体显示。</p>
+<h5 id="Syslog-TCP-Source"><a href="#Syslog-TCP-Source" class="headerlink" title="Syslog TCP Source"></a>Syslog TCP Source</h5><p>原始的、经过验证的 syslog TCP 源。</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>属性名称</th>
+<th>默认值</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>channels</strong></td>
+<td>–</td>
+<td></td>
+</tr>
+<tr>
+<td><strong>type</strong></td>
+<td>–</td>
+<td>组件类型名称,需要为 syslogtcp</td>
+</tr>
+<tr>
+<td><strong>host</strong></td>
+<td>–</td>
+<td>要绑定的主机名或 IP 地址</td>
+</tr>
+<tr>
+<td><strong>port</strong></td>
+<td>–</td>
+<td>要绑定的端口号</td>
+</tr>
+<tr>
+<td>eventSize</td>
+<td>2500</td>
+<td>单个事件行的最大大小(以字节为单位)</td>
+</tr>
+<tr>
+<td>keepFields</td>
+<td>none</td>
+<td>将此设置为“all”将在事件正文中保留优先级、时间戳和主机名。也允许以空格分隔的字段列表。当前,可以包含以下字段:priority、version、timestamp、hostname。值“true”和“false”已弃用,改用“all”和“none”。</td>
+</tr>
+<tr>
+<td>clientIPHeader</td>
+<td>–</td>
+<td>如果指定,客户端的 IP 地址将使用此处指定的标头名称存储在每个事件的标头中。这允许拦截器和通道选择器根据客户端的 IP 地址自定义路由逻辑。不要在这里使用标准的 Syslog 标头名称(如 <em>host</em>),因为事件标头在那种情况下会被覆盖。</td>
+</tr>
+<tr>
+<td>clientHostnameHeader</td>
+<td>–</td>
+<td>如果指定,客户端的主机名将使用此处指定的标头名称存储在每个事件的标头中。这允许拦截器和通道选择器根据客户端的主机名自定义路由逻辑。检索主机名可能涉及名称服务反向查找,这可能会影响性能。不要在这里使用标准的 Syslog 标头名称(如 <em>host</em>),因为事件标头在那种情况下会被覆盖。</td>
+</tr>
+<tr>
+<td>selector.type</td>
+<td></td>
+<td>replicating 或 multiplexing</td>
+</tr>
+<tr>
+<td>selector.*</td>
+<td>replicating</td>
+<td>取决于 selector.type 值</td>
+</tr>
+<tr>
+<td>interceptors</td>
+<td>–</td>
+<td>空格分隔的拦截器列表</td>
+</tr>
+<tr>
+<td>interceptors.*</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>ssl</td>
+<td>false</td>
+<td>将此设置为 true 以启用 SSL 加密。如果启用 SSL,还必须通过组件级参数(参见下文)或全局 SSL 参数(参见 <a target="_blank" rel="noopener" href="https://flume.apache.org/releases/content/1.11.0/FlumeUserGuide.html#ssl-tls-support">SSL/TLS support</a>) 部分)指定“keystore”和“keystore-password”。</td>
+</tr>
+<tr>
+<td>keystore</td>
+<td>–</td>
+<td>这是 Java 密钥库文件的路径。如果在这里未指定,则将使用全局密钥库(如果已定义,否则将产生配置错误)。</td>
+</tr>
+<tr>
+<td>keystore-password</td>
+<td>–</td>
+<td>Java 密钥库的密码。如果在此未指定,则将使用全局密钥库密码(如果已定义,否则会产生配置错误)。</td>
+</tr>
+<tr>
+<td>keystore-type</td>
+<td>JKS</td>
+<td>Java 密钥库的类型。可以是 “JKS” 或 “PKCS12”。如果在此处未指定,则将使用全局密钥库类型(如果已定义,否则默认为 JKS)。</td>
+</tr>
+<tr>
+<td>exclude-protocols</td>
+<td>SSLv3</td>
+<td>要排除的 SSL/TLS 协议的以空格分隔的列表。除了指定的协议之外,还将始终排除 SSLv3。</td>
+</tr>
+<tr>
+<td>include-protocols</td>
+<td>–</td>
+<td>要包括的 SSL/TLS 协议的以空格分隔的列表。启用的协议将是不含排除协议的包含协议。如果 include-protocols 为空,它将包含每个支持的协议。</td>
+</tr>
+<tr>
+<td>exclude-cipher-suites</td>
+<td>–</td>
+<td>要排除的密码套件的以空格分隔的列表。</td>
+</tr>
+<tr>
+<td>include-cipher-suites</td>
+<td>–</td>
+<td>要包含的密码组合的以空格分隔的列表。启用的密码组合将是不含排除的密码组合的包含密码组合。如果 include-cipher-suites 为空,它将包含每个支持的密码组合。</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>例如，名为 a1 的代理的 syslog TCP source：<br><figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs properties"><span class="hljs-meta">a1.sources</span> = <span class="hljs-string">r1</span><br><span class="hljs-meta">a1.channels</span> = <span class="hljs-string">c1</span><br><span class="hljs-meta">a1.sources.r1.type</span> = <span class="hljs-string">syslogtcp</span><br><span class="hljs-meta">a1.sources.r1.port</span> = <span class="hljs-string">5140</span><br><span class="hljs-meta">a1.sources.r1.host</span> = <span class="hljs-string">localhost</span><br><span class="hljs-meta">a1.sources.r1.channels</span> = <span class="hljs-string">c1</span><br></code></pre></td></tr></table></figure></p>
+<h5 id="Multiport-Syslog-TCP-Source"><a href="#Multiport-Syslog-TCP-Source" class="headerlink" title="Multiport Syslog TCP Source"></a>Multiport Syslog TCP Source</h5><p>这是 Syslog TCP 源的更新、更快、支持多端口的版本。 请注意，端口配置设置已替换端口。 多端口功能意味着它可以高效地同时侦听多个端口。 该源使用 Apache Mina 库来执行此操作。 提供对 RFC-3164 和许多常见 RFC-5424 格式消息的支持。 还提供配置每个端口使用的字符集的功能。</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>属性名称</th>
+<th>默认值</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>channels</strong></td>
+<td>–</td>
+<td></td>
+</tr>
+<tr>
+<td><strong>type</strong></td>
+<td>–</td>
+<td>组件类型名称,需要为 multiport_syslogtcp</td>
+</tr>
+<tr>
+<td><strong>host</strong></td>
+<td>–</td>
+<td>要绑定的主机名或 IP 地址</td>
+</tr>
+<tr>
+<td><strong>ports</strong></td>
+<td>–</td>
+<td>要绑定的一个或多个端口的空格分隔列表</td>
+</tr>
+<tr>
+<td>eventSize</td>
+<td>2500</td>
+<td>单个事件行的最大大小(以字节为单位)</td>
+</tr>
+<tr>
+<td>keepFields</td>
+<td>none</td>
+<td>将此设置为“all”将在事件正文中保留优先级、时间戳和主机名。也允许以空格分隔的字段列表。 当前可以包含以下字段:priority、version、timestamp、hostname。值“true”和“false”已弃用,改用“all”和“none”。</td>
+</tr>
+<tr>
+<td>portHeader</td>
+<td>–</td>
+<td>如果指定,端口号将使用此处指定的标头名称存储在每个事件的标头中。这允许拦截器和通道选择器根据传入端口自定义路由逻辑。</td>
+</tr>
+<tr>
+<td>clientIPHeader</td>
+<td>–</td>
+<td>如果指定,客户端的IP地址将使用此处指定的标头名称存储在每个事件的标头中。这允许拦截器和通道选择器根据客户端的IP地址自定义路由逻辑。不要在这里使用标准的Syslog标头名称(如 _host_) 因为事件标头在那种情况下会被覆盖。</td>
+</tr>
+<tr>
+<td>clientHostnameHeader</td>
+<td>–</td>
+<td>如果指定,客户端的主机名将使用此处指定的标头名称存储在每个事件的标头中。这允许拦截器和通道选择器根据客户端的主机名自定义路由逻辑。检索主机名可能涉及名称服务反向查找,这可能会影响性能。不要在这里使用标准的Syslog标头名称(如 _host_)因为事件标头在那种情况下会被覆盖。</td>
+</tr>
+<tr>
+<td>charset.default</td>
+<td>UTF-8</td>
+<td>解析syslog事件为字符串时使用的默认字符集。</td>
+</tr>
+<tr>
+<td>charset.port.\<port></td>
+<td>–</td>
+<td>可以对每个端口配置字符集。</td>
+</tr>
+<tr>
+<td>batchSize</td>
+<td>100</td>
+<td>每次请求循环尝试处理的最大事件数。使用默认值通常就好。</td>
+</tr>
+<tr>
+<td>readBufferSize</td>
+<td>1024</td>
+<td>内部Mina读取缓冲区的大小。提供性能优化。使用默认值通常就好。</td>
+</tr>
+<tr>
+<td>numProcessors</td>
+<td>(auto-detected)</td>
+<td>用于处理消息的系统上可用的处理器数。默认情况下,使用Java运行时API自动检测CPU数。Mina将为每个检测到的CPU生成2个请求处理线程,这通常是合理的。</td>
+</tr>
+<tr>
+<td>selector.type</td>
+<td>replicating</td>
+<td>replicating、multiplexing或custom</td>
+</tr>
+<tr>
+<td>selector.*</td>
+<td>–</td>
+<td>依赖于selector.type的值</td>
+</tr>
+<tr>
+<td>interceptors</td>
+<td>–</td>
+<td>空格分隔的拦截器列表。</td>
+</tr>
+<tr>
+<td>interceptors.*</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>ssl</td>
+<td>false</td>
+<td>将此设置为true可启用SSL加密。 如果启用SSL,还必须通过组件级参数(参见下文)或全局SSL参数(请参阅<a target="_blank" rel="noopener" href="https://flume.apache.org/releases/content/1.11.0/FlumeUserGuide.html#ssl-tls-support">SSL/TLS支持</a>部分)指定“keystore”和“keystore-password”。</td>
+</tr>
+<tr>
+<td>keystore</td>
+<td>–</td>
+<td>这是Java密钥库文件的路径。如果在这里未指定,则将使用全局密钥库(如果已定义,否则将产生配置错误)。</td>
+</tr>
+<tr>
+<td>keystore-password</td>
+<td>–</td>
+<td>Java密钥库的密码。如果在此未指定,则将使用全局密钥库密码(如果已定义,否则会产生配置错误)。</td>
+</tr>
+<tr>
+<td>keystore-type</td>
+<td>JKS</td>
+<td>Java密钥库的类型。可以是“JKS”或“PKCS12”。如果在此处未指定,则将使用全局密钥库类型(如果已定义,否则默认为JKS)。</td>
+</tr>
+<tr>
+<td>exclude-protocols</td>
+<td>SSLv3</td>
+<td>要排除的SSL/TLS协议的以空格分隔的列表。除了指定的协议之外,还将始终排除SSLv3。</td>
+</tr>
+<tr>
+<td>include-protocols</td>
+<td>–</td>
+<td>要包含的SSL/TLS协议的以空格分隔的列表。启用的协议将是不含排除协议的包含协议。如果include-protocols为空,它将包含每个支持的协议。</td>
+</tr>
+<tr>
+<td>exclude-cipher-suites</td>
+<td>–</td>
+<td>要排除的密码套件的以空格分隔的列表。</td>
+</tr>
+<tr>
+<td>include-cipher-suites</td>
+<td>–</td>
+<td>要包含的密码组合的以空格分隔的列表。启用的密码组合将是不含排除的密码组合的包含密码组合。如果include-cipher-suites为空,它将包含每个支持的密码组合。</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h5 id="Syslog-UDP-Source"><a href="#Syslog-UDP-Source" class="headerlink" title="Syslog UDP Source"></a>Syslog UDP Source</h5><div class="table-container">
+<table>
+<thead>
+<tr>
+<th>属性名称</th>
+<th>默认值</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>channels</strong></td>
+<td>–</td>
+<td></td>
+</tr>
+<tr>
+<td><strong>type</strong></td>
+<td>–</td>
+<td>组件类型名称,需要为 syslogudp</td>
+</tr>
+<tr>
+<td><strong>host</strong></td>
+<td>–</td>
+<td>要绑定的主机名或 IP 地址</td>
+</tr>
+<tr>
+<td><strong>port</strong></td>
+<td>–</td>
+<td>要绑定的端口号</td>
+</tr>
+<tr>
+<td>keepFields</td>
+<td>false</td>
+<td>将此设置为 true 将在事件正文中保留优先级、时间戳和主机名。</td>
+</tr>
+<tr>
+<td>clientIPHeader</td>
+<td>–</td>
+<td>如果指定,客户端的 IP 地址将使用此处指定的标头名称存储在每个事件的标头中。这允许拦截器和通道选择器根据客户端的 IP 地址自定义路由逻辑。不要在这里使用标准的 Syslog 标头名称(如 _host_),因为事件标头在那种情况下会被覆盖。</td>
+</tr>
+<tr>
+<td>clientHostnameHeader</td>
+<td>–</td>
+<td>如果指定,客户端的主机名将使用此处指定的标头名称存储在每个事件的标头中。这允许拦截器和通道选择器根据客户端的主机名自定义路由逻辑。检索主机名可能涉及名称服务反向查找,这可能会影响性能。不要在这里使用标准的 Syslog 标头名称(如 _host_),因为事件标头在那种情况下会被覆盖。</td>
+</tr>
+<tr>
+<td>selector.type</td>
+<td></td>
+<td>replicating 或 multiplexing</td>
+</tr>
+<tr>
+<td>selector.*</td>
+<td>replicating</td>
+<td>取决于 selector.type 值</td>
+</tr>
+<tr>
+<td>interceptors</td>
+<td>–</td>
+<td>空格分隔的拦截器列表</td>
+</tr>
+<tr>
+<td>interceptors.*</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>例如，名为 a1 的代理的 syslog UDP source：<br><figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs properties"><span class="hljs-meta">a1.sources</span> = <span class="hljs-string">r1</span><br><span class="hljs-meta">a1.channels</span> = <span class="hljs-string">c1</span><br><span class="hljs-meta">a1.sources.r1.type</span> = <span class="hljs-string">syslogudp</span><br><span class="hljs-meta">a1.sources.r1.port</span> = <span class="hljs-string">5140</span><br><span class="hljs-meta">a1.sources.r1.host</span> = <span class="hljs-string">localhost</span><br><span class="hljs-meta">a1.sources.r1.channels</span> = <span class="hljs-string">c1</span><br></code></pre></td></tr></table></figure></p>
+<h4 id="HTTP-Source"><a href="#HTTP-Source" class="headerlink" title="HTTP Source"></a>HTTP Source</h4><p>通过 HTTP POST 和 GET 接受 Flume 事件的源。 GET 只能用于实验。 HTTP 请求通过可插入“handler”转换为 Flume 事件，该处理程序必须实现 HTTPSourceHandler 接口。 该处理程序接受 HttpServletRequest 并返回 Flume 事件列表。 从一个 Http 请求处理的所有事件都会在一个事务中提交到通道，从而提高文件通道等通道的效率。 如果处理程序引发异常，该源将返回 HTTP 状态 400。如果通道已满，或者源无法将事件附加到通道，则源将返回 HTTP 503 - 暂时不可用状态。</p>
+<p>在一个 post 请求中发送的所有事件都被视为一批并在一笔事务中插入到通道中。</p>
+<p>该源基于 Jetty 9.4，并提供设置其他 Jetty 特定参数的能力，这些参数将直接传递到 Jetty 组件。</p>
 
             </div>
             <hr>
