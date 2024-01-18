@@ -190,7 +190,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      11.5k 字
+      13.6k 字
     </span>
   
 
@@ -200,7 +200,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      137
+      164
        分钟
     </span>
   
@@ -1774,7 +1774,435 @@
 <h4 id="HTTP-Source"><a href="#HTTP-Source" class="headerlink" title="HTTP Source"></a>HTTP Source</h4><p>通过 HTTP POST 和 GET 接受 Flume 事件的源。 GET 只能用于实验。 HTTP 请求通过可插入“handler”转换为 Flume 事件，该处理程序必须实现 HTTPSourceHandler 接口。 该处理程序接受 HttpServletRequest 并返回 Flume 事件列表。 从一个 Http 请求处理的所有事件都会在一个事务中提交到通道，从而提高文件通道等通道的效率。 如果处理程序引发异常，该源将返回 HTTP 状态 400。如果通道已满，或者源无法将事件附加到通道，则源将返回 HTTP 503 - 暂时不可用状态。</p>
 <p>在一个 post 请求中发送的所有事件都被视为一批并在一笔事务中插入到通道中。</p>
 <p>该源基于 Jetty 9.4，并提供设置其他 Jetty 特定参数的能力，这些参数将直接传递到 Jetty 组件。</p>
-
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>属性名称</th>
+<th>默认值</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>type</strong></td>
+<td></td>
+<td>组件类型名称,需要为http</td>
+</tr>
+<tr>
+<td><strong>port</strong></td>
+<td>–</td>
+<td>源应绑定到的端口</td>
+</tr>
+<tr>
+<td>bind</td>
+<td>0.0.0.0</td>
+<td>要监听的主机名或 IP 地址</td>
+</tr>
+<tr>
+<td>handler</td>
+<td>org.apache.flume.source.http.JSONHandler</td>
+<td>handler 类的 FQCN</td>
+</tr>
+<tr>
+<td>handler.*</td>
+<td>–</td>
+<td>handler的配置参数</td>
+</tr>
+<tr>
+<td>selector.type</td>
+<td>replicating</td>
+<td>replicating 或 multiplexing</td>
+</tr>
+<tr>
+<td>selector.*</td>
+<td></td>
+<td>依赖于selector.type值</td>
+</tr>
+<tr>
+<td>interceptors</td>
+<td>–</td>
+<td>空格分隔的拦截器列表</td>
+</tr>
+<tr>
+<td>interceptors.*</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>ssl</td>
+<td>false</td>
+<td>将属性设置为 true 以启用 SSL。HTTP Source 不支持 SSLv3。</td>
+</tr>
+<tr>
+<td>exclude-protocols</td>
+<td>SSLv3</td>
+<td>要排除的 SSL/TLS 协议的以空格分隔的列表。除了指定的协议之外,还将始终排除 SSLv3。</td>
+</tr>
+<tr>
+<td>include-protocols</td>
+<td>–</td>
+<td>要包含的 SSL/TLS 协议的以空格分隔的列表。启用的协议将是不含排除协议的包含协议。如果 include-protocols 为空,它将包含每个支持的协议。</td>
+</tr>
+<tr>
+<td>exclude-cipher-suites</td>
+<td>–</td>
+<td>要排除的密码套件的以空格分隔的列表。</td>
+</tr>
+<tr>
+<td>include-cipher-suites</td>
+<td>–</td>
+<td>要包含的密码组合的以空格分隔的列表。启用的密码组合将是不含排除的密码组合的包含密码组合。</td>
+</tr>
+<tr>
+<td>keystore</td>
+<td></td>
+<td>密钥库的位置,包括密钥库文件名。如果启用 SSL 但未在此指定 keystore,则将使用全局 keystore(如果已定义,否则配置错误)。</td>
+</tr>
+<tr>
+<td>keystore-password</td>
+<td></td>
+<td>密钥库密码。如果启用 SSL 但未在此指定 keystore 密码,则将使用全局 keystore 密码(如果已定义,否则配置错误)。</td>
+</tr>
+<tr>
+<td>keystore-type</td>
+<td>JKS</td>
+<td>密钥库类型。可以是 “JKS” 或 “PKCS12”。</td>
+</tr>
+<tr>
+<td>QueuedThreadPool.*</td>
+<td></td>
+<td>将在 org.eclipse.jetty.util.thread.QueuedThreadPool 上设置的 Jetty 特定设置。注意:仅在设置了该类的至少一个属性时才会使用 QueuedThreadPool。</td>
+</tr>
+<tr>
+<td>HttpConfiguration.*</td>
+<td></td>
+<td>将在 org.eclipse.jetty.server.HttpConfiguration 上设置的 Jetty 特定设置</td>
+</tr>
+<tr>
+<td>SslContextFactory.*</td>
+<td></td>
+<td>将在 org.eclipse.jetty.util.ssl.SslContextFactory(仅在 <em>ssl</em> 设置为 true 时适用)上设置的 Jetty 特定设置</td>
+</tr>
+<tr>
+<td>ServerConnector.*</td>
+<td></td>
+<td>将在 org.eclipse.jetty.server.ServerConnector 上设置的 Jetty 特定设置</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>已弃用的属性</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>Property Name</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>keystorePassword</td>
+<td>–</td>
+<td>使用 <em>keystore-password</em>.  已弃用的值将被新值覆盖。</td>
+</tr>
+<tr>
+<td>excludeProtocols</td>
+<td>SSLv3</td>
+<td>使用 <em>exclude-protocols</em>. 已弃用的值将被新值覆盖。</td>
+</tr>
+<tr>
+<td>enableSSL</td>
+<td>false</td>
+<td>使用 <em>ssl</em>. 已弃用的值将被新值覆盖。</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>注意： Jetty 特定的设置是使用上面列出的对象上的 setter 方法来设置的。 有关完整详细信息，请参阅这些类（<a target="_blank" rel="noopener" href="https://www.eclipse.org/jetty/javadoc/jetty-9/org/eclipse/jetty/util/thread/QueuedThreadPool.html">QueuedThreadPool</a>、<a target="_blank" rel="noopener" href="https://eclipse.dev/jetty/javadoc/jetty-9/org/eclipse/jetty/server/HttpConfiguration.html">HttpConfiguration</a>、<a target="_blank" rel="noopener" href="https://eclipse.dev/jetty/javadoc/jetty-9/org/eclipse/jetty/util/ssl/SslContextFactory.html">SslContextFactory</a> 和 <a target="_blank" rel="noopener" href="https://eclipse.dev/jetty/javadoc/jetty-9/org/eclipse/jetty/server/ServerConnector.html">ServerConnector</a>）的 Javadoc。</p>
+<p>当使用 Jetty 特定的设置时，上面的命名属性将优先（例如，excludeProtocols 将优先于 SslContextFactory.ExcludeProtocols）。 所有属性的首字母均为小写。</p>
+<p>名为 a1 的代理的 http 源示例：</p>
+<figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs properties"><span class="hljs-meta">a1.sources</span> = <span class="hljs-string">r1</span><br><span class="hljs-meta">a1.channels</span> = <span class="hljs-string">c1</span><br><span class="hljs-meta">a1.sources.r1.type</span> = <span class="hljs-string">http</span><br><span class="hljs-meta">a1.sources.r1.port</span> = <span class="hljs-string">5140</span><br><span class="hljs-meta">a1.sources.r1.channels</span> = <span class="hljs-string">c1</span><br><span class="hljs-meta">a1.sources.r1.handler</span> = <span class="hljs-string">org.example.rest.RestHandler</span><br><span class="hljs-meta">a1.sources.r1.handler.nickname</span> = <span class="hljs-string">random props</span><br><span class="hljs-meta">a1.sources.r1.HttpConfiguration.sendServerVersion</span> = <span class="hljs-string">false</span><br><span class="hljs-meta">a1.sources.r1.ServerConnector.idleTimeout</span> = <span class="hljs-string">300</span><br></code></pre></td></tr></table></figure>
+<h5 id="JSONHandler"><a href="#JSONHandler" class="headerlink" title="JSONHandler"></a>JSONHandler</h5><p>开箱即用地提供了一个处理程序，它可以处理以 JSON 格式表示的事件，并支持 UTF-8、UTF-16 和 UTF-32 字符集。 该处理程序接受一组事件（即使只有一个事件，该事件也必须以数组形式发送），并根据请求中指定的编码将它们转换为 Flume 事件。 如果未指定编码，则假定为 UTF-8。 JSON 处理程序支持 UTF-8、UTF-16 和 UTF-32。 事件表示如下。</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs json">[&#123;<br>  <span class="hljs-attr">&quot;headers&quot;</span> : &#123;<br>             <span class="hljs-attr">&quot;timestamp&quot;</span> : <span class="hljs-string">&quot;434324343&quot;</span>,<br>             <span class="hljs-attr">&quot;host&quot;</span> : <span class="hljs-string">&quot;random_host.example.com&quot;</span><br>             &#125;,<br>  <span class="hljs-attr">&quot;body&quot;</span> : <span class="hljs-string">&quot;random_body&quot;</span><br>  &#125;,<br>  &#123;<br>  <span class="hljs-attr">&quot;headers&quot;</span> : &#123;<br>             <span class="hljs-attr">&quot;namenode&quot;</span> : <span class="hljs-string">&quot;namenode.example.com&quot;</span>,<br>             <span class="hljs-attr">&quot;datanode&quot;</span> : <span class="hljs-string">&quot;random_datanode.example.com&quot;</span><br>             &#125;,<br>  <span class="hljs-attr">&quot;body&quot;</span> : <span class="hljs-string">&quot;really_random_body&quot;</span><br>  &#125;]<br></code></pre></td></tr></table></figure>
+<p>要设置字符集，请求的内容类型必须指定为 <code>application/json;charset=UTF-8</code>（根据需要将 UTF-8 替换为 UTF-16 或 UTF-32）。</p>
+<p>以此处理程序期望的格式创建事件的一种方法是使用 Flume SDK 中提供的 JSONEvent 并使用 Google Gson 通过 Gson#fromJson(Object, Type) 方法创建 JSON 字符串。 作为事件列表的该方法的第二个参数传递的类型标记可以通过以下方式创建：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs java">Type type = <span class="hljs-keyword">new</span> TypeToken&lt;List&lt;JSONEvent&gt;&gt;() &#123;&#125;.getType();<br></code></pre></td></tr></table></figure>
+<h5 id="BlobHandler"><a href="#BlobHandler" class="headerlink" title="BlobHandler"></a>BlobHandler</h5><p>默认情况下，HTTPSource 将 JSON 输入拆分为 Flume 事件。 作为替代方案，BlobHandler 是 HTTPSource 的处理程序，它返回一个事件，其中包含请求参数以及随此请求上传的二进制大对象 (BLOB)。 例如 PDF 或 JPG 文件。 请注意，此方法不适合非常大的对象，因为它将整个 BLOB 缓冲在 RAM 中。</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>属性名</th>
+<th>默认值</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>handler</strong></td>
+<td>–</td>
+<td>此类的 FQCN：<code>org.apache.flume.sink.solr.morphline.BlobHandler</code></td>
+</tr>
+<tr>
+<td>handler.maxBlobLength</td>
+<td>100000000</td>
+<td>针对给定请求读取和缓冲的最大字节数</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h4 id="Stress-Source"><a href="#Stress-Source" class="headerlink" title="Stress Source"></a>Stress Source</h4><p>StressSource 是一个内部负载生成源实现，对于压力测试非常有用。 它允许用户配置带有空标头的事件有效负载的大小。 用户可以配置要发送的事件总数以及要发送的成功事件的最大数量。</p>
+<p>必需的属性以<strong>粗体</strong>显示。</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>属性名称</th>
+<th>默认值</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>type</strong></td>
+<td>–</td>
+<td>组件类型名称,需要为 org.apache.flume.source.StressSource</td>
+</tr>
+<tr>
+<td>size</td>
+<td>500</td>
+<td>每个事件的有效负载大小。单位:<strong>byte</strong></td>
+</tr>
+<tr>
+<td>maxTotalEvents</td>
+<td>-1</td>
+<td>要发送的最大事件数</td>
+</tr>
+<tr>
+<td>maxSuccessfulEvents</td>
+<td>-1</td>
+<td>已成功发送的最大事件数</td>
+</tr>
+<tr>
+<td>batchSize</td>
+<td>1</td>
+<td>一次批处理中要发送的事件数</td>
+</tr>
+<tr>
+<td>maxEventsPerSecond</td>
+<td>0</td>
+<td>如果设置为大于零的整数,则对源施加速率限制器。</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>名为 a1 的代理示例：</p>
+<figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs properties"><span class="hljs-meta">a1.sources</span> = <span class="hljs-string">stresssource-1</span><br><span class="hljs-meta">a1.channels</span> = <span class="hljs-string">memoryChannel-1</span><br><span class="hljs-meta">a1.sources.stresssource-1.type</span> = <span class="hljs-string">org.apache.flume.source.StressSource</span><br><span class="hljs-meta">a1.sources.stresssource-1.size</span> = <span class="hljs-string">10240</span><br><span class="hljs-meta">a1.sources.stresssource-1.maxTotalEvents</span> = <span class="hljs-string">1000000</span><br><span class="hljs-meta">a1.sources.stresssource-1.channels</span> = <span class="hljs-string">memoryChannel-1</span><br></code></pre></td></tr></table></figure>
+<h4 id="Legacy-Sources"><a href="#Legacy-Sources" class="headerlink" title="Legacy Sources"></a>Legacy Sources</h4><p>Legacy Sources 允许 Flume 1.x  agent接收来自 Flume 0.9.4  agent 的事件。 它接受 Flume 0.9.4 格式的事件，将它们转换为 Flume 1.0 格式，并将它们存储在连接的通道中。 0.9.4 事件属性（例如时间戳、pri、主机、nanos 等）将转换为 1.x 事件标头属性。 Legacy Sources 支持 Avro 和 Thrift RPC 连接。 要在两个 Flume 版本之间使用此桥梁，您需要使用 avroLegacy 或 thriftLegacy 源启动 Flume 1.x  agent。 0.9.4  agent 应该让 agent Sink 指向 1.x 代理的主机/端口。</p>
+<blockquote>
+<p>说明:  Flume 1.x 的可靠性语义与 Flume 0.9.x 的可靠性语义不同。 Legacy Sources 不支持 Flume 0.9.x agent 的 E2E 或 DFO 模式。 唯一支持的 0.9.x 模式是 best effort ，尽管 1.x 流的可靠性设置将适用于由 Legacy Sources 保存到 Flume 1.x 通道中的事件。</p>
+</blockquote>
+<p>必需的属性以<strong>粗体</strong>显示。</p>
+<h5 id="Avro-Legacy-Source"><a href="#Avro-Legacy-Source" class="headerlink" title="Avro Legacy Source"></a>Avro Legacy Source</h5><div class="table-container">
+<table>
+<thead>
+<tr>
+<th>属性名称</th>
+<th>默认值</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>channels</strong></td>
+<td>–</td>
+<td></td>
+</tr>
+<tr>
+<td><strong>type</strong></td>
+<td>–</td>
+<td>组件的类型名称,需要是org.apache.flume.source.avroLegacy.AvroLegacySource</td>
+</tr>
+<tr>
+<td><strong>host</strong></td>
+<td>–</td>
+<td>要绑定的主机名或 IP 地址</td>
+</tr>
+<tr>
+<td><strong>port</strong></td>
+<td>–</td>
+<td>要监听的端口号</td>
+</tr>
+<tr>
+<td>selector.type</td>
+<td></td>
+<td>复制或多路复用</td>
+</tr>
+<tr>
+<td>selector.*</td>
+<td>replicating</td>
+<td>取决于selector.type的值</td>
+</tr>
+<tr>
+<td>interceptors</td>
+<td>–</td>
+<td>空格分隔的拦截器列表</td>
+</tr>
+<tr>
+<td>interceptors.*</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>名为 a1 的代理示例：</p>
+<figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs properties"><span class="hljs-meta">a1.sources</span> = <span class="hljs-string">r1</span><br><span class="hljs-meta">a1.channels</span> = <span class="hljs-string">c1</span><br><span class="hljs-meta">a1.sources.r1.type</span> = <span class="hljs-string">org.apache.flume.source.avroLegacy.AvroLegacySource</span><br><span class="hljs-meta">a1.sources.r1.host</span> = <span class="hljs-string">0.0.0.0</span><br><span class="hljs-meta">a1.sources.r1.bind</span> = <span class="hljs-string">6666</span><br><span class="hljs-meta">a1.sources.r1.channels</span> = <span class="hljs-string">c1</span><br></code></pre></td></tr></table></figure>
+<h5 id="Thrift-Legacy-Source"><a href="#Thrift-Legacy-Source" class="headerlink" title="Thrift Legacy Source"></a>Thrift Legacy Source</h5><div class="table-container">
+<table>
+<thead>
+<tr>
+<th>属性名称</th>
+<th>默认值</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>channels</strong></td>
+<td>–</td>
+<td></td>
+</tr>
+<tr>
+<td><strong>type</strong></td>
+<td>–</td>
+<td>组件的类型名称,需要是 org.apache.flume.source.thriftLegacy.ThriftLegacySource</td>
+</tr>
+<tr>
+<td><strong>host</strong></td>
+<td>–</td>
+<td>要绑定的主机名或 IP 地址</td>
+</tr>
+<tr>
+<td><strong>port</strong></td>
+<td>–</td>
+<td>要监听的端口号</td>
+</tr>
+<tr>
+<td>selector.type</td>
+<td></td>
+<td>复制或多路复用</td>
+</tr>
+<tr>
+<td>selector.*</td>
+<td>replicating</td>
+<td>取决于selector.type的值</td>
+</tr>
+<tr>
+<td>interceptors</td>
+<td>–</td>
+<td>空格分隔的拦截器列表</td>
+</tr>
+<tr>
+<td>interceptors.*</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>名为 a1 的代理示例：</p>
+<figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs properties"><span class="hljs-meta">a1.sources</span> = <span class="hljs-string">r1</span><br><span class="hljs-meta">a1.channels</span> = <span class="hljs-string">c1</span><br><span class="hljs-meta">a1.sources.r1.type</span> = <span class="hljs-string">org.apache.flume.source.thriftLegacy.ThriftLegacySource</span><br><span class="hljs-meta">a1.sources.r1.host</span> = <span class="hljs-string">0.0.0.0</span><br><span class="hljs-meta">a1.sources.r1.bind</span> = <span class="hljs-string">6666</span><br><span class="hljs-meta">a1.sources.r1.channels</span> = <span class="hljs-string">c1</span><br></code></pre></td></tr></table></figure>
+<h4 id="Custom-Source"><a href="#Custom-Source" class="headerlink" title="Custom Source"></a>Custom Source</h4><p>Custom Source 是您自己的 Source 接口的实现。 启动 Flume 代理时，Custom Source 的类及其依赖项必须包含在代理的类路径中。 自定义源的类型是其 FQCN。</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>属性名称</th>
+<th>默认值</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>channels</strong></td>
+<td>–</td>
+<td></td>
+</tr>
+<tr>
+<td><strong>type</strong></td>
+<td>–</td>
+<td>组件的类型名称,需要是  FQCN</td>
+</tr>
+<tr>
+<td>selector.type</td>
+<td></td>
+<td>复制或多路复用</td>
+</tr>
+<tr>
+<td>selector.*</td>
+<td>replicating</td>
+<td>取决于selector.type的值</td>
+</tr>
+<tr>
+<td>interceptors</td>
+<td>–</td>
+<td>空格分隔的拦截器列表</td>
+</tr>
+<tr>
+<td>interceptors.*</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>名为 a1 的代理示例：<br><figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs properties"><span class="hljs-meta">a1.sources</span> = <span class="hljs-string">r1</span><br><span class="hljs-meta">a1.channels</span> = <span class="hljs-string">c1</span><br><span class="hljs-meta">a1.sources.r1.type</span> = <span class="hljs-string">org.example.MySource</span><br><span class="hljs-meta">a1.sources.r1.channels</span> = <span class="hljs-string">c1</span><br></code></pre></td></tr></table></figure></p>
+<h4 id="Scribe-Source"><a href="#Scribe-Source" class="headerlink" title="Scribe Source"></a>Scribe Source</h4><p>Scribe 是另一种类型的摄取系统。 为了采用现有的Scribe摄取系统，Flume应该使用基于Thrift且兼容传输协议的ScribeSource。 如需部署 Scribe，请遵循 Facebook 的指南。 必需的属性以<strong>粗体</strong>显示。</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>属性名称</th>
+<th>默认值</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>type</strong></td>
+<td>–</td>
+<td>组件的类型名称,需要是  <code>org.apache.flume.source.scribe.ScribeSource</code></td>
+</tr>
+<tr>
+<td>port</td>
+<td>1499</td>
+<td>Scribe 应连接的端口</td>
+</tr>
+<tr>
+<td>maxReadBufferBytes</td>
+<td>16384000</td>
+<td>Thrift 默认帧缓冲区大小</td>
+</tr>
+<tr>
+<td>workerThreads</td>
+<td>5</td>
+<td>在 Thrift 中处理线程数</td>
+</tr>
+<tr>
+<td>selector.type</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>selector.*</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>名为 a1 的代理示例：</p>
+<figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs properties"><span class="hljs-meta">a1.sources</span> = <span class="hljs-string">r1</span><br><span class="hljs-meta">a1.channels</span> = <span class="hljs-string">c1</span><br><span class="hljs-meta">a1.sources.r1.type</span> = <span class="hljs-string">org.apache.flume.source.scribe.ScribeSource</span><br><span class="hljs-meta">a1.sources.r1.port</span> = <span class="hljs-string">1463</span><br><span class="hljs-meta">a1.sources.r1.workerThreads</span> = <span class="hljs-string">5</span><br><span class="hljs-meta">a1.sources.r1.channels</span> = <span class="hljs-string">c1</span><br></code></pre></td></tr></table></figure>
             </div>
             <hr>
             <div>
