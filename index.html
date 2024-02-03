@@ -182,6 +182,214 @@
     <article class="col-12 col-md-12 mx-auto index-info">
       <h1 class="index-header">
         
+        <a href="/2024/02/03/SQL%E7%9B%B8%E5%85%B3/%E5%BC%80%E7%AA%97%E5%87%BD%E6%95%B0-%E6%8E%92%E5%90%8D/">开窗函数-排名</a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2024/02/03/SQL%E7%9B%B8%E5%85%B3/%E5%BC%80%E7%AA%97%E5%87%BD%E6%95%B0-%E6%8E%92%E5%90%8D/">
+          
+          
+            
+          
+          排名主要利用三种函数
+
+rank()   排序相同时重复，总数不会减少
+
+dense_rank()    排序相同时重复，总数减少
+
+row_number()  排序不重复，总数不变
+
+
+比如对如下表根据分数进行降序排名
+
+
+
+
+id
+grade
+
+
+
+
+1
+97
+
+
+2
+96
+
+
+3
+95
+
+
+4
+95
+
+
+5
+98
+
+
+6
+94
+
+
+
+
+rank()  
+
+
+
+
+id
+grade
+rank
+
+
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2024-02-03 23:42" pubdate>
+              2024-02-03
+            </time>
+          </div>
+        
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/sql/">sql</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2024/02/03/%E5%85%B6%E4%BB%96/%E5%88%A9%E7%94%A8%E7%99%BE%E5%BA%A6%E5%9C%B0%E5%9B%BEAPI%E8%A7%A3%E6%9E%90%E5%9C%B0%E5%9D%80%E7%9C%81%E5%B8%82%E5%8C%BA/">利用百度地图API解析地址省市区</a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2024/02/03/%E5%85%B6%E4%BB%96/%E5%88%A9%E7%94%A8%E7%99%BE%E5%BA%A6%E5%9C%B0%E5%9B%BEAPI%E8%A7%A3%E6%9E%90%E5%9C%B0%E5%9D%80%E7%9C%81%E5%B8%82%E5%8C%BA/">
+          
+          
+            
+          
+          对于一些详细地址，我们需要知道 这个地址它的标准省市区是什么。比如 对于 江苏省南京市玄武区鸡鸣寺路1号  这个地址，要得到它的标准省市区 也就是江苏省-南京市-玄武区
+这里我们会用到百度地图的 两个 API 
+
+地理编码 
+全球逆地理编码
+
+
+先使用 地理编码 API 将 详细地址，转化为 地理坐标(经纬度)
+再利用 全球逆地理编码  将 地理坐标(经纬度) 转化为 对应的位置信息 得到所在的行
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2024-02-03 23:17" pubdate>
+              2024-02-03
+            </time>
+          </div>
+        
+        
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2024/02/02/%E5%A4%A7%E6%95%B0%E6%8D%AE/hive-sql%E4%BB%BB%E5%8A%A1%E5%9B%A0%E6%AD%BB%E9%94%81%E5%AF%BC%E8%87%B4%E5%8D%A1%E6%AD%BB/">hive锁</a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2024/02/02/%E5%A4%A7%E6%95%B0%E6%8D%AE/hive-sql%E4%BB%BB%E5%8A%A1%E5%9B%A0%E6%AD%BB%E9%94%81%E5%AF%BC%E8%87%B4%E5%8D%A1%E6%AD%BB/">
+          
+          
+            
+          
+          起因某次 有一个 HIVE SQL 任务 突然报错报错如下1234567nested exception is java.sql.SQLException: Error while processing statement: FAILED: Error in acquiring locks: Locks on the underlying objects cannot be acquired. r
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2024-02-02 13:56" pubdate>
+              2024-02-02
+            </time>
+          </div>
+        
+        
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2024/02/01/%E5%BE%AE%E4%BF%A1%E6%8E%A5%E5%8F%A3/%E4%BC%81%E4%B8%9A%E5%BE%AE%E4%BF%A1%E6%8E%A5%E5%8F%A3-%E7%AE%A1%E7%90%86%E4%BC%81%E4%B8%9A%E6%A0%87%E7%AD%BE/">企业微信接口-管理企业标签</a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2024/02/01/%E5%BE%AE%E4%BF%A1%E6%8E%A5%E5%8F%A3/%E4%BC%81%E4%B8%9A%E5%BE%AE%E4%BF%A1%E6%8E%A5%E5%8F%A3-%E7%AE%A1%E7%90%86%E4%BC%81%E4%B8%9A%E6%A0%87%E7%AD%BE/">
+          
+          
+            
+          
+          来源: 管理企业标签 - 文档 - 企业微信开发者中心 (qq.com)
+1.获取企业标签库企业可通过此接口获取企业客户标签详情
+请求方式: POST(HTTP)请求地址: https://qyapi.weixin.qq.com/cgi-bin/externalcontact/get_corp_tag_list?access_token=ACCESS_TOKEN请求示例：12345678910&#
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2024-02-01 09:24" pubdate>
+              2024-02-01
+            </time>
+          </div>
+        
+        
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
         <a href="/2024/01/10/flink-cdc/Doris-Flink-Connector/">Doris-Flink-Connector</a>
       </h1>
 
@@ -489,206 +697,6 @@ MySQL CDC 连接器MySQL CDC 连接器允许从 MySQL 数据库读取快照数�
               <a href="/tags/leetcode/">leetcode</a>
             
               <a href="/tags/%E4%BC%98%E5%85%88%E9%98%9F%E5%88%97/">优先队列</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2023/10/23/%E5%BE%AE%E4%BF%A1%E6%8E%A5%E5%8F%A3/%E4%BC%81%E4%B8%9A%E5%BE%AE%E4%BF%A1%E6%8E%A5%E5%8F%A3%E7%9B%B8%E5%85%B3/">企业微信接口相关</a>
-      </h1>
-
-      <p class="index-excerpt">
-        <a href="/2023/10/23/%E5%BE%AE%E4%BF%A1%E6%8E%A5%E5%8F%A3/%E4%BC%81%E4%B8%9A%E5%BE%AE%E4%BF%A1%E6%8E%A5%E5%8F%A3%E7%9B%B8%E5%85%B3/">
-          
-          
-            
-          
-          1. 获取 access_token1.1 术语1.1.1 secretsecret是企业应用里面用于保障数据安全的“钥匙”，每一个应用都有一个独立的访问密钥，为了保证数据的安全，secret务必不能泄漏。目前secret有：
-
-自建应用secret。在管理后台-&gt;“应用与小程序”-&gt;“应用”-&gt;“自建”，点进某个应用，即可看到。
-基础应用secret。某些基础应用（如“审批”“
-        </a>
-      </p>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2023-10-23 10:01" pubdate>
-              2023-10-23
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-category"></i>
-            
-              <a href="/categories/%E5%BE%AE%E4%BF%A1%E6%8E%A5%E5%8F%A3/">微信接口</a>
-            
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/wechat/">wechat</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2023/10/23/%E7%AE%97%E6%B3%95/%E4%BC%98%E5%85%88%E9%98%9F%E5%88%97(PriorityQueue)/">优先队列</a>
-      </h1>
-
-      <p class="index-excerpt">
-        <a href="/2023/10/23/%E7%AE%97%E6%B3%95/%E4%BC%98%E5%85%88%E9%98%9F%E5%88%97(PriorityQueue)/">
-          
-          
-            
-          
-          概念PriorityQueue 优先队列是一种先进先出（FIFO）的数据结构。和普通队列不同的是它出队的顺序是有优先级的
-使用构造方法
-Integer 或者 String类型
-1234567891011// 小堆PriorityQueue&lt;Integer&gt; priorityQueue = new PriorityQueue&lt;&gt;();// 大堆PriorityQueue&lt
-        </a>
-      </p>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2023-10-23 10:01" pubdate>
-              2023-10-23
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-category"></i>
-            
-              <a href="/categories/%E7%AE%97%E6%B3%95/">算法</a>
-            
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/java/">java</a>
-            
-              <a href="/tags/leetcode/">leetcode</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2023/08/17/%E5%A4%A7%E6%95%B0%E6%8D%AE/datax%E6%9C%AC%E5%9C%B0idea%E9%85%8D%E7%BD%AE/">datax本地idea配置</a>
-      </h1>
-
-      <p class="index-excerpt">
-        <a href="/2023/08/17/%E5%A4%A7%E6%95%B0%E6%8D%AE/datax%E6%9C%AC%E5%9C%B0idea%E9%85%8D%E7%BD%AE/">
-          
-          
-            
-          
-          
-下载源码打包alibaba/DataX: DataX是阿里云DataWorks数据集成的开源版本。 (github.com)
-
-执行打包命令1mvn -U clean package assembly:assembly -Dmaven.test.skip=true
-
-配置启动参数在 idea 中找到  com.alibaba.datax.core.Engine 类
-
-在 vm option 中写
-        </a>
-      </p>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2023-08-17 23:24" pubdate>
-              2023-08-17
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-category"></i>
-            
-              <a href="/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/">大数据</a>
-            
-          </div>
-        
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2023/07/14/%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/hexo-auto-category%E9%85%8D%E7%BD%AE/">hexo-auto-category配置</a>
-      </h1>
-
-      <p class="index-excerpt">
-        <a href="/2023/07/14/%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/hexo-auto-category%E9%85%8D%E7%BD%AE/">
-          
-          
-            
-          
-          以往在写 blog 的时候 ，通常是使用1new page &quot;xxx&quot;来新建文章，但是这样有一个问题 就是新建的文件全部都堆在 /_post 文件下，blog 多了以后非常难维护，如果我们 手动做了 分类，这个时候因为 我们 在 front-matter 中 categories 是手动维护的，，如果文件夹出现了修改或者说 blog 的移动，这个时候还需要手动的去修改 cate
-        </a>
-      </p>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2023-07-14 00:20" pubdate>
-              2023-07-14
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-category"></i>
-            
-              <a href="/categories/%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/">环境配置</a>
-            
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/hexo%E6%8F%92%E4%BB%B6/">hexo插件</a>
             
           </div>
         
