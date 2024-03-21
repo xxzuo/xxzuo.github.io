@@ -190,7 +190,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      15 字
+      74 字
     </span>
   
 
@@ -233,7 +233,7 @@
             <h1 style="display: none">datax任务主键切分数量分析</h1>
             
             <div class="markdown-body">
-              <p>datax 在执行任务时，支持对主键做切分</p>
+              <p>在执行 某个离线同步任务时， 数据库告警，发现是datax查询 没有做分页<br>直接告警<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">select</span> <span class="hljs-operator">*</span> <span class="hljs-keyword">from</span> <span class="hljs-keyword">table</span><br></code></pre></td></tr></table></figure><br>目前对大表 不允许 直接 <code>select</code> 不加 <code>where</code> 条件<br>因此考虑 进行切片<br>datax 在执行任务时，支持对主键做切分</p>
 
             </div>
             <hr>
