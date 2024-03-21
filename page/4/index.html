@@ -182,20 +182,21 @@
     <article class="col-12 col-md-12 mx-auto index-info">
       <h1 class="index-header">
         
-        <a href="/2023/07/10/%E5%A4%A7%E6%95%B0%E6%8D%AE/hive2.1.1%20%E6%97%A0%E6%B3%95%E8%AF%86%E5%88%AB%E9%AB%98%E7%89%88%E6%9C%AChive-orc%E6%95%B0%E6%8D%AE/">hive2.1.1 无法识别高版本hive-orc数据</a>
+        <a href="/2023/04/13/%E5%A4%A7%E6%95%B0%E6%8D%AE/datax%E4%BB%BB%E5%8A%A1%E4%B8%BB%E9%94%AE%E5%88%87%E5%88%86%E6%95%B0%E9%87%8F%E5%88%86%E6%9E%90/">datax任务主键切分数量分析</a>
       </h1>
 
       <p class="index-excerpt">
-        <a href="/2023/07/10/%E5%A4%A7%E6%95%B0%E6%8D%AE/hive2.1.1%20%E6%97%A0%E6%B3%95%E8%AF%86%E5%88%AB%E9%AB%98%E7%89%88%E6%9C%AChive-orc%E6%95%B0%E6%8D%AE/">
+        <a href="/2023/04/13/%E5%A4%A7%E6%95%B0%E6%8D%AE/datax%E4%BB%BB%E5%8A%A1%E4%B8%BB%E9%94%AE%E5%88%87%E5%88%86%E6%95%B0%E9%87%8F%E5%88%86%E6%9E%90/">
           
           
             
           
-          在 利用 distcp 将 原 apahce hadoop 集群 传输数据到 新 cdh6.3.2 集群后在 新 cdh 集群上 使用 hive 建表，结果 无法查询到 表数据提示 
+          在执行 某个离线同步任务时， 数据库告警，发现是datax查询 没有做分页直接告警1select * from table目前对大表 不允许 直接 select 不加 where 条件因此考虑 进行切片datax 在执行任务时，支持对主键做切分
+DataX/mysqlreader/doc/mysqlreader.md
 
-ORC split generation failed with exception:ArrayIndexOutOfBoundsException: 7
 
-查询资料发现https://issues.apache.o
+splitPk
+描述：MysqlReader进行数据抽取时，如果指定spli
         </a>
       </p>
 
@@ -203,8 +204,8 @@ ORC split generation failed with exception:ArrayIndexOutOfBoundsException: 7
         
           <div class="post-meta mr-3">
             <i class="iconfont icon-date"></i>
-            <time datetime="2023-07-10 00:49" pubdate>
-              2023-07-10
+            <time datetime="2023-04-13 21:05" pubdate>
+              2023-04-13
             </time>
           </div>
         
@@ -220,7 +221,7 @@ ORC split generation failed with exception:ArrayIndexOutOfBoundsException: 7
           <div class="post-meta">
             <i class="iconfont icon-tags"></i>
             
-              <a href="/tags/hive/">hive</a>
+              <a href="/tags/datax/">datax</a>
             
           </div>
         

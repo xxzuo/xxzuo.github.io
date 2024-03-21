@@ -1,0 +1,517 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=&#34;auto&#34;>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" href="/img/favicon.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="">
+  <meta name="author" content="xxzuo">
+  <meta name="keywords" content="">
+  
+  <title>datax任务主键切分数量分析 - Blog</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10.4.0/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+  
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"xxzuo.github.io","root":"/","version":"1.8.9","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null}}};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>xxzuo</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;</a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" href="javascript:">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="datax任务主键切分数量分析">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-author" aria-hidden="true"></i>
+      xxzuo
+    </span>
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2023-04-13 21:05" pubdate>
+        2023年4月13日 晚上
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      997 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      14
+       分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">datax任务主键切分数量分析</h1>
+            
+            <div class="markdown-body">
+              <p>在执行 某个离线同步任务时， 数据库告警，发现是datax查询 没有做分页<br>直接告警<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">select</span> <span class="hljs-operator">*</span> <span class="hljs-keyword">from</span> <span class="hljs-keyword">table</span><br></code></pre></td></tr></table></figure><br>目前对大表 不允许 直接 <code>select</code> 不加 <code>where</code> 条件<br>因此考虑 进行切片<br>datax 在执行任务时，支持对主键做切分</p>
+<p><a target="_blank" rel="noopener" href="https://github.com/alibaba/DataX/blob/master/mysqlreader/doc/mysqlreader.md">DataX/mysqlreader/doc/mysqlreader.md</a></p>
+<blockquote>
+<ul>
+<li><strong>splitPk</strong><ul>
+<li>描述：MysqlReader进行数据抽取时，如果指定splitPk，表示用户希望使用splitPk代表的字段进行数据分片，DataX因此会启动并发任务进行数据同步，这样可以大大提供数据同步的效能。<br>  推荐splitPk用户使用表主键，因为表主键通常情况下比较均匀，因此切分出来的分片也不容易出现数据热点。<br>目前splitPk仅支持整形数据切分，<code>不支持浮点、字符串、日期等其他类型</code>。如果用户指定其他非支持类型，MysqlReader将报错！<br>如果splitPk不填写，包括不提供splitPk或者splitPk值为空，DataX视作使用单通道同步该表数据。</li>
+<li>必选：否  </li>
+<li>默认值：空</li>
+</ul>
+</li>
+</ul>
+</blockquote>
+<p>通过代码 <a target="_blank" rel="noopener" href="https://github.com/alibaba/DataX/blob/9626738ca8d60160bf6292abc8dd48015f3efc15/plugin-rdbms-util/src/main/java/com/alibaba/datax/plugin/rdbms/reader/util/SingleTableSplitUtil.java#L72">https://github.com/alibaba/DataX/blob/9626738ca8d60160bf6292abc8dd48015f3efc15/plugin-rdbms-util/src/main/java/com/alibaba/datax/plugin/rdbms/reader/util/SingleTableSplitUtil.java#L72</a><br>发现<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> List&lt;String&gt; <span class="hljs-title">splitAndWrap</span><span class="hljs-params">(BigInteger left, BigInteger right, <span class="hljs-keyword">int</span> expectSliceNumber, String columnName)</span> </span>&#123;<br>    BigInteger[] tempResult = RangeSplitUtil.doBigIntegerSplit(left, right, expectSliceNumber);<br>    <span class="hljs-keyword">return</span> RdbmsRangeSplitWrap.wrapRange(tempResult, columnName);<br>&#125;<br></code></pre></td></tr></table></figure></p>
+<p>切分是 根据 最大值、 最小值 还有 一个 <code>expectSliceNumber</code> 来的<br>而这个  <code>expectSliceNumber</code> 来自于<br><a target="_blank" rel="noopener" href="https://github.com/alibaba/DataX/blob/9626738ca8d60160bf6292abc8dd48015f3efc15/plugin-rdbms-util/src/main/java/com/alibaba/datax/plugin/rdbms/reader/util/ReaderSplitUtil.java#L83">https://github.com/alibaba/DataX/blob/9626738ca8d60160bf6292abc8dd48015f3efc15/plugin-rdbms-util/src/main/java/com/alibaba/datax/plugin/rdbms/reader/util/ReaderSplitUtil.java#L83</a></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">if</span> (tables.size() == <span class="hljs-number">1</span>) &#123;  <br>    <span class="hljs-comment">//原来:如果是单表的，主键切分num=num*2+1  </span><br>    <span class="hljs-comment">// splitPk is null这类的情况的数据量本身就比真实数据量少很多, 和channel大小比率关系时，不建议考虑  </span><br>    <span class="hljs-comment">//eachTableShouldSplittedNumber = eachTableShouldSplittedNumber * 2 + 1;// 不应该加1导致长尾  </span><br>    <span class="hljs-comment">//考虑其他比率数字?(splitPk is null, 忽略此长尾)  </span><br>    <span class="hljs-comment">//eachTableShouldSplittedNumber = eachTableShouldSplittedNumber * 5;  </span><br>    <span class="hljs-comment">//为避免导入hive小文件 默认基数为5，可以通过 splitFactor 配置基数  </span><br>    <span class="hljs-comment">// 最终task数为(channel/tableNum)向上取整*splitFactor  </span><br>    Integer splitFactor = originalSliceConfig.getInt(Key.SPLIT_FACTOR, Constant.SPLIT_FACTOR);  <br>    eachTableShouldSplittedNumber = eachTableShouldSplittedNumber * splitFactor;  <br>&#125;<br></code></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">int</span> eachTableShouldSplittedNumber = -<span class="hljs-number">1</span>;<br><span class="hljs-keyword">if</span> (isTableMode) &#123;<br>    <span class="hljs-comment">// adviceNumber这里是channel数量大小, 即datax并发task数量</span><br>    <span class="hljs-comment">// eachTableShouldSplittedNumber是单表应该切分的份数, 向上取整可能和adviceNumber没有比例关系了已经</span><br>    eachTableShouldSplittedNumber = calculateEachTableShouldSplittedNumber(<br>            adviceNumber, originalSliceConfig.getInt(Constant.TABLE_NUMBER_MARK));<br>&#125;<br></code></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">int</span> <span class="hljs-title">calculateEachTableShouldSplittedNumber</span><span class="hljs-params">(<span class="hljs-keyword">int</span> adviceNumber,</span></span><br><span class="hljs-function"><span class="hljs-params">                                                          <span class="hljs-keyword">int</span> tableNumber)</span> </span>&#123;<br>    <span class="hljs-keyword">double</span> tempNum = <span class="hljs-number">1.0</span> * adviceNumber / tableNumber;<br><br>    <span class="hljs-keyword">return</span> (<span class="hljs-keyword">int</span>) Math.ceil(tempNum);<br>&#125;<br></code></pre></td></tr></table></figure>
+<p>而这个 一开始的 <code>adviceNumber</code> 来自于<br><a target="_blank" rel="noopener" href="https://github.com/alibaba/DataX/blob/9626738ca8d60160bf6292abc8dd48015f3efc15/core/src/main/java/com/alibaba/datax/core/job/JobContainer.java#L387">https://github.com/alibaba/DataX/blob/9626738ca8d60160bf6292abc8dd48015f3efc15/core/src/main/java/com/alibaba/datax/core/job/JobContainer.java#L387</a><br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">this</span>.adjustChannelNumber();  <br><span class="hljs-keyword">if</span> (<span class="hljs-keyword">this</span>.needChannelNumber &lt;= <span class="hljs-number">0</span>) &#123;  <br>    <span class="hljs-keyword">this</span>.needChannelNumber = <span class="hljs-number">1</span>;  <br>&#125;  <br>List&lt;Configuration&gt; readerTaskConfigs = <span class="hljs-keyword">this</span>  <br>        .doReaderSplit(<span class="hljs-keyword">this</span>.needChannelNumber);<br></code></pre></td></tr></table></figure></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-keyword">void</span> <span class="hljs-title">adjustChannelNumber</span><span class="hljs-params">()</span> </span>&#123;<br>        <span class="hljs-keyword">int</span> needChannelNumberByByte = Integer.MAX_VALUE;<br>        <span class="hljs-keyword">int</span> needChannelNumberByRecord = Integer.MAX_VALUE;<br><br>        <span class="hljs-keyword">boolean</span> isByteLimit = (<span class="hljs-keyword">this</span>.configuration.getInt(<br>                CoreConstant.DATAX_JOB_SETTING_SPEED_BYTE, <span class="hljs-number">0</span>) &gt; <span class="hljs-number">0</span>);<br>        <span class="hljs-keyword">if</span> (isByteLimit) &#123;<br>            <span class="hljs-keyword">long</span> globalLimitedByteSpeed = <span class="hljs-keyword">this</span>.configuration.getInt(<br>                    CoreConstant.DATAX_JOB_SETTING_SPEED_BYTE, <span class="hljs-number">10</span> * <span class="hljs-number">1024</span> * <span class="hljs-number">1024</span>);<br><br>            <span class="hljs-comment">// 在byte流控情况下，单个Channel流量最大值必须设置，否则报错！</span><br>            Long channelLimitedByteSpeed = <span class="hljs-keyword">this</span>.configuration<br>                    .getLong(CoreConstant.DATAX_CORE_TRANSPORT_CHANNEL_SPEED_BYTE);<br>            <span class="hljs-keyword">if</span> (channelLimitedByteSpeed == <span class="hljs-keyword">null</span> || channelLimitedByteSpeed &lt;= <span class="hljs-number">0</span>) &#123;<br>                <span class="hljs-keyword">throw</span> DataXException.asDataXException(<br>                        FrameworkErrorCode.CONFIG_ERROR,<br>                        <span class="hljs-string">&quot;在有总bps限速条件下，单个channel的bps值不能为空，也不能为非正数&quot;</span>);<br>            &#125;<br><br>            needChannelNumberByByte =<br>                    (<span class="hljs-keyword">int</span>) (globalLimitedByteSpeed / channelLimitedByteSpeed);<br>            needChannelNumberByByte =<br>                    needChannelNumberByByte &gt; <span class="hljs-number">0</span> ? needChannelNumberByByte : <span class="hljs-number">1</span>;<br>            LOG.info(<span class="hljs-string">&quot;Job set Max-Byte-Speed to &quot;</span> + globalLimitedByteSpeed + <span class="hljs-string">&quot; bytes.&quot;</span>);<br>        &#125;<br><br>        <span class="hljs-keyword">boolean</span> isRecordLimit = (<span class="hljs-keyword">this</span>.configuration.getInt(<br>                CoreConstant.DATAX_JOB_SETTING_SPEED_RECORD, <span class="hljs-number">0</span>)) &gt; <span class="hljs-number">0</span>;<br>        <span class="hljs-keyword">if</span> (isRecordLimit) &#123;<br>            <span class="hljs-keyword">long</span> globalLimitedRecordSpeed = <span class="hljs-keyword">this</span>.configuration.getInt(<br>                    CoreConstant.DATAX_JOB_SETTING_SPEED_RECORD, <span class="hljs-number">100000</span>);<br><br>            Long channelLimitedRecordSpeed = <span class="hljs-keyword">this</span>.configuration.getLong(<br>                    CoreConstant.DATAX_CORE_TRANSPORT_CHANNEL_SPEED_RECORD);<br>            <span class="hljs-keyword">if</span> (channelLimitedRecordSpeed == <span class="hljs-keyword">null</span> || channelLimitedRecordSpeed &lt;= <span class="hljs-number">0</span>) &#123;<br>                <span class="hljs-keyword">throw</span> DataXException.asDataXException(FrameworkErrorCode.CONFIG_ERROR,<br>                        <span class="hljs-string">&quot;在有总tps限速条件下，单个channel的tps值不能为空，也不能为非正数&quot;</span>);<br>            &#125;<br><br>            needChannelNumberByRecord =<br>                    (<span class="hljs-keyword">int</span>) (globalLimitedRecordSpeed / channelLimitedRecordSpeed);<br>            needChannelNumberByRecord =<br>                    needChannelNumberByRecord &gt; <span class="hljs-number">0</span> ? needChannelNumberByRecord : <span class="hljs-number">1</span>;<br>            LOG.info(<span class="hljs-string">&quot;Job set Max-Record-Speed to &quot;</span> + globalLimitedRecordSpeed + <span class="hljs-string">&quot; records.&quot;</span>);<br>        &#125;<br><br>        <span class="hljs-comment">// 取较小值</span><br>        <span class="hljs-keyword">this</span>.needChannelNumber = needChannelNumberByByte &lt; needChannelNumberByRecord ?<br>                needChannelNumberByByte : needChannelNumberByRecord;<br><br>        <span class="hljs-comment">// 如果从byte或record上设置了needChannelNumber则退出</span><br>        <span class="hljs-keyword">if</span> (<span class="hljs-keyword">this</span>.needChannelNumber &lt; Integer.MAX_VALUE) &#123;<br>            <span class="hljs-keyword">return</span>;<br>        &#125;<br><br>        <span class="hljs-keyword">boolean</span> isChannelLimit = (<span class="hljs-keyword">this</span>.configuration.getInt(<br>                CoreConstant.DATAX_JOB_SETTING_SPEED_CHANNEL, <span class="hljs-number">0</span>) &gt; <span class="hljs-number">0</span>);<br>        <span class="hljs-keyword">if</span> (isChannelLimit) &#123;<br>            <span class="hljs-keyword">this</span>.needChannelNumber = <span class="hljs-keyword">this</span>.configuration.getInt(<br>                    CoreConstant.DATAX_JOB_SETTING_SPEED_CHANNEL);<br><br>            LOG.info(<span class="hljs-string">&quot;Job set Channel-Number to &quot;</span> + <span class="hljs-keyword">this</span>.needChannelNumber<br>                    + <span class="hljs-string">&quot; channels.&quot;</span>);<br><br>            <span class="hljs-keyword">return</span>;<br>        &#125;<br><br>        <span class="hljs-keyword">throw</span> DataXException.asDataXException(<br>                FrameworkErrorCode.CONFIG_ERROR,<br>                <span class="hljs-string">&quot;Job运行速度必须设置&quot;</span>);<br>    &#125;<br><br></code></pre></td></tr></table></figure>
+<p>从上述代码可以发现 ， 单表场景下 最终 任务切分的数量是<br><code>channel * splitFactor + 1</code> </p>
+<blockquote>
+<p>注意: 多出的 1个任务 是 <code>SELECT * FROM TABLE WHERE ID IS NULL</code> 这个SQL</p>
+</blockquote>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/">大数据</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/datax/">datax</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2023/07/10/%E5%A4%A7%E6%95%B0%E6%8D%AE/hive2.1.1%20%E6%97%A0%E6%B3%95%E8%AF%86%E5%88%AB%E9%AB%98%E7%89%88%E6%9C%AChive-orc%E6%95%B0%E6%8D%AE/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">hive2.1.1 无法识别高版本hive-orc数据</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/12/08/flume/flume%E5%90%AF%E5%8A%A8%E8%84%9A%E6%9C%AC/">
+                        <span class="hidden-mobile">flume启动脚本</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+  </div>
+  
+
+  
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/debouncer.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/tocbot@4.12.0/dist/tocbot.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4.3.0/anchor.min.js" ></script>
+
+
+
+  <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js" ></script>
+
+
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
+  </script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+  <script>
+    (function () {
+      var path = "/local-search.xml";
+      $('#local-search-input').on('click', function() {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      });
+      $('#modalSearch').on('shown.bs.modal', function() {
+        $('#local-search-input').focus();
+      });
+    })()
+  </script>
+
+
+
+
+
+  
+
+  
+    <!-- MathJax -->
+    <script>
+      MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']]
+        },
+        options: {
+          renderActions: {
+            findScript: [10, doc => {
+              document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+                const display = !!node.type.match(/; *mode=display/);
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                const text = document.createTextNode('');
+                node.parentNode.replaceChild(text, node);
+                math.start = { node: text, delim: '', n: 0 };
+                math.end = { node: text, delim: '', n: 0 };
+                doc.math.push(math);
+              });
+            }, '', false],
+            insertedScript: [200, () => {
+              document.querySelectorAll('mjx-container').forEach(node => {
+                let target = node.parentNode;
+                if (target.nodeName.toLowerCase() === 'li') {
+                  target.parentNode.classList.add('has-jax');
+                }
+              });
+            }, '', false]
+          }
+        }
+      };
+    </script>
+
+    <script async src="https://cdn.jsdelivr.net/npm/mathjax@3.1.2/es5/tex-svg.js" ></script>
+
+  
+
+
+
+
+
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+</body>
+</html>
