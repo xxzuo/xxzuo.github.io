@@ -182,6 +182,229 @@
     <article class="col-12 col-md-12 mx-auto index-info">
       <h1 class="index-header">
         
+        <a href="/2022/06/20/%E5%A4%A7%E6%95%B0%E6%8D%AE/hadoop%E7%A3%81%E7%9B%98%E7%A9%BA%E9%97%B4%E6%B8%85%E7%90%86/">hadoop磁盘空间清理</a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2022/06/20/%E5%A4%A7%E6%95%B0%E6%8D%AE/hadoop%E7%A3%81%E7%9B%98%E7%A9%BA%E9%97%B4%E6%B8%85%E7%90%86/">
+          
+          
+            
+          
+          查看linux磁盘空间大文件
+
+du -h / —max-depth=5 | sort -hr | head -n 10
+
+查看hadoop大文件
+
+hdfs dfs -du -h  /
+
+分析其中占用空间过多的文件是否可以删除
+
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2022-06-20 23:02" pubdate>
+              2022-06-20
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/">大数据</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/linux/">linux</a>
+            
+              <a href="/tags/hadoop/">hadoop</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2022/06/20/%E5%A4%A7%E6%95%B0%E6%8D%AE/hadoop%E4%BD%9C%E4%B8%9A%E6%9F%A5%E8%AF%A2%E4%B8%8E%E5%85%B3%E9%97%AD/">hadoop作业查询与关闭</a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2022/06/20/%E5%A4%A7%E6%95%B0%E6%8D%AE/hadoop%E4%BD%9C%E4%B8%9A%E6%9F%A5%E8%AF%A2%E4%B8%8E%E5%85%B3%E9%97%AD/">
+          
+          
+            
+          
+          hadoop作业的查询和关闭
+hadoop version &lt;   2.3.0
+
+查看正在运行的 Hadoop 任务：
+
+hadoop job -list 
+
+关闭Hadoop 任务进程：
+
+hadoop job -kill $jobId 
+
+组合以上两条命令就可以实现 kill 掉指定用户的 job
+1234for i in `hadoop job -list | grep -w user
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2022-06-20 23:02" pubdate>
+              2022-06-20
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/">大数据</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/hadoop/">hadoop</a>
+            
+              <a href="/tags/yarn/">yarn</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2022/06/16/%E5%A4%A7%E6%95%B0%E6%8D%AE/hive-%E4%B8%AD%E6%96%87%E4%B9%B1%E7%A0%81/">hive 中文乱码</a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2022/06/16/%E5%A4%A7%E6%95%B0%E6%8D%AE/hive-%E4%B8%AD%E6%96%87%E4%B9%B1%E7%A0%81/">
+          
+          
+            
+          
+          hive 中文乱码修改元数据库字符集12345678910-- 修改表字段 注解 和 表 注解ALTER TABLE COLUMNS_V2 MODIFY COLUMN COMMENT varchar(256) character set utf8 ;ALTER TABLE TABLE_PARAMS MODIFY COLUMN PARAM_VALUE varchar(4000) character 
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2022-06-16 21:51" pubdate>
+              2022-06-16
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/">大数据</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/hive/">hive</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2022/06/16/%E5%A4%A7%E6%95%B0%E6%8D%AE/es-on-hive/">es on hive</a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2022/06/16/%E5%A4%A7%E6%95%B0%E6%8D%AE/es-on-hive/">
+          
+          
+            
+          
+          es on hive参考https://www.elastic.co/guide/en/elasticsearch/hadoop/current/hive.html
+1.首先在官网下载jar包，解压到hive/lib目录下 Download Elasticsearch for Hadoop Free | Elastic 
+2.hive server执行时，添加参数 
+
+hive.aux.jars.
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2022-06-16 21:50" pubdate>
+              2022-06-16
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/">大数据</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/hive/">hive</a>
+            
+              <a href="/tags/ElasticSearch/">ElasticSearch</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
         <a href="/2022/05/23/%E7%AE%97%E6%B3%95/%E6%90%9C%E7%B4%A2%E6%8A%80%E5%B7%A71/">搜索技巧1</a>
       </h1>
 
@@ -500,227 +723,6 @@
             <i class="iconfont icon-tags"></i>
             
               <a href="/tags/java/">java</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2021/05/04/%E7%AE%97%E6%B3%95/15-%E4%B8%89%E6%95%B0%E4%B9%8B%E5%92%8C/">15-三数之和</a>
-      </h1>
-
-      <p class="index-excerpt">
-        <a href="/2021/05/04/%E7%AE%97%E6%B3%95/15-%E4%B8%89%E6%95%B0%E4%B9%8B%E5%92%8C/">
-          
-          
-            
-          
-          题目描述题目链接:15. 三数之和 - 力扣（LeetCode） (leetcode-cn.com)
-给你一个包含 n 个整数的数组nums，判断 nums 中是否存在三个元素 a，b，c ，使得 a + b + c = 0 ?请你找出所有和为 0 且不重复的三元组。
-注意：答案中不可以包含重复的三元组。
-示例1：
-12输入：nums = [-1,0,1,2,-1,-4]输出：[[-1,-1,2]
-        </a>
-      </p>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2021-05-04 22:31" pubdate>
-              2021-05-04
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-category"></i>
-            
-              <a href="/categories/%E7%AE%97%E6%B3%95/">算法</a>
-            
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/leetcode/">leetcode</a>
-            
-              <a href="/tags/two-pointers/">two-pointers</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2021/05/04/%E7%AE%97%E6%B3%95/1-%E4%B8%A4%E6%95%B0%E4%B9%8B%E5%92%8C/">1-两数之和</a>
-      </h1>
-
-      <p class="index-excerpt">
-        <a href="/2021/05/04/%E7%AE%97%E6%B3%95/1-%E4%B8%A4%E6%95%B0%E4%B9%8B%E5%92%8C/">
-          
-          
-            
-          
-          题目描述题目链接:1. 两数之和 - 力扣（LeetCode） (leetcode-cn.com)
-给定一个整数数组 nums和一个整数目标值 target，请你在该数组中找出 和为目标值 的那两个整数，并返回它们的数组下标。
-你可以假设每种输入只会对应一个答案。但是，数组中同一个元素在答案里不能重复出现。
-你可以按任意顺序返回答案。
-示例1：
-123输入：nums = [2,7,11,15], 
-        </a>
-      </p>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2021-05-04 22:31" pubdate>
-              2021-05-04
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-category"></i>
-            
-              <a href="/categories/%E7%AE%97%E6%B3%95/">算法</a>
-            
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/leetcode/">leetcode</a>
-            
-              <a href="/tags/hash-table/">hash-table</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2021/05/03/%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/centos%E9%85%8D%E7%BD%AEjava/">centos配置java</a>
-      </h1>
-
-      <p class="index-excerpt">
-        <a href="/2021/05/03/%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/centos%E9%85%8D%E7%BD%AEjava/">
-          
-          
-            
-          
-          tar.gz包安装1.jdk下载关于jdk历史版本的下载，可以在这里找到Releases · frekele/oracle-java (github.com)
-
-我们选择jdk-8u202-linux-x64.tar.gz
-2.服务器配置
-123# 在服务器上新建目录cd /usr/localmkdir java
-利用finalshell](http://www.hostbuf.com/)) 将 
-        </a>
-      </p>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2021-05-03 11:30" pubdate>
-              2021-05-03
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-category"></i>
-            
-              <a href="/categories/%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/">环境配置</a>
-            
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/java/">java</a>
-            
-              <a href="/tags/centos/">centos</a>
-            
-              <a href="/tags/config/">config</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2021/05/03/%E7%AE%97%E6%B3%95/7-%E6%95%B4%E6%95%B0%E5%8F%8D%E8%BD%AC/">7-整数反转</a>
-      </h1>
-
-      <p class="index-excerpt">
-        <a href="/2021/05/03/%E7%AE%97%E6%B3%95/7-%E6%95%B4%E6%95%B0%E5%8F%8D%E8%BD%AC/">
-          
-          
-            
-          
-          题目描述题目链接:7. 整数反转 - 力扣（LeetCode） (leetcode-cn.com)
-给你一个 32 位的有符号整数 x ，返回将 x 中的数字部分反转后的结果。
-如果反转后整数超过 32 位的有符号整数的范围 $[−{2^{31}},  {2^{31}} − 1]$ ，就返回 0。
-假设环境不允许存储 64 位整数（有符号或无符号）。
-示例1:
-12输入：x = 123输出：321
-        </a>
-      </p>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2021-05-03 10:58" pubdate>
-              2021-05-03
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-category"></i>
-            
-              <a href="/categories/%E7%AE%97%E6%B3%95/">算法</a>
-            
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/leetcode/">leetcode</a>
-            
-              <a href="/tags/math/">math</a>
             
           </div>
         
