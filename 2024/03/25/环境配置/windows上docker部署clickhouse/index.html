@@ -190,7 +190,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      404 字
+      432 字
     </span>
   
 
@@ -246,7 +246,7 @@
 <h2 id="四、创建账号"><a href="#四、创建账号" class="headerlink" title="四、创建账号"></a>四、创建账号</h2><p>进入容器<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">docker exec -it temp-clickhouse-server /bin/bash<br></code></pre></td></tr></table></figure></p>
 <p>获取 sha256 加密字符串</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">PASSWORD=$(base64 &lt; /dev/urandom | head -c8); echo &quot;test&quot;; echo -n &quot;123456&quot; | sha256sum | tr -d &#x27;-&#x27;<br></code></pre></td></tr></table></figure>
-<p>这里会得到一个结果<br><figure class="highlight subunit"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs subunit">test<br>8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92<br></code></pre></td></tr></table></figure></p>
+<p>这里会得到一个结果<br><figure class="highlight subunit"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs subunit">test<br>8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92<br></code></pre></td></tr></table></figure><br>也可以考虑 使用 在线网站 比如  <a target="_blank" rel="noopener" href="https://www.jyshare.com/crypto/sha256/">SHA256 在线加密工具 | 菜鸟工具 (jyshare.com)</a> 生成</p>
 <p>然后编辑 <code>users.xml</code> 文件<br>在 <code>&lt;users&gt;</code> 标签下面添加<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">test</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">password_sha256_hex</span>&gt;</span>8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92<span class="hljs-tag">&lt;/<span class="hljs-name">password_sha256_hex</span>&gt;</span><br>	<span class="hljs-tag">&lt;<span class="hljs-name">networks</span> <span class="hljs-attr">incl</span>=<span class="hljs-string">&quot;networks&quot;</span> <span class="hljs-attr">replace</span>=<span class="hljs-string">&quot;replace&quot;</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">ip</span>&gt;</span>::/0<span class="hljs-tag">&lt;/<span class="hljs-name">ip</span>&gt;</span><br>    <span class="hljs-tag">&lt;/<span class="hljs-name">networks</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">profile</span>&gt;</span>default<span class="hljs-tag">&lt;/<span class="hljs-name">profile</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">quota</span>&gt;</span>default<span class="hljs-tag">&lt;/<span class="hljs-name">quota</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">test</span>&gt;</span><br></code></pre></td></tr></table></figure></p>
 <p>修改 <code>config.xml</code> 文件<br>添加下面这行<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">listen_host</span>&gt;</span>0.0.0.0<span class="hljs-tag">&lt;/<span class="hljs-name">listen_host</span>&gt;</span><br></code></pre></td></tr></table></figure></p>
 <p>销毁上面启动的临时容器<br><figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs pgsql">docker stop <span class="hljs-keyword">temp</span>-clickhouse-<span class="hljs-keyword">server</span><br></code></pre></td></tr></table></figure></p>
@@ -256,6 +256,13 @@
             <hr>
             <div>
               <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/">环境配置</a>
+                    
+                  </div>
                 
                 
                   <div class="post-meta">
