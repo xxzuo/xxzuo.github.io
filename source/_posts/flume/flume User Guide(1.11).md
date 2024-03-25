@@ -5,7 +5,7 @@ tags:
   - flume文档
 categories:
   - flume
-date: 2023-05-15 22:10:42
+date: 2024-03-12 22:10:42
 ---
 翻译自 [Flume 1.11.0 User Guide — Apache Flume](https://flume.apache.org/releases/content/1.11.0/FlumeUserGuide.html)
 

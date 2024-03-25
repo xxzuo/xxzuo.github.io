@@ -1,11 +1,11 @@
 ---
-title: Flume-Sources文档(翻译中)
+title: Flume-Sources文档
 author: xxzuo
 tags:
   - flume文档
 categories:
   - flume
-date: 2023-05-18 22:00:12
+date: 2024-03-13 22:00:12
 ---
 #### Avro Source
 在Avro端口上监听并接收来自外部Avro客户端流的事件。当与另一个（上一跳）Flume Agent上的内置Avro Sink配对时，它可以创建分层收集拓扑。必填属性以粗体显示。
