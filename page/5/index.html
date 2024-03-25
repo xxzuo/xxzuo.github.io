@@ -182,6 +182,59 @@
     <article class="col-12 col-md-12 mx-auto index-info">
       <h1 class="index-header">
         
+        <a href="/2022/08/04/%E5%A4%A7%E6%95%B0%E6%8D%AE/%E5%90%88%E5%B9%B6flink%E5%86%99%E5%85%A5hive%E4%BA%A7%E7%94%9F%E7%9A%84%E5%B0%8F%E6%96%87%E4%BB%B6/">合并flink写入hive产生的小文件</a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2022/08/04/%E5%A4%A7%E6%95%B0%E6%8D%AE/%E5%90%88%E5%B9%B6flink%E5%86%99%E5%85%A5hive%E4%BA%A7%E7%94%9F%E7%9A%84%E5%B0%8F%E6%96%87%E4%BB%B6/">
+          
+          
+            
+          
+          flink 写入数据到 hdfs 时，会产生很多的小文件，因为每个文件均按块存储,每个块的元数据存储在NameNode的内存中,因此HDFS存储小文件会非常低效。因为大量的小文件会耗尽NameNode中的大部分内存。
+因为我们需要将 小文件合并。
+只需要利用 HIVE 的 MR 即可，也就是执行 这条SQL 
+12insert overwrite table hive_tableselect * 
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2022-08-04 00:18" pubdate>
+              2022-08-04
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/">大数据</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/hive/">hive</a>
+            
+              <a href="/tags/flink/">flink</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
         <a href="/2022/08/04/%E5%A4%A7%E6%95%B0%E6%8D%AE/flink%E8%AF%BBkafka%E6%95%B0%E6%8D%AE%E5%86%99%E5%85%A5hive/">flink读kafka数据写入hive</a>
       </h1>
 
@@ -688,47 +741,6 @@ azkaban重启时
             <i class="iconfont icon-category"></i>
             
               <a href="/categories/%E8%B0%83%E5%BA%A6-azkaban/">调度-azkaban</a>
-            
-          </div>
-        
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2022/07/22/shell%E8%84%9A%E6%9C%AC/ssh%E8%BF%9C%E7%A8%8B%E7%99%BB%E9%99%86%E6%97%B6%E4%B8%80%E4%BA%9B%E5%91%BD%E4%BB%A4%E6%97%A0%E6%B3%95%E4%BD%BF%E7%94%A8/">ssh远程登陆时一些命令无法使用</a>
-      </h1>
-
-      <p class="index-excerpt">
-        <a href="/2022/07/22/shell%E8%84%9A%E6%9C%AC/ssh%E8%BF%9C%E7%A8%8B%E7%99%BB%E9%99%86%E6%97%B6%E4%B8%80%E4%BA%9B%E5%91%BD%E4%BB%A4%E6%97%A0%E6%B3%95%E4%BD%BF%E7%94%A8/">
-          
-          
-            
-          
-          在180 ssh 到另一台服务器179 执行命令时报错12[root@180 sbin]# ssh 179 -p 60022 &quot;mapred --help&quot;bash: mapred: 未找到命令但实际在179 可以执行该命令1234567891011121314151617181920212223242526272829303132333435[root@179 sbin]# 
-        </a>
-      </p>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2022-07-22 21:53" pubdate>
-              2022-07-22
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-category"></i>
-            
-              <a href="/categories/shell%E8%84%9A%E6%9C%AC/">shell脚本</a>
             
           </div>
         

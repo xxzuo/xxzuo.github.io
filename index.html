@@ -182,6 +182,53 @@
     <article class="col-12 col-md-12 mx-auto index-info">
       <h1 class="index-header">
         
+        <a href="/2024/03/25/%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/windows%E4%B8%8Adocker%E9%83%A8%E7%BD%B2clickhouse/">windows上docker部署clickhouse</a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2024/03/25/%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/windows%E4%B8%8Adocker%E9%83%A8%E7%BD%B2clickhouse/">
+          
+          
+            
+          
+          一、拉取镜像1docker pull yandex/clickhouse-server:21.3.20.1
+
+注: 不知道为什么   latest 版本有问题，无法启动， 所以这里指定了  21.3.20.1
+
+二、运行临时容器这一步主要是为了获取 配置文件 config.xml 和 users.xml1docker run --rm -d --name=temp-clickhouse-serve
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2024-03-25 22:17" pubdate>
+              2024-03-25
+            </time>
+          </div>
+        
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/clickhouse/">clickhouse</a>
+            
+              <a href="/tags/docker/">docker</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
         <a href="/2024/03/22/flume/Flume%20Sinks/">Flume-Sinks文档(进行中)</a>
       </h1>
 
@@ -700,55 +747,6 @@ rank
               <a href="/tags/sql/">sql</a>
             
           </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2024/02/03/%E5%85%B6%E4%BB%96/%E5%88%A9%E7%94%A8%E7%99%BE%E5%BA%A6%E5%9C%B0%E5%9B%BEAPI%E8%A7%A3%E6%9E%90%E5%9C%B0%E5%9D%80%E7%9C%81%E5%B8%82%E5%8C%BA/">利用百度地图API解析地址省市区</a>
-      </h1>
-
-      <p class="index-excerpt">
-        <a href="/2024/02/03/%E5%85%B6%E4%BB%96/%E5%88%A9%E7%94%A8%E7%99%BE%E5%BA%A6%E5%9C%B0%E5%9B%BEAPI%E8%A7%A3%E6%9E%90%E5%9C%B0%E5%9D%80%E7%9C%81%E5%B8%82%E5%8C%BA/">
-          
-          
-            
-          
-          对于一些详细地址，我们需要知道 这个地址它的标准省市区是什么。比如 对于 江苏省南京市玄武区鸡鸣寺路1号  这个地址，要得到它的标准省市区 也就是江苏省-南京市-玄武区
-这里我们会用到百度地图的 两个 API 
-
-地理编码 
-全球逆地理编码
-
-
-先使用 地理编码 API 将 详细地址，转化为 地理坐标(经纬度)
-再利用 全球逆地理编码  将 地理坐标(经纬度) 转化为 对应的位置信息 得到所在的行
-        </a>
-      </p>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2024-02-03 23:17" pubdate>
-              2024-02-03
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-category"></i>
-            
-              <a href="/categories/%E5%85%B6%E4%BB%96/">其他</a>
-            
-          </div>
-        
         
       </div>
     </article>

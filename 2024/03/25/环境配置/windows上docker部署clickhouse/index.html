@@ -18,7 +18,7 @@
   <meta name="author" content="xxzuo">
   <meta name="keywords" content="">
   
-  <title>Flume-Sinks文档(进行中) - Blog</title>
+  <title>windows上docker部署clickhouse - Blog</title>
 
   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" />
 
@@ -163,7 +163,7 @@
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
           <div class="page-header text-center fade-in-up">
-            <span class="h2" id="subtitle" title="Flume-Sinks文档(进行中)">
+            <span class="h2" id="subtitle" title="windows上docker部署clickhouse">
               
             </span>
 
@@ -178,8 +178,8 @@
   
     <span class="post-meta">
       <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-      <time datetime="2024-03-22 22:21" pubdate>
-        2024年3月22日 晚上
+      <time datetime="2024-03-25 22:17" pubdate>
+        2024年3月25日 晚上
       </time>
     </span>
   
@@ -190,7 +190,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      1.6k 字
+      404 字
     </span>
   
 
@@ -200,7 +200,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      18
+      6
        分钟
     </span>
   
@@ -230,322 +230,40 @@
         <div class="py-5" id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">Flume-Sinks文档(进行中)</h1>
+            <h1 style="display: none">windows上docker部署clickhouse</h1>
             
             <div class="markdown-body">
-              <h3 id="Flume-Sinks"><a href="#Flume-Sinks" class="headerlink" title="Flume Sinks"></a>Flume Sinks</h3><h4 id="HDFS-Sink"><a href="#HDFS-Sink" class="headerlink" title="HDFS Sink"></a>HDFS Sink</h4><p>该 Sink 将事件写入 Hadoop 分布式文件系统 (HDFS)。 它目前支持创建文本和序列文件。 它支持两种文件类型的压缩。 可以根据经过的时间或数据大小或事件数量定期滚动文件（关闭当前文件并创建新文件）。 它还按时间戳或事件起源的机器等属性对数据进行存储/分区。 HDFS 目录路径可能包含格式化转义序列，这些序列将被 HDFS 接收器替换，以生成用于存储事件的目录/文件名。 使用此Sink 需要安装 hadoop，以便 Flume 可以使用 Hadoop jar 与 HDFS 集群进行通信。 请注意，需要支持sync() 调用的Hadoop版本。</p>
-<p>以下是支持的转义序列：</p>
-<div class="table-container">
-<table>
-<thead>
-<tr>
-<th>别名</th>
-<th>描述</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>%&#123;host&#125;</code></td>
-<td>替换事件头部名为“host”的值。支持任意头部名称。</td>
-</tr>
-<tr>
-<td><code>%t</code></td>
-<td>Unix时间，以毫秒为单位</td>
-</tr>
-<tr>
-<td><code>%a</code></td>
-<td>地区设置的星期几简称 (Mon, Tue, …)</td>
-</tr>
-<tr>
-<td><code>%A</code></td>
-<td>地区设置的星期几全称 (Monday, Tuesday, …)</td>
-</tr>
-<tr>
-<td><code>%b</code></td>
-<td>地区设置的月份简称 (Jan, Feb, …)</td>
-</tr>
-<tr>
-<td><code>%B</code></td>
-<td>地区设置的月份全称 (January, February, …)</td>
-</tr>
-<tr>
-<td><code>%c</code></td>
-<td>地区设置的日期和时间 (Thu Mar 3 23:05:25 2005)</td>
-</tr>
-<tr>
-<td><code>%d</code></td>
-<td>月份中的日 (01)</td>
-</tr>
-<tr>
-<td><code>%e</code></td>
-<td>月份中的日，不补零 (1)</td>
-</tr>
-<tr>
-<td><code>%D</code></td>
-<td>日期；同 <code>%m/%d/%y</code></td>
-</tr>
-<tr>
-<td><code>%H</code></td>
-<td>小时 (00..23)</td>
-</tr>
-<tr>
-<td><code>%I</code></td>
-<td>小时 (01..12)</td>
-</tr>
-<tr>
-<td><code>%j</code></td>
-<td>一年中的日 (001..366)</td>
-</tr>
-<tr>
-<td><code>%k</code></td>
-<td>小时 ( 0..23)</td>
-</tr>
-<tr>
-<td><code>%m</code></td>
-<td>月份 (01..12)</td>
-</tr>
-<tr>
-<td><code>%n</code></td>
-<td>月份，不补零 (1..12)</td>
-</tr>
-<tr>
-<td><code>%M</code></td>
-<td>分钟 (00..59)</td>
-</tr>
-<tr>
-<td><code>%p</code></td>
-<td>地区设置的上午或下午的等效表示</td>
-</tr>
-<tr>
-<td><code>%s</code></td>
-<td>自1970-01-01 00:00:00 UTC以来的秒数</td>
-</tr>
-<tr>
-<td><code>%S</code></td>
-<td>秒 (00..59)</td>
-</tr>
-<tr>
-<td><code>%y</code></td>
-<td>年份的后两位 (00..99)</td>
-</tr>
-<tr>
-<td><code>%Y</code></td>
-<td>年份 (2010)</td>
-</tr>
-<tr>
-<td><code>%z</code></td>
-<td>+hhmm 数字时区表示法 (例如, -0400)</td>
-</tr>
-<tr>
-<td><code>%[localhost]</code></td>
-<td>替换代理运行所在主机的主机名</td>
-</tr>
-<tr>
-<td><code>%[IP]</code></td>
-<td>替换代理运行所在主机的IP地址</td>
-</tr>
-<tr>
-<td><code>%[FQDN]</code></td>
-<td>替换代理运行所在主机的规范主机名</td>
-</tr>
-</tbody>
-</table>
-</div>
-<p>注意：转义字符串 <code>%[localhost]</code>、<code>%[IP]</code> 和 <code>%[FDN]</code> 都依赖于Java获取主机名的能力，这在某些网络环境中可能会失败。<br>正在使用的文件的名称将被修改为在末尾包含“.tmp”。关闭文件后，此扩展名将被删除。这允许排除目录中部分完整的文件。必填属性以<strong>粗体</strong>显示。</p>
+              <h2 id="一、拉取镜像"><a href="#一、拉取镜像" class="headerlink" title="一、拉取镜像"></a>一、拉取镜像</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">docker pull yandex/clickhouse-server:21.3.20.1<br></code></pre></td></tr></table></figure>
 <blockquote>
-<p>注意：对于所有与时间相关的转义序列，事件的标头中必须存在一个关键字为“timestamp”的标头（除非hdfs.useLocalTimeStamp设置为true）。一种自动添加的方法是使用TimestampInterceptor。</p>
+<p>注: 不知道为什么   latest 版本有问题，无法启动， 所以这里指定了  21.3.20.1</p>
 </blockquote>
-<div class="table-container">
-<table>
-<thead>
-<tr>
-<th>名称</th>
-<th>默认值</th>
-<th>描述</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><strong>channel</strong></td>
-<td>–</td>
-<td>-</td>
-</tr>
-<tr>
-<td><strong>type</strong></td>
-<td>–</td>
-<td>组件类型名称，需要是hdfs</td>
-</tr>
-<tr>
-<td><strong>hdfs.path</strong></td>
-<td>–</td>
-<td>HDFS目录路径（例如 hdfs://namenode/flume/webdata/）</td>
-</tr>
-<tr>
-<td>hdfs.filePrefix</td>
-<td>FlumeData</td>
-<td>Flume在HDFS目录中创建的文件名前缀</td>
-</tr>
-<tr>
-<td>hdfs.fileSuffix</td>
-<td>–</td>
-<td>附加到文件的后缀（例如 .avro - 注意：句号不会自动添加）</td>
-</tr>
-<tr>
-<td>hdfs.inUsePrefix</td>
-<td>–</td>
-<td>用于Flume正在积极写入的临时文件的前缀</td>
-</tr>
-<tr>
-<td>hdfs.inUseSuffix</td>
-<td>.tmp</td>
-<td>用于Flume正在积极写入的临时文件的后缀</td>
-</tr>
-<tr>
-<td>hdfs.emptyInUseSuffix</td>
-<td>false</td>
-<td>如果为false，则在写入输出时使用hdfs.inUseSuffix。关闭输出后，hdfs.inUseSuffix从输出文件名中移除。如果为true，则忽略hdfs.inUseSuffix参数，改为使用空字符串。</td>
-</tr>
-<tr>
-<td>hdfs.rollInterval</td>
-<td>30</td>
-<td>滚动当前文件前等待的秒数（0 = 永不根据时间间隔滚动）</td>
-</tr>
-<tr>
-<td>hdfs.rollSize</td>
-<td>1024</td>
-<td>触发滚动的文件大小，以字节为单位（0: 永不根据文件大小滚动）</td>
-</tr>
-<tr>
-<td>hdfs.rollCount</td>
-<td>10</td>
-<td>写入文件的事件数量，之后滚动（0 = 永不根据事件数量滚动）</td>
-</tr>
-<tr>
-<td>hdfs.idleTimeout</td>
-<td>0</td>
-<td>不活跃文件关闭的超时时间（0 = 禁用空闲文件的自动关闭）</td>
-</tr>
-<tr>
-<td>hdfs.batchSize</td>
-<td>100</td>
-<td>在文件刷新到HDFS之前写入的事件数量</td>
-</tr>
-<tr>
-<td>hdfs.codeC</td>
-<td>–</td>
-<td>压缩编解码器。以下之一：gzip, bzip2, lzo, lzop, snappy</td>
-</tr>
-<tr>
-<td>hdfs.fileType</td>
-<td>SequenceFile</td>
-<td>文件格式：目前是SequenceFile, DataStream 或 CompressedStream (1)DataStream不会压缩输出文件，请不要设置codeC (2)CompressedStream需要设置hdfs.codeC，并使用可用的codeC</td>
-</tr>
-<tr>
-<td>hdfs.maxOpenFiles</td>
-<td>5000</td>
-<td>允许打开的文件数量。如果超过此数量，最旧的文件将被关闭。</td>
-</tr>
-<tr>
-<td>hdfs.minBlockReplicas</td>
-<td>–</td>
-<td>指定每个HDFS块的最小副本数。如果没有指定，则来自类路径中默认的Hadoop配置。</td>
-</tr>
-<tr>
-<td>hdfs.writeFormat</td>
-<td>Writable</td>
-<td>序列文件记录的格式。Text 或 Writable 之一。在创建数据文件之前设置为Text，否则这些文件无法被Apache Impala (孵化中) 或 Apache Hive 读取。</td>
-</tr>
-<tr>
-<td>hdfs.threadsPoolSize</td>
-<td>10</td>
-<td>每个HDFS sink用于HDFS IO操作（打开、写入等）的线程数</td>
-</tr>
-<tr>
-<td>hdfs.rollTimerPoolSize</td>
-<td>1</td>
-<td>每个HDFS sink用于调度定时文件滚动的线程数</td>
-</tr>
-<tr>
-<td>hdfs.kerberosPrincipal</td>
-<td>–</td>
-<td>用于访问安全HDFS的Kerberos用户主体</td>
-</tr>
-<tr>
-<td>hdfs.kerberosKeytab</td>
-<td>–</td>
-<td>用于访问安全HDFS的Kerberos keytab</td>
-</tr>
-<tr>
-<td>hdfs.proxyUser</td>
-<td>–</td>
-<td>-</td>
-</tr>
-<tr>
-<td>hdfs.round</td>
-<td>false</td>
-<td>时间戳是否应该向下舍入（如果为true，影响所有基于时间的转义序列，除了 %t）</td>
-</tr>
-<tr>
-<td>hdfs.roundValue</td>
-<td>1</td>
-<td>向下舍入到此的最近倍数（使用hdfs.roundUnit配置的单位），小于当前时间。</td>
-</tr>
-<tr>
-<td>hdfs.roundUnit</td>
-<td>second</td>
-<td>向下舍入值的单位 - second, minute 或 hour。</td>
-</tr>
-<tr>
-<td>hdfs.timeZone</td>
-<td>Local Time</td>
-<td>用于解析目录路径的时区名称，例如 America/Los_Angeles。</td>
-</tr>
-<tr>
-<td>hdfs.useLocalTimeStamp</td>
-<td>false</td>
-<td>在替换转义序列时使用本地时间（而不是事件头部的时间戳）。</td>
-</tr>
-<tr>
-<td>hdfs.closeTries</td>
-<td>0</td>
-<td>sink在尝试关闭文件后必须重命名文件的次数。如果设置为1，这个sink在重命名失败（例如，由于NameNode或DataNode故障）后不会重试，可能会留下带有.tmp扩展名的文件处于打开状态。如果设置为0，sink将不断尝试重命名文件，直到文件最终被重命名（没有尝试次数的限制）。文件可能仍然保持打开状态，如果关闭调用失败，但数据将完整，这种情况下，文件只有在Flume重启后才会关闭。</td>
-</tr>
-<tr>
-<td>hdfs.retryInterval</td>
-<td>180</td>
-<td>关闭文件的连续尝试之间的时间（秒）。每次关闭调用都会花费多个RPC往返到Namenode，所以设置得太低可能会导致Namenode负载过大。如果设置为0或更低，sink在第一次尝试失败后不会尝试关闭文件，可能会留下打开状态的文件或带有“.tmp”扩展名。</td>
-</tr>
-<tr>
-<td>serializer</td>
-<td>TEXT</td>
-<td>其他可能的选项包括 avro_event 或 EventSerializer.Builder 接口实现的完全限定类名。</td>
-</tr>
-<tr>
-<td>serializer.*</td>
-<td></td>
-<td></td>
-</tr>
-</tbody>
-</table>
-</div>
+<h2 id="二、运行临时容器"><a href="#二、运行临时容器" class="headerlink" title="二、运行临时容器"></a>二、运行临时容器</h2><p>这一步主要是为了获取 配置文件 <code>config.xml</code> 和 <code>users.xml</code><br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">docker run --rm -d --name=temp-clickhouse-server yandex/clickhouse-server:21.3.20.1<br></code></pre></td></tr></table></figure></p>
+<h2 id="三、创建windows本地目录"><a href="#三、创建windows本地目录" class="headerlink" title="三、创建windows本地目录"></a>三、创建windows本地目录</h2><p>这一步 主要是 为了映射</p>
+<blockquote>
+<p>创建目录 <code>E:\bigdata\clickhouse</code><br>创建目录 <code>E:\bigdata\clickhouse\config</code><br>创建目录 <code>E:\bigdata\clickhouse\data</code><br>创建目录 <code>E:\bigdata\clickhouse\logs</code></p>
+</blockquote>
+<p>复制文件<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs shell">docker cp temp-clickhouse-server:/etc/clickhouse-server/users.xml E:/bigdata/clickhouse/conf/users.xml<br><br> docker cp temp-clickhouse-server:/etc/clickhouse-server/config.xml E:/bigdata/clickhouse/conf/config.xml<br></code></pre></td></tr></table></figure></p>
+<h2 id="四、创建账号"><a href="#四、创建账号" class="headerlink" title="四、创建账号"></a>四、创建账号</h2><p>进入容器<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">docker exec -it temp-clickhouse-server /bin/bash<br></code></pre></td></tr></table></figure></p>
+<p>获取 sha256 加密字符串</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">PASSWORD=$(base64 &lt; /dev/urandom | head -c8); echo &quot;test&quot;; echo -n &quot;123456&quot; | sha256sum | tr -d &#x27;-&#x27;<br></code></pre></td></tr></table></figure>
+<p>这里会得到一个结果<br><figure class="highlight subunit"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs subunit">test<br>8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92<br></code></pre></td></tr></table></figure></p>
+<p>然后编辑 <code>users.xml</code> 文件<br>在 <code>&lt;users&gt;</code> 标签下面添加<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">test</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">password_sha256_hex</span>&gt;</span>8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92<span class="hljs-tag">&lt;/<span class="hljs-name">password_sha256_hex</span>&gt;</span><br>	<span class="hljs-tag">&lt;<span class="hljs-name">networks</span> <span class="hljs-attr">incl</span>=<span class="hljs-string">&quot;networks&quot;</span> <span class="hljs-attr">replace</span>=<span class="hljs-string">&quot;replace&quot;</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">ip</span>&gt;</span>::/0<span class="hljs-tag">&lt;/<span class="hljs-name">ip</span>&gt;</span><br>    <span class="hljs-tag">&lt;/<span class="hljs-name">networks</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">profile</span>&gt;</span>default<span class="hljs-tag">&lt;/<span class="hljs-name">profile</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">quota</span>&gt;</span>default<span class="hljs-tag">&lt;/<span class="hljs-name">quota</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">test</span>&gt;</span><br></code></pre></td></tr></table></figure></p>
+<p>修改 <code>config.xml</code> 文件<br>添加下面这行<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">listen_host</span>&gt;</span>0.0.0.0<span class="hljs-tag">&lt;/<span class="hljs-name">listen_host</span>&gt;</span><br></code></pre></td></tr></table></figure></p>
+<p>销毁上面启动的临时容器<br><figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs pgsql">docker stop <span class="hljs-keyword">temp</span>-clickhouse-<span class="hljs-keyword">server</span><br></code></pre></td></tr></table></figure></p>
+<h2 id="五、正式启动"><a href="#五、正式启动" class="headerlink" title="五、正式启动"></a>五、正式启动</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">docker run -d --name=single-clickhouse-server -p 8123:8123 -p 9000:9000 -p 9009:9009 --ulimit nofile=262144:262144 --volume E:/bigdata/clickhouse/data:/var/lib/clickhouse:rw --volume E:/bigdata/clickhouse/conf/config.xml:/etc/clickhouse-server/config.xml --volume E:/bigdata/clickhouse/conf/users.xml:/etc/clickhouse-server/users.xml --volume E:/bigdata/clickhouse/logs:/var/log/clickhouse-server:rw yandex/clickhouse-server:21.3.20.1<br></code></pre></td></tr></table></figure>
 
             </div>
             <hr>
             <div>
               <div class="post-metas mb-3">
                 
-                  <div class="post-meta mr-3">
-                    <i class="iconfont icon-category"></i>
-                    
-                      <a class="hover-with-bg" href="/categories/flume/">flume</a>
-                    
-                  </div>
-                
                 
                   <div class="post-meta">
                     <i class="iconfont icon-tags"></i>
                     
-                      <a class="hover-with-bg" href="/tags/flume%E6%96%87%E6%A1%A3/">flume文档</a>
+                      <a class="hover-with-bg" href="/tags/clickhouse/">clickhouse</a>
+                    
+                      <a class="hover-with-bg" href="/tags/docker/">docker</a>
                     
                   </div>
                 
@@ -562,18 +280,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2024/03/25/%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/windows%E4%B8%8Adocker%E9%83%A8%E7%BD%B2clickhouse/">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">windows上docker部署clickhouse</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2024/03/21/SQL%E7%9B%B8%E5%85%B3/SQL%E7%94%9F%E6%88%90%E8%BF%9E%E7%BB%AD%E5%88%97%E8%A1%A8/">
-                        <span class="hidden-mobile">SQL生成连续列表</span>
+                      <a href="/2024/03/22/flume/Flume%20Sinks/">
+                        <span class="hidden-mobile">Flume-Sinks文档(进行中)</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
